@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { Page } from './../payload-types'
 import { Gutter } from './_components/Gutter'
 import { RichText } from './_components/RichText'
+import { Button } from './_components/ui/button'
 
 export default async function Home() {
   const home: Page = await fetch(
@@ -18,9 +19,10 @@ export default async function Home() {
 
   return (
     <Fragment>
-      <main className="bg-pink-200">
+      <main>
         <Gutter>
-          <div className="w-20">
+          <div>
+            <Button variant="destructive">Click me</Button>
             <RichText content={home.richText} />
           </div>
         </Gutter>
