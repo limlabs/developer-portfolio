@@ -4,8 +4,6 @@ import React from 'react'
 
 import { CustomRenderers, Serialize as SerializeContent } from './Serialize'
 
-import classes from './index.module.scss'
-
 export const RichText: React.FC<{
   className?: string
   content: any
@@ -16,7 +14,7 @@ export const RichText: React.FC<{
   }
 
   return (
-    <div className={[classes.richText, className].filter(Boolean).join(' ')}>
+    <div>
       <SerializeContent content={content} customRenderers={customRenderers} />
     </div>
   )

@@ -5,8 +5,6 @@ import { Page } from './../payload-types'
 import { Gutter } from './_components/Gutter'
 import { RichText } from './_components/RichText'
 
-import classes from './page.module.scss'
-
 export default async function Home() {
   const home: Page = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/pages?where[slug][equals]=home`,
@@ -20,9 +18,9 @@ export default async function Home() {
 
   return (
     <Fragment>
-      <main className={classes.main}>
+      <main className="bg-pink-200">
         <Gutter>
-          <div className={classes.body}>
+          <div className="w-20">
             <RichText content={home.richText} />
           </div>
         </Gutter>

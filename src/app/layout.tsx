@@ -1,9 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-import './app.scss'
-
-import classes from './layout.module.scss'
+import './globals.css'
 
 export const metadata = {
   title: 'Payload Custom Server',
@@ -13,8 +11,8 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={classes.body}>
-        <header className={classes.header}>
+      <body>
+        <header>
           <Link href="https://payloadcms.com" target="_blank" rel="noopener noreferrer">
             <picture>
               <source
@@ -22,7 +20,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 srcSet="https://raw.githubusercontent.com/payloadcms/payload/master/src/admin/assets/images/payload-logo-light.svg"
               />
               <img
-                className={classes.logo}
                 alt="Payload Logo"
                 src="https://raw.githubusercontent.com/payloadcms/payload/master/src/admin/assets/images/payload-logo-dark.svg"
               />
