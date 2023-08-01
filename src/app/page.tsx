@@ -7,6 +7,8 @@ import { RichText } from './_components/RichText'
 import { Button } from './_components/ui/button'
 import { NavBar } from './_components/navBar'
 import { Hero } from './_components/Hero'
+import { ProjectSection } from './_components/projectSection'
+import { Footer } from './_components/footer'
 
 export default async function Home() {
   const home: Page = await fetch(
@@ -26,6 +28,8 @@ export default async function Home() {
           <div>
             <NavBar />
             <Hero />
+            <ProjectSection />
+            <Footer />
           </div>
         </Gutter>
       </main>

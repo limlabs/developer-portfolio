@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { SocialLink } from './sodialLink'
 
 export const Hero = () => {
   return (
@@ -22,15 +23,9 @@ export const Hero = () => {
           breathtaking illustrations that transport you to distant realms.{' '}
         </p>
         <div className="w-full flex justify-evenly items-center mt-8">
-          <Link href="*" className="cursor-pointer">
-            <Image src="/mail-open.png" alt="mail icon" width={25} height={25} />
-          </Link>
-          <Link href="*" className="cursor-pointer">
-            <Image src="/twitter.png" alt="mail icon" width={25} height={25} />
-          </Link>
-          <Link href="*">
-            <Image src="/youtube.png" alt="mail icon" width={25} height={25} />
-          </Link>
+          <SocialLink href="*" src="/mail-open.png" altText="mail icon" width={25} height={25} />
+          <SocialLink href="*" src="/twitter.png" altText="twitter icon" width={25} height={25} />
+          <SocialLink href="*" src="/youtube.png" altText="youtube icon" width={25} height={25} />
         </div>
       </div>
     </div>
