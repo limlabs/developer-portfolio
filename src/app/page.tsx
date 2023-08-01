@@ -5,6 +5,8 @@ import { Page } from './../payload-types'
 import { Gutter } from './_components/Gutter'
 import { RichText } from './_components/RichText'
 import { Button } from './_components/ui/button'
+import { NavBar } from './_components/navBar'
+import { Hero } from './_components/Hero'
 
 export default async function Home() {
   const home: Page = await fetch(
@@ -19,11 +21,11 @@ export default async function Home() {
 
   return (
     <Fragment>
-      <main>
+      <main className="bg-stone-800">
         <Gutter>
           <div>
-            <Button variant="destructive">Click me</Button>
-            <RichText content={home.richText} />
+            <NavBar />
+            <Hero />
           </div>
         </Gutter>
       </main>

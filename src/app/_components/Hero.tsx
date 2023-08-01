@@ -1,0 +1,38 @@
+import Image from 'next/image'
+import Link from 'next/link'
+
+export const Hero = () => {
+  return (
+    <div className=" h-auto flex flex-col justify-center items-center px-4 py-12 mt-28">
+      <Image
+        src="/headshot.png"
+        alt="headshot of developer"
+        width={220}
+        height={220}
+        className="rounded-full absolute z-20 mb-[475px]"
+      />
+      <div className="bg-black text-white rounded-xl pt-28 pb-8 px-8">
+        <h1 className="font-extrabold leading-[30-px] text-2xl">Samantha Smith</h1>
+        <p className="leading-7 text-base">Portland, OR</p>
+        <h4 className="font-semibold leading-tight text-base">UI/UX Designer</h4>
+        <p className="text-sm">
+          Samantha Smith is a visionary artist with a passion for pushing boundaries. She crafts
+          captivating visual stories that leave a lasting impact. Her work reflects a perfect blend
+          of innovation and elegance, whether in logo designs that capture a brand's essence or
+          breathtaking illustrations that transport you to distant realms.{' '}
+        </p>
+        <div className="w-full flex justify-evenly items-center mt-8">
+          <Link href="*" className="cursor-pointer">
+            <Image src="/mail-open.png" alt="mail icon" width={25} height={25} />
+          </Link>
+          <Link href="*" className="cursor-pointer">
+            <Image src="/twitter.png" alt="mail icon" width={25} height={25} />
+          </Link>
+          <Link href="*">
+            <Image src="/youtube.png" alt="mail icon" width={25} height={25} />
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+}
