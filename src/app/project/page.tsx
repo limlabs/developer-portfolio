@@ -5,7 +5,7 @@ import { ProjectSummary } from './projectSummary'
 
 export default function ProjectPage() {
   return (
-    <main className="bg-stone-800">
+    <main className="bg-stone-800 flex flex-col">
       <NavBar />
       <ProjectSummary />
       {/* <DesignSummary />

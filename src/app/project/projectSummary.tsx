@@ -3,8 +3,8 @@ import { ProjectCard } from '../_components/projectCard'
 
 export const ProjectSummary = () => {
   return (
-    <section className="lg:flex-row flex-col justify-center items-center">
-      <div className=" text-white rounded-xl pt-12 px-8   max-w-2xl">
+    <section className="lg:flex md:flex justify-center items-center w-full">
+      <div className=" text-white rounded-xl pt-12 lg:pt-0 px-8  max-w-2xl w-full">
         <h1 className="font-extrabold leading-[30-px] text-2xl">Outside App</h1>
         <p className="leading-7 text-base">Feb 2023-June 2023</p>
         <h4 className="font-semibold leading-tight text-base">Lead UI/UX Designer</h4>
