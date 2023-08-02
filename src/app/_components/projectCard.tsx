@@ -9,15 +9,13 @@ interface ProjectCardProps {
 
 export const ProjectCard = ({ src, projectTitle, altText }: ProjectCardProps) => {
   return (
-    <div>
-      <Card className="bg-transparent border-none py-4">
-        <CardContent>
-          <Image src={src} alt={altText} width={324} height={220} className="rounded-3xl" />
-        </CardContent>
-        <CardFooter>
-          <p className="text-xl text-white">{projectTitle}</p>
-        </CardFooter>
-      </Card>
+    <div className=" py-4 flex justify-center items-center flex-col m-8 gap-4">
+      <div className="flex justify-center">
+        <Image src={src} alt={altText} width={324} height={220} className="rounded-3xl " />
+      </div>
+      <div className="flex justify-start w-[324px]">
+        <p className="text-xl  text-white">{projectTitle}</p>
+      </div>
     </div>
   )
 }

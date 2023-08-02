@@ -2,7 +2,7 @@ import { ProjectCard } from './projectCard'
 
 export const ProjectSection = () => {
   return (
-    <div className="bg-transparent">
+    <div className="bg-transparent lg:flex md:flex flex-wrap justify-center items-center w-full">
       <ProjectCard
         src="/project-1.png"
         projectTitle="Design Design, 2020"

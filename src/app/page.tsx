@@ -23,7 +23,7 @@ export default async function Home() {
 
   return (
     <Fragment>
-      <main className="bg-stone-800">
+      <main className="bg-stone-800 flex flex-col items-center">
         <Gutter>
           <div>
             <NavBar />
