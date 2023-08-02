@@ -23,9 +23,9 @@ export default async function Home() {
 
   return (
     <Fragment>
-      <main className="bg-stone-800 flex flex-col items-center">
+      <main>
         <Gutter>
-          <div>
+          <div className="flex flex-col items-center bg-stone-800">
             <NavBar />
             <Hero />
             <ProjectSection />

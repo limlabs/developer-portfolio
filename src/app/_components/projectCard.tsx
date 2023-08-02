@@ -5,13 +5,15 @@ interface ProjectCardProps {
   src: string
   projectTitle: string
   altText: string
+  height: number
+  width: number
 }
 
-export const ProjectCard = ({ src, projectTitle, altText }: ProjectCardProps) => {
+export const ProjectCard = ({ src, projectTitle, altText, height, width }: ProjectCardProps) => {
   return (
-    <div className=" py-4 flex justify-center items-center flex-col m-8 gap-4">
+    <div className=" py-4 flex justify-center items-center flex-col  gap-4">
       <div className="flex justify-center">
-        <Image src={src} alt={altText} width={324} height={220} className="rounded-3xl " />
+        <Image src={src} alt={altText} width={width} height={height} className="rounded-3xl " />
       </div>
       <div className="flex justify-start w-[324px]">
         <p className="text-xl  text-white">{projectTitle}</p>
