@@ -2,35 +2,42 @@ import { MediaCard } from './mediaCard'
 
 export const ProjectsList = () => {
   return (
-    <div className="bg-transparent lg:flex md:flex flex-wrap justify-evenly items-center w-full max-w-[1080px] mt-8">
+    <div className="bg-transparent max-w-[1080px] md:mt-40 grid grid-cols-1 md:grid-cols-2 md:gap-20 w-full">
       <MediaCard
         src="/project-1.png"
-        projectTitle="Design Design, 2020"
-        altText="project 1 title"
-        height={200}
-        width={324}
+        caption="Design Design, 2020"
+        alt="project 1 title"
+        className="col-span-1 w-[324px] md:w-[500px] h-[243px] md:h-[376px] m-auto mt-20 md:mt-0"
+        priority
+        fill
+        sizes="(max-width: 768px) 100vw, 50vw"
       />
       <MediaCard
         src="/project-2.png"
-        projectTitle="Outside App, 2020"
-        altText="project 2 title"
-        height={200}
-        width={324}
+        caption="Outside App, 2020"
+        alt="project 2 title"
+        className="col-span-1 w-[324px] md:w-[500px] h-[243px] md:h-[376px] m-auto mt-20 md:mt-0"
+        priority
+        fill
+        sizes="(max-width: 768px) 100vw, 50vw"
       />
-
       <MediaCard
         src="/project-3.png"
-        projectTitle="Design App, 2022"
-        altText="project 3 title"
-        height={200}
-        width={324}
+        caption="Design App, 2022"
+        alt="project 3 title"
+        className="col-span-1 w-[324px] md:w-[500px] h-[243px] md:h-[376px] m-auto mt-20 md:mt-0"
+        priority
+        fill
+        sizes="(max-width: 768px) 100vw, 50vw"
       />
       <MediaCard
         src="/project-4.png"
-        projectTitle="Art App, 2023"
-        altText="project 4 title"
-        height={200}
-        width={324}
+        caption="Art App, 2023"
+        alt="project 4 title"
+        className="col-span-1 w-[324px] md:w-[500px] h-[243px] md:h-[376px] m-auto mt-20 md:mt-0"
+        priority
+        fill
+        sizes="(max-width: 768px) 100vw, 50vw"
       />
     </div>
   )

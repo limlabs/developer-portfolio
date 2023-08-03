@@ -1,22 +1,14 @@
-import Image from 'next/image'
+import Image, { ImageProps } from 'next/image'
 
-interface MediaCardProps {
-  src: string
-  projectTitle: string
-  altText: string
-  height: number
-  width: number
+type MediaCardProps = ImageProps & {
+  caption: string
 }
 
-export const MediaCard = ({ src, projectTitle, altText, height, width }: MediaCardProps) => {
+export const MediaCard = ({ caption, className, ...imageProps }: MediaCardProps) => {
   return (
-    <div className="py-4 flex justify-center items-center flex-col gap-4">
-      <div className="flex justify-center">
-        <Image src={src} alt={altText} width={width} height={height} className="rounded-3xl" />
-      </div>
-      <div className="flex justify-start w-[324px]">
-        <p className="text-xl text-foreground">{projectTitle}</p>
-      </div>
+    <div className={`py-4 flex flex-col gap-4 relative ${className}`}>
+      <Image {...imageProps} className="rounded-3xl" />
+      <p className="text-xl text-foreground absolute -bottom-8">{caption}</p>
     </div>
   )
 }

@@ -4,7 +4,7 @@ import { SocialLink } from './socialLink'
 
 export const AboutCard = () => {
   return (
-    <div className="bg-muted px-4 md:px-28 py-12  mt-48 md:mt-12 mx-8 rounded-lg max-w-screen-lg">
+    <div className="bg-muted px-4 md:px-28 py-12  mt-48 md:mt-42 mx-8 rounded-lg max-w-[1080px]">
       <div className="flex flex-col md:flex-row items-center md:justify-evenly relative">
         <Image
           src="/headshot.png"
