@@ -3,15 +3,15 @@ import { MediaCard } from '../_components/mediaCard'
 export const ProjectSummary = () => {
   return (
     <section className="lg:flex-row-reverse md:flex justify-center items-center  pt-8 w-full">
-      <div className="text-white p-6 lg:pr-0 w-full flex flex-col items-center justify-center">
+      <div className="text-foreground p-6 lg:pr-0 w-full flex flex-col items-center justify-center">
         <div className=" flex justify-start w-full lg:px-12 px-2">
           <h4 className="text-lg py-2">Technologies Used</h4>
         </div>
         <ul className="flex justify-between text-sm w-full lg:px-12">
-          <li className="border border-white p-2 rounded-md m-2 ">Illustrator</li>
-          <li className="border p-2 rounded-md m-2  border-white">Figma</li>
-          <li className="border p-2 rounded-md m-2  border-white">InVision</li>
-          <li className="border border-white p-2 rounded-md m-2">Webflow</li>
+          <li className="border border-foreground p-2 rounded-md m-2 ">Illustrator</li>
+          <li className="border p-2 rounded-md m-2  border-foreground">Figma</li>
+          <li className="border p-2 rounded-md m-2  border-foreground">InVision</li>
+          <li className="border border-foreground p-2 rounded-md m-2">Webflow</li>
         </ul>
         <MediaCard
           src="/project-2.png"

@@ -3,7 +3,7 @@ import { SocialLink } from '../_components/socialLink'
 
 export const Header = () => {
   return (
-    <header className="p-4 w-11/12 lg:flex lg:w-full  justify-between items-center  bg-slate-800  mt-8 rounded-lg">
+    <header className="p-4 w-11/12 lg:flex lg:w-full  justify-between items-center bg-muted text-muted-foreground  mt-8 rounded-lg">
       <div className="flex justify-evenly lg:justify-start items-center gap-4 w-full">
         <div>
           <Image

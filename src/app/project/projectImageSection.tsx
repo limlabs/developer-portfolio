@@ -2,7 +2,7 @@ import { MediaCard } from '../_components/mediaCard'
 
 export const ProjectImageSection = () => {
   return (
-    <section className=" lg:grid grid-cols-1fr/2fr w-full justify-center items-center gap-12 lg:gap-8 pt-8 px-8 lg:px-0">
+    <section className="text-muted-foreground lg:grid grid-cols-1fr/2fr w-full justify-center items-center gap-12 lg:gap-8 pt-8 px-8 lg:px-0">
       <div className="pb-12 flex flex-col items-center justify-center w-full">
         <MediaCard
           src="/outside-app-4.png"

@@ -12,7 +12,7 @@ export const DesignSummary = () => {
           width={800}
         />
       </div>
-      <div className=" text-foreground  pt-4 lg:pt-0  px-8 text-base w-full">
+      <div className=" text-muted-foreground  pt-4 lg:pt-0  px-8 text-base w-full">
         <p className=" mt-4">
           To establish a strong brand presence, I developed the app's visual identity, creating a
           vibrant color scheme and selecting modern typography that resonated with our target
