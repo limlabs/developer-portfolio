@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
-import { SocialLink } from './sodialLink'
+import { SocialLink } from './socialLink'
 
-export const Hero = () => {
+export const AboutCard = () => {
   return (
     <div className="bg-muted px-4 md:px-28 py-12  mt-48 md:mt-12 mx-8 rounded-lg max-w-screen-lg">
       <div className="flex flex-col md:flex-row items-center md:justify-evenly relative">
@@ -24,7 +24,7 @@ export const Hero = () => {
             Samantha Smith is a visionary artist with a passion for pushing boundaries. She crafts
             captivating visual stories that leave a lasting impact. Her work reflects a perfect
             blend of innovation and elegance, whether in logo designs that capture a brand's essence
-            or breathtaking illustrations that transport you to distant realms.{' '}
+            or breathtaking illustrations that transport you to distant realms.
           </p>
         </div>
       </div>

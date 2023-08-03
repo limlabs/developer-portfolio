@@ -1,12 +1,9 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { notFound } from 'next/navigation'
 
 import { Page } from './../payload-types'
-import { Footer } from './_components/footer'
-import { Gutter } from './_components/Gutter'
-import { Hero } from './_components/Hero'
-import { NavBar } from './_components/navBar'
-import { ProjectSection } from './_components/projectSection'
+import { AboutCard } from './_components/aboutCard'
+import { ProjectsList } from './_components/projectsList'
 
 export default async function Home() {
   const home: Page = await fetch(
@@ -20,17 +17,9 @@ export default async function Home() {
   }
 
   return (
-    <Fragment>
-      <main>
-        <Gutter>
-          <div className="flex flex-col items-center bg-background">
-            <NavBar />
-            <Hero />
-            <ProjectSection />
-            <Footer />
-          </div>
-        </Gutter>
-      </main>
-    </Fragment>
+    <main className="flex flex-col items-center ">
+      <AboutCard />
+      <ProjectsList />
+    </main>
   )
 }
