@@ -16,6 +16,10 @@ module.exports = {
       },
     },
     extend: {
+      gridTemplateColumns: {
+        '2fr/1fr': '2fr 1fr',
+        '1fr/2fr': '1fr 2fr',
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
