@@ -1,18 +1,18 @@
-import { ProjectCard } from '../_components/mediaCard'
+import { MediaCard } from '../_components/mediaCard'
 
 export const DesignSummary = () => {
   return (
-    <section className="flex justify-center">
-      <div className="w-2/3">
-        <ProjectCard
+    <section className="lg:flex md:flex justify-center items-center w-full py-8">
+      <div className="flex justify-evenly text-sm p-8 w-full">
+        <MediaCard
           src="/outside-app-2.png"
-          projectTitle="Marketing Image for Pre-Launch"
-          altText="Marketing Image for Pre-Launch"
+          caption="Marketing Image for Pre-Launch"
+          alt="Marketing Image for Pre-Launch"
           height={350}
           width={660}
         />
       </div>
-      <div className=" text-white rounded-xl pt-12 px-8   max-w-2xl">
+      <div className=" text-foreground rounded-xl pt-12 lg:pt-0 lg:px-24 px-8  w-full">
         <p className="text-sm mt-4">
           To establish a strong brand presence, I developed the app's visual identity, creating a
           vibrant color scheme and selecting modern typography that resonated with our target

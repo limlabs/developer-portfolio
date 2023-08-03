@@ -5,11 +5,10 @@ import { ProjectSummary } from './projectSummary'
 
 export default function ProjectPage() {
   return (
-    <main className="bg-stone-800 flex flex-col">
-      <NavBar />
+    <main className="items-center justify-center flex flex-col lg:px-24 max-w-[1440px] ">
       <ProjectSummary />
-      {/* <DesignSummary />
-      <ProjectImageSection /> */}
+      <DesignSummary />
+      {/* <ProjectImageSection /> */}
     </main>
   )
 }
