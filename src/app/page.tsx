@@ -2,13 +2,11 @@ import React, { Fragment } from 'react'
 import { notFound } from 'next/navigation'
 
 import { Page } from './../payload-types'
-import { Gutter } from './_components/Gutter'
-import { RichText } from './_components/RichText'
-import { Button } from './_components/ui/button'
-import { NavBar } from './_components/navBar'
-import { Hero } from './_components/Hero'
-import { ProjectSection } from './_components/projectSection'
 import { Footer } from './_components/footer'
+import { Gutter } from './_components/Gutter'
+import { Hero } from './_components/Hero'
+import { NavBar } from './_components/navBar'
+import { ProjectSection } from './_components/projectSection'
 
 export default async function Home() {
   const home: Page = await fetch(
@@ -25,7 +23,7 @@ export default async function Home() {
     <Fragment>
       <main>
         <Gutter>
-          <div className="flex flex-col items-center bg-stone-800">
+          <div className="flex flex-col items-center bg-background">
             <NavBar />
             <Hero />
             <ProjectSection />
