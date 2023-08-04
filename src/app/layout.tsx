@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { Backdrop } from './_components/backdrop'
 import { Footer } from './_components/footer'
 import { NavBar } from './_components/navBar'
 
@@ -13,10 +14,13 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
-      <body className="bg-background">
-        <NavBar />
-        {children}
-        <Footer />
+      <body>
+        <Backdrop />
+        <div className="relative z-20 min-h-screen flex flex-col">
+          <NavBar />
+          <div className="flex-grow">{children}</div>
+          <Footer />
+        </div>
       </body>
     </html>
   )

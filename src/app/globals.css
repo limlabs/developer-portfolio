@@ -40,7 +40,7 @@
     --background: 0 0% 9%;
     --foreground: 0 0% 100%;
  
-    --muted: 0 0% 15%;
+    --muted: 0 0% 15% / 0.2;
     --muted-foreground: 0 0% 100%;
  
     --border: 12 6.5% 15.1%;
