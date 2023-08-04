@@ -6,7 +6,7 @@ export const ProjectImageSection = () => {
       <div className="pb-12 flex flex-col items-center justify-center w-full">
         <MediaCard
           src="/outside-app-4.png"
-          caption="Marketing Image for Pre-Launch"
+          caption="Marketing Image"
           alt="Marketing Image for Pre-Launch"
           height={420}
           width={420}
