@@ -17,7 +17,7 @@ export const AboutCard = () => {
         <div className="text-muted-foreground rounded-xl pt-12 md:pt-0 px-8 md:px-0 md:pl-24 max-w-2xl md:col-span-3">
           <h1 className="font-extrabold leading-[30-px] text-2xl md:text-5xl">Samantha Smith</h1>
           <p className="leading-7 text-base md:mt-2">Portland, OR</p>
-          <h4 className="font-semibold leading-tight text-base md:text-lg md:mt-2">
+          <h4 className="font-semibold leading-tight text-base md:text-xl md:mt-2">
             UI/UX Designer
           </h4>
           <p className="text-sm md:text-base md:leading-relaxed mt-4 md:mt-6">

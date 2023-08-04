@@ -14,7 +14,7 @@ export const NavBar = () => {
           priority
         />
       </div>
-      <div className="flex lg:gap-8 w-full lg:w-auto justify-evenly">
+      <div className="flex lg:gap-8 w-full lg:w-auto justify-evenly text-base">
         <Link href="*">Linkedin</Link>
         <Link href="*">Dribble</Link>
         <Link href="*">Instagram</Link>

@@ -16,8 +16,8 @@ export const Header = () => {
           />
         </div>
         <div>
-          <h1 className="font-bold text-2xl">Samantha Smith</h1>
-          <h4 className="text-lg">UI/UX Designer</h4>
+          <h1 className="font-bold lg:text-xl">Samantha Smith</h1>
+          <h4 className="text-base">UI/UX Designer</h4>
         </div>
       </div>
       <div className="flex justify-evenly pt-4 lg:gap-8 lg:pr-4">

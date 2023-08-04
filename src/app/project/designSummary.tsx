@@ -12,14 +12,14 @@ export const DesignSummary = () => {
           width={800}
         />
       </div>
-      <div className=" text-muted-foreground  pt-4 lg:pt-0  px-8 text-base w-full">
-        <p className=" mt-4">
+      <div className=" text-muted-foreground  pt-4 lg:pt-0  px-8 text-sm w-full">
+        <p className=" mt-4 pb-2">
           To establish a strong brand presence, I developed the app's visual identity, creating a
           vibrant color scheme and selecting modern typography that resonated with our target
           audience. The objective was to evoke a sense of adventure and connection with nature,
           while also emphasizing the app's ease of use.
         </p>
-        <p className=" mt-4">
+        <p className=" mt-4 ">
           Working closely with the usability testing team, I conducted multiple rounds of user
           testing and gathered valuable feedback. This iterative process allowed us to fine-tune the
           app's design and address any pain points experienced by the testers. As a result, we

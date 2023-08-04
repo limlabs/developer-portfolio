@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="dark">
       <body>
         <Backdrop />
-        <div className="relative z-20 min-h-screen flex flex-col">
+        <div className="relative z-20 min-h-screen flex flex-col items-center">
           <NavBar />
           <div className="flex-grow">{children}</div>
           <Footer />
