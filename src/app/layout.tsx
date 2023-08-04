@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { Backdrop } from './_components/backdrop'
 import { Footer } from './_components/footer'
 import { NavBar } from './_components/navBar'
 
 import './globals.css'
+import { Backdrop } from './_components/backdrop'
 
 export const metadata = {
   title: 'Payload Custom Server',
@@ -14,9 +14,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
-      <body>
+      <body className="w-screen overflow-x-hidden">
         <Backdrop />
-        <div className="relative z-20 min-h-screen flex flex-col items-center">
+        <div className="relative z-20 min-h-screen flex flex-col items-center ">
           <NavBar />
           <div className="flex-grow">{children}</div>
           <Footer />

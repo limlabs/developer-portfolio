@@ -3,7 +3,7 @@ import { MediaCard } from '../_components/mediaCard'
 export const DesignSummary = () => {
   return (
     <section className="lg:grid grid-cols-2fr/1fr md:flex justify-center items-center w-full ">
-      <div className="flex justify-evenly text-sm p-8 lg:pl-0 w-full">
+      <div className="flex justify-evenly text-sm p-6 lg:pl-0 w-full">
         <MediaCard
           src="/outside-app-2.png"
           caption="Marketing Image for Pre-Launch"
@@ -12,7 +12,7 @@ export const DesignSummary = () => {
           width={800}
         />
       </div>
-      <div className=" text-muted-foreground  pt-4 lg:pt-0  px-8 text-sm w-full">
+      <div className=" text-muted-foreground  pt-4 lg:pt-0 lg:px-16  px-6 text-sm w-full">
         <p className=" mt-4 pb-2">
           To establish a strong brand presence, I developed the app's visual identity, creating a
           vibrant color scheme and selecting modern typography that resonated with our target
