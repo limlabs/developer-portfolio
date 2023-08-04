@@ -1,27 +1,29 @@
-import { ProjectCard } from '../_components/mediaCard'
+import { MediaCard } from '../_components/mediaCard'
 
 export const DesignSummary = () => {
   return (
-    <section className="flex justify-center">
-      <div className="w-2/3">
-        <ProjectCard
+    <section className="lg:grid grid-cols-2fr/1fr md:flex justify-center items-center w-full ">
+      <div className="flex justify-evenly text-sm p-8 lg:pl-0 w-full">
+        <MediaCard
           src="/outside-app-2.png"
-          projectTitle="Marketing Image for Pre-Launch"
-          altText="Marketing Image for Pre-Launch"
-          height={350}
-          width={660}
+          caption="Marketing Image for Pre-Launch"
+          alt="Marketing Image for Pre-Launch"
+          height={420}
+          width={800}
         />
       </div>
-      <div className=" text-white rounded-xl pt-12 px-8   max-w-2xl">
-        <p className="text-sm mt-4">
+      <div className=" text-muted-foreground  pt-4 lg:pt-0  px-8 text-base w-full">
+        <p className=" mt-4">
           To establish a strong brand presence, I developed the app's visual identity, creating a
           vibrant color scheme and selecting modern typography that resonated with our target
           audience. The objective was to evoke a sense of adventure and connection with nature,
-          while also emphasizing the app's ease of use. Working closely with the usability testing
-          team, I conducted multiple rounds of user testing and gathered valuable feedback. This
-          iterative process allowed us to fine-tune the app's design and address any pain points
-          experienced by the testers. As a result, we optimized the app for a seamless and enjoyable
-          user experience.
+          while also emphasizing the app's ease of use.
+        </p>
+        <p className=" mt-4">
+          Working closely with the usability testing team, I conducted multiple rounds of user
+          testing and gathered valuable feedback. This iterative process allowed us to fine-tune the
+          app's design and address any pain points experienced by the testers. As a result, we
+          optimized the app for a seamless and enjoyable user experience.
         </p>
       </div>
     </section>
