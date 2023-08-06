@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { Page } from './../payload-types'
 import { AboutCard } from './_components/aboutCard'
 import { ProjectsList } from './_components/projectsList'
+import { FadeInContent } from './_components/fadeInContent'
 
 export default async function Home() {
   const home: Page = await fetch(
@@ -18,7 +19,10 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col items-center ">
-      <AboutCard />
+      <FadeInContent>
+
+        <AboutCard />
+      </FadeInContent>
       <ProjectsList />
     </main>
   )
