@@ -46,18 +46,13 @@ export const Profiles: CollectionConfig = {
           type: 'text',
         },
         {
+          name: 'email',
+          label: 'Email',
+          type: 'text',
+        },
+        {
           name: 'twitter',
           label: 'Twitter',
-          type: 'text',
-        },
-        {
-          name: 'dribble',
-          label: 'Dribble',
-          type: 'text',
-        },
-        {
-          name: 'youtube',
-          label: 'YouTube',
           type: 'text',
         },
       ],

@@ -101,7 +101,7 @@ export const seed = async (payload: Payload): Promise<void> => {
         github: 'https://github.com/payloadcms',
         linkedin: 'https://www.linkedin.com/company/payloadcms',
         twitter: 'https://twitter.com/payloadcms',
-        dribble: 'https://dribbble.com/payloadcms',
+        email: 'info@payloadcms.com',
       },
       aboutMe: [
         {

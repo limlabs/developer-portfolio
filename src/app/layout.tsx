@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Backdrop } from './_components/backdrop'
+import { Backdrop } from './_components/backdrop/backdrop'
 import { Footer } from './_components/footer'
 import { NavBar } from './_components/navBar'
 import { fetchProfile } from './_utils/api'

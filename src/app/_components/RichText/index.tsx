@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { CustomRenderers, Serialize as SerializeContent } from './Serialize'
+import { CustomRenderers, Serialize as SerializeContent } from './serialize'
 
 export const RichText: React.FC<{
   className?: string

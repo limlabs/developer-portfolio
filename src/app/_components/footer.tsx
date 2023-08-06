@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import { SocialLink } from './socialLink'
+import { SocialIcons } from './socialIcons'
 
 export const Footer = () => {
   return (
@@ -9,10 +9,8 @@ export const Footer = () => {
         <Image src="/payload-logo.png" alt="payload logo" width={30} height={30} />
         <p>Website made with Payload</p>
       </div>
-      <div className="flex justify-evenly items-center mt-8 w-full max-w-sm">
-        <SocialLink href="*" src="/mail-open.png" altText="mail icon" width={25} height={25} />
-        <SocialLink href="*" src="/twitter.png" altText="twitter icon" width={25} height={25} />
-        <SocialLink href="*" src="/youtube.png" altText="youtube icon" width={25} height={25} />
+      <div className="w-full">
+        <SocialIcons />
       </div>
     </div>
   )

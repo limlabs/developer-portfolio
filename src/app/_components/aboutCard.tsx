@@ -2,8 +2,8 @@ import Image from 'next/image'
 
 import { fetchProfile } from '../_utils/api'
 import { FadeInContent } from './fadeInContent'
-import { RichText } from './RichText'
-import { SocialLink } from './socialLink'
+import { RichText } from './richText'
+import { SocialIcons } from './socialIcons'
 
 export const AboutCard = async () => {
   const profile = await fetchProfile()
@@ -33,11 +33,7 @@ export const AboutCard = async () => {
             </div>
           </div>
         </div>
-        <div className="flex md:max-w-[220px] justify-evenly items-center mt-8">
-          <SocialLink href="*" src="/mail-open.png" altText="mail icon" width={25} height={25} />
-          <SocialLink href="*" src="/twitter.png" altText="twitter icon" width={25} height={25} />
-          <SocialLink href="*" src="/youtube.png" altText="youtube icon" width={25} height={25} />
-        </div>
+        <SocialIcons />
       </div>
     </FadeInContent>
   )

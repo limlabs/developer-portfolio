@@ -90,9 +90,8 @@ export interface Profile {
   socialLinks?: {
     github?: string;
     linkedin?: string;
+    email?: string;
     twitter?: string;
-    dribble?: string;
-    youtube?: string;
   };
   updatedAt: string;
   createdAt: string;
