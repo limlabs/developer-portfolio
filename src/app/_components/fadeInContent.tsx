@@ -1,8 +1,12 @@
 'use client'
 
-import React, { FC, PropsWithChildren, useEffect, useRef } from 'react'
+import React, { AllHTMLAttributes, FC, PropsWithChildren, useEffect, useRef } from 'react'
 
-export const FadeInContent: FC<PropsWithChildren> = ({ children }) => {
+export const FadeInContent: FC<PropsWithChildren<AllHTMLAttributes<HTMLDivElement>>> = ({
+  children,
+  className = '',
+  ...props
+}) => {
   const contentRef = useRef(null)
 
   useEffect(() => {
@@ -44,7 +48,7 @@ export const FadeInContent: FC<PropsWithChildren> = ({ children }) => {
   }, [])
 
   return (
-    <div ref={contentRef} className="opacity-0 translate-y-10">
+    <div ref={contentRef} className={`opacity-0 translate-y-10 ${className}`} {...props}>
       {children}
     </div>
   )

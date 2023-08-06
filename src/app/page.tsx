@@ -20,7 +20,6 @@ export default async function Home() {
   return (
     <main className="flex flex-col items-center ">
       <FadeInContent>
-
         <AboutCard />
       </FadeInContent>
       <ProjectsList />
