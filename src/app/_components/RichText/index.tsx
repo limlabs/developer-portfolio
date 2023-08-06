@@ -14,7 +14,7 @@ export const RichText: React.FC<{
   }
 
   return (
-    <div>
+    <div className={className}>
       <SerializeContent content={content} customRenderers={customRenderers} />
     </div>
   )

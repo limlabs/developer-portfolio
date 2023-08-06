@@ -1,14 +1,19 @@
 import React from 'react'
 
+import { Backdrop } from './_components/backdrop'
 import { Footer } from './_components/footer'
 import { NavBar } from './_components/navBar'
+import { fetchProfile } from './_utils/api'
 
 import './globals.css'
-import { Backdrop } from './_components/backdrop'
 
-export const metadata = {
-  title: 'Payload Custom Server',
-  description: 'Serve Payload alongside any front-end framework.',
+export const metadata = async () => {
+  const profile = await fetchProfile()
+
+  return {
+    title: `${profile.name} | Portfolio`,
+    description: 'My professional portfolio featuring past projects and contact info.',
+  }
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

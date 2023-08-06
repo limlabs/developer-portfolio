@@ -9,6 +9,9 @@
 export interface Config {
   collections: {
     pages: Page;
+    projects: Project;
+    media: Media;
+    profiles: Profile;
     users: User;
   };
   globals: {};
@@ -20,6 +23,77 @@ export interface Page {
     [k: string]: unknown;
   }[];
   slug?: string;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Project {
+  id: string;
+  images?: {
+    hero?: string | Media;
+  };
+  title: string;
+  subtitle: string;
+  description: {
+    [k: string]: unknown;
+  }[];
+  slug?: string;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Media {
+  id: string;
+  alt?: string;
+  updatedAt: string;
+  createdAt: string;
+  url?: string;
+  filename?: string;
+  mimeType?: string;
+  filesize?: number;
+  width?: number;
+  height?: number;
+  sizes?: {
+    thumbnail?: {
+      url?: string;
+      width?: number;
+      height?: number;
+      mimeType?: string;
+      filesize?: number;
+      filename?: string;
+    };
+    card?: {
+      url?: string;
+      width?: number;
+      height?: number;
+      mimeType?: string;
+      filesize?: number;
+      filename?: string;
+    };
+    tablet?: {
+      url?: string;
+      width?: number;
+      height?: number;
+      mimeType?: string;
+      filesize?: number;
+      filename?: string;
+    };
+  };
+}
+export interface Profile {
+  id: string;
+  name: string;
+  location?: string;
+  title?: string;
+  aboutMe?: {
+    [k: string]: unknown;
+  }[];
+  profileImage?: string | Media;
+  socialLinks?: {
+    github?: string;
+    linkedin?: string;
+    twitter?: string;
+    dribble?: string;
+    youtube?: string;
+  };
   updatedAt: string;
   createdAt: string;
 }

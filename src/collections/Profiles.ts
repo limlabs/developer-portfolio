@@ -64,3 +64,5 @@ export const Profiles: CollectionConfig = {
     },
   ],
 }
+
+export default Profiles
