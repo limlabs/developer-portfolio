@@ -1,12 +1,13 @@
-import { Suspense } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { Media, Profile } from '../../payload-types'
+import { SkipToMainContentLink } from './skipToMainContent'
 
 export const NavBar = ({ profile }: { profile: Profile }) => {
   return (
     <div className="w-full max-w-7xl h-full flex justify-evenly lg:justify-between">
+      <SkipToMainContentLink />
       {profile.profileImage && (
         <Link href="/" className="hidden lg:flex items-center w-[50px] h-[66px]">
           <Image
