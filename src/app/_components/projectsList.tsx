@@ -1,5 +1,9 @@
-import { FC } from 'react'
+import { FC, Suspense } from 'react'
+import Link from 'next/link'
 
+import { Media } from '../../payload-types'
+import { fetchProjects } from '../_utils/api'
+import { formatMonth } from '../_utils/date'
 import { FadeInContent } from './fadeInContent'
 import { MediaCard } from './mediaCard'
 
@@ -26,23 +30,32 @@ const ProjectMediaCard: FC<ProjectMediaCardProps> = ({ src, caption, alt, classN
   )
 }
 
-export const ProjectsList = () => {
+const animationDelayOffsets = ['delay-50', 'delay-150']
+
+const ProjectsListContent = async () => {
+  const projects = await fetchProjects()
+
   return (
     <div className="bg-transparent max-w-[1080px] md:mt-40 grid grid-cols-1 md:grid-cols-2 md:gap-20 w-full">
-      <ProjectMediaCard src="/project-1.png" caption="Design Design, 2020" alt="project 1 title" />
-      <ProjectMediaCard
-        src="/project-2.png"
-        caption="Outside App, 2020"
-        alt="project 2 title"
-        className="delay-100"
-      />
-      <ProjectMediaCard src="/project-3.png" caption="Design App, 2022" alt="project 3 title" />
-      <ProjectMediaCard
-        src="/project-4.png"
-        caption="Art App, 2023"
-        alt="project 4 title"
-        className="delay-100"
-      />
+      {projects.map(({ id, title, startDate, featuredImage, slug }, index) => (
+        <Link href={`/work/${slug}`} key={id}>
+          <ProjectMediaCard
+            key={id}
+            src={(featuredImage as Media)?.url}
+            caption={`${title} - ${formatMonth(startDate)}`}
+            alt={(featuredImage as Media)?.alt}
+            className={`animate-fade-in ${animationDelayOffsets[index % 2]}`}
+          />
+        </Link>
+      ))}
     </div>
+  )
+}
+
+export const ProjectsList = () => {
+  return (
+    <Suspense fallback={<div className="min-h-[20vh]" />}>
+      <ProjectsListContent />
+    </Suspense>
   )
 }

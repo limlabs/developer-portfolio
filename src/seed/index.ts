@@ -127,11 +127,7 @@ export const seed = async (payload: Payload): Promise<void> => {
             technology: 'Webflow',
           },
         ],
-        images: [
-          {
-            image: designDesignFeaturedScreenshot.id,
-          },
-        ],
+        featuredImage: designDesignFeaturedScreenshot.id,
       },
     }),
     payload.create({
@@ -156,11 +152,7 @@ export const seed = async (payload: Payload): Promise<void> => {
             technology: 'Webflow',
           },
         ],
-        images: [
-          {
-            image: outsideAppFeaturedScreenshot.id,
-          },
-        ],
+        featuredImage: outsideAppFeaturedScreenshot.id,
       },
     }),
     payload.create({
@@ -185,11 +177,7 @@ export const seed = async (payload: Payload): Promise<void> => {
             technology: 'Webflow',
           },
         ],
-        images: [
-          {
-            image: designAppFeaturedScreenshot.id,
-          },
-        ],
+        featuredImage: designAppFeaturedScreenshot.id,
       },
     }),
     payload.create({
@@ -214,11 +202,7 @@ export const seed = async (payload: Payload): Promise<void> => {
             technology: 'Webflow',
           },
         ],
-        images: [
-          {
-            image: artAppFeaturedScreenshot.id,
-          },
-        ],
+        featuredImage: artAppFeaturedScreenshot.id,
       },
     }),
   ])

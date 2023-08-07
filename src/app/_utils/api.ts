@@ -16,6 +16,14 @@ export const fetchMediaInfo = async (id: string): Promise<Media> => {
   return media
 }
 
+export const fetchProjects = async (): Promise<Project[]> => {
+  const projects: Project[] = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/projects`)
+    .then(res => res.json())
+    .then(res => res?.docs)
+
+  return projects
+}
+
 export const fetchProject = async (slug: string): Promise<Project> => {
   const project: Project = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/projects?where[slug][equals]=${slug}`,
