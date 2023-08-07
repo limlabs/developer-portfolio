@@ -12,7 +12,7 @@ export const MediaCard = ({
   ...imageProps
 }: MediaCardProps) => {
   return (
-    <div className={`py-2 flex flex-col gap-2 relative ${className}`}>
+    <div className={`flex flex-col relative ${className}`}>
       <Image {...imageProps} className="rounded-3xl" priority />
       <p className={`text-lg text-foreground ${captionClassName}`}>{caption}</p>
     </div>

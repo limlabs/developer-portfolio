@@ -26,6 +26,7 @@ export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
         src={(project.featuredImage as Media).url}
         caption={(project.featuredImage as Media).alt}
         alt={(project.featuredImage as Media).alt}
+        className="gap-2 py-2"
         height={400}
         width={500}
       />

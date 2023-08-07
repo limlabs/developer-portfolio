@@ -31,13 +31,13 @@ const ProjectMediaCard: FC<ProjectMediaCardProps> = ({ src, caption, alt, classN
   )
 }
 
-const animationDelayOffsets = ['delay-50', 'delay-150']
+const animationDelayOffsets = ['delay-150', 'delay-200']
 
 const ProjectsListContent = async () => {
   const projects = await fetchProjects()
 
   return (
-    <div className="bg-transparent max-w-[1080px] md:mt-40 grid grid-cols-1 md:grid-cols-2 md:gap-20 w-full">
+    <div className="bg-transparent max-w-[1080px] md:mt-40 grid grid-cols-1 md:grid-cols-2 md:gap-20 w-full flex-shrink-0">
       {projects.map(({ id, title, startDate, featuredImage, slug }, index) => (
         <Link href={`/work/${slug}`} key={id}>
           <ProjectMediaCard

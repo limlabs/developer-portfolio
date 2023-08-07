@@ -12,12 +12,12 @@ export const Footer = () => {
         <p>
           Website made with{' '}
           <Link href="https://payloadcms.com" className="underline">
-            Payload CMS
+            Payload
           </Link>
         </p>
       </div>
-      <div className="w-full lg:max-w-xs">
-        <SocialIcons className="lg:justify-end" />
+      <div className="w-full mt-6 lg:mt-0 lg:max-w-xs">
+        <SocialIcons className="justify-center lg:justify-end" />
       </div>
     </div>
   )
