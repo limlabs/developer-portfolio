@@ -1,15 +1,14 @@
-import { FC, Suspense } from 'react'
 import { cva } from 'class-variance-authority'
 import Image from 'next/image'
 
-import { Media } from '../../payload-types'
+import { Media, Profile } from '../../payload-types'
 import { cn } from '../../utilities'
-import { fetchProfile } from '../_utils/api'
 import { FadeInContent } from './fadeInContent'
 import { RichText } from './richText'
 import { SocialIcons } from './socialIcons'
 
 interface AboutCardContentsProps {
+  profile: Profile
   variant: 'compact' | 'full'
 }
 
@@ -67,8 +66,7 @@ const titleVariants = cva('text-base leading-tight md:mt-2', {
   },
 })
 
-const AboutCardContents = async ({ variant }: AboutCardContentsProps) => {
-  const profile = await fetchProfile()
+export const AboutCard = ({ variant, profile }: AboutCardContentsProps) => {
   return (
     <FadeInContent>
       <div className={containerVariants({ variant })}>
@@ -113,14 +111,5 @@ const AboutCardContents = async ({ variant }: AboutCardContentsProps) => {
         />
       </div>
     </FadeInContent>
-  )
-}
-
-export const AboutCard: FC<AboutCardContentsProps> = props => {
-  return (
-    <Suspense>
-      {/* @ts-ignore */}
-      <AboutCardContents {...props} />
-    </Suspense>
   )
 }

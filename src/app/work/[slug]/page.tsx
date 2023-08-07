@@ -1,9 +1,11 @@
+import { Metadata, ResolvingMetadata } from 'next'
 import { redirect } from 'next/navigation'
 
+import { Media } from '../../../payload-types'
 import { AboutCard } from '../../_components/aboutCard'
 import { FadeInContent } from '../../_components/fadeInContent'
 import { RichText } from '../../_components/richText'
-import { fetchProject } from '../../_utils/api'
+import { fetchProfile, fetchProject } from '../../_utils/api'
 import { BackButton } from './_components/backButton'
 import { ProjectHero } from './_components/projectHero'
 import { ProjectImageSection } from './_components/projectImageSection'
@@ -15,8 +17,29 @@ interface ProjectPageProps {
   }
 }
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
+export async function generateMetadata(
+  { params }: ProjectPageProps,
+  parent?: ResolvingMetadata,
+): Promise<Metadata> {
   const project = await fetchProject(params.slug)
+  const previousTitle = (await parent)?.title.absolute
+
+  const images: string[] = []
+  if (project?.featuredImage) {
+    images.push((project.featuredImage as Media).url)
+  }
+
+  return {
+    title: `${project.title} | ${previousTitle}`,
+    description: 'Details on a portfolio project.',
+    openGraph: {
+      images,
+    },
+  }
+}
+
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const [profile, project] = await Promise.all([fetchProfile(), fetchProject(params.slug)])
 
   if (!project) {
     redirect('/404')
@@ -24,7 +47,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <main className="w-full max-w-[1080px] px-8 md:px-0 flex flex-col gap-12 mt-12 md:mt-44">
-      <AboutCard variant="compact" />
+      <AboutCard variant="compact" profile={profile} />
       <section className="md:mt-20 flex flex-col md:block">
         <FadeInContent className="delay-100 order-2 md:order-none md:float-right mb-16 md:mb-0">
           <ProjectHero project={project} />
