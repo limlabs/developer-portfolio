@@ -8,7 +8,7 @@ import { fetchProfile } from '../_utils/api'
 const NavBarContents = async () => {
   const profile = await fetchProfile()
   return (
-    <div className="bg-background text-foreground w-full flex justify-center">
+    <div className="bg-background text-foreground w-full flex justify-center md:px-8">
       <div className="w-full max-w-7xl h-[66px] flex justify-evenly lg:justify-between items-center">
         <div className="hidden lg:flex">
           {profile.profileImage && (

@@ -62,7 +62,7 @@ const titleVariants = cva('text-base leading-tight md:mt-2', {
   variants: {
     variant: {
       compact: '',
-      full: 'font-semibold text-base md:text-xl',
+      full: 'font-semibold md:text-xl',
     },
   },
 })
@@ -99,14 +99,16 @@ const AboutCardContents = async ({ variant }: AboutCardContentsProps) => {
             )}
             {profile.title && <h3 className={titleVariants({ variant })}>{profile.title}</h3>}
             {profile.aboutMe && variant === 'full' && (
-              <RichText className="mt-8" content={profile.aboutMe} />
+              <div className="mt-8">
+                <RichText content={profile.aboutMe} />
+              </div>
             )}
           </div>
         </div>
         <SocialIcons
           className={cn({
             'mt-8': variant === 'full',
-            'gap-9': variant === 'compact',
+            'mt-8 md:mt-0 gap-9': variant === 'compact',
           })}
         />
       </div>

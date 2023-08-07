@@ -5,17 +5,12 @@ import React from 'react'
 import { CustomRenderers, Serialize as SerializeContent } from './serialize'
 
 export const RichText: React.FC<{
-  className?: string
   content: any
   customRenderers?: CustomRenderers
-}> = ({ className, content, customRenderers }) => {
+}> = ({ content, customRenderers }) => {
   if (!content) {
     return null
   }
 
-  return (
-    <div className={className}>
-      <SerializeContent content={content} customRenderers={customRenderers} />
-    </div>
-  )
+  return <SerializeContent content={content} customRenderers={customRenderers} />
 }

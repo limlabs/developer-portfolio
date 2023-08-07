@@ -9,10 +9,10 @@
 
 @keyframes breatheRight {
   0%, 100% {
-    transform: scale(0.3);
+    transform: scale(1);
   }
   50% {
-    transform: scale(1);
+    transform: scale(0.3);
   }
 }
 
@@ -40,6 +40,6 @@
   top: -60vw;
   flex-shrink: 0;
   border-radius: 120vw;
-  background: radial-gradient(50% 50.00% at 50% 50.00%, rgba(219, 39, 119, 0.08) 0%, rgba(220, 38, 38, 0.00) 100%) hsl(var(--background));
+  background: radial-gradient(50% 50.00% at 50% 50.00%, rgba(219, 39, 119, 0.14) 0%, rgba(220, 38, 38, 0.00) 100%) hsl(var(--background));
   animation-name: breatheRight; 
 }

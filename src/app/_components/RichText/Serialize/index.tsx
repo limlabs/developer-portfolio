@@ -169,7 +169,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           default:
             return (
-              <p key={i}>
+              <p key={i} className="text-base leading-relaxed mb-4">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </p>
             )
