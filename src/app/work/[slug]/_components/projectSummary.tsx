@@ -7,7 +7,7 @@ interface ProjectSummaryProps {
   project: Project
 }
 
-export const ProjectSummary: FC<ProjectSummaryProps> = async ({ project }: ProjectSummaryProps) => {
+export const ProjectSummary: FC<ProjectSummaryProps> = ({ project }: ProjectSummaryProps) => {
   return (
     <div className="text-foreground  pt-8 lg:pt-0 lg:pb-8 lg:pr-16  w-full">
       <h1 className="font-extrabold leading-[30-px] text-5xl">{project.title}</h1>

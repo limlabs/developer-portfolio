@@ -1,11 +1,11 @@
-import { Suspense } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { Media } from '../../payload-types'
 import { fetchProfile } from '../_utils/api'
 
-const NavBarContents = async () => {
+export default async function NavBar() {
+  console.log('fetching navbar')
   const profile = await fetchProfile()
   return (
     <div className="bg-background text-foreground w-full flex justify-center md:px-8">
@@ -48,10 +48,3 @@ const NavBarContents = async () => {
     </div>
   )
 }
-
-export const NavBar = () => (
-  <Suspense>
-    {/* @ts-ignore */}
-    <NavBarContents />
-  </Suspense>
-)

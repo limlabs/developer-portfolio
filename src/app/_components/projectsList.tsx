@@ -56,6 +56,7 @@ const ProjectsListContent = async () => {
 export const ProjectsList = () => {
   return (
     <Suspense fallback={<div className="min-h-screen" />}>
+      {/* @ts-ignore */}
       <ProjectsListContent />
     </Suspense>
   )
