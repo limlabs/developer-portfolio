@@ -1,10 +1,8 @@
-import Link from 'next/link'
-import { Button } from '../_components/ui/button'
-import { Header } from './Header'
+import { BackButton } from './backButton'
 import { DesignSummary } from './designSummary'
+import { Header } from './Header'
 import { ProjectImageSection } from './projectImageSection'
 import { ProjectSummary } from './projectSummary'
-import { BackButton } from './backButton'
 
 export default function ProjectPage() {
   return (

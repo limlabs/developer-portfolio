@@ -8,7 +8,7 @@ import { SocialLink } from './socialLink'
 const SocialIconsContent = async () => {
   const profile = await fetchProfile()
   return (
-    <div className="flex md:max-w-[220px] justify-evenly items-center mt-8">
+    <div className="flex md:max-w-[300px] justify-evenly items-center mt-8">
       {profile.socialLinks?.github && (
         <SocialLink
           href={profile.socialLinks.github}
@@ -39,6 +39,7 @@ const SocialIconsContent = async () => {
 
 export const SocialIcons = () => (
   <Suspense>
+    {/* @ts-ignore */}
     <SocialIconsContent />
   </Suspense>
 )

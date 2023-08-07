@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { SocialLink } from '../_components/socialLink'
+
+import { SocialIcons } from '../_components/socialIcons'
 
 export const Header = () => {
   return (
@@ -20,11 +21,7 @@ export const Header = () => {
           <h4 className="text-base">UI/UX Designer</h4>
         </div>
       </div>
-      <div className="flex justify-evenly pt-4 lg:gap-8 lg:pr-4 w-full">
-        <SocialLink href="*" src="/mail-open.png" altText="mail icon" width={30} height={30} />
-        <SocialLink href="*" src="/twitter.png" altText="twitter icon" width={30} height={30} />
-        <SocialLink href="*" src="/youtube.png" altText="youtube icon" width={30} height={30} />
-      </div>
+      <SocialIcons />
     </header>
   )
 }
