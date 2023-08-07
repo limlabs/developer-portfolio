@@ -20,6 +20,7 @@ const ProjectMediaCard: FC<ProjectMediaCardProps> = ({ src, caption, alt, classN
       <MediaCard
         src={src}
         className="w-[324px] md:w-[500px] h-[243px] md:h-[376px] m-auto"
+        captionClassName="absolute -bottom-8"
         caption={caption}
         alt={alt}
         priority
@@ -54,7 +55,7 @@ const ProjectsListContent = async () => {
 
 export const ProjectsList = () => {
   return (
-    <Suspense fallback={<div className="min-h-[20vh]" />}>
+    <Suspense fallback={<div className="min-h-screen" />}>
       <ProjectsListContent />
     </Suspense>
   )

@@ -107,7 +107,7 @@ const AboutCardContents = async ({ variant }: AboutCardContentsProps) => {
         </div>
         <SocialIcons
           className={cn({
-            'mt-8': variant === 'full',
+            'mt-8 justify-center': variant === 'full',
             'mt-8 md:mt-0 gap-9': variant === 'compact',
           })}
         />

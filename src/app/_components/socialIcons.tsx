@@ -13,7 +13,7 @@ interface SocialIconsContentProps {
 const SocialIconsContent = async ({ className = '' }) => {
   const profile = await fetchProfile()
   return (
-    <div className={cn('flex md:max-w-[300px] justify-evenly items-center', className)}>
+    <div className={cn('flex md:max-w-[300px] gap-8 items-center', className)}>
       {profile.socialLinks?.github && (
         <SocialLink
           href={profile.socialLinks.github}
