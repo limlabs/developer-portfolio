@@ -1,14 +1,19 @@
-import { Suspense } from 'react'
+import { FC, Suspense } from 'react'
 import { EnvelopeClosedIcon, GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
 import { TwitterIcon } from 'lucide-react'
 
+import { cn } from '../../utilities'
 import { fetchProfile } from '../_utils/api'
 import { SocialLink } from './socialLink'
 
-const SocialIconsContent = async () => {
+interface SocialIconsContentProps {
+  className?: string
+}
+
+const SocialIconsContent = async ({ className = '' }) => {
   const profile = await fetchProfile()
   return (
-    <div className="flex md:max-w-[300px] justify-evenly items-center mt-8">
+    <div className={cn('flex md:max-w-[300px] justify-evenly items-center', className)}>
       {profile.socialLinks?.github && (
         <SocialLink
           href={profile.socialLinks.github}
@@ -37,9 +42,9 @@ const SocialIconsContent = async () => {
   )
 }
 
-export const SocialIcons = () => (
+export const SocialIcons: FC<SocialIconsContentProps> = props => (
   <Suspense>
     {/* @ts-ignore */}
-    <SocialIconsContent />
+    <SocialIconsContent {...props} />
   </Suspense>
 )

@@ -8,7 +8,7 @@ export default async function Home() {
   return (
     <main className="flex flex-col items-center ">
       <Suspense>
-        <AboutCard />
+        <AboutCard variant="full" />
       </Suspense>
       <ProjectsList />
     </main>

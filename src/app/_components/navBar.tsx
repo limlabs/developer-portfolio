@@ -11,14 +11,16 @@ const NavBarContents = async () => {
     <div className="bg-background text-foreground w-full h-[66px] flex justify-evenly lg:justify-between items-center py-4 px-8 cursor-pointer">
       <div className="hidden lg:flex">
         {profile.profileImage && (
-          <Image
-            src={(profile.profileImage as Media).url}
-            className="rounded-full mt-2"
-            alt={(profile.profileImage as Media).alt}
-            width={50}
-            height={50}
-            priority
-          />
+          <Link href="/">
+            <Image
+              src={(profile.profileImage as Media).url}
+              className="rounded-full mt-2"
+              alt={(profile.profileImage as Media).alt}
+              width={50}
+              height={50}
+              priority
+            />
+          </Link>
         )}
       </div>
       <div className="flex lg:gap-8 w-full lg:w-auto justify-evenly text-base">

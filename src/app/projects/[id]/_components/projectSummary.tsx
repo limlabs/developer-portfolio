@@ -1,4 +1,4 @@
-import { MediaCard } from '../_components/mediaCard'
+import { MediaCard } from '../../../_components/mediaCard'
 
 export const ProjectSummary = () => {
   return (

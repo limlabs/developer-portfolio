@@ -1,56 +1,124 @@
-import { Suspense } from 'react'
+import { FC, Suspense } from 'react'
+import { cva } from 'class-variance-authority'
 import Image from 'next/image'
 
 import { Media } from '../../payload-types'
+import { cn } from '../../utilities'
 import { fetchProfile } from '../_utils/api'
 import { FadeInContent } from './fadeInContent'
 import { RichText } from './richText'
 import { SocialIcons } from './socialIcons'
 
-const AboutCardContents = async () => {
+interface AboutCardContentsProps {
+  variant: 'compact' | 'full'
+}
+
+const containerVariants = cva('bg-muted rounded-lg max-w-[1080px]', {
+  variants: {
+    variant: {
+      compact: 'px-5 md:px-13 py-4 md:py-8 flex justify-between items-center',
+      full: 'px-4 md:px-28 py-12 mt-48 md:mt-42 mx-8',
+    },
+  },
+})
+
+const imageContainerVariants = cva('flex-shrink-0', {
+  variants: {
+    variant: {
+      compact: 'w-[80px] h-[80px] md:w-[75px] md:h-[75px] relative items-center justify-center',
+      full: 'w-[230px] h-[230px] md:w-[300px] md:h-[300px] absolute md:relative z-20 -top-52 md:-top-0',
+    },
+  },
+})
+
+const topContentVariants = cva('flex', {
+  variants: {
+    variant: {
+      compact: 'justify-evenly items-center',
+      full: 'flex-col md:flex-row items-center md:justify-evenly relative',
+    },
+  },
+})
+
+const imageProps = {
+  compact: {
+    sizes: '(max-width: 768px) 20vw, 5vw',
+  },
+  full: {
+    sizes: '(max-width: 768px) 59vw, 21vw',
+  },
+}
+
+const textContainerVariants = cva('text-muted-foreground rounded-xl ', {
+  variants: {
+    variant: {
+      compact: 'ml-3 md:ml-8',
+      full: 'pt-12 md:pt-0 px-8 md:px-0 md:pl-24 max-w-2xl md:col-span-3',
+    },
+  },
+})
+
+const titleVariants = cva('text-base leading-tight md:mt-2', {
+  variants: {
+    variant: {
+      compact: '',
+      full: 'font-semibold text-base md:text-xl',
+    },
+  },
+})
+
+const AboutCardContents = async ({ variant }: AboutCardContentsProps) => {
   const profile = await fetchProfile()
   return (
     <FadeInContent>
-      <div className="bg-muted px-4 md:px-28 py-12  mt-48 md:mt-42 mx-8 rounded-lg max-w-[1080px]">
-        <div className="flex flex-col md:flex-row items-center md:justify-evenly relative">
+      <div className={containerVariants({ variant })}>
+        <div className={topContentVariants({ variant })}>
           {profile.profileImage && (
-            <div className="w-[230px] h-[230px] md:w-[300px] md:h-[300px] absolute md:relative z-20 -top-52  md:-top-0 flex-shrink-0">
+            <div className={imageContainerVariants({ variant })}>
               <Image
                 priority
                 className="rounded-full"
                 fill
-                sizes="(max-width: 768px) 230px, 300px"
+                {...imageProps[variant]}
                 alt={(profile.profileImage as Media).alt}
                 src={(profile.profileImage as Media).url}
               />
             </div>
           )}
-          <div className="text-muted-foreground rounded-xl pt-12 md:pt-0 px-8 md:px-0 md:pl-24 max-w-2xl md:col-span-3">
-            <h1 className="font-extrabold leading-[30-px] text-2xl md:text-5xl">{profile.name}</h1>
-            {profile.location && (
+          <div className={textContainerVariants({ variant })}>
+            <h1
+              className={cn({
+                'text-2xl md:text-5xl font-extrabold leading-[30px]': variant === 'full',
+                'text-[24px] md:text-[20px] font-semibold leading-[28px]': variant === 'compact',
+              })}
+            >
+              {profile.name}
+            </h1>
+            {profile.location && variant === 'full' && (
               <h2 className="leading-7 text-base md:mt-2">{profile.location}</h2>
             )}
-            {profile.title && (
-              <h3 className="font-semibold leading-tight text-base md:text-xl md:mt-2">
-                {profile.title}
-              </h3>
+            {profile.title && <h3 className={titleVariants({ variant })}>{profile.title}</h3>}
+            {profile.aboutMe && variant === 'full' && (
+              <RichText className="mt-8" content={profile.aboutMe} />
             )}
-            <div className="text-sm md:text-base md:leading-relaxed mt-4 md:mt-6">
-              <RichText content={profile.aboutMe} />
-            </div>
           </div>
         </div>
-        <SocialIcons />
+        <SocialIcons
+          className={cn({
+            'mt-8': variant === 'full',
+            'gap-9': variant === 'compact',
+          })}
+        />
       </div>
     </FadeInContent>
   )
 }
 
-export const AboutCard = () => {
+export const AboutCard: FC<AboutCardContentsProps> = props => {
   return (
     <Suspense>
       {/* @ts-ignore */}
-      <AboutCardContents />
+      <AboutCardContents {...props} />
     </Suspense>
   )
 }
