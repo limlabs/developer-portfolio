@@ -13,14 +13,19 @@ export const Projects: CollectionConfig = {
   fields: [
     {
       name: 'images',
-      type: 'group',
+      type: 'array',
       fields: [
         {
-          name: 'hero',
+          name: 'image',
           type: 'upload',
           relationTo: 'media',
         },
       ],
+    },
+    {
+      name: 'featuredImage',
+      type: 'upload',
+      relationTo: 'media',
     },
     {
       name: 'title',
@@ -28,9 +33,29 @@ export const Projects: CollectionConfig = {
       required: true,
     },
     {
-      name: 'subtitle',
+      name: 'role',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'startDate',
+      type: 'date',
+    },
+    {
+      name: 'endDate',
+      type: 'date',
+    },
+    {
+      name: 'technologiesUsed',
+      type: 'array',
+      required: true,
+      fields: [
+        {
+          name: 'technology',
+          type: 'text',
+          required: true,
+        },
+      ],
     },
     {
       name: 'description',

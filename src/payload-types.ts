@@ -29,10 +29,18 @@ export interface Page {
 export interface Project {
   id: string;
   images?: {
-    hero?: string | Media;
-  };
+    image?: string | Media;
+    id?: string;
+  }[];
+  featuredImage?: string | Media;
   title: string;
-  subtitle: string;
+  role: string;
+  startDate?: string;
+  endDate?: string;
+  technologiesUsed: {
+    technology: string;
+    id?: string;
+  }[];
   description: {
     [k: string]: unknown;
   }[];
@@ -42,7 +50,7 @@ export interface Project {
 }
 export interface Media {
   id: string;
-  alt?: string;
+  alt: string;
   updatedAt: string;
   createdAt: string;
   url?: string;
@@ -51,32 +59,6 @@ export interface Media {
   filesize?: number;
   width?: number;
   height?: number;
-  sizes?: {
-    thumbnail?: {
-      url?: string;
-      width?: number;
-      height?: number;
-      mimeType?: string;
-      filesize?: number;
-      filename?: string;
-    };
-    card?: {
-      url?: string;
-      width?: number;
-      height?: number;
-      mimeType?: string;
-      filesize?: number;
-      filename?: string;
-    };
-    tablet?: {
-      url?: string;
-      width?: number;
-      height?: number;
-      mimeType?: string;
-      filesize?: number;
-      filename?: string;
-    };
-  };
 }
 export interface Profile {
   id: string;
