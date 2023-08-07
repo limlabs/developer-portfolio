@@ -22,15 +22,6 @@ export const FadeInContent: FC<PropsWithChildren<AllHTMLAttributes<HTMLDivElemen
             'ease-in-out',
             'translate-y-0',
           )
-        } else {
-          entry.target.classList.remove(
-            'opacity-100',
-            'transition-all',
-            'duration-500',
-            'ease-in-out',
-            'translate-y-0',
-          )
-          entry.target.classList.add('opacity-0', 'translate-y-10')
         }
       },
       {
