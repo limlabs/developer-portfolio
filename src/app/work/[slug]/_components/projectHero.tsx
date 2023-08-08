@@ -1,7 +1,14 @@
+'use client'
 import { FC } from 'react'
-
 import { Media, Project } from '../../../../payload-types'
 import { MediaCard } from '../../../_components/mediaCard'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTrigger,
+} from '../../../_components/ui/dialog'
 
 interface ProjectHeroProps {
   project: Project
@@ -9,7 +16,7 @@ interface ProjectHeroProps {
 
 export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
   return (
-    <div className="lg:pl-20 mt-6 lg:mt-0 flex flex-col items-start lg:items-center justify-center md:float-right md:flex-shrink-0">
+    <div className="relative z-10 lg:pl-20 mt-6 lg:mt-0 flex flex-col items-start lg:items-center justify-center md:float-right md:flex-shrink-0">
       {project.technologiesUsed && (
         <>
           <div className="flex justify-start w-full text-lg lg:text-xl">
@@ -22,14 +29,33 @@ export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
           </ul>
         </>
       )}
-      <MediaCard
-        src={(project.featuredImage as Media).url}
-        caption={(project.featuredImage as Media).alt}
-        alt={(project.featuredImage as Media).alt}
-        className="gap-2 py-2"
-        height={400}
-        width={500}
-      />
+
+      <Dialog>
+        <DialogTrigger>
+          <MediaCard
+            src={(project.featuredImage as Media).url}
+            caption={(project.featuredImage as Media).alt}
+            alt={(project.featuredImage as Media).alt}
+            className="gap-2 py-2"
+            height={400}
+            width={500}
+          />
+        </DialogTrigger>
+        <DialogContent className="w-full flex">
+          <DialogHeader>
+            <DialogDescription>
+              <MediaCard
+                src={(project.featuredImage as Media).url}
+                caption={(project.featuredImage as Media).alt}
+                alt={(project.featuredImage as Media).alt}
+                className="gap-2 py-2"
+                height={500}
+                width={500}
+              />
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
