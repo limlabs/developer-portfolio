@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { Media, Profile } from '../../payload-types'
 import { cn } from '../../utilities'
 import { FadeInContent } from './fadeInContent'
+import { RichText } from './richText'
 import { SocialIcons } from './socialIcons'
-import { RichText } from './RichText'
 
 interface AboutCardContentsProps {
   profile: Profile
@@ -16,7 +16,7 @@ const containerVariants = cva('bg-muted rounded-lg max-w-[1080px]', {
   variants: {
     variant: {
       compact: 'px-5 md:px-13 py-4 md:py-8 flex flex-col md:flex-row justify-between items-center',
-      full: 'px-4 md:px-28 py-12 mt-48 md:mt-42 mx-8',
+      full: 'px-4 md:px-28 py-12 mt-48 md:mt-40 mx-8',
     },
   },
 })
