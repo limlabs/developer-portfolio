@@ -9,6 +9,7 @@ import { NavBar } from './_components/navBar'
 import { fetchProfile } from './_utils/api'
 
 import './globals.css'
+import { ThemeProvider } from './_provider/themeProvider'
 
 export async function generateMetadata() {
   const profile = await fetchProfile()
@@ -24,14 +25,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" className={`dark ${inter.className}`}>
       <body className="w-screen overflow-x-hidden">
-        <Backdrop />
-        <div className="relative z-20 min-h-screen flex flex-col items-center">
-          <NavBar profile={profile} />
-          <div className="flex-grow" id="main-content">
-            {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Backdrop />
+          <div className="relative z-20 min-h-screen flex flex-col items-center">
+            <NavBar profile={profile} />
+            <div className="flex-grow" id="main-content">
+              {children}
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
+        </ThemeProvider>
       </body>
     </html>
   )
