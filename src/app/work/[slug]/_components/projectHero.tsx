@@ -36,24 +36,20 @@ export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
             src={(project.featuredImage as Media).url}
             caption={(project.featuredImage as Media).alt}
             alt={(project.featuredImage as Media).alt}
-            className="gap-2 py-2"
-            height={400}
-            width={500}
+            className="w-[324px] md:w-[500px] h-[243px] md:h-[376px] m-auto"
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </DialogTrigger>
         <DialogContent>
-          <DialogHeader>
-            <DialogDescription>
-              <MediaCard
-                src={(project.featuredImage as Media).url}
-                caption={(project.featuredImage as Media).alt}
-                alt={(project.featuredImage as Media).alt}
-                className="gap-2 py-2"
-                height={500}
-                width={500}
-              />
-            </DialogDescription>
-          </DialogHeader>
+          <MediaCard
+            src={(project.featuredImage as Media).url}
+            caption=""
+            alt={(project.featuredImage as Media).alt}
+            className="w-[324px] md:w-[700px] h-[243px] md:h-[486px] lg:w-[1080px] lg:h-[875px] m-auto"
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
         </DialogContent>
       </Dialog>
     </div>
