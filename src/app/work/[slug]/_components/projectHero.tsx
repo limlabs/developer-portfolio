@@ -41,7 +41,7 @@ export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
             width={500}
           />
         </DialogTrigger>
-        <DialogContent className="w-full flex">
+        <DialogContent>
           <DialogHeader>
             <DialogDescription>
               <MediaCard
