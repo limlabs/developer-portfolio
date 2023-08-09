@@ -1,0 +1,44 @@
+import type { Block, Field } from 'payload/types'
+
+const mediaFields: Field[] = [
+  {
+    name: 'size',
+    type: 'select',
+    defaultValue: 'oneThird',
+    options: [
+      {
+        value: 'oneThird',
+        label: 'One Third',
+      },
+      {
+        value: 'half',
+        label: 'Half',
+      },
+      {
+        value: 'twoThirds',
+        label: 'Two Thirds',
+      },
+      {
+        value: 'full',
+        label: 'Full',
+      },
+    ],
+  },
+  {
+    name: 'media',
+    type: 'upload',
+    relationTo: 'media',
+    required: true,
+  },
+]
+
+export const MediaBlock: Block = {
+  slug: 'mediaBlock',
+  fields: [
+    {
+      name: 'mediaFields',
+      type: 'array',
+      fields: mediaFields,
+    },
+  ],
+}
