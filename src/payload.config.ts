@@ -11,10 +11,13 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Profiles } from './collections/Profiles'
 import { Projects } from './collections/Projects'
+import { Footer } from './globals/Footer'
+import { Header } from './globals/Header'
 
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
   collections: [Pages, Projects, Media, Profiles],
+  globals: [Header, Footer],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
