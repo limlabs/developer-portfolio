@@ -19,8 +19,9 @@ export const ProjectImageSection = () => {
               src="/outside-app-4.png"
               caption="Marketing Image"
               alt="Marketing Image for Pre-Launch"
-              height={420}
-              width={420}
+              className="w-[243px] md:w-[486px] h-[243px] md:h-[376px] lg:h-[340px] lg:w-[340px] m-auto"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </DialogTrigger>
           <DialogContent className="w-full">
@@ -30,8 +31,9 @@ export const ProjectImageSection = () => {
                   src="/outside-app-4.png"
                   caption="Marketing Image"
                   alt="Marketing Image for Pre-Launch"
-                  height={420}
-                  width={420}
+                  className="w-[324px] md:w-[700px] h-[243px] md:h-[486px] lg:w-[1080px] lg:h-[875px] m-auto"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </DialogDescription>
             </DialogHeader>
@@ -43,7 +45,7 @@ export const ProjectImageSection = () => {
           <DialogTrigger>
             <MediaCard
               src="/outside-app-3.png"
-              caption="Marketing Image for Pre-Launch"
+              caption=""
               alt="Marketing Image for Pre-Launch"
               height={420}
               width={800}
@@ -54,10 +56,11 @@ export const ProjectImageSection = () => {
               <DialogDescription>
                 <MediaCard
                   src="/outside-app-3.png"
-                  caption="Marketing Image for Pre-Launch"
+                  caption=""
                   alt="Marketing Image for Pre-Launch"
-                  height={420}
-                  width={800}
+                  className="w-[324px] md:w-[700px] h-[243px] md:h-[486px] lg:w-[1080px] lg:h-[875px] m-auto"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </DialogDescription>
             </DialogHeader>

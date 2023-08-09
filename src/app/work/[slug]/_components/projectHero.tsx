@@ -36,7 +36,7 @@ export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
             src={(project.featuredImage as Media).url}
             caption={(project.featuredImage as Media).alt}
             alt={(project.featuredImage as Media).alt}
-            className="w-[324px] md:w-[500px] h-[243px] md:h-[376px] m-auto"
+            className="w-[324px] md:w-[486px] h-[243px] md:h-[376px] m-auto"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
           />
