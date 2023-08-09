@@ -5,35 +5,37 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from '../../../_components/ui/dialog'
+import { Media, Project } from '../../../../payload-types'
 
-export const ProjectImageSection = () => {
+interface ProjectImageSectionProps {
+  project: Project
+}
+
+export const ProjectImageSection = ({ project }: ProjectImageSectionProps) => {
   return (
-    <section className="text-muted-foreground lg:grid md:grid grid-cols-1fr/2fr w-full justify-center items-center gap-12 lg:gap-8  px-6 lg:px-0">
+    <section className="text-muted-foreground lg:grid md:grid grid-cols-1fr/2fr w-full justify-center items-center gap-12 lg:gap-8 md:gap-6  px-6 lg:px-0 md:px-0">
       <div className="pb-12 flex flex-col items-center justify-center w-full">
         <Dialog>
           <DialogTrigger>
             <MediaCard
-              src="/outside-app-4.png"
-              caption="Marketing Image"
+              src={(project.images[0].image as Media).url}
+              caption={(project.images[0].image as Media).alt}
               alt="Marketing Image for Pre-Launch"
-              className="w-[243px] md:w-[486px] h-[243px] md:h-[376px] lg:h-[340px] lg:w-[340px] m-auto"
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
+              width={500}
+              height={500}
             />
           </DialogTrigger>
           <DialogContent className="w-full">
             <DialogHeader>
               <DialogDescription>
                 <MediaCard
-                  src="/outside-app-4.png"
+                  src={(project.images[0].image as Media).url}
                   caption="Marketing Image"
                   alt="Marketing Image for Pre-Launch"
-                  className="w-[324px] md:w-[700px] h-[243px] md:h-[486px] lg:w-[1080px] lg:h-[875px] m-auto"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  height={(project.images[0].image as Media).height}
+                  width={(project.images[0].image as Media).width}
                 />
               </DialogDescription>
             </DialogHeader>
@@ -44,8 +46,8 @@ export const ProjectImageSection = () => {
         <Dialog>
           <DialogTrigger>
             <MediaCard
-              src="/outside-app-3.png"
-              caption=""
+              src={(project.images[1].image as Media).url}
+              caption={(project.images[1].image as Media).alt}
               alt="Marketing Image for Pre-Launch"
               height={420}
               width={800}
@@ -55,12 +57,11 @@ export const ProjectImageSection = () => {
             <DialogHeader>
               <DialogDescription>
                 <MediaCard
-                  src="/outside-app-3.png"
+                  src={(project.images[1].image as Media).url}
                   caption=""
                   alt="Marketing Image for Pre-Launch"
-                  className="w-[324px] md:w-[700px] h-[243px] md:h-[486px] lg:w-[1080px] lg:h-[875px] m-auto"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  height={(project.images[1].image as Media).height}
+                  width={(project.images[1].image as Media).width}
                 />
               </DialogDescription>
             </DialogHeader>

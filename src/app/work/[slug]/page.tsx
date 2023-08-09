@@ -46,9 +46,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <main className="w-full max-w-[1080px] px-8 md:px-8 flex flex-col gap-12 mt-12 md:mt-44">
+    <main className="w-full max-w-[1080px] px-8 md:px-8 flex flex-col gap-12 mt-12 ">
       <AboutCard variant="compact" profile={profile} />
-      <section className="md:mt-20 flex flex-col md:block">
+      <section className="md:mt-12 flex flex-col md:block">
         <FadeInContent className="relative z-10 delay-100 order-2 md:order-none md:float-right mb-16 md:mb-0">
           <ProjectHero project={project} />
         </FadeInContent>
@@ -59,7 +59,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <RichText content={project.description} />
         </FadeInContent>
       </section>
-      <ProjectImageSection />
+      <ProjectImageSection project={project} />
       <BackButton />
     </main>
   )

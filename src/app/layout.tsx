@@ -29,7 +29,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <Backdrop />
           <div className="relative z-20 min-h-screen flex flex-col items-center">
             <NavBar profile={profile} />
-            <div className="flex-grow" id="main-content">
+            <div className="flex-grow justify-center" id="main-content">
               {children}
             </div>
             <Footer />
