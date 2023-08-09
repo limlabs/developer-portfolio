@@ -12,12 +12,13 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Profiles } from './collections/Profiles'
 import { Projects } from './collections/Projects'
+import { Users } from './collections/Users'
 import { Footer } from './globals/Footer'
 import { Header } from './globals/Header'
 
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
-  collections: [Media, Pages, Projects, Profiles],
+  collections: [Media, Pages, Projects, Profiles, Users],
   globals: [Header, Footer],
   plugins: [formBuilder({})],
   typescript: {

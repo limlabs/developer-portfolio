@@ -9,11 +9,19 @@ import { MediaBlock } from '../../blocks/Media'
 import { MediaContent } from '../../blocks/MediaContent'
 import { ProjectCards } from '../../blocks/ProjectCards'
 import formatSlug from '../../utilities/formatSlug'
+import { formatAppURL, revalidatePage } from './hooks/revalidatePage'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
   admin: {
     useAsTitle: 'title',
+    preview: doc => {
+      return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/preview?url=${encodeURIComponent(
+        formatAppURL({
+          doc,
+        }),
+      )}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`
+    },
   },
   versions: {
     drafts: true,
@@ -23,6 +31,9 @@ export const Pages: CollectionConfig = {
     create: loggedIn,
     update: loggedIn,
     delete: loggedIn,
+  },
+  hooks: {
+    afterChange: [revalidatePage],
   },
   fields: [
     {
