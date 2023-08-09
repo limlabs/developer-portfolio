@@ -1222,6 +1222,14 @@
   resolved "https://registry.npmjs.org/@payloadcms/eslint-config/-/eslint-config-0.0.2.tgz"
   integrity sha512-EcS7qyX4++eBP/MS4QgrFOzzplsVMaPDfEcxWYoH9OLJCUTlGz8UmfMZPWU7DeAuyehJdij+BywSrcprqun9rA==
 
+"@payloadcms/plugin-form-builder@^1.0.15":
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/@payloadcms/plugin-form-builder/-/plugin-form-builder-1.0.15.tgz#55094658e7a0324915a0908b4952039bb2899106"
+  integrity sha512-lr6TnO95rbr3Zcjgc157pEJ5P2OpTdz13QKqSfESjdAGAinhfYtM903jgAfLVCV16o2MyyOjpEMMt9kuwx3LOQ==
+  dependencies:
+    deepmerge "^4.2.2"
+    escape-html "^1.0.3"
+
 "@polka/url@^1.0.0-next.20":
   version "1.0.0-next.21"
   resolved "https://registry.npmjs.org/@polka/url/-/url-1.0.0-next.21.tgz"

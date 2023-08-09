@@ -1,3 +1,4 @@
+import formBuilder from '@payloadcms/plugin-form-builder'
 import dotenv from 'dotenv'
 import path from 'path'
 
@@ -16,8 +17,9 @@ import { Header } from './globals/Header'
 
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
-  collections: [Pages, Projects, Media, Profiles],
+  collections: [Media, Pages, Projects, Profiles],
   globals: [Header, Footer],
+  plugins: [formBuilder({})],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
