@@ -1,12 +1,13 @@
 import type { GlobalConfig } from 'payload/types'
 
+import { loggedIn } from '../access/loggedIn'
 import link from '../fields/link'
 
 export const Header: GlobalConfig = {
   slug: 'header',
   access: {
     read: () => true,
-    update: () => true,
+    update: loggedIn,
   },
   fields: [
     {

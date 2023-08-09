@@ -1,5 +1,7 @@
 import type { CollectionConfig } from 'payload/types'
 
+import { loggedIn } from '../access/loggedIn'
+import { publishedOrLoggedIn } from '../access/publishedOrLoggedIn'
 import formatSlug from '../utilities/formatSlug'
 
 export const Projects: CollectionConfig = {
@@ -7,8 +9,14 @@ export const Projects: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
   },
+  versions: {
+    drafts: true,
+  },
   access: {
-    read: () => true,
+    read: publishedOrLoggedIn,
+    create: loggedIn,
+    update: loggedIn,
+    delete: loggedIn,
   },
   fields: [
     {
