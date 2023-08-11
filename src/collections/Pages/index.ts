@@ -2,12 +2,12 @@ import type { CollectionConfig } from 'payload/types'
 
 import { loggedIn } from '../../access/loggedIn'
 import { publishedOrLoggedIn } from '../../access/publishedOrLoggedIn'
-import { Archive } from '../../blocks/Archive'
 import { Content } from '../../blocks/Content'
 import { Form } from '../../blocks/Form'
 import { MediaBlock } from '../../blocks/Media'
 import { MediaContent } from '../../blocks/MediaContent'
-import { ProjectCards } from '../../blocks/ProjectCards'
+import { ProfileCTA } from '../../blocks/ProfileCTA'
+import { ProjectGrid } from '../../blocks/ProjectGrid'
 import formatSlug from '../../utilities/formatSlug'
 import { formatAppURL, revalidatePage } from './hooks/revalidatePage'
 
@@ -37,35 +37,16 @@ export const Pages: CollectionConfig = {
   },
   fields: [
     {
-      type: 'tabs',
-      tabs: [
-        {
-          label: 'Content',
-          fields: [
-            {
-              name: 'title',
-              label: 'Title',
-              type: 'text',
-              required: true,
-            },
-            {
-              name: 'richText',
-              type: 'richText',
-              label: 'Content',
-            },
-          ],
-        },
-        {
-          label: 'Blocks',
-          fields: [
-            {
-              name: 'layout',
-              type: 'blocks',
-              blocks: [Archive, Content, Form, MediaBlock, MediaContent, ProjectCards],
-            },
-          ],
-        },
-      ],
+      name: 'title',
+      label: 'Title',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'layout',
+      label: 'Content',
+      type: 'blocks',
+      blocks: [Content, Form, MediaBlock, MediaContent, ProfileCTA, ProjectGrid],
     },
     {
       name: 'slug',
