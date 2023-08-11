@@ -45,6 +45,16 @@ const mockDescription = [
   },
 ]
 
+const confirmationMessage = [
+  {
+    children: [
+      {
+        text: `Thank you! I'll be reaching out to you shortly.`,
+      },
+    ],
+  },
+]
+
 export const seed = async (payload: Payload): Promise<void> => {
   // create admin
   await payload.create({
@@ -61,6 +71,9 @@ export const seed = async (payload: Payload): Promise<void> => {
     outsideAppFeaturedScreenshot,
     designAppFeaturedScreenshot,
     artAppFeaturedScreenshot,
+    marketingOneScreenshot,
+    marketingTwoScreenshot,
+    uiUxScreenshot,
   ] = await Promise.all([
     payload.create({
       collection: 'media',
@@ -97,9 +110,104 @@ export const seed = async (payload: Payload): Promise<void> => {
       },
       filePath: `${__dirname}/media/art-app.png`,
     }),
+    payload.create({
+      collection: 'media',
+      data: {
+        alt: 'Marketing Image One screenshot',
+      },
+      filePath: `${__dirname}/media/marketing-image-1.png`,
+    }),
+    payload.create({
+      collection: 'media',
+      data: {
+        alt: 'Marketing Image Two screenshot',
+      },
+      filePath: `${__dirname}/media/marketing-image-2.png`,
+    }),
+    payload.create({
+      collection: 'media',
+      data: {
+        alt: 'UI/UX Example screenshot',
+      },
+      filePath: `${__dirname}/media/ui-ux-example.png`,
+    }),
   ])
 
-  await payload.create({
+  const [webflowDoc, inVisionDoc, figmaDoc, illustratorDoc] = await Promise.all([
+    payload.create({
+      collection: 'technologies',
+      data: {
+        technology: 'Webflow',
+      },
+    }),
+    payload.create({
+      collection: 'technologies',
+      data: {
+        technology: 'InVision',
+      },
+    }),
+    payload.create({
+      collection: 'technologies',
+      data: {
+        technology: 'Figma',
+      },
+    }),
+    payload.create({
+      collection: 'technologies',
+      data: {
+        technology: 'Illustrator',
+      },
+    }),
+  ])
+
+  const contactForm = await payload.create({
+    collection: 'forms',
+    data: {
+      title: 'Contact Form',
+      fields: [
+        {
+          name: 'firstname',
+          label: 'First Name',
+          width: 50,
+          required: true,
+          blockType: 'text',
+        },
+        {
+          name: 'lastname',
+          label: 'Last Name',
+          width: 50,
+          required: true,
+          blockType: 'text',
+        },
+        {
+          name: 'email',
+          label: 'Email',
+          width: 100,
+          required: true,
+          blockType: 'email',
+        },
+        {
+          name: 'subject',
+          label: 'Subject',
+          width: 100,
+          required: true,
+          blockType: 'text',
+        },
+        {
+          name: 'message',
+          label: 'Message',
+          width: 100,
+          required: true,
+          blockType: 'textarea',
+        },
+      ],
+      submitButtonLabel: 'Submit',
+      confirmationType: 'message',
+      confirmationMessage: confirmationMessage,
+    },
+  })
+
+  const samanthaSmith = await payload.create({
     collection: 'profiles',
     data: {
       name: 'Samantha Smith',
@@ -121,30 +229,51 @@ export const seed = async (payload: Payload): Promise<void> => {
     },
   })
 
-  await Promise.all([
+  const [designDesign, outsideApp, designApp, artApp] = await Promise.all([
     payload.create({
       collection: 'projects',
       data: {
         title: 'Design Design',
-        role: 'UI/UX Designer',
+        description: mockDescription,
+        role: 'uiUxDesigner',
         startDate: new Date('2020-01-01'),
         endDate: new Date('2020-01-31'),
-        description: mockDescription,
-        technologiesUsed: [
+        technologiesUsed: [webflowDoc.id, inVisionDoc.id, figmaDoc.id, illustratorDoc.id],
+        featuredImage: designDesignFeaturedScreenshot.id,
+        layout: [
           {
-            technology: 'Figma',
+            variant: 'minimal',
+            profile: samanthaSmith.id,
+            blockType: 'profile-cta',
           },
           {
-            technology: 'Illustrator',
+            blockType: 'projectHero',
           },
           {
-            technology: 'After Effects',
+            mediaContentFields: [
+              {
+                alignment: 'mediaContent',
+                mediaSize: 'twoThirds',
+                richText: mockDescription,
+                media: marketingOneScreenshot.id,
+              },
+            ],
+            blockType: 'mediaContent',
           },
           {
-            technology: 'Webflow',
+            mediaFields: [
+              {
+                size: 'oneThird',
+                media: marketingTwoScreenshot.id,
+              },
+              {
+                size: 'twoThirds',
+                media: uiUxScreenshot.id,
+              },
+            ],
+            blockType: 'mediaBlock',
           },
         ],
-        featuredImage: designDesignFeaturedScreenshot.id,
         _status: 'published',
       },
     }),
@@ -152,25 +281,46 @@ export const seed = async (payload: Payload): Promise<void> => {
       collection: 'projects',
       data: {
         title: 'Outside App',
-        role: 'UI/UX Designer',
+        description: mockDescription,
+        role: 'uiUxDesigner',
         startDate: new Date('2023-02-01'),
         endDate: new Date('2023-02-28'),
-        description: mockDescription,
-        technologiesUsed: [
+        technologiesUsed: [webflowDoc.id, inVisionDoc.id, figmaDoc.id, illustratorDoc.id],
+        featuredImage: outsideAppFeaturedScreenshot.id,
+        layout: [
           {
-            technology: 'Figma',
+            variant: 'minimal',
+            profile: samanthaSmith.id,
+            blockType: 'profile-cta',
           },
           {
-            technology: 'Illustrator',
+            blockType: 'projectHero',
           },
           {
-            technology: 'After Effects',
+            mediaContentFields: [
+              {
+                alignment: 'mediaContent',
+                mediaSize: 'twoThirds',
+                richText: mockDescription,
+                media: marketingOneScreenshot.id,
+              },
+            ],
+            blockType: 'mediaContent',
           },
           {
-            technology: 'Webflow',
+            mediaFields: [
+              {
+                size: 'oneThird',
+                media: marketingTwoScreenshot.id,
+              },
+              {
+                size: 'twoThirds',
+                media: uiUxScreenshot.id,
+              },
+            ],
+            blockType: 'mediaBlock',
           },
         ],
-        featuredImage: outsideAppFeaturedScreenshot.id,
         _status: 'published',
       },
     }),
@@ -178,25 +328,46 @@ export const seed = async (payload: Payload): Promise<void> => {
       collection: 'projects',
       data: {
         title: 'Design App',
-        role: 'UI/UX Designer',
+        description: mockDescription,
+        role: 'uiUxDesigner',
         startDate: new Date('2021-03-01'),
         endDate: new Date('2021-03-31'),
-        description: mockDescription,
-        technologiesUsed: [
+        technologiesUsed: [webflowDoc.id, inVisionDoc.id, figmaDoc.id, illustratorDoc.id],
+        featuredImage: designAppFeaturedScreenshot.id,
+        layout: [
           {
-            technology: 'Figma',
+            variant: 'minimal',
+            profile: samanthaSmith.id,
+            blockType: 'profile-cta',
           },
           {
-            technology: 'Illustrator',
+            blockType: 'projectHero',
           },
           {
-            technology: 'After Effects',
+            mediaContentFields: [
+              {
+                alignment: 'mediaContent',
+                mediaSize: 'twoThirds',
+                richText: mockDescription,
+                media: marketingOneScreenshot.id,
+              },
+            ],
+            blockType: 'mediaContent',
           },
           {
-            technology: 'Webflow',
+            mediaFields: [
+              {
+                size: 'oneThird',
+                media: marketingTwoScreenshot.id,
+              },
+              {
+                size: 'twoThirds',
+                media: uiUxScreenshot.id,
+              },
+            ],
+            blockType: 'mediaBlock',
           },
         ],
-        featuredImage: designAppFeaturedScreenshot.id,
         _status: 'published',
       },
     }),
@@ -204,27 +375,88 @@ export const seed = async (payload: Payload): Promise<void> => {
       collection: 'projects',
       data: {
         title: 'Art App',
-        role: 'UI/UX Designer',
+        description: mockDescription,
+        role: 'uiUxDesigner',
         startDate: new Date('2021-04-01'),
         endDate: new Date('2021-04-30'),
-        description: mockDescription,
-        technologiesUsed: [
+        technologiesUsed: [webflowDoc.id, inVisionDoc.id, figmaDoc.id, illustratorDoc.id],
+        featuredImage: artAppFeaturedScreenshot.id,
+        layout: [
           {
-            technology: 'Figma',
+            variant: 'minimal',
+            profile: samanthaSmith.id,
+            blockType: 'profile-cta',
           },
           {
-            technology: 'Illustrator',
+            blockType: 'projectHero',
           },
           {
-            technology: 'After Effects',
+            mediaContentFields: [
+              {
+                alignment: 'mediaContent',
+                mediaSize: 'twoThirds',
+                richText: mockDescription,
+                media: marketingOneScreenshot.id,
+              },
+            ],
+            blockType: 'mediaContent',
           },
           {
-            technology: 'Webflow',
+            mediaFields: [
+              {
+                size: 'oneThird',
+                media: marketingTwoScreenshot.id,
+              },
+              {
+                size: 'twoThirds',
+                media: uiUxScreenshot.id,
+              },
+            ],
+            blockType: 'mediaBlock',
           },
         ],
-        featuredImage: artAppFeaturedScreenshot.id,
         _status: 'published',
       },
     }),
   ])
+
+  await payload.create({
+    collection: 'pages',
+    data: {
+      title: 'Profile Landing Page',
+      layout: [
+        {
+          variant: 'default',
+          profile: samanthaSmith.id,
+          blockType: 'profile-cta',
+        },
+        {
+          project: [designDesign.id, outsideApp.id, designApp.id, artApp.id],
+          blockType: 'projectGrid',
+        },
+        {
+          richText: [
+            {
+              children: [
+                {
+                  text: 'Contact',
+                },
+              ],
+              type: 'h3',
+            },
+            {
+              children: [
+                {
+                  text: 'For commissions and other inquiries, please use the form below.',
+                },
+              ],
+            },
+          ],
+          form: contactForm.id,
+          blockType: 'form',
+        },
+      ],
+      _status: 'published',
+    },
+  })
 }
