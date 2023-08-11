@@ -4,40 +4,48 @@ import link from '../../fields/link'
 
 const mediaContentFields: Field[] = [
   {
-    name: 'alignment',
-    type: 'select',
-    defaultValue: 'contentMedia',
-    options: [
+    type: 'row',
+    fields: [
       {
-        label: 'Content + Media',
-        value: 'contentMedia',
+        name: 'alignment',
+        type: 'select',
+        defaultValue: 'contentMedia',
+        options: [
+          {
+            label: 'Content + Media',
+            value: 'contentMedia',
+          },
+          {
+            label: 'Media + Content',
+            value: 'mediaContent',
+          },
+        ],
+        admin: {
+          description: 'Choose how to align the content for this block.',
+          width: '50%',
+        },
       },
       {
-        label: 'Media + Content',
-        value: 'mediaContent',
-      },
-    ],
-    admin: {
-      description: 'Choose how to align the content for this block.',
-      width: '50%',
-    },
-  },
-  {
-    name: 'mediaSize',
-    type: 'select',
-    defaultValue: 'half',
-    options: [
-      {
-        value: 'oneThird',
-        label: 'One Third',
-      },
-      {
-        value: 'half',
-        label: 'Half',
-      },
-      {
-        value: 'twoThirds',
-        label: 'Two Thirds',
+        name: 'mediaSize',
+        type: 'select',
+        defaultValue: 'half',
+        options: [
+          {
+            value: 'oneThird',
+            label: 'One Third',
+          },
+          {
+            value: 'half',
+            label: 'Half',
+          },
+          {
+            value: 'twoThirds',
+            label: 'Two Thirds',
+          },
+        ],
+        admin: {
+          width: '50%',
+        },
       },
     ],
   },
@@ -56,6 +64,12 @@ const mediaContentFields: Field[] = [
       },
     },
   }),
+  {
+    name: 'media',
+    type: 'upload',
+    relationTo: 'media',
+    required: true,
+  },
 ]
 
 export const MediaContent: Block = {
