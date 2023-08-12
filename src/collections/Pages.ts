@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload/types'
 
 import formatSlug from '../utilities/formatSlug'
+import { FormBlockDefinition } from '../blocks/Form'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
@@ -32,6 +33,22 @@ export const Pages: CollectionConfig = {
       hooks: {
         beforeValidate: [formatSlug('title')],
       },
+    },
+    {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
+            {
+              name: 'layout',
+              type: 'blocks',
+              required: true,
+              blocks: [FormBlockDefinition],
+            },
+          ],
+        },
+      ],
     },
   ],
 }

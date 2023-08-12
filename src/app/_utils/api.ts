@@ -1,4 +1,4 @@
-import type { Media, Profile, Project } from '../../payload-types'
+import type { Media, Profile, Project, Form } from '../../payload-types'
 
 export const fetchProfile = async (): Promise<Profile> => {
   const profile: Profile = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/profiles`)
@@ -6,6 +6,13 @@ export const fetchProfile = async (): Promise<Profile> => {
     .then(res => res?.docs?.[0])
 
   return profile
+}
+export const fetchForm = async (): Promise<Form> => {
+  const form: Form = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/forms`)
+    .then(res => res.json())
+    .then(res => res?.docs?.[0])
+
+  return form
 }
 
 export const fetchMediaInfo = async (id: string): Promise<Media> => {
