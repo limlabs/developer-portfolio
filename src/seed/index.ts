@@ -4,42 +4,28 @@ const mockDescription = [
   {
     children: [
       {
-        text: `As Lead UI/UX Designer for the "Outside App," I spearheaded the creation of an innovative
-                mobile platform connecting users with nature. Conducting extensive research, I ideated
-                with the team to design user-friendly interfaces and seamless navigation. Crafting a
-                vibrant visual identity, we aimed to evoke adventure and user engagement.`,
+        text: 'As Lead UI/UX Designer for the "Outside App," I spearheaded the creation of an innovative mobile platform connecting users with nature. Conducting extensive research, I ideated with the team to design user-friendly interfaces and seamless navigation. Crafting a vibrant visual identity, we aimed to evoke adventure and user engagement.',
       },
     ],
   },
   {
     children: [
       {
-        text: `Iterative testing and refinement ensured a smooth user experience. 
-                The app's successful launch garnered a thriving community of outdoor enthusiasts, 
-                facilitating discovery of new trails and sustainable outdoor events. Witnessing the 
-                positive impact of reconnecting people with nature has been incredibly rewarding. 
-                As a UI/UX designer, I take pride in crafting meaningful digital experiences that inspire 
-                a love for the great outdoors.`,
+        text: "Iterative testing and refinement ensured a smooth user experience. The app's successful launch garnered a thriving community of outdoor enthusiasts, facilitating discovery of new trails and sustainable outdoor events. Witnessing the positive impact of reconnecting people with nature has been incredibly rewarding. As a UI/UX designer, I take pride in crafting meaningful digital experiences that inspire a love for the great outdoors.",
       },
     ],
   },
   {
     children: [
       {
-        text: `To establish a strong brand presence, I developed the app's visual identity, 
-                creating a vibrant color scheme and selecting modern typography that resonated with our target audience.
-                The objective was to evoke a sense of adventure and connection with nature, while also emphasizing the app's 
-                ease of use.`,
+        text: "To establish a strong brand presence, I developed the app's visual identity, creating a vibrant color scheme and selecting modern typography that resonated with our target audience. The objective was to evoke a sense of adventure and connection with nature, while also emphasizing the app's ease of use.",
       },
     ],
   },
   {
     children: [
       {
-        text: `Working closely with the usability testing team, I conducted multiple rounds of user testing and gathered 
-                valuable feedback. This iterative process allowed us to fine-tune the app's design and address 
-                any pain points experienced by the testers. As a result, we optimized the app for a seamless and 
-                enjoyable user experience.`,
+        text: "Working closely with the usability testing team, I conducted multiple rounds of user testing and gathered valuable feedback. This iterative process allowed us to fine-tune the app's design and address any pain points experienced by the testers. As a result, we optimized the app for a seamless and enjoyable user experience.",
       },
     ],
   },
@@ -49,7 +35,7 @@ const confirmationMessage = [
   {
     children: [
       {
-        text: `Thank you! I'll be reaching out to you shortly.`,
+        text: "Thank you! I'll be reaching out to you shortly.",
       },
     ],
   },
@@ -137,25 +123,25 @@ export const seed = async (payload: Payload): Promise<void> => {
     payload.create({
       collection: 'technologies',
       data: {
-        technology: 'Webflow',
+        name: 'Webflow',
       },
     }),
     payload.create({
       collection: 'technologies',
       data: {
-        technology: 'InVision',
+        name: 'InVision',
       },
     }),
     payload.create({
       collection: 'technologies',
       data: {
-        technology: 'Figma',
+        name: 'Figma',
       },
     }),
     payload.create({
       collection: 'technologies',
       data: {
-        technology: 'Illustrator',
+        name: 'Illustrator',
       },
     }),
   ])
@@ -207,8 +193,8 @@ export const seed = async (payload: Payload): Promise<void> => {
     },
   })
 
-  const samanthaSmith = await payload.create({
-    collection: 'profiles',
+  await payload.updateGlobal({
+    slug: 'profile',
     data: {
       name: 'Samantha Smith',
       location: 'Portland, OR',
@@ -222,7 +208,7 @@ export const seed = async (payload: Payload): Promise<void> => {
       },
       aboutMe: [
         {
-          text: `Samantha Smith is a visionary artist with a passion for pushing boundaries. She crafts captivating visual stories that leave a lasting impact. Her work reflects a perfect blend of innovation and elegance, whether in logo designs that capture a brand's essence or breathtaking illustrations that transport you to distant realms.`,
+          text: "Samantha Smith is a visionary artist with a passion for pushing boundaries. She crafts captivating visual stories that leave a lasting impact. Her work reflects a perfect blend of innovation and elegance, whether in logo designs that capture a brand's essence or breathtaking illustrations that transport you to distant realms.",
         },
       ],
       _status: 'published',
@@ -235,20 +221,12 @@ export const seed = async (payload: Payload): Promise<void> => {
       data: {
         title: 'Design Design',
         description: mockDescription,
-        role: 'uiUxDesigner',
+        role: ['uiUxDesigner'],
         startDate: new Date('2020-01-01'),
         endDate: new Date('2020-01-31'),
         technologiesUsed: [webflowDoc.id, inVisionDoc.id, figmaDoc.id, illustratorDoc.id],
         featuredImage: designDesignFeaturedScreenshot.id,
         layout: [
-          {
-            variant: 'minimal',
-            profile: samanthaSmith.id,
-            blockType: 'profile-cta',
-          },
-          {
-            blockType: 'projectHero',
-          },
           {
             mediaContentFields: [
               {
@@ -282,20 +260,12 @@ export const seed = async (payload: Payload): Promise<void> => {
       data: {
         title: 'Outside App',
         description: mockDescription,
-        role: 'uiUxDesigner',
+        role: ['uiUxDesigner'],
         startDate: new Date('2023-02-01'),
         endDate: new Date('2023-02-28'),
         technologiesUsed: [webflowDoc.id, inVisionDoc.id, figmaDoc.id, illustratorDoc.id],
         featuredImage: outsideAppFeaturedScreenshot.id,
         layout: [
-          {
-            variant: 'minimal',
-            profile: samanthaSmith.id,
-            blockType: 'profile-cta',
-          },
-          {
-            blockType: 'projectHero',
-          },
           {
             mediaContentFields: [
               {
@@ -329,20 +299,12 @@ export const seed = async (payload: Payload): Promise<void> => {
       data: {
         title: 'Design App',
         description: mockDescription,
-        role: 'uiUxDesigner',
+        role: ['uiUxDesigner'],
         startDate: new Date('2021-03-01'),
         endDate: new Date('2021-03-31'),
         technologiesUsed: [webflowDoc.id, inVisionDoc.id, figmaDoc.id, illustratorDoc.id],
         featuredImage: designAppFeaturedScreenshot.id,
         layout: [
-          {
-            variant: 'minimal',
-            profile: samanthaSmith.id,
-            blockType: 'profile-cta',
-          },
-          {
-            blockType: 'projectHero',
-          },
           {
             mediaContentFields: [
               {
@@ -376,20 +338,12 @@ export const seed = async (payload: Payload): Promise<void> => {
       data: {
         title: 'Art App',
         description: mockDescription,
-        role: 'uiUxDesigner',
+        role: ['uiUxDesigner'],
         startDate: new Date('2021-04-01'),
         endDate: new Date('2021-04-30'),
         technologiesUsed: [webflowDoc.id, inVisionDoc.id, figmaDoc.id, illustratorDoc.id],
         featuredImage: artAppFeaturedScreenshot.id,
         layout: [
-          {
-            variant: 'minimal',
-            profile: samanthaSmith.id,
-            blockType: 'profile-cta',
-          },
-          {
-            blockType: 'projectHero',
-          },
           {
             mediaContentFields: [
               {
@@ -426,8 +380,6 @@ export const seed = async (payload: Payload): Promise<void> => {
       title: 'Profile Landing Page',
       layout: [
         {
-          variant: 'default',
-          profile: samanthaSmith.id,
           blockType: 'profile-cta',
         },
         {

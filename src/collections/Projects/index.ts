@@ -6,8 +6,6 @@ import { Content } from '../../blocks/Content'
 import { Form } from '../../blocks/Form'
 import { MediaBlock } from '../../blocks/Media'
 import { MediaContent } from '../../blocks/MediaContent'
-import { ProfileCTA } from '../../blocks/ProfileCTA'
-import { ProjectHero } from '../../blocks/ProjectHero'
 import formatSlug from '../../utilities/formatSlug'
 import { formatAppURL, revalidateProject } from './hooks/revalidateProject'
 
@@ -73,7 +71,7 @@ export const Projects: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Content, Form, MediaBlock, MediaContent, ProfileCTA, ProjectHero],
+              blocks: [Content, Form, MediaBlock, MediaContent],
             },
           ],
         },
@@ -93,6 +91,7 @@ export const Projects: CollectionConfig = {
     {
       name: 'role',
       type: 'select',
+      hasMany: true,
       options: [
         {
           label: 'UI/UX Designer',

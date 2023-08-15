@@ -5,7 +5,7 @@ import { loggedIn } from '../access/loggedIn'
 export const Technologies: CollectionConfig = {
   slug: 'technologies',
   admin: {
-    useAsTitle: 'technology',
+    useAsTitle: 'name',
   },
   access: {
     create: loggedIn,
@@ -15,7 +15,7 @@ export const Technologies: CollectionConfig = {
   },
   fields: [
     {
-      name: 'technology',
+      name: 'name',
       type: 'text',
       required: true,
       admin: {
