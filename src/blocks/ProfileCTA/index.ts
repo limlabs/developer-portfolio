@@ -1,5 +1,7 @@
 import type { Block } from 'payload/types'
 
+import { ProfileUIField } from './fields/ProfileUI/Field'
+
 export const ProfileCTA: Block = {
   slug: 'profile-cta',
   labels: {
@@ -8,35 +10,13 @@ export const ProfileCTA: Block = {
   },
   fields: [
     {
-      type: 'row',
-      fields: [
-        {
-          name: 'profile',
-          type: 'relationship',
-          relationTo: 'profiles',
-          admin: {
-            width: '50%',
-          },
+      name: 'profileUI',
+      type: 'ui',
+      admin: {
+        components: {
+          Field: ProfileUIField,
         },
-        {
-          name: 'variant',
-          type: 'select',
-          required: true,
-          options: [
-            {
-              label: 'Default',
-              value: 'default',
-            },
-            {
-              label: 'Minimal',
-              value: 'minimal',
-            },
-          ],
-          admin: {
-            width: '50%',
-          },
-        },
-      ],
+      },
     },
   ],
 }
