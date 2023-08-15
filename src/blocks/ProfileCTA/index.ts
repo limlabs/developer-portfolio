@@ -1,6 +1,6 @@
 import type { Block } from 'payload/types'
 
-import { ProfileUIField } from './fields/ProfileUI/Field'
+import { ProfileUIField } from './CustomBlock'
 
 export const ProfileCTA: Block = {
   slug: 'profile-cta',
