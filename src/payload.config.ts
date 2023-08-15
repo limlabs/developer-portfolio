@@ -10,17 +10,16 @@ import { buildConfig } from 'payload/config'
 
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
-import { Profiles } from './collections/Profiles'
 import { Projects } from './collections/Projects'
 import { Technologies } from './collections/Technologies'
 import { Users } from './collections/Users'
-import { Footer } from './globals/Footer'
 import { Header } from './globals/Header'
+import { Profile } from './globals/Profile'
 
 export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
-  collections: [Media, Pages, Projects, Profiles, Technologies, Users],
-  globals: [Header, Footer],
+  collections: [Media, Pages, Projects, Technologies, Users],
+  globals: [Header, Profile],
   plugins: [formBuilder({})],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),

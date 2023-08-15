@@ -1,21 +1,13 @@
-import type { CollectionConfig } from 'payload/types'
+import type { GlobalConfig } from 'payload/types'
 
 import { loggedIn } from '../access/loggedIn'
 import { publishedOrLoggedIn } from '../access/publishedOrLoggedIn'
 
-export const Profiles: CollectionConfig = {
-  slug: 'profiles',
-  admin: {
-    useAsTitle: 'name',
-  },
-  versions: {
-    drafts: true,
-  },
+export const Profile: GlobalConfig = {
+  slug: 'profile',
   access: {
     read: publishedOrLoggedIn,
-    create: loggedIn,
     update: loggedIn,
-    delete: loggedIn,
   },
   fields: [
     {
@@ -68,5 +60,3 @@ export const Profiles: CollectionConfig = {
     },
   ],
 }
-
-export default Profiles
