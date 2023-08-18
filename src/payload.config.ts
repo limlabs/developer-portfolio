@@ -1,4 +1,5 @@
 import formBuilder from '@payloadcms/plugin-form-builder'
+import seo from '@payloadcms/plugin-seo'
 import dotenv from 'dotenv'
 import path from 'path'
 
@@ -20,7 +21,13 @@ export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
   collections: [Media, Pages, Projects, Technologies, Users],
   globals: [Header, Profile],
-  plugins: [formBuilder({})],
+  plugins: [
+    formBuilder({}),
+    seo({
+      collections: ['pages', 'projects'],
+      uploadsCollection: 'media',
+    }),
+  ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },

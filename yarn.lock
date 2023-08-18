@@ -1230,6 +1230,11 @@
     deepmerge "^4.2.2"
     escape-html "^1.0.3"
 
+"@payloadcms/plugin-seo@^1.0.14-canary.0":
+  version "1.0.14-canary.0"
+  resolved "https://registry.yarnpkg.com/@payloadcms/plugin-seo/-/plugin-seo-1.0.14-canary.0.tgz#070b32206adc0e39096923d54641f980e54d0fe9"
+  integrity sha512-NXy4GzWU+vC1E0bm6hHOSQpRvwkGzRDdymz7qUWUgWn+/8EQe36fJ8CsKwu85UN+bjv2AVk6JIr3YBW+QFpchw==
+
 "@polka/url@^1.0.0-next.20":
   version "1.0.0-next.21"
   resolved "https://registry.npmjs.org/@polka/url/-/url-1.0.0-next.21.tgz"
