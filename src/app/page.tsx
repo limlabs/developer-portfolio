@@ -3,7 +3,8 @@ import { Metadata, ResolvingMetadata } from 'next'
 
 import { AboutCard } from './_components/aboutCard'
 import { ProjectsList } from './_components/projectsList'
-import { fetchProfile } from './_utils/api'
+import { fetchProfile, fetchForm } from './_utils/api'
+import { FormBlock } from './_components/FormBlock'
 
 export async function generateMetadata(
   _params: unknown,
@@ -19,10 +20,14 @@ export async function generateMetadata(
 
 export default async function Home() {
   const profile = await fetchProfile()
+  const form = await fetchForm()
   return (
     <main className="flex flex-col items-center">
       <AboutCard variant="full" profile={profile} />
       <ProjectsList />
+      <div className="py-16 px-12 w-full">
+        <FormBlock form={form} />
+      </div>
     </main>
   )
 }
