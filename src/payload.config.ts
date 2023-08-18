@@ -22,7 +22,11 @@ export default buildConfig({
   collections: [Media, Pages, Projects, Technologies, Users],
   globals: [Header, Profile],
   plugins: [
-    formBuilder({}),
+    formBuilder({
+      fields: {
+        payment: false,
+      },
+    }),
     seo({
       collections: ['pages', 'projects'],
       uploadsCollection: 'media',
