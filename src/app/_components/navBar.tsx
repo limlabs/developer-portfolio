@@ -2,8 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { Media, Profile } from '../../payload-types'
-import { SkipToMainContentLink } from './skipToMainContent'
 import { ModeToggle } from './modeToggle'
+import { SkipToMainContentLink } from './skipToMainContent'
 
 export const NavBar = ({ profile }: { profile: Profile }) => {
   return (
