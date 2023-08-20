@@ -1,5 +1,6 @@
 'use client'
 import { FC } from 'react'
+
 import { Media, Project } from '../../../../payload-types'
 import { MediaCard } from '../../../_components/mediaCard'
 import { Dialog, DialogContent, DialogTrigger } from '../../../_components/ui/dialog'

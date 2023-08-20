@@ -1,4 +1,5 @@
 'use client'
+import { Media, Project } from '../../../../payload-types'
 import { MediaCard } from '../../../_components/mediaCard'
 import {
   Dialog,
@@ -7,7 +8,6 @@ import {
   DialogHeader,
   DialogTrigger,
 } from '../../../_components/ui/dialog'
-import { Media, Project } from '../../../../payload-types'
 
 interface ProjectImageSectionProps {
   project: Project

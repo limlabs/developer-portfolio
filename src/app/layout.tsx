@@ -12,24 +12,24 @@ import { fetchProfile } from './_utils/api'
 import './globals.css'
 
 export async function generateMetadata() {
-  const profile = await fetchProfile()
+  // const profile = await fetchProfile()
 
   return {
-    title: profile.name,
+    // title: profile.name,
     description: 'My professional portfolio featuring past projects and contact info.',
   }
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const profile = await fetchProfile()
+  // const profile = await fetchProfile()
   return (
     <html lang="en" className={`dark ${inter.className}`}>
       <body className="w-screen overflow-x-hidden">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Backdrop />
           <div className="relative z-20 min-h-screen flex flex-col items-center">
-            <NavBar profile={profile} />
-            <div className="flex-grow justify-center" id="main-content">
+            {/* <NavBar profile={profile} /> */}
+            <div className="flex flex-col w-full max-w-7xl" id="main-content">
               {children}
             </div>
             <Footer />

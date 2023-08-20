@@ -9,7 +9,13 @@ import { MediaContent } from '../../blocks/MediaContent'
 import { ProfileCTA } from '../../blocks/ProfileCTA'
 import { ProjectGrid } from '../../blocks/ProjectGrid'
 import formatSlug from '../../utilities/formatSlug'
-import { formatAppURL, revalidatePage } from './hooks/revalidatePage'
+import { revalidatePage } from './hooks/revalidatePage'
+
+const formatAppURL = ({ doc }): string => {
+  const pathToUse = doc.slug === 'home' ? '' : doc.slug
+  const { pathname } = new URL(`${process.env.PAYLOAD_PUBLIC_SERVER_URL}/${pathToUse}`)
+  return pathname
+}
 
 export const Pages: CollectionConfig = {
   slug: 'pages',

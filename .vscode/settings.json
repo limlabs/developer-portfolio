@@ -1,0 +1,12 @@
+{
+  "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true,
+  },
+  "eslint.validate": ["javascript", "typescript"],
+  "editor.formatOnSave": false,
+  "prettier.singleQuote": true,
+  "prettier.printWidth": 70,
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  }
+}

@@ -34,7 +34,7 @@
     "escape-html": "^1.0.3",
     "express": "^4.17.1",
     "lucide-react": "^0.263.1",
-    "next": "^13.4.8",
+    "next": "^13.4.19",
     "next-themes": "^0.2.1",
     "payload": "1.14.0",
     "react": "^18.2.0",

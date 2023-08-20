@@ -1,16 +1,15 @@
 import React from 'react'
 import { Metadata, ResolvingMetadata } from 'next'
 
-import { AboutCard } from './_components/aboutCard'
-import { ProjectsList } from './_components/projectsList'
-import { fetchProfile, fetchForm } from './_utils/api'
-import { FormBlock } from './_components/FormBlock'
+import { ContentBlock } from './_components/blocks/contentBlock'
+import { MediaBlock } from './_components/blocks/mediaBlock'
+import { fetchPage } from './_utils/api'
 
 export async function generateMetadata(
   _params: unknown,
   parent?: ResolvingMetadata,
 ): Promise<Metadata> {
-  const previousTitle = (await parent).title.absolute
+  const previousTitle = (await parent)?.title?.absolute
 
   return {
     title: `Portfolio | ${previousTitle}`,
@@ -18,16 +17,19 @@ export async function generateMetadata(
   }
 }
 
-export default async function Home() {
-  const profile = await fetchProfile()
-  const form = await fetchForm()
+export default async function LandingPage() {
+  const page = await fetchPage('profile-landing-page')
+
   return (
-    <main className="flex flex-col items-center">
-      <AboutCard variant="full" profile={profile} />
-      <ProjectsList />
-      <div className="py-16 px-12 w-full">
-        <FormBlock form={form} />
-      </div>
+    <main className="w-full grid grid-cols-6 gap-4">
+      {page.layout?.map(block => {
+        switch (block.blockType) {
+          case 'content':
+            return <ContentBlock contentFields={block.contentFields} key={block.id} />
+          case 'mediaBlock':
+            return <MediaBlock mediaFields={block.mediaFields} />
+        }
+      })}
     </main>
   )
 }
