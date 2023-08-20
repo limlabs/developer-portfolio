@@ -1,12 +1,11 @@
-import { FC, Suspense } from 'react'
+import { FC } from 'react'
 import Link from 'next/link'
 
 import { Media, Project } from '../../../payload-types'
-import { fetchProjects } from '../../_utils/api'
 import { formatMonth } from '../../_utils/date'
-import { FadeInContent } from '../fadeInContent'
-import { MediaCard } from '../mediaCard'
 import { Block } from '../ui/block'
+import { FadeInContent } from '../ui/fadeInContent'
+import { MediaCard } from '../ui/mediaCard'
 
 interface ProjectMediaCardProps {
   src: string
@@ -40,10 +39,14 @@ interface ProjectGridBlockProps {
 
 export const ProjectGridBlock: FC<ProjectGridBlockProps> = ({ projects }) => {
   return (
-    <Block size="full" className="bg-transparent md:mt-40 mb-20 flex w-full flex-shrink-0">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+    <Block size="full" className="bg-transparent md:my-20 flex w-full flex-shrink-0">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {projects.map(({ id, title, startDate, featuredImage, slug }, index) => (
-          <Link href={`/work/${slug}`} key={id} className="col-span-1 w-[35vw] h-[26vw]">
+          <Link
+            href={`/work/${slug}`}
+            key={id}
+            className="col-span-1 w-[80vw] h-[57vw] lg:w-[35vw] lg:h-[26vw] max-w-[500px] max-h-[376px] mb-8"
+          >
             <ProjectMediaCard
               key={id}
               src={(featuredImage as Media)?.url}

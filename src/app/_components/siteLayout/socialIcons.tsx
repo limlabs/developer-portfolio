@@ -2,9 +2,9 @@ import { FC, Suspense } from 'react'
 import { EnvelopeClosedIcon, GitHubLogoIcon, LinkedInLogoIcon } from '@radix-ui/react-icons'
 import { TwitterIcon } from 'lucide-react'
 
-import { cn } from '../../utilities'
-import { fetchProfile } from '../_utils/api'
-import { SocialLink } from './socialLink'
+import { cn } from '../../../utilities'
+import { fetchProfile } from '../../_utils/api'
+import { SocialLink } from '../ui/socialLink'
 
 interface SocialIconsContentProps {
   className?: string

@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Media, Profile } from '../../payload-types'
-import { ModeToggle } from './modeToggle'
+import { Media, Profile } from '../../../payload-types'
 import { SkipToMainContentLink } from './skipToMainContent'
+import { ThemeToggle } from './themeToggle'
 
 export const NavBar = ({ profile }: { profile: Profile }) => {
   return (
@@ -22,7 +22,7 @@ export const NavBar = ({ profile }: { profile: Profile }) => {
         </Link>
       )}
       <div className="flex lg:gap-8 w-full lg:w-auto justify-evenly text-base items-center">
-        <ModeToggle />
+        <ThemeToggle />
 
         {profile.socialLinks?.github && (
           <Link href={profile.socialLinks.github} target="_github">

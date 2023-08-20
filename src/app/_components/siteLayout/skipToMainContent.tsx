@@ -2,7 +2,7 @@
 
 import { FC, useEffect, useState } from 'react'
 
-import { Button } from './ui/button'
+import { Button } from '../ui/button'
 
 export const SkipToMainContentLink: FC = () => {
   const [showSkipLink, setShowSkipLink] = useState(false)

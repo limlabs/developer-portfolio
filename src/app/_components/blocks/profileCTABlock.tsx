@@ -4,10 +4,10 @@ import Image from 'next/image'
 import { Media, Profile } from '../../../payload-types'
 import { cn } from '../../../utilities'
 import { fetchProfile } from '../../_utils/api'
-import { FadeInContent } from '../fadeInContent'
-import { RichText } from '../richText'
-import { SocialIcons } from '../socialIcons'
+import { SocialIcons } from '../siteLayout/socialIcons'
 import { Block } from '../ui/block'
+import { FadeInContent } from '../ui/fadeInContent'
+import { RichText } from '../ui/richText'
 
 const containerVariants = cva('bg-muted rounded-lg max-w-[1080px]', {
   variants: {
