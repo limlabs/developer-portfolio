@@ -1,10 +1,14 @@
 import type { Form, Media, Page, Profile, Project } from '../../payload-types'
 
 export const fetchProfile = async (): Promise<Profile> => {
-  const profile: Profile = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/profiles`)
-    .then(res => res.json())
-    .then(res => res?.docs?.[0])
+  const url = `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/globals/profile?locale=en`
 
+  console.log(url)
+  const profile: Profile = await fetch(url)
+    .then(res => res.json())
+    .then(res => res)
+
+  console.log(profile)
   return profile
 }
 
@@ -18,7 +22,6 @@ export const fetchPage = async (slug: string): Promise<Page> => {
     .then(res => res.json())
     .then(res => res?.docs?.[0])
 
-  console.log('page', page)
   return page
 }
 

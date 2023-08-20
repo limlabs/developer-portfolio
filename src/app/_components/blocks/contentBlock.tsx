@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { RichText } from '../RichText'
+import { RichText } from '../richText'
 import { Block, BlockProps } from '../ui/block'
 
 interface ContentBlockFields extends BlockProps {

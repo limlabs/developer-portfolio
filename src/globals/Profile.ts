@@ -1,12 +1,11 @@
 import type { GlobalConfig } from 'payload/types'
 
 import { loggedIn } from '../access/loggedIn'
-import { publishedOrLoggedIn } from '../access/publishedOrLoggedIn'
 
 export const Profile: GlobalConfig = {
   slug: 'profile',
   access: {
-    read: publishedOrLoggedIn,
+    read: () => true,
     update: loggedIn,
   },
   fields: [

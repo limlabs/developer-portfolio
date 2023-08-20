@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { Media, Profile } from '../../payload-types'
 import { cn } from '../../utilities'
 import { FadeInContent } from './fadeInContent'
-import { RichText } from './RichText'
 import { SocialIcons } from './socialIcons'
 
 interface AboutCardContentsProps {

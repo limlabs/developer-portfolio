@@ -3,14 +3,11 @@ import Image from 'next/image'
 
 import { Media, Profile } from '../../../payload-types'
 import { cn } from '../../../utilities'
+import { fetchProfile } from '../../_utils/api'
 import { FadeInContent } from '../fadeInContent'
-import { RichText } from '../RichText'
+import { RichText } from '../richText'
 import { SocialIcons } from '../socialIcons'
-
-interface AboutCardContentsProps {
-  profile: Profile
-  variant: 'compact' | 'full'
-}
+import { Block } from '../ui/block'
 
 const containerVariants = cva('bg-muted rounded-lg max-w-[1080px]', {
   variants: {
@@ -66,50 +63,58 @@ const titleVariants = cva('text-base leading-tight md:mt-2', {
   },
 })
 
-export const AboutCard = ({ variant, profile }: AboutCardContentsProps) => {
+export const ProfileCTABlock = ({
+  profile,
+  variant = 'full',
+}: {
+  profile: Profile
+  variant?: 'compact' | 'full'
+}) => {
   return (
-    <FadeInContent>
-      <div className={containerVariants({ variant })}>
-        <div className={topContentVariants({ variant })}>
-          {profile.profileImage && (
-            <div className={imageContainerVariants({ variant })}>
-              <Image
-                priority
-                className="rounded-full"
-                fill
-                {...imageProps[variant]}
-                alt={(profile.profileImage as Media).alt}
-                src={(profile.profileImage as Media).url}
-              />
-            </div>
-          )}
-          <div className={textContainerVariants({ variant })}>
-            <h1
-              className={cn({
-                'text-2xl md:text-5xl font-extrabold leading-[30px]': variant === 'full',
-                'text-[24px] md:text-[20px] font-semibold leading-[28px]': variant === 'compact',
-              })}
-            >
-              {profile.name}
-            </h1>
-            {profile.location && variant === 'full' && (
-              <h2 className="leading-7 text-base md:mt-2">{profile.location}</h2>
-            )}
-            {profile.title && <h3 className={titleVariants({ variant })}>{profile.title}</h3>}
-            {profile.aboutMe && variant === 'full' && (
-              <div className="mt-8">
-                <RichText content={profile.aboutMe} />
+    <Block size="full" className="">
+      <FadeInContent>
+        <div className={containerVariants({ variant })}>
+          <div className={topContentVariants({ variant })}>
+            {profile.profileImage && (
+              <div className={imageContainerVariants({ variant })}>
+                <Image
+                  priority
+                  className="rounded-full"
+                  fill
+                  {...imageProps[variant]}
+                  alt={(profile.profileImage as Media).alt}
+                  src={(profile.profileImage as Media).url}
+                />
               </div>
             )}
+            <div className={textContainerVariants({ variant })}>
+              <h1
+                className={cn({
+                  'text-2xl md:text-5xl font-extrabold leading-[30px]': variant === 'full',
+                  'text-[24px] md:text-[20px] font-semibold leading-[28px]': variant === 'compact',
+                })}
+              >
+                {profile.name}
+              </h1>
+              {profile.location && variant === 'full' && (
+                <h2 className="leading-7 text-base md:mt-2">{profile.location}</h2>
+              )}
+              {profile.title && <h3 className={titleVariants({ variant })}>{profile.title}</h3>}
+              {profile.aboutMe && variant === 'full' && (
+                <div className="mt-8">
+                  <RichText content={profile.aboutMe} />
+                </div>
+              )}
+            </div>
           </div>
+          <SocialIcons
+            className={cn({
+              'mt-8 justify-center': variant === 'full',
+              'mt-8 md:mt-0 gap-9': variant === 'compact',
+            })}
+          />
         </div>
-        <SocialIcons
-          className={cn({
-            'mt-8 justify-center': variant === 'full',
-            'mt-8 md:mt-0 gap-9': variant === 'compact',
-          })}
-        />
-      </div>
-    </FadeInContent>
+      </FadeInContent>
+    </Block>
   )
 }

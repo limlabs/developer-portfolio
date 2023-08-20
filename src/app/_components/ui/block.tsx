@@ -4,7 +4,7 @@ import { cva, VariantProps } from 'class-variance-authority'
 
 import { cn } from '../../../utilities'
 
-const blockVariants = cva('col-span-6 items-center justify-center', {
+const blockVariants = cva('flex col-span-6 items-center justify-center', {
   variants: {
     size: {
       oneThird: 'lg:col-span-2',
