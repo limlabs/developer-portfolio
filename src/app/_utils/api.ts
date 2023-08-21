@@ -50,6 +50,9 @@ export const fetchProjects = async (): Promise<Project[]> => {
 export const fetchProject = async (slug: string): Promise<Project> => {
   const project: Project = await fetch(
     `${process.env.NEXT_PUBLIC_SERVER_URL}/api/projects?where[slug][equals]=${slug}`,
+    {
+      next: { tags: [`projects/${slug}`] },
+    },
   )
     .then(res => res.json())
     .then(res => res?.docs?.[0])

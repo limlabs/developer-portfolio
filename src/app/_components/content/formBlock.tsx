@@ -4,8 +4,10 @@ import { useForm } from 'react-hook-form'
 import { Data } from 'payload/dist/admin/components/forms/Form/types'
 
 import { Form as FormTypes } from '../../../payload-types'
+import { Block } from '../ui/block'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
+import { RichText } from '../ui/richText'
 import { Textarea } from '../ui/textarea'
 
 type ErrorType = {
@@ -13,20 +15,16 @@ type ErrorType = {
   message: string
 }
 
-export type FormBlockType = {
-  blockName: string
-  blockType: 'formBlock'
-  enableIntro: boolean // "Boolean" should be changed to "boolean"
+export type FormBlockProps = {
   form: FormTypes
-  introContent?: {
-    [k: string]: unknown
-  }[]
+  intro?: unknown
 }
 
-export const FormBlock: FC<FormBlockType & { id?: string }> = props => {
+export const FormBlock: FC<FormBlockProps> = props => {
   const {
     form: formFromProps,
     form: { id: formID, submitButtonLabel },
+    intro,
   } = props
 
   const formMethods = useForm()
@@ -81,43 +79,46 @@ export const FormBlock: FC<FormBlockType & { id?: string }> = props => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-      {error && <div>{error.message}</div>}
-      {formFromProps.fields.map((field, index) => {
-        switch (field.blockType) {
-          case 'text':
-            return (
-              <Input
-                key={index}
-                type="text"
-                placeholder={field.label}
-                {...register(field.name, { required: field.required })}
-              />
-            )
-          case 'email':
-            return (
-              <Input
-                key={index}
-                type="email"
-                placeholder={field.label}
-                {...register(field.name, { required: field.required })}
-              />
-            )
-          case 'textarea':
-            return (
-              <Textarea
-                key={index}
-                placeholder={field.label}
-                {...register(field.name, { required: field.required })}
-              />
-            )
-          default:
-            return null
-        }
-      })}
-      <Button type="submit" disabled={isLoading || !isValid}>
-        {submitButtonLabel}
-      </Button>
-    </form>
+    <Block className="w-full flex flex-col">
+      {intro && <RichText content={intro} />}
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 w-full max-w-lg">
+        {error && <div>{error.message}</div>}
+        {formFromProps.fields.map((field, index) => {
+          switch (field.blockType) {
+            case 'text':
+              return (
+                <Input
+                  key={index}
+                  type="text"
+                  placeholder={field.label}
+                  {...register(field.name, { required: field.required })}
+                />
+              )
+            case 'email':
+              return (
+                <Input
+                  key={index}
+                  type="email"
+                  placeholder={field.label}
+                  {...register(field.name, { required: field.required })}
+                />
+              )
+            case 'textarea':
+              return (
+                <Textarea
+                  key={index}
+                  placeholder={field.label}
+                  {...register(field.name, { required: field.required })}
+                />
+              )
+            default:
+              return null
+          }
+        })}
+        <Button type="submit" disabled={isLoading || !isValid}>
+          {submitButtonLabel}
+        </Button>
+      </form>
+    </Block>
   )
 }

@@ -1,11 +1,12 @@
 import React, { Suspense } from 'react'
 import { Metadata, ResolvingMetadata } from 'next'
 
-import { Project } from '../payload-types'
-import { ContentBlock } from './_components/blocks/contentBlock'
-import { MediaBlock } from './_components/blocks/mediaBlock'
-import { ProfileCTABlock } from './_components/blocks/profileCTABlock'
-import { ProjectGridBlock } from './_components/blocks/projectGridBlock'
+import { Form, Project } from '../payload-types'
+import { ContentBlock } from './_components/content/contentBlock'
+import { FormBlock } from './_components/content/formBlock'
+import { MediaBlock } from './_components/content/mediaBlock'
+import { ProfileCTABlock } from './_components/content/profileCTABlock'
+import { ProjectGridBlock } from './_components/content/projectGridBlock'
 import { fetchPage, fetchProfile } from './_utils/api'
 
 export async function generateMetadata(
@@ -31,11 +32,13 @@ export default async function LandingPage() {
           case 'content':
             return <ContentBlock contentFields={block.contentFields} key={block.id} />
           case 'mediaBlock':
-            return <MediaBlock mediaFields={block.mediaFields} />
+            return <MediaBlock mediaFields={block.mediaFields} key={block.id} />
           case 'profile-cta':
-            return <ProfileCTABlock profile={profile} />
+            return <ProfileCTABlock profile={profile} key={block.id} />
           case 'projectGrid':
-            return <ProjectGridBlock projects={block.project as Project[]} />
+            return <ProjectGridBlock projects={block.project as Project[]} key={block.id} />
+          case 'form':
+            return <FormBlock intro={block.richText} form={block.form as Form} key={block.id} />
         }
       })}
     </main>

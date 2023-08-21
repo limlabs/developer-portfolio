@@ -43,7 +43,7 @@ export const ProjectGridBlock: FC<ProjectGridBlockProps> = ({ projects }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
         {projects.map(({ id, title, startDate, featuredImage, slug }, index) => (
           <Link
-            href={`/work/${slug}`}
+            href={`/project/${slug}`}
             key={id}
             className="col-span-1 w-[80vw] h-[57vw] lg:w-[35vw] lg:h-[26vw] max-w-[500px] max-h-[376px] mb-8"
           >

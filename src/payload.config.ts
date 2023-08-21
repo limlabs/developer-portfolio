@@ -25,6 +25,15 @@ export default buildConfig({
     formBuilder({
       fields: {
         payment: false,
+        checkbox: false,
+        country: false,
+        email: true,
+        message: true,
+        number: false,
+        text: true,
+        textarea: true,
+        select: false,
+        state: false,
       },
     }),
     seo({

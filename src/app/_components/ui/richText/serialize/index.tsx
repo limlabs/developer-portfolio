@@ -83,42 +83,42 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           case 'h1':
             return (
-              <h1 key={i}>
+              <h1 key={i} className="text-3xl mb-2">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h1>
             )
 
           case 'h2':
             return (
-              <h2 key={i}>
+              <h2 key={i} className="text-2xl mb-2">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h2>
             )
 
           case 'h3':
             return (
-              <h3 key={i}>
+              <h3 key={i} className="text-xl mb-2">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h3>
             )
 
           case 'h4':
             return (
-              <h4 key={i}>
+              <h4 key={i} className="text-lg mb-2">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h4>
             )
 
           case 'h5':
             return (
-              <h5 key={i}>
+              <h5 key={i} className="text-base mb-2">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h5>
             )
 
           case 'h6':
             return (
-              <h6 key={i}>
+              <h6 key={i} className="text-sm mb-2">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h6>
             )

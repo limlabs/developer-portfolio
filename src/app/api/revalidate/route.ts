@@ -1,20 +1,30 @@
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest): Promise<unknown> {
   const secret = request.nextUrl.searchParams.get('secret')
   const path = request.nextUrl.searchParams.get('path')
+  const tag = request.nextUrl.searchParams.get('tag')
 
-  if (secret !== process.env.MY_SECRET_TOKEN) {
+  if (secret !== process.env.REVALIDATION_KEY) {
     return NextResponse.json({ message: 'Invalid secret' }, { status: 401 })
   }
 
-  if (!path) {
-    return NextResponse.json({ message: 'Missing path param' }, { status: 400 })
+  if (!(path || tag)) {
+    return NextResponse.json({ message: 'Missing path or tag param' }, { status: 400 })
   }
 
-  revalidatePath(path)
+  if (path) {
+    revalidatePath(path)
+  } else if (tag) {
+    revalidateTag(tag)
+    if (tag.startsWith('projects/')) {
+      revalidatePath('/') // also revalidate the home page, which has the project grid
+      // eslint-disable-next-line no-console
+      console.log('revalidated project dependencies')
+    }
+  }
 
   return NextResponse.json({ revalidated: true, now: Date.now() })
 }

@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import payloadLogo from '../../_assets/payload-logo.svg'
-import { SocialIcons } from './socialIcons'
+import { SocialIcons } from '../content/socialIcons'
 
 export const Footer = () => {
   return (

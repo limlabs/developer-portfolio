@@ -3,6 +3,7 @@ import { FC } from 'react'
 
 import { Project } from '../../../../payload-types'
 import { formatMonth } from '../../../_utils/date'
+import { ProjectRoles } from './projectRole'
 
 interface ProjectSummaryProps {
   project: Project
@@ -19,7 +20,7 @@ export const ProjectSummary: FC<ProjectSummaryProps> = ({ project }: ProjectSumm
           {project.endDate && ` - ${formatMonth(project.endDate)}`}
         </p>
       )}
-      <h4 className="font-semibold leading-tight text-xl lg:text-2xl pt-3">{project.role}</h4>
+      <ProjectRoles roles={project.role} />
     </div>
   )
 }

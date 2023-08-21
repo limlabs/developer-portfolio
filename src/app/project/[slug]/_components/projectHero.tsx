@@ -1,7 +1,7 @@
 'use client'
 import { FC } from 'react'
 
-import { Media, Project } from '../../../../payload-types'
+import { Media, Project, Technology } from '../../../../payload-types'
 import { Dialog, DialogContent, DialogTrigger } from '../../../_components/ui/dialog'
 import { MediaCard } from '../../../_components/ui/mediaCard'
 
@@ -18,8 +18,13 @@ export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
             <h4>Technologies Used</h4>
           </div>
           <ul className="flex gap-3 w-full text-xl flex-wrap mt-2 mb-4">
-            {project.technologiesUsed.map(({ technology }) => (
-              <li className="border border-foreground p-2 rounded-md ">{technology}</li>
+            {project.technologiesUsed.map(technology => (
+              <li
+                className="border border-foreground p-2 rounded-md "
+                key={(technology as Technology).id}
+              >
+                {(technology as Technology).name}
+              </li>
             ))}
           </ul>
         </>

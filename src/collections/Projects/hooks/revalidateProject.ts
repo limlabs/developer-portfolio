@@ -15,13 +15,13 @@ export const revalidateProject: AfterChangeHook = ({ doc, req, operation }) => {
     const revalidate = async (): Promise<void> => {
       try {
         const res = await fetch(
-          `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/revalidate?secret=${process.env.REVALIDATION_KEY}&revalidatePath=${url}`,
+          `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/revalidate?secret=${process.env.REVALIDATION_KEY}&tag=projects/${doc.slug}`,
         )
 
         if (res.ok) {
           req.payload.logger.info(`Revalidated path ${url}`)
         } else {
-          req.payload.logger.error(`Error revalidating path ${url}`)
+          req.payload.logger.error(`Error revalidating path ${url}: ${await res.text()}`)
         }
       } catch (err: unknown) {
         req.payload.logger.error(`Error hitting revalidate route for ${url}`)
