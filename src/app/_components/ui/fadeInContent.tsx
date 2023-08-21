@@ -25,7 +25,7 @@ export const FadeInContent: FC<PropsWithChildren<AllHTMLAttributes<HTMLDivElemen
         }
       },
       {
-        threshold: 0.1, // Adjust this value to control how much of the element must be visible before the fade-in starts
+        threshold: 0.05, // Adjust this value to control how much of the element must be visible before the fade-in starts
       },
     )
 

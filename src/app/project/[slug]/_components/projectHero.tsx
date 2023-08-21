@@ -11,7 +11,7 @@ interface ProjectHeroProps {
 
 export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
   return (
-    <div className="relative z-10 lg:pl-20 mt-6 lg:mt-0 flex flex-col items-start lg:items-center justify-center md:float-right md:flex-shrink-0">
+    <div className="relative z-10 lg:pl-20 mt-6 lg:mt-0 flex flex-col items-start lg:items-center justify-center lg:float-right lg:flex-shrink-0">
       {project.technologiesUsed && (
         <>
           <div className="flex justify-start w-full text-lg lg:text-xl">
@@ -20,7 +20,7 @@ export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
           <ul className="flex gap-3 w-full text-xl flex-wrap mt-2 mb-4">
             {project.technologiesUsed.map(technology => (
               <li
-                className="border border-foreground p-2 rounded-md "
+                className="border border-foreground px-5 py-2 rounded-md "
                 key={(technology as Technology).id}
               >
                 {(technology as Technology).name}

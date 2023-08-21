@@ -3,17 +3,16 @@ import Image from 'next/image'
 
 import { Media, Profile } from '../../../payload-types'
 import { cn } from '../../../utilities'
-import { fetchProfile } from '../../_utils/api'
-import { SocialIcons } from './socialIcons'
 import { Block } from '../ui/block'
 import { FadeInContent } from '../ui/fadeInContent'
-import { RichText } from '../ui/richText'
+import { RichText } from './richText'
+import { SocialIcons } from './socialIcons'
 
-const containerVariants = cva('bg-muted rounded-lg max-w-[1080px]', {
+const containerVariants = cva('w-full bg-muted rounded-lg max-w-[1080px]', {
   variants: {
     variant: {
-      compact: 'px-5 md:px-13 py-4 md:py-8 flex flex-col md:flex-row justify-between items-center',
-      full: 'px-4 md:px-28 py-12 mt-48 md:mt-40 mx-8',
+      compact: 'px-5 lg:px-13 py-4 lg:py-8 flex flex-col lg:flex-row justify-between items-center',
+      full: 'px-4 lg:px-28 py-12 mt-48 lg:mt-40',
     },
   },
 })
@@ -21,8 +20,8 @@ const containerVariants = cva('bg-muted rounded-lg max-w-[1080px]', {
 const imageContainerVariants = cva('flex-shrink-0', {
   variants: {
     variant: {
-      compact: 'w-[80px] h-[80px] md:w-[75px] md:h-[75px] relative items-center justify-center',
-      full: 'w-[230px] h-[230px] md:w-[300px] md:h-[300px] absolute md:relative z-20 -top-52 md:-top-0',
+      compact: 'w-[80px] h-[80px] lg:w-[75px] lg:h-[75px] relative items-center justify-center',
+      full: 'w-[230px] h-[230px] lg:w-[300px] lg:h-[300px] absolute lg:relative z-20 -top-52 lg:-top-0',
     },
   },
 })
@@ -31,7 +30,7 @@ const topContentVariants = cva('flex', {
   variants: {
     variant: {
       compact: 'justify-evenly items-center',
-      full: 'flex-col md:flex-row items-center md:justify-evenly relative',
+      full: 'flex-col lg:flex-row items-center lg:justify-evenly relative',
     },
   },
 })
@@ -48,17 +47,17 @@ const imageProps = {
 const textContainerVariants = cva('text-muted-foreground rounded-xl ', {
   variants: {
     variant: {
-      compact: 'ml-3 md:ml-8',
-      full: 'pt-12 md:pt-0 px-8 md:px-0 md:pl-24 max-w-2xl md:col-span-3',
+      compact: 'ml-3 lg:ml-8',
+      full: 'pt-12 lg:pt-0 px-8 lg:px-0 lg:pl-24 max-w-2xl lg:col-span-3',
     },
   },
 })
 
-const titleVariants = cva('text-base leading-tight md:mt-2', {
+const titleVariants = cva('text-base leading-tight lg:mt-2', {
   variants: {
     variant: {
       compact: '',
-      full: 'font-semibold md:text-xl',
+      full: 'font-semibold lg:text-xl',
     },
   },
 })
@@ -71,8 +70,8 @@ export const ProfileCTABlock = ({
   variant?: 'compact' | 'full'
 }) => {
   return (
-    <Block size="full" className="">
-      <FadeInContent>
+    <Block size="full" className="w-full">
+      <FadeInContent className="w-full">
         <div className={containerVariants({ variant })}>
           <div className={topContentVariants({ variant })}>
             {profile.profileImage && (
@@ -90,14 +89,14 @@ export const ProfileCTABlock = ({
             <div className={textContainerVariants({ variant })}>
               <h1
                 className={cn({
-                  'text-2xl md:text-5xl font-extrabold leading-[30px]': variant === 'full',
-                  'text-[24px] md:text-[20px] font-semibold leading-[28px]': variant === 'compact',
+                  'text-2xl lg:text-5xl font-extrabold leading-[30px]': variant === 'full',
+                  'text-[24px] lg:text-[20px] font-semibold leading-[28px]': variant === 'compact',
                 })}
               >
                 {profile.name}
               </h1>
               {profile.location && variant === 'full' && (
-                <h2 className="leading-7 text-base md:mt-2">{profile.location}</h2>
+                <h2 className="leading-7 text-base lg:mt-2">{profile.location}</h2>
               )}
               {profile.title && <h3 className={titleVariants({ variant })}>{profile.title}</h3>}
               {profile.aboutMe && variant === 'full' && (
@@ -110,8 +109,9 @@ export const ProfileCTABlock = ({
           <SocialIcons
             className={cn({
               'mt-8 justify-center': variant === 'full',
-              'mt-8 md:mt-0 gap-9': variant === 'compact',
+              'mt-8 lg:mt-0 gap-9': variant === 'compact',
             })}
+            profile={profile}
           />
         </div>
       </FadeInContent>

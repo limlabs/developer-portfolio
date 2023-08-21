@@ -7,7 +7,7 @@ import { ThemeToggle } from './themeToggle'
 
 export const NavBar = ({ profile }: { profile: Profile }) => {
   return (
-    <div className="w-full max-w-7xl h-full flex justify-evenly lg:justify-between">
+    <div className="w-full max-w-7xl h-full flex justify-evenly lg:justify-between lg:px-8 xl:px-0 py-2 lg:py-0">
       <SkipToMainContentLink />
       {profile.profileImage && (
         <Link href="/" className="hidden lg:flex items-center w-[50px] h-[66px]">

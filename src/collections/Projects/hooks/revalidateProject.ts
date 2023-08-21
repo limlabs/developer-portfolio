@@ -10,21 +10,20 @@ export const formatAppURL = ({ doc }): string => {
 // Only revalidate existing docs that are published
 export const revalidateProject: AfterChangeHook = ({ doc, req, operation }) => {
   if (operation === 'update' && doc._status === 'published') {
-    const url = formatAppURL({ doc })
-
     const revalidate = async (): Promise<void> => {
+      const tag = `projects/${doc.slug}`
       try {
         const res = await fetch(
-          `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/revalidate?secret=${process.env.REVALIDATION_KEY}&tag=projects/${doc.slug}`,
+          `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/revalidate?secret=${process.env.REVALIDATION_KEY}&tag=${tag}`,
         )
 
         if (res.ok) {
-          req.payload.logger.info(`Revalidated path ${url}`)
+          req.payload.logger.info(`Revalidated tag ${tag}`)
         } else {
-          req.payload.logger.error(`Error revalidating path ${url}: ${await res.text()}`)
+          req.payload.logger.error(`Error revalidating tag ${tag}: ${await res.text()}`)
         }
       } catch (err: unknown) {
-        req.payload.logger.error(`Error hitting revalidate route for ${url}`)
+        req.payload.logger.error(`Error hitting revalidate route for ${tag}`)
       }
     }
 

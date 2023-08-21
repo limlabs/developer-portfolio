@@ -17,8 +17,12 @@ export async function GET(request: NextRequest): Promise<unknown> {
 
   if (path) {
     revalidatePath(path)
+    // eslint-disable-next-line no-console
+    console.log('revalidated path', path)
   } else if (tag) {
     revalidateTag(tag)
+    // eslint-disable-next-line no-console
+    console.log('revalidated tag', tag)
     if (tag.startsWith('projects/')) {
       revalidatePath('/') // also revalidate the home page, which has the project grid
       // eslint-disable-next-line no-console

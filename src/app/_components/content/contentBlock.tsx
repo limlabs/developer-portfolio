@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { Block, BlockProps } from '../ui/block'
-import { RichText } from '../ui/richText'
+import { RichText } from './richText'
 
 interface ContentBlockFields extends BlockProps {
   richText?: unknown
@@ -15,8 +15,8 @@ interface ContentBlockProps {
 export const ContentBlock: FC<ContentBlockProps> = ({ contentFields }) => {
   return (
     <>
-      {contentFields.map(({ richText, size }) => (
-        <Block size={size}>
+      {contentFields.map(({ richText, size }, index) => (
+        <Block size={size} key={index}>
           <RichText content={richText} />
         </Block>
       ))}

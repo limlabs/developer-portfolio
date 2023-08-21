@@ -2,9 +2,10 @@ import { Metadata, ResolvingMetadata } from 'next'
 import { redirect } from 'next/navigation'
 
 import { Media } from '../../../payload-types'
+import { ContentLayout } from '../../_components/content/contentLayout'
 import { ProfileCTABlock } from '../../_components/content/profileCTABlock'
+import { RichText } from '../../_components/content/richText'
 import { FadeInContent } from '../../_components/ui/fadeInContent'
-import { RichText } from '../../_components/ui/richText'
 import { fetchProfile, fetchProject } from '../../_utils/api'
 import { BackButton } from './_components/backButton'
 import { ProjectHero } from './_components/projectHero'
@@ -39,26 +40,28 @@ export async function generateMetadata(
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const project = await fetchProject(params.slug)
+  const [project, profile] = await Promise.all([fetchProject(params.slug), fetchProfile()])
 
   if (!project) {
     redirect('/404')
   }
 
   return (
-    <main className="w-full max-w-[1080px] px-8 md:px-8 flex flex-col gap-12 mt-12 ">
-      <section className="md:mt-12 flex flex-col md:block">
-        <FadeInContent className="relative z-10 delay-100 order-2 md:order-none md:float-right mb-16 md:mb-0">
+    <main className="w-full max-w-[1080px] px-8 lg:px-0 flex flex-col gap-12 mt-12 ">
+      <section className="lg:mt-12 flex flex-col lg:block">
+        <FadeInContent className="relative z-10 delay-100 order-2 lg:order-none lg:float-right mb-16 lg:mb-0">
           <ProjectHero project={project} />
         </FadeInContent>
-        <FadeInContent className="order-1 md:order-none">
+        <FadeInContent className="order-1 lg:order-none">
           <ProjectSummary project={project} />
         </FadeInContent>
-        <FadeInContent className="relative z-0 delay-200 order-3 md:order-none">
+        <FadeInContent className="relative z-0 delay-200 order-3 lg:order-none">
           <RichText content={project.description} />
         </FadeInContent>
       </section>
-      {/* <ProjectImageSection project={project} />  */}
+      <section className="w-full mb-8">
+        <ContentLayout profile={profile} layout={project.layout} />
+      </section>
       <BackButton />
     </main>
   )

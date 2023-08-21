@@ -7,8 +7,8 @@ import { Form as FormTypes } from '../../../payload-types'
 import { Block } from '../ui/block'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
-import { RichText } from '../ui/richText'
 import { Textarea } from '../ui/textarea'
+import { RichText } from './richText'
 
 type ErrorType = {
   status: string
@@ -79,9 +79,9 @@ export const FormBlock: FC<FormBlockProps> = props => {
   }
 
   return (
-    <Block className="w-full flex flex-col">
-      {intro && <RichText content={intro} />}
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 w-full max-w-lg">
+    <Block className="w-full flex flex-col m-auto">
+      {intro && <RichText content={intro} className="w-full" />}
+      <form onSubmit={handleSubmit(onSubmit)} className="flex w-full flex-col gap-4">
         {error && <div>{error.message}</div>}
         {formFromProps.fields.map((field, index) => {
           switch (field.blockType) {

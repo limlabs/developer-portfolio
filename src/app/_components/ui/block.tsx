@@ -3,8 +3,9 @@ import { Slot } from '@radix-ui/react-slot'
 import { cva, VariantProps } from 'class-variance-authority'
 
 import { cn } from '../../../utilities'
+import { FadeInContent } from './fadeInContent'
 
-const blockVariants = cva('flex col-span-6 items-center justify-center', {
+const blockVariants = cva('flex col-span-6 justify-center lg:justify-start', {
   variants: {
     size: {
       oneThird: 'lg:col-span-2',
@@ -27,7 +28,7 @@ export interface BlockProps
 
 const Block = React.forwardRef<HTMLDivElement, BlockProps>(
   ({ className, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'div'
+    const Comp = asChild ? Slot : FadeInContent
     return <Comp className={cn(blockVariants({ size, className }))} ref={ref} {...props} />
   },
 )

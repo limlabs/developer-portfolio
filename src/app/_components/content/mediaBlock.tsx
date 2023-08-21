@@ -2,7 +2,9 @@ import { FC } from 'react'
 import Image from 'next/image'
 
 import { Media } from '../../../payload-types'
+import { cn } from '../../../utilities'
 import { Block, BlockProps } from '../ui/block'
+import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog'
 
 interface MediaBlockFields extends BlockProps {
   media: string | Media
@@ -10,16 +12,80 @@ interface MediaBlockFields extends BlockProps {
 
 interface MediaBlockProps {
   mediaFields: MediaBlockFields[]
+  lightbox?: boolean
+  className?: string
+  containerClassName?: string
+  imageClassName?: string
+  captionClassName?: string
 }
 
-export const MediaBlock: FC<MediaBlockProps> = ({ mediaFields }) => {
+export const MediaBlock: FC<MediaBlockProps> = ({
+  mediaFields,
+  className,
+  containerClassName,
+  imageClassName,
+  captionClassName,
+  lightbox = true,
+}) => {
   return (
     <>
       {mediaFields.map(({ media, size }) => {
         const mediaInfo = media as Media
+        const base = (
+          <>
+            <Image
+              className={cn(
+                'object-cover overflow-hidden rounded-3xl w-auto h-full',
+                imageClassName,
+              )}
+              src={mediaInfo.url}
+              alt={mediaInfo.alt}
+              fill
+            />
+            {mediaInfo.alt && (
+              <p className={cn('absolute h-full top-8 flex items-end left-2', captionClassName)}>
+                {mediaInfo.alt}
+              </p>
+            )}
+          </>
+        )
+
+        const containerClassNames = cn(
+          'flex flex-col relative w-full text-left',
+          containerClassName,
+        )
+
+        if (lightbox) {
+          return (
+            <Block size={size} className={cn(className)}>
+              <Dialog>
+                <DialogTrigger
+                  className={containerClassNames}
+                  style={{ maxWidth: mediaInfo.width }}
+                >
+                  {base}
+                </DialogTrigger>
+                <DialogContent>
+                  <Image
+                    className="overflow-hidden rounded-3xl"
+                    src={mediaInfo.url}
+                    alt={mediaInfo.alt}
+                    width={mediaInfo.width}
+                    height={mediaInfo.height}
+                    style={{ maxHeight: mediaInfo.height }}
+                  />
+                  {mediaInfo.alt && (
+                    <p className={cn('absolute -bottom-8 left-0')}>{mediaInfo.alt}</p>
+                  )}
+                </DialogContent>
+              </Dialog>
+            </Block>
+          )
+        }
+
         return (
-          <Block size={size} className="relative" style={{ height: mediaInfo.height }}>
-            <Image src={mediaInfo.url} alt={mediaInfo.alt} fill style={{ objectFit: 'cover' }} />
+          <Block size={size} className={cn(className, containerClassNames)}>
+            {base}
           </Block>
         )
       })}
