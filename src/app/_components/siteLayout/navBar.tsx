@@ -2,8 +2,21 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { Media, Profile } from '../../../payload-types'
+import { fetchHeader } from '../../_utils/api'
+import { PayloadLink } from '../content/link'
 import { SkipToMainContentLink } from './skipToMainContent'
 import { ThemeToggle } from './themeToggle'
+
+const HeaderLinks = async () => {
+  const header = await fetchHeader()
+  return (
+    <>
+      {header.navItems.map(({ id, link }) => (
+        <PayloadLink link={link} key={id} />
+      ))}
+    </>
+  )
+}
 
 export const NavBar = ({ profile }: { profile: Profile }) => {
   return (
@@ -23,25 +36,7 @@ export const NavBar = ({ profile }: { profile: Profile }) => {
       )}
       <div className="flex lg:gap-8 w-full lg:w-auto justify-evenly text-base items-center">
         <ThemeToggle />
-
-        {profile.socialLinks?.github && (
-          <Link href={profile.socialLinks.github} target="_github">
-            Github
-          </Link>
-        )}
-        {profile.socialLinks?.linkedin && (
-          <Link href={profile.socialLinks.linkedin} target="_linkedIn">
-            LinkedIn
-          </Link>
-        )}
-        {profile.socialLinks?.email && (
-          <Link href={`mailto:${profile.socialLinks.email}`}>Email</Link>
-        )}
-        {profile.socialLinks?.twitter && (
-          <Link href={profile.socialLinks.twitter} target="_twitter">
-            Twitter
-          </Link>
-        )}
+        <HeaderLinks />
       </div>
     </div>
   )

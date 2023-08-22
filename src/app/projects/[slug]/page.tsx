@@ -3,13 +3,11 @@ import { redirect } from 'next/navigation'
 
 import { Media } from '../../../payload-types'
 import { ContentLayout } from '../../_components/content/contentLayout'
-import { ProfileCTABlock } from '../../_components/content/profileCTABlock'
 import { RichText } from '../../_components/content/richText'
 import { FadeInContent } from '../../_components/ui/fadeInContent'
 import { fetchProfile, fetchProject } from '../../_utils/api'
 import { BackButton } from './_components/backButton'
 import { ProjectHero } from './_components/projectHero'
-import { ProjectImageSection } from './_components/projectImageSection'
 import { ProjectSummary } from './_components/projectSummary'
 
 interface ProjectPageProps {

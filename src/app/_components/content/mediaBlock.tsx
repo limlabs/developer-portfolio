@@ -84,7 +84,7 @@ export const MediaBlock: FC<MediaBlockProps> = ({
         }
 
         return (
-          <Block size={size} className={cn(className, containerClassNames)}>
+          <Block size={size} className={cn(className, containerClassNames)} key={mediaInfo.id}>
             {base}
           </Block>
         )

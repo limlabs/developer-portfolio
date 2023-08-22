@@ -32,7 +32,7 @@ export const ProjectGridBlock: FC<ProjectGridBlockProps> = ({ projects }) => {
     >
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-20">
         {projects.map(({ id, startDate, slug, title, featuredImage }, index) => (
-          <Link href={`/project/${slug}`} key={id} className="relative col-span-1 h-[376px]">
+          <Link href={`/projects/${slug}`} key={id} className="relative col-span-1 h-[376px]">
             <MediaBlock
               lightbox={false}
               className="max-h-[376px]"
