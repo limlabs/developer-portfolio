@@ -51,73 +51,69 @@ export const seed = async (payload: Payload): Promise<void> => {
     },
   })
 
-  const [
-    profileImageDoc,
-    designDesignFeaturedScreenshot,
-    outsideAppFeaturedScreenshot,
-    designAppFeaturedScreenshot,
-    artAppFeaturedScreenshot,
-    marketingOneScreenshot,
-    marketingTwoScreenshot,
-    uiUxScreenshot,
-  ] = await Promise.all([
-    payload.create({
-      collection: 'media',
-      data: {
-        alt: 'Profile picture',
-      },
-      filePath: `${__dirname}/media/headshot.png`,
-    }),
-    payload.create({
-      collection: 'media',
-      data: {
-        alt: 'Design Design app screenshot',
-      },
-      filePath: `${__dirname}/media/design-design.png`,
-    }),
-    payload.create({
-      collection: 'media',
-      data: {
-        alt: 'Outside app screenshot',
-      },
-      filePath: `${__dirname}/media/outside-app.png`,
-    }),
-    payload.create({
-      collection: 'media',
-      data: {
-        alt: 'Design app screenshot',
-      },
-      filePath: `${__dirname}/media/design-app.png`,
-    }),
-    payload.create({
-      collection: 'media',
-      data: {
-        alt: 'Art app screenshot',
-      },
-      filePath: `${__dirname}/media/art-app.png`,
-    }),
-    payload.create({
-      collection: 'media',
-      data: {
-        alt: 'Marketing Image One screenshot',
-      },
-      filePath: `${__dirname}/media/marketing-image-1.png`,
-    }),
-    payload.create({
-      collection: 'media',
-      data: {
-        alt: 'Marketing Image Two screenshot',
-      },
-      filePath: `${__dirname}/media/marketing-image-2.png`,
-    }),
-    payload.create({
-      collection: 'media',
-      data: {
-        alt: 'UI/UX Example screenshot',
-      },
-      filePath: `${__dirname}/media/ui-ux-example.png`,
-    }),
-  ])
+  const profileImageDoc = await payload.create({
+    collection: 'media',
+    data: {
+      alt: 'Profile picture',
+    },
+    filePath: `${__dirname}/media/headshot.png`,
+  })
+
+  const designDesignFeaturedScreenshot = await payload.create({
+    collection: 'media',
+    data: {
+      alt: 'Design Design app screenshot',
+    },
+    filePath: `${__dirname}/media/design-design.png`,
+  })
+
+  const outsideAppFeaturedScreenshot = await payload.create({
+    collection: 'media',
+    data: {
+      alt: 'Outside app screenshot',
+    },
+    filePath: `${__dirname}/media/outside-app.png`,
+  })
+
+  const designAppFeaturedScreenshot = await payload.create({
+    collection: 'media',
+    data: {
+      alt: 'Design app screenshot',
+    },
+    filePath: `${__dirname}/media/design-app.png`,
+  })
+
+  const artAppFeaturedScreenshot = await payload.create({
+    collection: 'media',
+    data: {
+      alt: 'Art app screenshot',
+    },
+    filePath: `${__dirname}/media/art-app.png`,
+  })
+
+  const marketingOneScreenshot = await payload.create({
+    collection: 'media',
+    data: {
+      alt: 'Marketing Image One screenshot',
+    },
+    filePath: `${__dirname}/media/marketing-image-1.png`,
+  })
+
+  const marketingTwoScreenshot = await payload.create({
+    collection: 'media',
+    data: {
+      alt: 'Marketing Image Two screenshot',
+    },
+    filePath: `${__dirname}/media/marketing-image-2.png`,
+  })
+
+  const uiUxScreenshot = await payload.create({
+    collection: 'media',
+    data: {
+      alt: 'UI/UX Example screenshot',
+    },
+    filePath: `${__dirname}/media/ui-ux-example.png`,
+  })
 
   const [webflowDoc, inVisionDoc, figmaDoc, illustratorDoc] = await Promise.all([
     payload.create({
