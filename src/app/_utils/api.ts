@@ -20,7 +20,7 @@ export const getPageApiUrl = (slug: string): string => {
   return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/pages?where[slug][equals]=${slug}`
 }
 
-export const fetchPage = async (slug: string): Promise<Page> => {
+export const fetchPage = async (slug: string): Promise<Page | undefined> => {
   const url = getPageApiUrl(slug)
   const page: Page = await fetch(url)
     .then(res => res.json())
