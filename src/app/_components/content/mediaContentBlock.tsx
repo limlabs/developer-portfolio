@@ -11,7 +11,7 @@ interface MediaContentFields {
   alignment?: 'contentMedia' | 'mediaContent'
   mediaSize?: LayoutSize
   media: Media | string
-  mediaFit: 'contain' | 'cover'
+  mediaFit?: 'contain' | 'cover'
   richText?: unknown
   enableLink?: boolean
   link?: PayloadLinkType
@@ -19,6 +19,7 @@ interface MediaContentFields {
 
 export interface MediaContentBlockProps {
   mediaContentFields?: MediaContentFields[]
+  priority?: boolean
 }
 
 const complimentSizes: Record<LayoutSize, LayoutSize> = {
@@ -28,11 +29,12 @@ const complimentSizes: Record<LayoutSize, LayoutSize> = {
   full: 'full',
 }
 
-export const MediaContentBlock: FC<MediaContentBlockProps> = ({ mediaContentFields }) => {
+export const MediaContentBlock: FC<MediaContentBlockProps> = ({ mediaContentFields, priority }) => {
   return mediaContentFields?.map(
     ({ alignment, mediaSize, media, richText, link, enableLink, mediaFit }, index) => {
       const mediaBlock = (
         <MediaBlock
+          priority={priority}
           mediaFields={[
             {
               size: mediaSize,

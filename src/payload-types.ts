@@ -111,6 +111,7 @@ export interface Page {
             appearance?: 'primary' | 'secondary';
           };
           media: string | Media;
+          mediaFit?: 'cover' | 'contain';
           id?: string;
         }[];
         id?: string;
@@ -222,6 +223,7 @@ export interface Project {
             appearance?: 'primary' | 'secondary';
           };
           media: string | Media;
+          mediaFit?: 'cover' | 'contain';
           id?: string;
         }[];
         id?: string;

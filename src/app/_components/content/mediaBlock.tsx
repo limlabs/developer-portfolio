@@ -18,6 +18,7 @@ interface MediaBlockProps {
   containerClassName?: string
   imageClassName?: string
   captionClassName?: string
+  priority?: boolean
 }
 
 export const MediaBlock: FC<MediaBlockProps> = ({
@@ -27,6 +28,7 @@ export const MediaBlock: FC<MediaBlockProps> = ({
   imageClassName,
   captionClassName,
   lightbox = true,
+  priority,
 }) => {
   return (
     <>
@@ -39,7 +41,9 @@ export const MediaBlock: FC<MediaBlockProps> = ({
               src={mediaInfo.url}
               alt={mediaInfo.alt}
               fill
+              sizes="(min-width: 1024px) 75vw, 90vw"
               style={{ objectFit: mediaFit ?? 'cover' }}
+              priority={priority}
             />
             {mediaInfo.alt && mediaFit !== 'contain' && (
               <p className={cn('absolute h-full top-8 flex items-end left-2', captionClassName)}>
@@ -56,7 +60,7 @@ export const MediaBlock: FC<MediaBlockProps> = ({
 
         if (lightbox) {
           return (
-            <Block size={size} className={cn(className)}>
+            <Block size={size} className={cn(className)} key={mediaInfo.id}>
               <Dialog>
                 <DialogTrigger className={containerClassNames}>{base}</DialogTrigger>
                 <DialogContent>

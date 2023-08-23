@@ -31,6 +31,7 @@ export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
       <MediaBlock
         containerClassName="w-[90vw] h-[61vw] lg:w-[546px] lg:h-[369px] lg:mb-20"
         mediaFields={[{ media: project.featuredImage, size: 'full' }]}
+        priority
       />
     </div>
   )

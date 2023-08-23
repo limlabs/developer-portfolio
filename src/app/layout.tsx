@@ -32,7 +32,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <div className="flex flex-col w-full max-w-[1080px] px-8 lg:px-0" id="main-content">
               {children}
             </div>
-            <Footer />
+            <Footer profile={profile} />
           </div>
         </ThemeProvider>
       </body>
