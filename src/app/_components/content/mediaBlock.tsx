@@ -62,19 +62,27 @@ export const MediaBlock: FC<MediaBlockProps> = ({
           return (
             <Block size={size} className={cn(className)} key={mediaInfo.id}>
               <Dialog>
-                <DialogTrigger className={containerClassNames}>{base}</DialogTrigger>
-                <DialogContent>
-                  <Image
-                    className="overflow-hidden rounded-3xl"
-                    src={mediaInfo.url}
-                    alt={mediaInfo.alt}
-                    width={mediaInfo.width}
-                    height={mediaInfo.height}
-                    style={{ maxHeight: mediaInfo.height }}
-                  />
-                  {mediaInfo.alt && (
-                    <p className={cn('absolute -bottom-8 left-0')}>{mediaInfo.alt}</p>
-                  )}
+                <DialogTrigger
+                  className={cn(containerClassNames, 'first:mt-8 first:lg:mt-0 mb-16 lg:mb-0')}
+                >
+                  {base}
+                </DialogTrigger>
+                <DialogContent className="pb-8">
+                  <div
+                    className="relative max-w-[80vw] lg:max-w-none"
+                    style={{ width: mediaInfo.width, height: mediaInfo.height }}
+                  >
+                    <Image
+                      className="overflow-hidden rounded-3xl object-contain"
+                      src={mediaInfo.url}
+                      alt={mediaInfo.alt}
+                      fill
+                      sizes="(min-width: 1024px) 75vw, 90vw"
+                    />
+                    {mediaInfo.alt && (
+                      <p className={cn('absolute -bottom-8 left-0')}>{mediaInfo.alt}</p>
+                    )}
+                  </div>
                 </DialogContent>
               </Dialog>
             </Block>

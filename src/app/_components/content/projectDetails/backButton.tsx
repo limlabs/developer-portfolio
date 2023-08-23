@@ -4,10 +4,8 @@ import { Button } from '../../ui/button'
 
 export const BackButton = () => {
   return (
-    <div className="px-6 lg:px-0">
-      <Link href="/">
-        <Button>Back to Profile</Button>
-      </Link>
-    </div>
+    <Link href="/">
+      <Button>Back to Profile</Button>
+    </Link>
   )
 }

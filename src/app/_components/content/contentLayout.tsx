@@ -17,7 +17,7 @@ interface ContentLayoutProps {
 export const ContentLayout: FC<ContentLayoutProps> = ({ layout, profile }) => {
   let hasMedia = false
   return (
-    <div className="w-full grid grid-cols-6 gap-20">
+    <div className="w-full grid grid-cols-6 lg:gap-20">
       {layout?.map((block, index) => {
         let element = null
         switch (block.blockType) {
@@ -27,10 +27,7 @@ export const ContentLayout: FC<ContentLayoutProps> = ({ layout, profile }) => {
           case 'mediaBlock':
             element = (
               <MediaBlock
-                className="h-[348px]"
-                containerClassName="h-[348px]"
-                imageClassName="h-[348px]"
-                captionClassName="h-[348px]"
+                containerClassName="h-[196px] lg:h-[348px]"
                 mediaFields={block.mediaFields}
                 key={block.id}
                 priority={!hasMedia}

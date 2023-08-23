@@ -26,19 +26,19 @@ export const ProjectGridBlock: FC<ProjectGridBlockProps> = ({ projects }) => {
   return (
     <Block
       size="full"
-      className="bg-transparent lg:my-20 flex w-full flex-shrink-0 lg:justify-center"
+      className="bg-transparent lg:my-20 flex w-full lg:flex-shrink-0 lg:justify-center"
     >
-      <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-20">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-2 lg:gap-20 mb-20 lg:mb-0">
         {projects.map(({ id, startDate, slug, title, featuredImage }, index) => (
-          <Link href={`/projects/${slug}`} key={id} className="relative col-span-1 h-[376px]">
+          <Link
+            href={`/projects/${slug}`}
+            key={id}
+            className="relative col-span-1 mb-16 first:mt-16 lg:first:mt-0 lg:mb-8"
+          >
             <MediaBlock
               lightbox={false}
-              className="max-h-[376px]"
-              containerClassName={`max-h-[376px] h-full lg:h-[376px] ${
-                animationDelayOffsets[index % 2]
-              }`}
-              imageClassName="max-h-[376px]"
-              captionClassName="max-h-[376px]"
+              className="h-[243px] lg:h-[376px]"
+              containerClassName={`${animationDelayOffsets[index % 2]}`}
               mediaFields={[
                 {
                   media: {

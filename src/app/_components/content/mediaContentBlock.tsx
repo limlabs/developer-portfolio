@@ -37,6 +37,7 @@ export const MediaContentBlock: FC<MediaContentBlockProps> = ({ mediaContentFiel
           const mediaBlock = (
             <MediaBlock
               priority={priority}
+              className="h-full min-h-[196px] mb-16 lg:mb-0"
               mediaFields={[
                 {
                   size: mediaSize,
@@ -77,7 +78,10 @@ export const MediaContentBlock: FC<MediaContentBlockProps> = ({ mediaContentFiel
 
           if (enableLink) {
             content = (
-              <PayloadLink link={link} className="col-span-6 grid grid-cols-6 gap-20">
+              <PayloadLink
+                link={link}
+                className="col-span-6 grid grid-cols-6 mt-8 lg:mt-0 lg:gap-20"
+              >
                 {content}
               </PayloadLink>
             )

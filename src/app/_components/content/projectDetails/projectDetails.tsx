@@ -27,7 +27,7 @@ export const ProjectDetails: FC<ProjectDetailsProps> = ({ project, profile }) =>
           <RichText content={project.description} />
         </FadeInContent>
       </section>
-      <section className="w-full mt-8 mb-20">
+      <section className="w-full lg:mt-8 mb-20">
         <ContentLayout profile={profile} layout={project.layout} />
       </section>
       <BackButton />
