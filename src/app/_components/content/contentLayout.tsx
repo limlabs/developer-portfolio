@@ -15,9 +15,10 @@ interface ContentLayoutProps {
 }
 
 export const ContentLayout: FC<ContentLayoutProps> = ({ layout, profile }) => {
+  let hasMedia = false
   return (
     <div className="w-full grid grid-cols-6 gap-20">
-      {layout?.map(block => {
+      {layout?.map((block, index) => {
         let element = null
         switch (block.blockType) {
           case 'content':
@@ -32,8 +33,11 @@ export const ContentLayout: FC<ContentLayoutProps> = ({ layout, profile }) => {
                 captionClassName="h-[348px]"
                 mediaFields={block.mediaFields}
                 key={block.id}
+                priority={!hasMedia}
               />
             )
+
+            hasMedia = true
             break
           case 'profile-cta':
             element = <ProfileCTABlock profile={profile} key={block.id} />
@@ -45,7 +49,8 @@ export const ContentLayout: FC<ContentLayoutProps> = ({ layout, profile }) => {
             element = <FormBlock intro={block.richText} form={block.form as Form} key={block.id} />
             break
           case 'mediaContent':
-            element = <MediaContentBlock {...block} key={block.id} />
+            element = <MediaContentBlock {...block} priority={!hasMedia} key={block.id} />
+            hasMedia = true
             break
         }
 

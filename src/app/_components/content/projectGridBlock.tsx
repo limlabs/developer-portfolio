@@ -5,9 +5,7 @@ import { Media, Project } from '../../../payload-types'
 import { formatMonth } from '../../_utils/format'
 import { Block } from '../ui/block'
 import { FadeInContent } from '../ui/fadeInContent'
-import { MediaCard } from '../ui/mediaCard'
 import { MediaBlock } from './mediaBlock'
-import { MediaContentBlock } from './mediaContentBlock'
 
 interface ProjectMediaCardProps {
   media: Media | string

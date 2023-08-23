@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -36,7 +37,10 @@ export const NavBar = ({ profile }: { profile: Profile }) => {
       )}
       <div className="flex lg:gap-8 w-full lg:w-auto justify-evenly text-base items-center">
         <ThemeToggle />
-        <HeaderLinks />
+        <Suspense>
+          {/* @ts-ignore */}
+          <HeaderLinks />
+        </Suspense>
       </div>
     </div>
   )

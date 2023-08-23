@@ -30,58 +30,62 @@ const complimentSizes: Record<LayoutSize, LayoutSize> = {
 }
 
 export const MediaContentBlock: FC<MediaContentBlockProps> = ({ mediaContentFields, priority }) => {
-  return mediaContentFields?.map(
-    ({ alignment, mediaSize, media, richText, link, enableLink, mediaFit }, index) => {
-      const mediaBlock = (
-        <MediaBlock
-          priority={priority}
-          mediaFields={[
-            {
-              size: mediaSize,
-              media,
-              mediaFit,
-            },
-          ]}
-        />
-      )
+  return (
+    <>
+      {mediaContentFields?.map(
+        ({ alignment, mediaSize, media, richText, link, enableLink, mediaFit }) => {
+          const mediaBlock = (
+            <MediaBlock
+              priority={priority}
+              mediaFields={[
+                {
+                  size: mediaSize,
+                  media,
+                  mediaFit,
+                },
+              ]}
+            />
+          )
 
-      const contentBlock = (
-        <ContentBlock
-          contentFields={[
-            {
-              size: complimentSizes[mediaSize],
-              richText,
-            },
-          ]}
-        />
-      )
+          const contentBlock = (
+            <ContentBlock
+              contentFields={[
+                {
+                  size: complimentSizes[mediaSize],
+                  richText,
+                },
+              ]}
+            />
+          )
 
-      let content
-      if (alignment === 'contentMedia') {
-        content = (
-          <>
-            {contentBlock}
-            {mediaBlock}
-          </>
-        )
-      } else {
-        content = (
-          <>
-            {mediaBlock}
-            {contentBlock}
-          </>
-        )
-      }
+          let content
+          if (alignment === 'contentMedia') {
+            content = (
+              <>
+                {contentBlock}
+                {mediaBlock}
+              </>
+            )
+          } else {
+            content = (
+              <>
+                {mediaBlock}
+                {contentBlock}
+              </>
+            )
+          }
 
-      if (enableLink) {
-        content = (
-          <PayloadLink link={link} className="col-span-6 grid grid-cols-6 gap-20">
-            {content}
-          </PayloadLink>
-        )
-      }
+          if (enableLink) {
+            content = (
+              <PayloadLink link={link} className="col-span-6 grid grid-cols-6 gap-20">
+                {content}
+              </PayloadLink>
+            )
+          }
 
-      return content
-    },
+          return content
+        },
+      )}
+    </>
   )
 }
