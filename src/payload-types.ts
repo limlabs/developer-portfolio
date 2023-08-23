@@ -79,6 +79,7 @@ export interface Page {
         mediaFields?: {
           size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
           media: string | Media;
+          mediaFit?: 'cover' | 'contain';
           id?: string;
         }[];
         id?: string;
@@ -189,6 +190,7 @@ export interface Project {
         mediaFields?: {
           size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
           media: string | Media;
+          mediaFit?: 'cover' | 'contain';
           id?: string;
         }[];
         id?: string;
@@ -274,63 +276,10 @@ export interface Form {
         name: string;
         label?: string;
         width?: number;
-        defaultValue?: string;
-        options?: {
-          label: string;
-          value: string;
-          id?: string;
-        }[];
-        required?: boolean;
-        id?: string;
-        blockName?: string;
-        blockType: 'select';
-      }
-    | {
-        name: string;
-        label?: string;
-        width?: number;
         required?: boolean;
         id?: string;
         blockName?: string;
         blockType: 'email';
-      }
-    | {
-        name: string;
-        label?: string;
-        width?: number;
-        required?: boolean;
-        id?: string;
-        blockName?: string;
-        blockType: 'state';
-      }
-    | {
-        name: string;
-        label?: string;
-        width?: number;
-        required?: boolean;
-        id?: string;
-        blockName?: string;
-        blockType: 'country';
-      }
-    | {
-        name: string;
-        label?: string;
-        width?: number;
-        defaultValue?: number;
-        required?: boolean;
-        id?: string;
-        blockName?: string;
-        blockType: 'number';
-      }
-    | {
-        name: string;
-        label?: string;
-        width?: number;
-        required?: boolean;
-        defaultValue?: boolean;
-        id?: string;
-        blockName?: string;
-        blockType: 'checkbox';
       }
     | {
         message?: {

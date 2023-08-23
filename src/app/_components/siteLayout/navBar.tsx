@@ -11,7 +11,7 @@ const HeaderLinks = async () => {
   const header = await fetchHeader()
   return (
     <>
-      {header.navItems.map(({ id, link }) => (
+      {header.navItems?.map(({ id, link }) => (
         <PayloadLink link={link} key={id} />
       ))}
     </>

@@ -2,7 +2,7 @@ import { FC } from 'react'
 import Link from 'next/link'
 
 import { Media, Project } from '../../../payload-types'
-import { formatMonth } from '../../_utils/date'
+import { formatMonth } from '../../_utils/format'
 import { Block } from '../ui/block'
 import { FadeInContent } from '../ui/fadeInContent'
 import { MediaCard } from '../ui/mediaCard'

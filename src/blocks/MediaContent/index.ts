@@ -55,6 +55,7 @@ export const MediaContent: Block = {
             },
           ],
         },
+
         {
           name: 'richText',
           type: 'richText',
@@ -75,6 +76,21 @@ export const MediaContent: Block = {
           type: 'upload',
           relationTo: 'media',
           required: true,
+        },
+        {
+          name: 'mediaFit',
+          type: 'select',
+          defaultValue: 'cover',
+          options: [
+            {
+              value: 'cover',
+              label: 'cover',
+            },
+            {
+              value: 'contain',
+              label: 'contain',
+            },
+          ],
         },
       ],
     },

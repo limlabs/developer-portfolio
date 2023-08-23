@@ -1,7 +1,6 @@
 import { FC } from 'react'
 
 import { Media } from '../../../payload-types'
-import { Block } from '../ui/block'
 import { ContentBlock } from './contentBlock'
 import { PayloadLink, PayloadLinkType } from './link'
 import { MediaBlock } from './mediaBlock'
@@ -12,10 +11,12 @@ interface MediaContentFields {
   alignment?: 'contentMedia' | 'mediaContent'
   mediaSize?: LayoutSize
   media: Media | string
+  mediaFit: 'contain' | 'cover'
   richText?: unknown
   enableLink?: boolean
   link?: PayloadLinkType
 }
+
 export interface MediaContentBlockProps {
   mediaContentFields?: MediaContentFields[]
 }
@@ -29,17 +30,14 @@ const complimentSizes: Record<LayoutSize, LayoutSize> = {
 
 export const MediaContentBlock: FC<MediaContentBlockProps> = ({ mediaContentFields }) => {
   return mediaContentFields?.map(
-    ({ alignment, mediaSize, media, richText, link, enableLink }, index) => {
+    ({ alignment, mediaSize, media, richText, link, enableLink, mediaFit }, index) => {
       const mediaBlock = (
         <MediaBlock
-          className="h-[348px]"
-          containerClassName="h-[348px]"
-          imageClassName="h-[348px]"
-          captionClassName="h-[348px]"
           mediaFields={[
             {
               size: mediaSize,
               media,
+              mediaFit,
             },
           ]}
         />

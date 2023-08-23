@@ -2,16 +2,18 @@
 import { FC } from 'react'
 
 import { Project } from '../../../../payload-types'
-import { formatMonth } from '../../../_utils/date'
+import { formatMonth } from '../../../_utils/format'
 import { ProjectRoles } from './projectRole'
 
-interface ProjectSummaryProps {
+interface ProjectDetailsHeadlineProps {
   project: Project
 }
 
-export const ProjectSummary: FC<ProjectSummaryProps> = ({ project }: ProjectSummaryProps) => {
+export const ProjectDetailsHeadline: FC<ProjectDetailsHeadlineProps> = ({
+  project,
+}: ProjectDetailsHeadlineProps) => {
   return (
-    <div className=" relative  z-0 text-foreground  pt-8 lg:pt-0 lg:pb-8 lg:pr-16  w-full">
+    <div className="relative z-0 text-foreground pt-8 lg:pt-0 lg:pb-8 lg:pr-16 w-full lg:w-1/2">
       <h1 className="font-extrabold leading-[30-px] text-5xl">{project.title}</h1>
 
       {project.startDate && (

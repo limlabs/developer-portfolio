@@ -36,6 +36,21 @@ export const MediaBlock: Block = {
           relationTo: 'media',
           required: true,
         },
+        {
+          name: 'mediaFit',
+          type: 'select',
+          defaultValue: 'cover',
+          options: [
+            {
+              value: 'cover',
+              label: 'cover',
+            },
+            {
+              value: 'contain',
+              label: 'contain',
+            },
+          ],
+        },
       ],
     },
   ],

@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog'
 
 interface MediaBlockFields extends BlockProps {
   media: string | Media
+  mediaFit?: 'contain' | 'cover'
 }
 
 interface MediaBlockProps {
@@ -29,20 +30,18 @@ export const MediaBlock: FC<MediaBlockProps> = ({
 }) => {
   return (
     <>
-      {mediaFields.map(({ media, size }) => {
+      {mediaFields.map(({ media, size, mediaFit }) => {
         const mediaInfo = media as Media
         const base = (
           <>
             <Image
-              className={cn(
-                'object-cover overflow-hidden rounded-3xl w-auto h-full',
-                imageClassName,
-              )}
+              className={cn('overflow-hidden rounded-3xl w-auto h-full', imageClassName)}
               src={mediaInfo.url}
               alt={mediaInfo.alt}
               fill
+              style={{ objectFit: mediaFit ?? 'cover' }}
             />
-            {mediaInfo.alt && (
+            {mediaInfo.alt && mediaFit !== 'contain' && (
               <p className={cn('absolute h-full top-8 flex items-end left-2', captionClassName)}>
                 {mediaInfo.alt}
               </p>
@@ -59,12 +58,7 @@ export const MediaBlock: FC<MediaBlockProps> = ({
           return (
             <Block size={size} className={cn(className)}>
               <Dialog>
-                <DialogTrigger
-                  className={containerClassNames}
-                  style={{ maxWidth: mediaInfo.width }}
-                >
-                  {base}
-                </DialogTrigger>
+                <DialogTrigger className={containerClassNames}>{base}</DialogTrigger>
                 <DialogContent>
                   <Image
                     className="overflow-hidden rounded-3xl"
