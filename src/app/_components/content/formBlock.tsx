@@ -1,11 +1,13 @@
 'use client'
 import React, { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { redirect } from 'next/navigation'
 import { Data } from 'payload/dist/admin/components/forms/Form/types'
 
 import { Form as FormTypes } from '../../../payload-types'
 import { Block } from '../ui/block'
 import { Button } from '../ui/button'
+import { Dialog, DialogContent } from '../ui/dialog'
 import { Input } from '../ui/input'
 import { Textarea } from '../ui/textarea'
 import { RichText } from './richText'
@@ -21,6 +23,7 @@ export type FormBlockProps = {
 }
 
 export const FormBlock: FC<FormBlockProps> = props => {
+  const [dialogOpen, setDialogOpen] = useState(false)
   const {
     form: formFromProps,
     form: { id: formID, submitButtonLabel },
@@ -31,12 +34,11 @@ export const FormBlock: FC<FormBlockProps> = props => {
   const {
     register,
     handleSubmit,
-    formState: { isValid },
+    formState: { isDirty },
   } = formMethods
 
   const [error, setError] = useState<ErrorType | undefined>()
   const [isLoading, setIsLoading] = useState(false)
-  const [hasSubmitted, setHasSubmitted] = useState<boolean | undefined>()
 
   const onSubmit = async (data: Data) => {
     setIsLoading(true) // Set loading state when submitting
@@ -68,7 +70,14 @@ export const FormBlock: FC<FormBlockProps> = props => {
       }
 
       setIsLoading(false) // Clear loading state
-      setHasSubmitted(true)
+      if (props.form.confirmationType === 'message') {
+        setDialogOpen(true)
+      } else if (props.form.redirect) {
+        window.location.href = props.form.redirect.url
+      } else {
+        // eslint-disable-next-line no-console
+        console.error('No post-submit action defined for form')
+      }
     } catch (error) {
       setError({
         status: 'Error',
@@ -79,46 +88,73 @@ export const FormBlock: FC<FormBlockProps> = props => {
   }
 
   return (
-    <Block className="w-full flex flex-col m-auto">
+    <Block className="w-full flex flex-col m-auto" key={formID}>
       {intro && <RichText content={intro} className="w-full" />}
-      <form onSubmit={handleSubmit(onSubmit)} className="flex w-full flex-col gap-4">
-        {error && <div>{error.message}</div>}
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full">
         {formFromProps.fields.map((field, index) => {
+          if (field.blockType === 'message') {
+            return <RichText content={field.message} className="-mb-4" key={index} />
+          }
+
+          let pattern
+          if (field.blockType === 'email') {
+            pattern = {
+              value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
+              message: 'Please enter a valid email address.',
+            }
+          }
+
+          const props = {
+            id: `${formID}-${field.name}`,
+            ...register(field.name, { required: field.required, pattern }),
+          }
+
+          let content
+
           switch (field.blockType) {
             case 'text':
-              return (
-                <Input
-                  key={index}
-                  type="text"
-                  placeholder={field.label}
-                  {...register(field.name, { required: field.required })}
-                />
-              )
             case 'email':
-              return (
-                <Input
-                  key={index}
-                  type="email"
-                  placeholder={field.label}
-                  {...register(field.name, { required: field.required })}
-                />
-              )
+              content = <Input type="text" {...props} />
+              break
             case 'textarea':
-              return (
-                <Textarea
-                  key={index}
-                  placeholder={field.label}
-                  {...register(field.name, { required: field.required })}
-                />
-              )
+              content = <Textarea {...props} />
+              break
             default:
-              return null
+              content = null
+              break
           }
+
+          return (
+            <div
+              key={index}
+              className="inline-flex flex-col gap-2 mt-4 first:mt-0 border-box pr-5"
+              style={{ width: `${field.width}%` }}
+            >
+              <label htmlFor={props.id} className="text-sm">
+                {field.label}
+              </label>
+              {content}
+              {formMethods.formState.errors[field.name]?.message && (
+                <div className="text-sm text-red-500 mt-2">
+                  {formMethods.formState.errors[field.name].message as string}
+                </div>
+              )}
+            </div>
+          )
         })}
-        <Button type="submit" disabled={isLoading || !isValid}>
+        <Button type="submit" disabled={isLoading || !isDirty} className="max-w-[80px] mt-8">
           {submitButtonLabel}
         </Button>
+        {error && <div className="mt-4">{error.message}</div>}
       </form>
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent className="w-[80vw] max-w-lg">
+          <div className="flex flex-col gap-4 items-center">
+            <RichText content={props.form.confirmationMessage} />
+            <Button onClick={() => setDialogOpen(false)}>Close</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </Block>
   )
 }

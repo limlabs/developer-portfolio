@@ -21,6 +21,7 @@ module.exports = {
         '1fr/2fr': '1fr 2fr',
       },
       colors: {
+        box: 'hsl(var(--box))',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

@@ -27,7 +27,7 @@ export const ContentLayout: FC<ContentLayoutProps> = ({ layout, profile }) => {
           case 'mediaBlock':
             element = (
               <MediaBlock
-                containerClassName="h-[196px] lg:h-[348px]"
+                containerClassName="h-[70vw] lg:h-[348px]"
                 mediaFields={block.mediaFields}
                 key={block.id}
                 priority={!hasMedia}

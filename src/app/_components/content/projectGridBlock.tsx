@@ -37,7 +37,7 @@ export const ProjectGridBlock: FC<ProjectGridBlockProps> = ({ projects }) => {
           >
             <MediaBlock
               lightbox={false}
-              className="h-[243px] lg:h-[376px]"
+              className="h-[70vw] lg:h-[376px]"
               containerClassName={`${animationDelayOffsets[index % 2]}`}
               mediaFields={[
                 {

@@ -17,7 +17,7 @@ export const ProjectDetails: FC<ProjectDetailsProps> = ({ project, profile }) =>
   return (
     <>
       <section className="lg:mt-12 flex flex-col lg:gap-12 lg:block">
-        <FadeInContent className="relative z-10 delay-100 order-2 lg:order-none lg:float-right mb-16 lg:mb-0">
+        <FadeInContent className="relative z-10 delay-100 order-2 lg:order-none lg:float-right lg:mb-0">
           <ProjectHero project={project} />
         </FadeInContent>
         <FadeInContent className="order-1 lg:order-none">

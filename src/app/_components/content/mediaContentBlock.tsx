@@ -37,7 +37,7 @@ export const MediaContentBlock: FC<MediaContentBlockProps> = ({ mediaContentFiel
           const mediaBlock = (
             <MediaBlock
               priority={priority}
-              className="h-full min-h-[196px] mb-16 lg:mb-0"
+              className="h-full min-h-[70vw] mb-16 lg:mb-0"
               mediaFields={[
                 {
                   size: mediaSize,
