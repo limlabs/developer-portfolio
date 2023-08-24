@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 import { Form, Page, Profile, Project } from '../../../payload-types'
-import { FadeInContent } from '../ui/fadeInContent'
+import { cn } from '../../../utilities'
 import { ContentBlock } from './contentBlock'
 import { FormBlock } from './formBlock'
 import { MediaBlock } from './mediaBlock'
@@ -12,12 +12,13 @@ import { ProjectGridBlock } from './projectGridBlock'
 interface ContentLayoutProps {
   layout?: Page['layout']
   profile?: Profile
+  className?: string
 }
 
-export const ContentLayout: FC<ContentLayoutProps> = ({ layout, profile }) => {
+export const ContentLayout: FC<ContentLayoutProps> = ({ layout, profile, className }) => {
   let hasMedia = false
   return (
-    <div className="w-full grid grid-cols-6 lg:gap-20">
+    <div className={cn('w-full grid grid-cols-6 lg:gap-20', className)}>
       {layout?.map((block, index) => {
         let element = null
         switch (block.blockType) {

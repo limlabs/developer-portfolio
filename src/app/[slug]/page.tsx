@@ -17,7 +17,7 @@ const LandingPage = async ({ params }: LandingPageProps) => {
     redirect('/not-found')
   }
 
-  return <ContentLayout layout={page.layout} />
+  return <ContentLayout layout={page.layout} className="mt-16" />
 }
 
 export default LandingPage
