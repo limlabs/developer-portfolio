@@ -1,7 +1,7 @@
 import type { AfterChangeHook } from 'payload/dist/collections/config/types'
 
 export const formatAppURL = ({ doc }): string => {
-  const { pathname } = new URL(`${process.env.PAYLOAD_PUBLIC_SERVER_URL}/project/${doc.slug}`)
+  const { pathname } = new URL(`${process.env.PAYLOAD_PUBLIC_SERVER_URL}/projects/${doc.slug}`)
   return pathname
 }
 

@@ -53,13 +53,39 @@ export const fetchProjects = async (): Promise<Project[]> => {
   return projects
 }
 
-export const fetchProject = async (slug: string): Promise<Project> => {
-  const project: Project = await fetch(
-    `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/projects?where[slug][equals]=${slug}`,
-    {
-      next: { tags: [`projects/${slug}`] },
-    },
-  )
+interface FetchProjectOptions {
+  draft?: boolean
+  draftSecret?: string
+  payloadToken?: string
+}
+
+export const fetchProject = async (
+  slug: string,
+  options: FetchProjectOptions,
+): Promise<Project> => {
+  const qs = new URLSearchParams(`where[slug][equals]=${slug}`)
+  const init: RequestInit = {}
+
+  if (options.draft) {
+    if (!options.draftSecret) {
+      throw new Error('Missing draftSecret')
+    }
+
+    if (options.draftSecret !== process.env.PAYLOAD_PUBLIC_DRAFT_SECRET) {
+      throw new Error('Invalid draftSecret')
+    }
+
+    qs.append('draft', 'true')
+    init.cache = 'no-store'
+    init.headers = {
+      cookie: `payload-token=${options.payloadToken};path=/;HttpOnly`,
+    }
+  } else {
+    init.next = { tags: [`projects/${slug}`] }
+  }
+
+  const url = `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/projects?${qs.toString()}`
+  const project: Project = await fetch(url, init)
     .then(res => res.json())
     .then(res => res?.docs?.[0])
 

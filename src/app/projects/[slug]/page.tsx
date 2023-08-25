@@ -1,4 +1,5 @@
 import { Metadata, ResolvingMetadata } from 'next'
+import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import { Media } from '../../../payload-types'
@@ -9,14 +10,25 @@ interface ProjectPageProps {
   params: {
     slug: string
   }
+  searchParams: Record<string, string>
+}
+
+const parseRequest = (searchParams: Record<string, string | undefined>) => {
+  const draft = searchParams.preview === 'true'
+  const draftSecret = searchParams.secret
+  const payloadToken = cookies().get('payload-token').value
+
+  return { draft, draftSecret, payloadToken }
 }
 
 export async function generateMetadata(
-  { params }: ProjectPageProps,
+  { params, searchParams }: ProjectPageProps,
   parent?: ResolvingMetadata,
 ): Promise<Metadata> {
-  const project = await fetchProject(params.slug)
-  const previousTitle = (await parent)?.title.absolute
+  const [project, previousTitle] = await Promise.all([
+    fetchProject(params.slug, parseRequest(searchParams)),
+    (await parent)?.title.absolute,
+  ])
 
   const images: string[] = []
   if (project?.featuredImage) {
@@ -24,7 +36,7 @@ export async function generateMetadata(
   }
 
   return {
-    title: `${project.title} | ${previousTitle}`,
+    title: `${project?.title} | ${previousTitle}`,
     description: 'Details on a portfolio project.',
     openGraph: {
       images,
@@ -32,11 +44,14 @@ export async function generateMetadata(
   }
 }
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
-  const [project, profile] = await Promise.all([fetchProject(params.slug), fetchProfile()])
+export default async function ProjectPage({ params, searchParams }: ProjectPageProps) {
+  const [project, profile] = await Promise.all([
+    fetchProject(params.slug, parseRequest(searchParams)),
+    fetchProfile(),
+  ])
 
   if (!project) {
-    redirect('/404')
+    redirect('/not-found')
   }
 
   return (

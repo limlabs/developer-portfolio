@@ -14,11 +14,9 @@ export const Projects: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     preview: doc => {
-      return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/preview?url=${encodeURIComponent(
-        formatAppURL({
-          doc,
-        }),
-      )}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`
+      return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/${formatAppURL({
+        doc,
+      })}?preview=true`
     },
   },
   versions: {
