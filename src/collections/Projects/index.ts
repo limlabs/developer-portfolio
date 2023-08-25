@@ -7,16 +7,14 @@ import { Form } from '../../blocks/Form'
 import { MediaBlock } from '../../blocks/Media'
 import { MediaContent } from '../../blocks/MediaContent'
 import formatSlug from '../../utilities/formatSlug'
-import { formatAppURL, revalidateProject } from './hooks/revalidateProject'
+import { tagRevalidator } from '../../utilities/tagRevalidator'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
   admin: {
     useAsTitle: 'title',
     preview: doc => {
-      return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/${formatAppURL({
-        doc,
-      })}?preview=true`
+      return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/projects/${doc.slug}?preview=true`
     },
   },
   versions: {
@@ -29,7 +27,7 @@ export const Projects: CollectionConfig = {
     delete: loggedIn,
   },
   hooks: {
-    afterChange: [revalidateProject],
+    afterChange: [tagRevalidator(doc => `projects/${doc.slug}`)],
   },
   fields: [
     {

@@ -1,12 +1,16 @@
 import type { GlobalConfig } from 'payload/types'
 
 import { loggedIn } from '../access/loggedIn'
+import { tagRevalidator } from '../utilities/tagRevalidator'
 
 export const Profile: GlobalConfig = {
   slug: 'profile',
   access: {
     read: () => true,
     update: loggedIn,
+  },
+  hooks: {
+    afterChange: [tagRevalidator(() => 'global.profile')],
   },
   fields: [
     {

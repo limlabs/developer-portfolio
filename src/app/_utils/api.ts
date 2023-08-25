@@ -16,15 +16,22 @@ const initPreviewRequest = (init: RequestInit, qs: URLSearchParams, token: strin
 export const fetchProfile = async (): Promise<Profile> => {
   const url = `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/globals/profile?locale=en`
 
-  const profile: Profile = await fetch(url).then(res => res.json())
+  const profile: Profile = await fetch(url, {
+    cache: 'force-cache',
+    next: { tags: ['global.profile'] },
+  }).then(res => {
+    return res.json()
+  })
 
   return profile
 }
 
 export const fetchHeader = async (): Promise<Header> => {
-  const header: Header = await fetch(
-    `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/globals/header?locale=en`,
-  ).then(res => res.json())
+  const url = `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/globals/header?locale=en`
+  const header: Header = await fetch(url, {
+    cache: 'force-cache',
+    next: { tags: ['global.header'] },
+  }).then(res => res.json())
 
   return header
 }
@@ -36,7 +43,7 @@ export const fetchPage = async (
   options: FetchPageOptions,
 ): Promise<Page | undefined> => {
   const qs = new URLSearchParams({ 'where[slug][equals]': slug })
-  const init: RequestInit = {}
+  const init: RequestInit = { next: { tags: [`pages/${slug}`] } }
   if (options.draft) {
     initPreviewRequest(init, qs, options.payloadToken)
   }

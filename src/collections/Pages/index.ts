@@ -9,7 +9,7 @@ import { MediaContent } from '../../blocks/MediaContent'
 import { ProfileCTA } from '../../blocks/ProfileCTA'
 import { ProjectGrid } from '../../blocks/ProjectGrid'
 import formatSlug from '../../utilities/formatSlug'
-import { revalidatePage } from './hooks/revalidatePage'
+import { tagRevalidator } from '../../utilities/tagRevalidator'
 
 const formatAppURL = ({ doc }): string => {
   const pathToUse = doc.slug === 'profile-landing-page' ? '' : doc.slug
@@ -35,7 +35,7 @@ export const Pages: CollectionConfig = {
     delete: loggedIn,
   },
   hooks: {
-    afterChange: [revalidatePage],
+    afterChange: [tagRevalidator(doc => `pages/${doc.slug}`)],
   },
   fields: [
     {
