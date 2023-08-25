@@ -1,4 +1,17 @@
-import type { Form, Header, Media, Page, Profile, Project } from '../../payload-types'
+import type { Header, Page, Profile, Project } from '../../payload-types'
+import type { DraftOptions } from './preview'
+
+const initPreviewRequest = (init: RequestInit, qs: URLSearchParams, token: string): void => {
+  if (!token) {
+    throw new Error('No token provided when attempting to preview content')
+  }
+
+  qs.append('draft', 'true')
+  init.cache = 'no-store'
+  init.headers = {
+    cookie: `payload-token=${token};path=/;HttpOnly`,
+  }
+}
 
 export const fetchProfile = async (): Promise<Profile> => {
   const url = `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/globals/profile?locale=en`
@@ -16,48 +29,31 @@ export const fetchHeader = async (): Promise<Header> => {
   return header
 }
 
-export const getPageApiUrl = (slug: string): string => {
-  return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/pages?where[slug][equals]=${slug}`
+export const getPageApiUrl = (qs: URLSearchParams): string => {
+  return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/pages?${qs.toString()}`
 }
 
-export const fetchPage = async (slug: string): Promise<Page | undefined> => {
-  const url = getPageApiUrl(slug)
-  const page: Page = await fetch(url)
+type FetchPageOptions = DraftOptions
+
+export const fetchPage = async (
+  slug: string,
+  options: FetchPageOptions,
+): Promise<Page | undefined> => {
+  const qs = new URLSearchParams({ 'where[slug][equals]': slug })
+  const init: RequestInit = {}
+  if (options.draft) {
+    initPreviewRequest(init, qs, options.payloadToken)
+  }
+
+  const url = getPageApiUrl(qs)
+  const page: Page = await fetch(url, init)
     .then(res => res.json())
     .then(res => res?.docs?.[0])
 
   return page
 }
 
-export const fetchForm = async (): Promise<Form> => {
-  const form: Form = await fetch(`${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/forms`)
-    .then(res => res.json())
-    .then(res => res?.docs?.[0])
-
-  return form
-}
-
-export const fetchMediaInfo = async (id: string): Promise<Media> => {
-  const media: Media = await fetch(`${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/media/${id}`).then(
-    res => res.json(),
-  )
-
-  return media
-}
-
-export const fetchProjects = async (): Promise<Project[]> => {
-  const projects: Project[] = await fetch(`${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/projects`)
-    .then(res => res.json())
-    .then(res => res?.docs)
-
-  return projects
-}
-
-interface FetchProjectOptions {
-  draft?: boolean
-  draftSecret?: string
-  payloadToken?: string
-}
+type FetchProjectOptions = DraftOptions
 
 export const fetchProject = async (
   slug: string,
@@ -67,19 +63,7 @@ export const fetchProject = async (
   const init: RequestInit = {}
 
   if (options.draft) {
-    if (!options.draftSecret) {
-      throw new Error('Missing draftSecret')
-    }
-
-    if (options.draftSecret !== process.env.PAYLOAD_PUBLIC_DRAFT_SECRET) {
-      throw new Error('Invalid draftSecret')
-    }
-
-    qs.append('draft', 'true')
-    init.cache = 'no-store'
-    init.headers = {
-      cookie: `payload-token=${options.payloadToken};path=/;HttpOnly`,
-    }
+    initPreviewRequest(init, qs, options.payloadToken)
   } else {
     init.next = { tags: [`projects/${slug}`] }
   }

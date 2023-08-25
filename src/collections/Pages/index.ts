@@ -12,7 +12,7 @@ import formatSlug from '../../utilities/formatSlug'
 import { revalidatePage } from './hooks/revalidatePage'
 
 const formatAppURL = ({ doc }): string => {
-  const pathToUse = doc.slug === 'home' ? '' : doc.slug
+  const pathToUse = doc.slug === 'profile-landing-page' ? '' : doc.slug
   const { pathname } = new URL(`${process.env.PAYLOAD_PUBLIC_SERVER_URL}/${pathToUse}`)
   return pathname
 }
@@ -22,11 +22,7 @@ export const Pages: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     preview: doc => {
-      return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/preview?url=${encodeURIComponent(
-        formatAppURL({
-          doc,
-        }),
-      )}&secret=${process.env.PAYLOAD_PUBLIC_DRAFT_SECRET}`
+      return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}${formatAppURL({ doc })}?preview=true`
     },
   },
   versions: {

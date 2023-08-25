@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation'
 import { Media } from '../../../payload-types'
 import { ProjectDetails } from '../../_components/content/projectDetails/projectDetails'
 import { fetchProfile, fetchProject } from '../../_utils/api'
+import { parsePreviewOptions } from '../../_utils/preview'
 
 interface ProjectPageProps {
   params: {
@@ -13,20 +14,12 @@ interface ProjectPageProps {
   searchParams: Record<string, string>
 }
 
-const parseRequest = (searchParams: Record<string, string | undefined>) => {
-  const draft = searchParams.preview === 'true'
-  const draftSecret = searchParams.secret
-  const payloadToken = cookies().get('payload-token').value
-
-  return { draft, draftSecret, payloadToken }
-}
-
 export async function generateMetadata(
   { params, searchParams }: ProjectPageProps,
   parent?: ResolvingMetadata,
 ): Promise<Metadata> {
   const [project, previousTitle] = await Promise.all([
-    fetchProject(params.slug, parseRequest(searchParams)),
+    fetchProject(params.slug, parsePreviewOptions(searchParams)),
     (await parent)?.title.absolute,
   ])
 
@@ -46,7 +39,7 @@ export async function generateMetadata(
 
 export default async function ProjectPage({ params, searchParams }: ProjectPageProps) {
   const [project, profile] = await Promise.all([
-    fetchProject(params.slug, parseRequest(searchParams)),
+    fetchProject(params.slug, parsePreviewOptions(searchParams)),
     fetchProfile(),
   ])
 
