@@ -1,5 +1,4 @@
 import { Metadata, ResolvingMetadata } from 'next'
-import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import { Media } from '../../../payload-types'
@@ -24,15 +23,24 @@ export async function generateMetadata(
   ])
 
   const images: string[] = []
-  if (project?.featuredImage) {
+  if (project?.meta?.image) {
+    images.push((project.meta.image as Media).url)
+  } else if (project?.featuredImage) {
     images.push((project.featuredImage as Media).url)
   }
 
+  const title = project?.meta?.title || project?.title || previousTitle
+  const description = project?.meta?.description || 'Details on a portoflio project.'
+
   return {
-    title: `${project?.title} | ${previousTitle}`,
-    description: 'Details on a portfolio project.',
+    title,
+    description,
     openGraph: {
+      title,
+      description,
       images,
+      type: 'article',
+      modifiedTime: project.updatedAt,
     },
   }
 }
@@ -47,9 +55,5 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
     redirect('/not-found')
   }
 
-  return (
-    <main>
-      <ProjectDetails project={project} profile={profile} />
-    </main>
-  )
+  return <ProjectDetails project={project} profile={profile} />
 }

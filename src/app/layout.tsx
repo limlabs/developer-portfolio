@@ -15,7 +15,7 @@ export async function generateMetadata() {
   const profile = await fetchProfile()
 
   return {
-    title: profile.name,
+    title: `Portfolio | ${profile.name}`,
     description: 'My professional portfolio featuring past projects and contact info.',
   }
 }
@@ -33,7 +33,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               className="flex flex-col w-full max-w-[1080px] px-4 lg:px-0 justify-center"
               id="main-content"
             >
-              {children}
+              <main>{children}</main>
             </div>
             <Footer profile={profile} />
           </div>

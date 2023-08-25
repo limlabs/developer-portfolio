@@ -29,10 +29,6 @@ export const fetchHeader = async (): Promise<Header> => {
   return header
 }
 
-export const getPageApiUrl = (qs: URLSearchParams): string => {
-  return `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/pages?${qs.toString()}`
-}
-
 type FetchPageOptions = DraftOptions
 
 export const fetchPage = async (
@@ -45,7 +41,7 @@ export const fetchPage = async (
     initPreviewRequest(init, qs, options.payloadToken)
   }
 
-  const url = getPageApiUrl(qs)
+  const url = `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/pages?${qs.toString()}`
   const page: Page = await fetch(url, init)
     .then(res => res.json())
     .then(res => res?.docs?.[0])
