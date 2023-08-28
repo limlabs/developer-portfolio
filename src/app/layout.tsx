@@ -15,6 +15,7 @@ export async function generateMetadata() {
   const profile = await fetchProfile()
 
   return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL),
     title: `Portfolio | ${profile.name}`,
     description: 'My professional portfolio featuring past projects and contact info.',
   }
