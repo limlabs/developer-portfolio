@@ -9,7 +9,7 @@ export const parsePreviewOptions = (
   searchParams: Record<string, string | undefined>,
 ): DraftOptions => {
   const draft = searchParams.preview === 'true'
-  const payloadToken = cookies().get('payload-token').value
+  const payloadToken = cookies().get('payload-token')?.value
 
   return { draft, payloadToken }
 }
