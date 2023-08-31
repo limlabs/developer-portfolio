@@ -6,3 +6,4 @@ package-lock.json
 .next
 .vercel
 src/media
+.DS_Store
