@@ -1,5 +1,7 @@
 import type { Payload } from 'payload'
 
+import { seedMedia } from './media'
+
 const mockDescription = [
   {
     children: [
@@ -51,69 +53,25 @@ export const seed = async (payload: Payload): Promise<void> => {
     },
   })
 
-  const profileImageDoc = await payload.create({
-    collection: 'media',
-    data: {
-      alt: 'Profile picture',
-    },
-    filePath: `${__dirname}/media/headshot.png`,
-  })
-
-  const designDesignFeaturedScreenshot = await payload.create({
-    collection: 'media',
-    data: {
-      alt: 'Design Design app screenshot',
-    },
-    filePath: `${__dirname}/media/design-design.png`,
-  })
-
-  const outsideAppFeaturedScreenshot = await payload.create({
-    collection: 'media',
-    data: {
-      alt: 'Outside app screenshot',
-    },
-    filePath: `${__dirname}/media/outside-app.png`,
-  })
-
-  const designAppFeaturedScreenshot = await payload.create({
-    collection: 'media',
-    data: {
-      alt: 'Design app screenshot',
-    },
-    filePath: `${__dirname}/media/design-app.png`,
-  })
-
-  const artAppFeaturedScreenshot = await payload.create({
-    collection: 'media',
-    data: {
-      alt: 'Art app screenshot',
-    },
-    filePath: `${__dirname}/media/art-app.png`,
-  })
-
-  const marketingOneScreenshot = await payload.create({
-    collection: 'media',
-    data: {
-      alt: 'Marketing Image One screenshot',
-    },
-    filePath: `${__dirname}/media/marketing-image-1.png`,
-  })
-
-  const marketingTwoScreenshot = await payload.create({
-    collection: 'media',
-    data: {
-      alt: 'Marketing Image Two screenshot',
-    },
-    filePath: `${__dirname}/media/marketing-image-2.png`,
-  })
-
-  const uiUxScreenshot = await payload.create({
-    collection: 'media',
-    data: {
-      alt: 'UI/UX Example screenshot',
-    },
-    filePath: `${__dirname}/media/ui-ux-example.png`,
-  })
+  const {
+    profileImageDoc,
+    designDesignFeaturedScreenshot,
+    designDesignMarketingImageOne,
+    designDesignMarketingImageTwo,
+    designDesignMarketingImageThree,
+    outsideAppFeaturedScreenshot,
+    outsideAppMarketingImageOne,
+    outsideAppMarketingImageTwo,
+    outsideAppMarketingImageThree,
+    designAppFeaturedScreenshot,
+    designAppMarketingImageOne,
+    designAppMarketingImageTwo,
+    designAppMarketingImageThree,
+    artAppFeaturedScreenshot,
+    artAppMarketingImageOne,
+    artAppMarketingImageTwo,
+    artAppMarketingImageThree,
+  } = await seedMedia()
 
   const [webflowDoc, inVisionDoc, figmaDoc, illustratorDoc] = await Promise.all([
     payload.create({
@@ -229,7 +187,7 @@ export const seed = async (payload: Payload): Promise<void> => {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
                 richText: mockDescription,
-                media: marketingOneScreenshot.id,
+                media: designDesignMarketingImageOne.id,
               },
             ],
             blockType: 'mediaContent',
@@ -238,11 +196,11 @@ export const seed = async (payload: Payload): Promise<void> => {
             mediaFields: [
               {
                 size: 'oneThird',
-                media: marketingTwoScreenshot.id,
+                media: designDesignMarketingImageTwo.id,
               },
               {
                 size: 'twoThirds',
-                media: uiUxScreenshot.id,
+                media: designDesignMarketingImageThree.id,
               },
             ],
             blockType: 'mediaBlock',
@@ -268,7 +226,7 @@ export const seed = async (payload: Payload): Promise<void> => {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
                 richText: mockDescription,
-                media: marketingOneScreenshot.id,
+                media: outsideAppMarketingImageOne.id,
               },
             ],
             blockType: 'mediaContent',
@@ -277,11 +235,11 @@ export const seed = async (payload: Payload): Promise<void> => {
             mediaFields: [
               {
                 size: 'oneThird',
-                media: marketingTwoScreenshot.id,
+                media: outsideAppMarketingImageTwo.id,
               },
               {
                 size: 'twoThirds',
-                media: uiUxScreenshot.id,
+                media: outsideAppMarketingImageThree.id,
               },
             ],
             blockType: 'mediaBlock',
@@ -307,7 +265,7 @@ export const seed = async (payload: Payload): Promise<void> => {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
                 richText: mockDescription,
-                media: marketingOneScreenshot.id,
+                media: designAppMarketingImageOne.id,
               },
             ],
             blockType: 'mediaContent',
@@ -316,11 +274,11 @@ export const seed = async (payload: Payload): Promise<void> => {
             mediaFields: [
               {
                 size: 'oneThird',
-                media: marketingTwoScreenshot.id,
+                media: designAppMarketingImageTwo.id,
               },
               {
                 size: 'twoThirds',
-                media: uiUxScreenshot.id,
+                media: designAppMarketingImageThree.id,
               },
             ],
             blockType: 'mediaBlock',
@@ -346,7 +304,7 @@ export const seed = async (payload: Payload): Promise<void> => {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
                 richText: mockDescription,
-                media: marketingOneScreenshot.id,
+                media: artAppMarketingImageOne.id,
               },
             ],
             blockType: 'mediaContent',
@@ -355,11 +313,11 @@ export const seed = async (payload: Payload): Promise<void> => {
             mediaFields: [
               {
                 size: 'oneThird',
-                media: marketingTwoScreenshot.id,
+                media: artAppMarketingImageTwo.id,
               },
               {
                 size: 'twoThirds',
-                media: uiUxScreenshot.id,
+                media: artAppMarketingImageThree.id,
               },
             ],
             blockType: 'mediaBlock',
