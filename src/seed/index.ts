@@ -25,13 +25,10 @@ export const seed = async (payload: Payload): Promise<void> => {
   })
 
   const {
-    profileImageDoc,
+    profileImage,
     designDesignFeaturedScreenshot,
     outsideAppFeaturedScreenshot,
     designAppFeaturedScreenshot,
-    designAppMarketingImageOne,
-    designAppMarketingImageTwo,
-    designAppMarketingImageThree,
     artAppFeaturedScreenshot,
     genericMarketingImageOne,
     genericMarketingImageTwo,
@@ -46,7 +43,7 @@ export const seed = async (payload: Payload): Promise<void> => {
       name: 'Samantha Smith',
       location: 'Portland, OR',
       title: 'UI/UX Designer',
-      profileImage: profileImageDoc.id,
+      profileImage: profileImage.id,
       socialLinks: {
         github: 'https://github.com/payloadcms',
         linkedin: 'https://www.linkedin.com/company/payloadcms',
@@ -160,7 +157,7 @@ export const seed = async (payload: Payload): Promise<void> => {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
                 richText: designAppMockDetailedDescription,
-                media: designAppMarketingImageOne.id,
+                media: genericMarketingImageOne.id,
               },
             ],
             blockType: 'mediaContent',
@@ -169,11 +166,11 @@ export const seed = async (payload: Payload): Promise<void> => {
             mediaFields: [
               {
                 size: 'oneThird',
-                media: designAppMarketingImageTwo.id,
+                media: genericMarketingImageTwo.id,
               },
               {
                 size: 'twoThirds',
-                media: designAppMarketingImageThree.id,
+                media: genericMarketingImageThree.id,
               },
             ],
             blockType: 'mediaBlock',

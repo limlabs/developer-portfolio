@@ -5,10 +5,9 @@ interface MediaAssets {
   genericMarketingImageOne: any
   genericMarketingImageTwo: any
   genericMarketingImageThree: any
-  genericMarketingImageFour: any
 
   // Profile image
-  profileImageDoc: any
+  profileImage: any
 
   // Design Design app
   designDesignFeaturedScreenshot: any
@@ -18,17 +17,13 @@ interface MediaAssets {
 
   // Design app
   designAppFeaturedScreenshot: any
-  designAppMarketingImageOne: any
-  designAppMarketingImageTwo: any
-  designAppMarketingImageThree: any
-  designAppMarketingImageFour: any
 
   // Art app
   artAppFeaturedScreenshot: any
 }
 
 export async function seedMedia(): Promise<MediaAssets> {
-  const profileImageDoc = await payload.create({
+  const profileImage = await payload.create({
     collection: 'media',
     data: {
       alt: 'Profile picture',
@@ -58,38 +53,6 @@ export async function seedMedia(): Promise<MediaAssets> {
       alt: 'Design app screenshot',
     },
     filePath: `${__dirname}/media/design-app-featured.png`,
-  })
-
-  const designAppMarketingImageOne = await payload.create({
-    collection: 'media',
-    data: {
-      alt: 'Design app marketing image one',
-    },
-    filePath: `${__dirname}/media/design-app-1.png`,
-  })
-
-  const designAppMarketingImageTwo = await payload.create({
-    collection: 'media',
-    data: {
-      alt: 'Design app marketing image two',
-    },
-    filePath: `${__dirname}/media/design-app-2.png`,
-  })
-
-  const designAppMarketingImageThree = await payload.create({
-    collection: 'media',
-    data: {
-      alt: 'Design app marketing image three',
-    },
-    filePath: `${__dirname}/media/design-app-3.png`,
-  })
-
-  const designAppMarketingImageFour = await payload.create({
-    collection: 'media',
-    data: {
-      alt: 'Design app marketing image four',
-    },
-    filePath: `${__dirname}/media/design-app-4.png`,
   })
 
   const artAppFeaturedScreenshot = await payload.create({
@@ -124,27 +87,14 @@ export async function seedMedia(): Promise<MediaAssets> {
     filePath: `${__dirname}/media/generic-3.png`,
   })
 
-  const genericMarketingImageFour = await payload.create({
-    collection: 'media',
-    data: {
-      alt: 'Generic marketing image four',
-    },
-    filePath: `${__dirname}/media/generic-4.png`,
-  })
-
   return {
     genericMarketingImageOne,
     genericMarketingImageTwo,
     genericMarketingImageThree,
-    genericMarketingImageFour,
-    profileImageDoc,
+    profileImage,
     designDesignFeaturedScreenshot,
     outsideAppFeaturedScreenshot,
     designAppFeaturedScreenshot,
-    designAppMarketingImageOne,
-    designAppMarketingImageTwo,
-    designAppMarketingImageThree,
-    designAppMarketingImageFour,
     artAppFeaturedScreenshot,
   }
 }
