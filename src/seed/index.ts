@@ -56,21 +56,16 @@ export const seed = async (payload: Payload): Promise<void> => {
   const {
     profileImageDoc,
     designDesignFeaturedScreenshot,
-    designDesignMarketingImageOne,
-    designDesignMarketingImageTwo,
-    designDesignMarketingImageThree,
     outsideAppFeaturedScreenshot,
-    outsideAppMarketingImageOne,
-    outsideAppMarketingImageTwo,
-    outsideAppMarketingImageThree,
     designAppFeaturedScreenshot,
     designAppMarketingImageOne,
     designAppMarketingImageTwo,
     designAppMarketingImageThree,
     artAppFeaturedScreenshot,
-    artAppMarketingImageOne,
-    artAppMarketingImageTwo,
-    artAppMarketingImageThree,
+    genericMarketingImageOne,
+    genericMarketingImageTwo,
+    genericMarketingImageThree,
+    genericMarketingImageFour,
   } = await seedMedia()
 
   const [webflowDoc, inVisionDoc, figmaDoc, illustratorDoc] = await Promise.all([
@@ -187,7 +182,7 @@ export const seed = async (payload: Payload): Promise<void> => {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
                 richText: mockDescription,
-                media: designDesignMarketingImageOne.id,
+                media: genericMarketingImageOne.id,
               },
             ],
             blockType: 'mediaContent',
@@ -196,11 +191,11 @@ export const seed = async (payload: Payload): Promise<void> => {
             mediaFields: [
               {
                 size: 'oneThird',
-                media: designDesignMarketingImageTwo.id,
+                media: genericMarketingImageTwo.id,
               },
               {
                 size: 'twoThirds',
-                media: designDesignMarketingImageThree.id,
+                media: genericMarketingImageThree.id,
               },
             ],
             blockType: 'mediaBlock',
@@ -226,7 +221,7 @@ export const seed = async (payload: Payload): Promise<void> => {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
                 richText: mockDescription,
-                media: outsideAppMarketingImageOne.id,
+                media: genericMarketingImageOne.id,
               },
             ],
             blockType: 'mediaContent',
@@ -235,11 +230,11 @@ export const seed = async (payload: Payload): Promise<void> => {
             mediaFields: [
               {
                 size: 'oneThird',
-                media: outsideAppMarketingImageTwo.id,
+                media: genericMarketingImageTwo.id,
               },
               {
                 size: 'twoThirds',
-                media: outsideAppMarketingImageThree.id,
+                media: genericMarketingImageThree.id,
               },
             ],
             blockType: 'mediaBlock',
@@ -304,7 +299,7 @@ export const seed = async (payload: Payload): Promise<void> => {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
                 richText: mockDescription,
-                media: artAppMarketingImageOne.id,
+                media: genericMarketingImageOne.id,
               },
             ],
             blockType: 'mediaContent',
@@ -313,11 +308,11 @@ export const seed = async (payload: Payload): Promise<void> => {
             mediaFields: [
               {
                 size: 'oneThird',
-                media: artAppMarketingImageTwo.id,
+                media: genericMarketingImageTwo.id,
               },
               {
                 size: 'twoThirds',
-                media: artAppMarketingImageThree.id,
+                media: genericMarketingImageThree.id,
               },
             ],
             blockType: 'mediaBlock',
