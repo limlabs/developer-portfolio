@@ -1,47 +1,18 @@
 import type { Payload } from 'payload'
 
+import { seedForms } from './forms'
 import { seedMedia } from './media'
-
-const mockDescription = [
-  {
-    children: [
-      {
-        text: 'As Lead UI/UX Designer for the "Outside App," I spearheaded the creation of an innovative mobile platform connecting users with nature. Conducting extensive research, I ideated with the team to design user-friendly interfaces and seamless navigation. Crafting a vibrant visual identity, we aimed to evoke adventure and user engagement.',
-      },
-    ],
-  },
-  {
-    children: [
-      {
-        text: "Iterative testing and refinement ensured a smooth user experience. The app's successful launch garnered a thriving community of outdoor enthusiasts, facilitating discovery of new trails and sustainable outdoor events. Witnessing the positive impact of reconnecting people with nature has been incredibly rewarding. As a UI/UX designer, I take pride in crafting meaningful digital experiences that inspire a love for the great outdoors.",
-      },
-    ],
-  },
-  {
-    children: [
-      {
-        text: "To establish a strong brand presence, I developed the app's visual identity, creating a vibrant color scheme and selecting modern typography that resonated with our target audience. The objective was to evoke a sense of adventure and connection with nature, while also emphasizing the app's ease of use.",
-      },
-    ],
-  },
-  {
-    children: [
-      {
-        text: "Working closely with the usability testing team, I conducted multiple rounds of user testing and gathered valuable feedback. This iterative process allowed us to fine-tune the app's design and address any pain points experienced by the testers. As a result, we optimized the app for a seamless and enjoyable user experience.",
-      },
-    ],
-  },
-]
-
-const confirmationMessage = [
-  {
-    children: [
-      {
-        text: "Thank you! I'll be reaching out to you shortly.",
-      },
-    ],
-  },
-]
+import {
+  artAppMockDescription,
+  artAppMockDetailedDescription,
+  designAppMockDescription,
+  designAppMockDetailedDescription,
+  designDesignMockDescription,
+  designDesignMockDetailedDescription,
+  outsideAppMockDescription,
+  outsideAppMockDetailedDescription,
+} from './projectData'
+import { seedTechnologies } from './technologies'
 
 export const seed = async (payload: Payload): Promise<void> => {
   // create admin
@@ -65,82 +36,9 @@ export const seed = async (payload: Payload): Promise<void> => {
     genericMarketingImageOne,
     genericMarketingImageTwo,
     genericMarketingImageThree,
-    genericMarketingImageFour,
   } = await seedMedia()
 
-  const [webflowDoc, inVisionDoc, figmaDoc, illustratorDoc] = await Promise.all([
-    payload.create({
-      collection: 'technologies',
-      data: {
-        name: 'Webflow',
-      },
-    }),
-    payload.create({
-      collection: 'technologies',
-      data: {
-        name: 'InVision',
-      },
-    }),
-    payload.create({
-      collection: 'technologies',
-      data: {
-        name: 'Figma',
-      },
-    }),
-    payload.create({
-      collection: 'technologies',
-      data: {
-        name: 'Illustrator',
-      },
-    }),
-  ])
-
-  const contactForm = await payload.create({
-    collection: 'forms',
-    data: {
-      title: 'Contact Form',
-      fields: [
-        {
-          name: 'firstname',
-          label: 'First Name',
-          width: 50,
-          required: true,
-          blockType: 'text',
-        },
-        {
-          name: 'lastname',
-          label: 'Last Name',
-          width: 50,
-          required: true,
-          blockType: 'text',
-        },
-        {
-          name: 'email',
-          label: 'Email',
-          width: 100,
-          required: true,
-          blockType: 'email',
-        },
-        {
-          name: 'subject',
-          label: 'Subject',
-          width: 100,
-          required: true,
-          blockType: 'text',
-        },
-        {
-          name: 'message',
-          label: 'Message',
-          width: 100,
-          required: true,
-          blockType: 'textarea',
-        },
-      ],
-      submitButtonLabel: 'Submit',
-      confirmationType: 'message',
-      confirmationMessage: confirmationMessage,
-    },
-  })
+  const { contactForm } = await seedForms()
 
   await payload.updateGlobal({
     slug: 'profile',
@@ -164,12 +62,14 @@ export const seed = async (payload: Payload): Promise<void> => {
     },
   })
 
+  const { webflowDoc, inVisionDoc, figmaDoc, illustratorDoc } = await seedTechnologies()
+
   const [designDesign, outsideApp, designApp, artApp] = await Promise.all([
     payload.create({
       collection: 'projects',
       data: {
         title: 'Design Design',
-        description: mockDescription,
+        description: designDesignMockDescription,
         role: ['uiUxDesigner'],
         startDate: new Date('2020-01-01'),
         endDate: new Date('2020-01-31'),
@@ -181,7 +81,7 @@ export const seed = async (payload: Payload): Promise<void> => {
               {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
-                richText: mockDescription,
+                richText: designDesignMockDetailedDescription,
                 media: genericMarketingImageOne.id,
               },
             ],
@@ -208,7 +108,7 @@ export const seed = async (payload: Payload): Promise<void> => {
       collection: 'projects',
       data: {
         title: 'Outside App',
-        description: mockDescription,
+        description: outsideAppMockDescription,
         role: ['uiUxDesigner'],
         startDate: new Date('2023-02-01'),
         endDate: new Date('2023-02-28'),
@@ -220,7 +120,7 @@ export const seed = async (payload: Payload): Promise<void> => {
               {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
-                richText: mockDescription,
+                richText: outsideAppMockDetailedDescription,
                 media: genericMarketingImageOne.id,
               },
             ],
@@ -247,7 +147,7 @@ export const seed = async (payload: Payload): Promise<void> => {
       collection: 'projects',
       data: {
         title: 'Design App',
-        description: mockDescription,
+        description: designAppMockDescription,
         role: ['uiUxDesigner'],
         startDate: new Date('2021-03-01'),
         endDate: new Date('2021-03-31'),
@@ -259,7 +159,7 @@ export const seed = async (payload: Payload): Promise<void> => {
               {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
-                richText: mockDescription,
+                richText: designAppMockDetailedDescription,
                 media: designAppMarketingImageOne.id,
               },
             ],
@@ -286,7 +186,7 @@ export const seed = async (payload: Payload): Promise<void> => {
       collection: 'projects',
       data: {
         title: 'Art App',
-        description: mockDescription,
+        description: artAppMockDescription,
         role: ['uiUxDesigner'],
         startDate: new Date('2021-04-01'),
         endDate: new Date('2021-04-30'),
@@ -298,7 +198,7 @@ export const seed = async (payload: Payload): Promise<void> => {
               {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
-                richText: mockDescription,
+                richText: artAppMockDetailedDescription,
                 media: genericMarketingImageOne.id,
               },
             ],
