@@ -12,7 +12,7 @@ import formatSlug from '../../utilities/formatSlug'
 import { tagRevalidator } from '../../utilities/tagRevalidator'
 
 const formatAppURL = ({ doc }): string => {
-  const pathToUse = doc.slug === 'profile-landing-page' ? '' : doc.slug
+  const pathToUse = doc.slug === 'home' ? '' : doc.slug
   const { pathname } = new URL(`${process.env.PAYLOAD_PUBLIC_SERVER_URL}/${pathToUse}`)
   return pathname
 }

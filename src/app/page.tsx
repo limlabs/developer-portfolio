@@ -16,7 +16,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const defaultTitle = (await parent)?.title?.absolute
   const options = parsePreviewOptions(searchParams)
-  const page = await fetchPage('profile-landing-page', options)
+  const page = await fetchPage('home', options)
 
   const title = page?.meta?.title || defaultTitle
   const description = page?.meta?.description || 'A portfolio of work by a digital professional.'
@@ -39,10 +39,7 @@ export async function generateMetadata(
 
 export default async function LandingPage({ searchParams }: LandingPageProps) {
   const options = parsePreviewOptions(searchParams)
-  const [page, profile] = await Promise.all([
-    fetchPage('profile-landing-page', options),
-    fetchProfile(),
-  ])
+  const [page, profile] = await Promise.all([fetchPage('home', options), fetchProfile()])
 
   return <ContentLayout profile={profile} layout={page.layout} />
 }

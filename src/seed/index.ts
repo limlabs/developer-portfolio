@@ -224,6 +224,7 @@ export const seed = async (payload: Payload): Promise<void> => {
     collection: 'pages',
     data: {
       title: 'Profile Landing Page',
+      slug: 'home',
       layout: [
         {
           blockType: 'profile-cta',
