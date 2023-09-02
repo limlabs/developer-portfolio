@@ -1,4 +1,9 @@
-export const outsideAppMockDescription = [
+import payload from 'payload'
+
+import type { InitialMedia } from './media'
+import type { InitialTechnologies } from './technologies'
+
+const outsideAppMockDescription = [
   {
     children: [
       {
@@ -15,7 +20,7 @@ export const outsideAppMockDescription = [
   },
 ]
 
-export const outsideAppMockDetailedDescription = [
+const outsideAppMockDetailedDescription = [
   {
     children: [
       {
@@ -32,7 +37,7 @@ export const outsideAppMockDetailedDescription = [
   },
 ]
 
-export const designAppMockDescription = [
+const designAppMockDescription = [
   {
     children: [
       {
@@ -49,7 +54,7 @@ export const designAppMockDescription = [
   },
 ]
 
-export const designAppMockDetailedDescription = [
+const designAppMockDetailedDescription = [
   {
     children: [
       {
@@ -66,7 +71,7 @@ export const designAppMockDetailedDescription = [
   },
 ]
 
-export const designDesignMockDescription = [
+const designDesignMockDescription = [
   {
     children: [
       {
@@ -83,7 +88,7 @@ export const designDesignMockDescription = [
   },
 ]
 
-export const designDesignMockDetailedDescription = [
+const designDesignMockDetailedDescription = [
   {
     children: [
       {
@@ -100,7 +105,7 @@ export const designDesignMockDetailedDescription = [
   },
 ]
 
-export const artAppMockDescription = [
+const artAppMockDescription = [
   {
     children: [
       {
@@ -117,7 +122,7 @@ export const artAppMockDescription = [
   },
 ]
 
-export const artAppMockDetailedDescription = [
+const artAppMockDetailedDescription = [
   {
     children: [
       {
@@ -133,3 +138,172 @@ export const artAppMockDetailedDescription = [
     ],
   },
 ]
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export const seedProjects = async (media: InitialMedia, technologies: InitialTechnologies) => {
+  const { genericMarketingImageOne, genericMarketingImageTwo, genericMarketingImageThree } = media
+  const technologiesUsed = Object.values(technologies).map(technology => technology.id)
+
+  const [designDesign, outsideApp, designApp, artApp] = await Promise.all([
+    payload.create({
+      collection: 'projects',
+      data: {
+        title: 'Design Design',
+        description: designDesignMockDescription,
+        role: ['uiUxDesigner'],
+        startDate: new Date('2020-01-01'),
+        endDate: new Date('2020-01-31'),
+        technologiesUsed,
+        featuredImage: media.designDesignFeaturedScreenshot.id,
+        layout: [
+          {
+            mediaContentFields: [
+              {
+                alignment: 'mediaContent',
+                mediaSize: 'twoThirds',
+                richText: designDesignMockDetailedDescription,
+                media: genericMarketingImageOne.id,
+              },
+            ],
+            blockType: 'mediaContent',
+          },
+          {
+            mediaFields: [
+              {
+                size: 'oneThird',
+                media: genericMarketingImageTwo.id,
+              },
+              {
+                size: 'twoThirds',
+                media: genericMarketingImageThree.id,
+              },
+            ],
+            blockType: 'mediaBlock',
+          },
+        ],
+        _status: 'published',
+      },
+    }),
+    payload.create({
+      collection: 'projects',
+      data: {
+        title: 'Outside App',
+        description: outsideAppMockDescription,
+        role: ['uiUxDesigner'],
+        startDate: new Date('2023-02-01'),
+        endDate: new Date('2023-02-28'),
+        technologiesUsed,
+        featuredImage: media.outsideAppFeaturedScreenshot.id,
+        layout: [
+          {
+            mediaContentFields: [
+              {
+                alignment: 'mediaContent',
+                mediaSize: 'twoThirds',
+                richText: outsideAppMockDetailedDescription,
+                media: genericMarketingImageOne.id,
+              },
+            ],
+            blockType: 'mediaContent',
+          },
+          {
+            mediaFields: [
+              {
+                size: 'oneThird',
+                media: genericMarketingImageTwo.id,
+              },
+              {
+                size: 'twoThirds',
+                media: genericMarketingImageThree.id,
+              },
+            ],
+            blockType: 'mediaBlock',
+          },
+        ],
+        _status: 'published',
+      },
+    }),
+    payload.create({
+      collection: 'projects',
+      data: {
+        title: 'Design App',
+        description: designAppMockDescription,
+        role: ['uiUxDesigner'],
+        startDate: new Date('2021-03-01'),
+        endDate: new Date('2021-03-31'),
+        technologiesUsed,
+        featuredImage: media.designAppFeaturedScreenshot.id,
+        layout: [
+          {
+            mediaContentFields: [
+              {
+                alignment: 'mediaContent',
+                mediaSize: 'twoThirds',
+                richText: designAppMockDetailedDescription,
+                media: genericMarketingImageOne.id,
+              },
+            ],
+            blockType: 'mediaContent',
+          },
+          {
+            mediaFields: [
+              {
+                size: 'oneThird',
+                media: genericMarketingImageTwo.id,
+              },
+              {
+                size: 'twoThirds',
+                media: genericMarketingImageThree.id,
+              },
+            ],
+            blockType: 'mediaBlock',
+          },
+        ],
+        _status: 'published',
+      },
+    }),
+    payload.create({
+      collection: 'projects',
+      data: {
+        title: 'Art App',
+        description: artAppMockDescription,
+        role: ['uiUxDesigner'],
+        startDate: new Date('2021-04-01'),
+        endDate: new Date('2021-04-30'),
+        technologiesUsed,
+        featuredImage: media.artAppFeaturedScreenshot.id,
+        layout: [
+          {
+            mediaContentFields: [
+              {
+                alignment: 'mediaContent',
+                mediaSize: 'twoThirds',
+                richText: artAppMockDetailedDescription,
+                media: genericMarketingImageOne.id,
+              },
+            ],
+            blockType: 'mediaContent',
+          },
+          {
+            mediaFields: [
+              {
+                size: 'oneThird',
+                media: genericMarketingImageTwo.id,
+              },
+              {
+                size: 'twoThirds',
+                media: genericMarketingImageThree.id,
+              },
+            ],
+            blockType: 'mediaBlock',
+          },
+        ],
+        _status: 'published',
+      },
+    }),
+  ])
+
+  return { designDesign, outsideApp, designApp, artApp }
+}
+
+export type InitialProjects = Awaited<ReturnType<typeof seedProjects>>

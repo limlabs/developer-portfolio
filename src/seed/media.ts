@@ -1,28 +1,7 @@
 import payload from 'payload'
 
-interface MediaAssets {
-  // Generic marketing images
-  genericMarketingImageOne: any
-  genericMarketingImageTwo: any
-  genericMarketingImageThree: any
-
-  // Profile image
-  profileImage: any
-
-  // Design Design app
-  designDesignFeaturedScreenshot: any
-
-  // Outside app
-  outsideAppFeaturedScreenshot: any
-
-  // Design app
-  designAppFeaturedScreenshot: any
-
-  // Art app
-  artAppFeaturedScreenshot: any
-}
-
-export async function seedMedia(): Promise<MediaAssets> {
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export async function seedMedia() {
   const profileImage = await payload.create({
     collection: 'media',
     data: {
@@ -98,3 +77,5 @@ export async function seedMedia(): Promise<MediaAssets> {
     artAppFeaturedScreenshot,
   }
 }
+
+export type InitialMedia = Awaited<ReturnType<typeof seedMedia>>

@@ -10,7 +10,8 @@ const confirmationMessage = [
   },
 ]
 
-export const seedForms = async (): Promise<{ contactForm: any }> => {
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export const seedForms = async () => {
   const contactForm = await payload.create({
     collection: 'forms',
     data: {
@@ -60,3 +61,5 @@ export const seedForms = async (): Promise<{ contactForm: any }> => {
 
   return { contactForm }
 }
+
+export type InitialForms = Awaited<ReturnType<typeof seedForms>>

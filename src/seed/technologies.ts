@@ -1,13 +1,7 @@
 import payload from 'payload'
 
-interface InitialTechnologies {
-  webflowDoc: any
-  inVisionDoc: any
-  figmaDoc: any
-  illustratorDoc: any
-}
-
-export const seedTechnologies = async (): Promise<InitialTechnologies> => {
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export const seedTechnologies = async () => {
   const [webflowDoc, inVisionDoc, figmaDoc, illustratorDoc] = await Promise.all([
     payload.create({
       collection: 'technologies',
@@ -42,3 +36,5 @@ export const seedTechnologies = async (): Promise<InitialTechnologies> => {
     illustratorDoc,
   }
 }
+
+export type InitialTechnologies = Awaited<ReturnType<typeof seedTechnologies>>
