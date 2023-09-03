@@ -33,7 +33,7 @@ export const NavBar = ({ profile, header }: { profile: Profile; header: Header }
               alt={(profile.profileImage as Media).alt}
               priority
               fill
-              sizes="(max-width: 768px) 0vw, 5vw"
+              sizes="(min-width: 640px) 10vw, (min-width: 1024px) 5vw"
               style={{ objectFit: 'cover' }}
             />
           </Link>

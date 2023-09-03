@@ -13,7 +13,7 @@ export async function seedMedia() {
   const designDesignFeaturedScreenshot = await payload.create({
     collection: 'media',
     data: {
-      alt: 'Design Design app screenshot',
+      alt: 'Marketing Image for Pre-Launch',
     },
     filePath: `${__dirname}/media/design-design-featured.png`,
   })
@@ -21,7 +21,7 @@ export async function seedMedia() {
   const outsideAppFeaturedScreenshot = await payload.create({
     collection: 'media',
     data: {
-      alt: 'Outside app screenshot',
+      alt: 'Marketing Image for Pre-Launch',
     },
     filePath: `${__dirname}/media/outside-app-featured.png`,
   })
@@ -29,7 +29,7 @@ export async function seedMedia() {
   const designAppFeaturedScreenshot = await payload.create({
     collection: 'media',
     data: {
-      alt: 'Design app screenshot',
+      alt: 'Marketing Image for Pre-Launch',
     },
     filePath: `${__dirname}/media/design-app-featured.png`,
   })
@@ -37,7 +37,7 @@ export async function seedMedia() {
   const artAppFeaturedScreenshot = await payload.create({
     collection: 'media',
     data: {
-      alt: 'Art app screenshot',
+      alt: 'Marketing Image for Pre-Launch',
     },
     filePath: `${__dirname}/media/art-app-featured.png`,
   })
@@ -45,7 +45,7 @@ export async function seedMedia() {
   const genericMarketingImageOne = await payload.create({
     collection: 'media',
     data: {
-      alt: 'Generic marketing image one',
+      alt: 'Marketing Image for Pre-Launch',
     },
     filePath: `${__dirname}/media/generic-1.png`,
   })
@@ -53,7 +53,7 @@ export async function seedMedia() {
   const genericMarketingImageTwo = await payload.create({
     collection: 'media',
     data: {
-      alt: 'Generic marketing image two',
+      alt: 'Marketing Image for Pre-Launch',
     },
     filePath: `${__dirname}/media/generic-2.png`,
   })
@@ -61,7 +61,7 @@ export async function seedMedia() {
   const genericMarketingImageThree = await payload.create({
     collection: 'media',
     data: {
-      alt: 'Generic marketing image three',
+      alt: 'UI/UX Examples',
     },
     filePath: `${__dirname}/media/generic-3.png`,
   })

@@ -7,11 +7,11 @@ import { Block } from '../ui/block'
 import { RichText } from './richText'
 import { SocialIcons } from './socialIcons'
 
-const containerVariants = cva('w-full bg-muted rounded-lg max-w-[1080px]', {
+const containerVariants = cva('w-full bg-muted rounded-[1.25rem] max-w-[1080px]', {
   variants: {
     variant: {
       compact:
-        'lg:px-14 mt-[4rem] mb-[4.83rem] lg:mt-[10.5rem] lg:mb-[5.25rem] py-4 flex flex-col lg:flex-row justify-between items-center',
+        'sm:px-14 mt-[4rem] mb-[4.83rem] sm:mt-[10.5rem] sm:mb-[5.25rem] py-4 flex flex-col sm:flex-row justify-between items-center',
       full: 'lg:px-28 py-12 mt-48 lg:mt-40',
     },
   },
@@ -20,8 +20,8 @@ const containerVariants = cva('w-full bg-muted rounded-lg max-w-[1080px]', {
 const nameVariants = cva('w-full max-w-[417px] mx-auto', {
   variants: {
     variant: {
-      compact: 'text-2xl font-extrabold leading-[30px]',
-      full: 'text-[24px] lg:text-[20px] font-semibold leading-[28px]',
+      compact: 'text-2xl font-extrabold leading-[1.875rem]',
+      full: 'text-2xl lg:text-5xl font-semibold leading-[28px]',
     },
   },
 })
@@ -71,7 +71,7 @@ const titleVariants = cva('text-base leading-tight lg:mt-2 w-full max-w-[417px] 
   },
 })
 
-const socialIconVariants = cva('mt-8', {
+const socialIconVariants = cva('mt-8 sm:mt-0 lg:mt-8 sm:ml-4 lg:ml-0', {
   variants: {
     variant: {
       compact: 'lg:mt-0 gap-9',
