@@ -239,6 +239,7 @@ export const seedProjects = async (media: InitialMedia, technologies: InitialTec
               {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
+                mediaFit: 'contain',
                 richText: designAppMockDetailedDescription,
                 media: genericMarketingImageOne.id,
               },

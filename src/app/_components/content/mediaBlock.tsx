@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Media } from '../../../payload-types'
 import { cn } from '../../../utilities'
 import { Block, BlockProps } from '../ui/block'
-import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog'
+import { MediaDialog } from './mediaDialog'
 
 interface MediaBlockFields extends BlockProps {
   media: string | Media
@@ -73,37 +73,13 @@ export const MediaBlock: FC<MediaBlockProps> = ({
         if (lightbox) {
           return (
             <Block size={size} className={cn('flex-col', className)} key={mediaInfo.id}>
-              <Dialog>
-                <DialogTrigger
-                  className={cn(
-                    containerClassNames,
-                    'first:mt-8 first:md:mt-12 first:lg:mt-0 mb-1 lg:mb-0',
-                  )}
-                >
-                  {base}
-                  {mediaFit === 'contain' && caption}
-                </DialogTrigger>
-                {mediaFit === 'cover' && caption}
-                <DialogContent className="pb-8">
-                  <>
-                    <div
-                      className="relative max-w-[80vw] lg:max-w-none"
-                      style={{ width: mediaInfo.width }}
-                    >
-                      <Image
-                        className="overflow-hidden rounded-3xl object-contain"
-                        src={mediaInfo.url}
-                        alt={mediaInfo.alt}
-                        fill
-                        sizes="(min-width: 1024px) 75vw, 90vw"
-                      />
-                    </div>
-                    {mediaInfo.alt && (
-                      <p className={cn('absolute -bottom-8 left-0')}>{mediaInfo.alt}</p>
-                    )}
-                  </>
-                </DialogContent>
-              </Dialog>
+              <MediaDialog
+                className={containerClassNames}
+                mediaFit={mediaFit}
+                triggerContent={base}
+                caption={caption}
+                mediaInfo={mediaInfo}
+              />
             </Block>
           )
         }
