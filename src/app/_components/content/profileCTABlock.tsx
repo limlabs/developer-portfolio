@@ -52,7 +52,7 @@ const textContainerVariants = cva('text-muted-foreground text-sm leading-6 round
   },
 })
 
-const titleVariants = cva('text-base leading-tight lg:mt-2', {
+const titleVariants = cva('text-base leading-tight lg:mt-2 w-full max-w-[417px] mx-auto', {
   variants: {
     variant: {
       compact: '',
@@ -86,20 +86,21 @@ export const ProfileCTABlock = ({
           )}
           <div className={textContainerVariants({ variant })}>
             <h1
-              className={cn({
-                'text-2xl lg:text-5xl font-extrabold leading-[30px] w-full': variant === 'full',
-                'text-[24px] lg:text-[20px] font-semibold leading-[28px] w-full':
-                  variant === 'compact',
+              className={cn('w-full max-w-[417px] mx-auto', {
+                'text-2xl lg:text-5xl font-extrabold leading-[30px]': variant === 'full',
+                'text-[24px] lg:text-[20px] font-semibold leading-[28px]': variant === 'compact',
               })}
             >
               {profile.name}
             </h1>
             {profile.location && variant === 'full' && (
-              <h2 className="leading-6 text-base lg:mt-2">{profile.location}</h2>
+              <h2 className="leading-6 text-base lg:mt-2 w-full max-w-[417px] mx-auto">
+                {profile.location}
+              </h2>
             )}
             {profile.title && <h3 className={titleVariants({ variant })}>{profile.title}</h3>}
             {profile.aboutMe && variant === 'full' && (
-              <RichText content={profile.aboutMe} className="mt-6 w-full lg:w-[417px]" />
+              <RichText content={profile.aboutMe} className="mt-6 w-full mx-auto max-w-[417px]" />
             )}
           </div>
         </div>

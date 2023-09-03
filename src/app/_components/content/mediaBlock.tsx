@@ -32,21 +32,25 @@ export const MediaBlock: FC<MediaBlockProps> = ({
 }) => {
   return (
     <>
-      {mediaFields.map(({ media, size, mediaFit }) => {
+      {mediaFields.map(({ media, size, mediaFit = 'cover' }) => {
         const mediaInfo = media as Media
+
         const base = (
           <>
-            <div className="flex-0 flex w-full h-full relative">
+            <div
+              className={cn(
+                'flex-0 flex relative',
+                mediaFit === 'cover' ? 'h-full w-auto' : 'h-auto w-full',
+              )}
+            >
               <Image
-                className={cn('overflow-hidden rounded-3xl flex-1 w-full h-full', imageClassName)}
+                className={cn('overflow-hidden rounded-3xl flex-1', imageClassName)}
                 src={mediaInfo.url}
                 alt={mediaInfo.alt}
-                fill
-                sizes="(min-width: 1024px) 75vw, 90vw"
+                width={mediaInfo.width}
+                height={mediaInfo.height}
                 style={{
                   objectFit: mediaFit ?? 'cover',
-                  maxWidth: mediaInfo.width,
-                  maxHeight: mediaInfo.height,
                 }}
                 priority={priority}
               />
@@ -55,8 +59,15 @@ export const MediaBlock: FC<MediaBlockProps> = ({
         )
 
         const containerClassNames = cn(
-          'flex flex-col relative w-full h-full text-left',
+          'flex flex-col relative w-full text-left',
           containerClassName,
+          mediaFit === 'cover' && 'h-full w-auto',
+        )
+
+        const caption = mediaInfo.alt && (
+          <p className={cn('flex w-full mt-1 lg:text-xl lg:leading-7', captionClassName)}>
+            {mediaInfo.alt}
+          </p>
         )
 
         if (lightbox) {
@@ -64,13 +75,12 @@ export const MediaBlock: FC<MediaBlockProps> = ({
             <Block size={size} className={cn('flex-col', className)} key={mediaInfo.id}>
               <Dialog>
                 <DialogTrigger
-                  className={cn(containerClassNames, 'first:mt-8 first:lg:mt-0 mb-16 lg:mb-0')}
+                  className={cn(containerClassNames, 'first:mt-8 first:lg:mt-0 mb-1 lg:mb-0')}
                 >
                   {base}
+                  {mediaFit === 'contain' && caption}
                 </DialogTrigger>
-                {mediaInfo.alt && (
-                  <p className={cn('flex w-full ', captionClassName)}>{mediaInfo.alt}</p>
-                )}
+                {mediaFit === 'cover' && caption}
                 <DialogContent className="pb-8">
                   <>
                     <div
@@ -96,8 +106,9 @@ export const MediaBlock: FC<MediaBlockProps> = ({
         }
 
         return (
-          <Block size={size} className={cn(className)} key={mediaInfo.id}>
+          <Block size={size} className={cn('flex-col', className)} key={mediaInfo.id}>
             {base}
+            {caption}
           </Block>
         )
       })}

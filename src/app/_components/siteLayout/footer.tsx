@@ -13,9 +13,9 @@ interface FooterProps {
 
 export const Footer: FC<FooterProps> = ({ profile }) => {
   return (
-    <div className="p-12 mt-12 lg:mt-20 flex flex-col lg:flex-row lg:justify-between items-center w-full max-w-7xl">
+    <div className="p-12 mt-12 lg:mt-20 flex flex-col lg:flex-row lg:justify-between items-center w-full max-w-[1300px]">
       <div className="flex justify-center items-center gap-4 text-foreground">
-        <Image src={payloadLogo} alt="Payload CMS logo" width={24} height={24} />
+        <Image src={payloadLogo} alt="Payload CMS logo" width={24} />
         <p>
           Website made with{' '}
           <Link href="https://payloadcms.com" className="underline" target="_payload">
@@ -23,10 +23,12 @@ export const Footer: FC<FooterProps> = ({ profile }) => {
           </Link>
         </p>
       </div>
-      <div className="w-full mt-6 lg:mt-0 lg:max-w-xs">
-        <SocialIcons profile={profile} className="justify-center lg:justify-end" />
+      <div className="flex flex-col lg:flex-row items-center gap-8">
+        <div className="w-full mt-6 lg:mt-0 lg:max-w-[175px]">
+          <SocialIcons profile={profile} className="justify-center lg:justify-end" />
+        </div>
+        <ThemeToggle />
       </div>
-      <ThemeToggle />
     </div>
   )
 }

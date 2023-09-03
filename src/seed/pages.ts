@@ -25,7 +25,7 @@ export const seedPages = async (forms: InitialForms, projects: InitialProjects):
                   text: 'Contact',
                 },
               ],
-              type: 'h3',
+              type: 'h2',
             },
             {
               children: [

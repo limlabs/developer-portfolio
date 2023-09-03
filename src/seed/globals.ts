@@ -33,14 +33,6 @@ export const seedGlobals = async (media: InitialMedia): Promise<void> => {
           link: {
             type: 'custom',
             newTab: true,
-            url: 'https://github.com/payloadcms',
-            label: 'GitHub',
-          },
-        },
-        {
-          link: {
-            type: 'custom',
-            newTab: true,
             url: 'https://www.linkedin.com/company/payload-cms/',
             label: 'LinkedIn',
           },
@@ -48,16 +40,16 @@ export const seedGlobals = async (media: InitialMedia): Promise<void> => {
         {
           link: {
             type: 'custom',
-            url: 'mailto:info@payloadcms.com',
-            label: 'Email',
+            url: 'https://dribble.com',
+            label: 'Dribble',
           },
         },
         {
           link: {
             type: 'custom',
             newTab: true,
-            url: 'https://twitter.com/payloadcms',
-            label: 'Twitter',
+            url: 'https://instagram.com',
+            label: 'Instagram',
           },
         },
       ],

@@ -10,13 +10,13 @@ interface ProjectHeroProps {
 
 export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
   return (
-    <div className="relative z-10 lg:pl-20 mt-6 lg:mt-0 flex flex-col items-start lg:items-center justify-center col-span-6 lg:col-span-3 lg:flex-shrink-0">
+    <div className="relative z-10 lg:pl-20 mt-6 lg:mt-0 flex flex-col items-start lg:items-center justify-center col-span-6 lg:col-span-3 lg:flex-shrink-0 ">
       {project.technologiesUsed && (
-        <>
+        <div>
           <div className="flex justify-start w-full text-lg lg:text-xl">
             <h4>Technologies Used</h4>
           </div>
-          <ul className="flex gap-3 w-full text-xl flex-wrap mt-2 mb-4">
+          <ul className="flex gap-3 text-xl flex-wrap mt-2 mb-4 lg:mb-6 w-full max-w-[532px]">
             {project.technologiesUsed.map(technology => (
               <li
                 className="border border-foreground px-5 py-2 rounded-md "
@@ -26,13 +26,15 @@ export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
               </li>
             ))}
           </ul>
-        </>
+        </div>
       )}
       <MediaBlock
-        className="w-full"
-        containerClassName="h-[70vw] lg:h-[340px]"
+        className="w-full max-w-[545px] mb-10 lg:mb-0"
         mediaFields={[{ media: project.featuredImage, size: 'full' }]}
+        containerClassName="lg:h-[340px]"
+        imageClassName="lg:h-[340px]"
         priority
+        lightbox
       />
     </div>
   )

@@ -23,7 +23,7 @@ export const ProjectDetails: FC<ProjectDetailsProps> = ({ project, profile }) =>
         <FadeInContent className="order-1 lg:order-none">
           <ProjectDetailsHeadline project={project} />
         </FadeInContent>
-        <FadeInContent className="relative z-0 delay-200 order-3 lg:order-none">
+        <FadeInContent className="relative z-0 delay-200 order-3 lg:order-none lg:max-w-[455px]">
           <RichText content={project.description} />
         </FadeInContent>
       </section>
