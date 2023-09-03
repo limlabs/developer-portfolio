@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Profile } from '../../../payload-types'
 import payloadLogo from '../../_assets/payload-logo.svg'
 import { SocialIcons } from '../content/socialIcons'
+import { ThemeToggle } from './themeToggle'
 
 interface FooterProps {
   profile: Profile
@@ -25,6 +26,7 @@ export const Footer: FC<FooterProps> = ({ profile }) => {
       <div className="w-full mt-6 lg:mt-0 lg:max-w-xs">
         <SocialIcons profile={profile} className="justify-center lg:justify-end" />
       </div>
+      <ThemeToggle />
     </div>
   )
 }

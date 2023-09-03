@@ -4,15 +4,14 @@ import Image from 'next/image'
 import { Media, Profile } from '../../../payload-types'
 import { cn } from '../../../utilities'
 import { Block } from '../ui/block'
-import { FadeInContent } from '../ui/fadeInContent'
 import { RichText } from './richText'
 import { SocialIcons } from './socialIcons'
 
 const containerVariants = cva('w-full bg-muted rounded-lg max-w-[1080px]', {
   variants: {
     variant: {
-      compact: 'px-5 lg:px-13 py-4 lg:py-8 flex flex-col lg:flex-row justify-between items-center',
-      full: 'px-4 lg:px-28 py-12 mt-48 lg:mt-40',
+      compact: 'lg:px-13 py-4 lg:py-8 flex flex-col lg:flex-row justify-between items-center',
+      full: 'lg:px-28 py-12 mt-48 lg:mt-40',
     },
   },
 })
@@ -44,11 +43,11 @@ const imageProps = {
   },
 }
 
-const textContainerVariants = cva('text-muted-foreground rounded-xl ', {
+const textContainerVariants = cva('text-muted-foreground text-sm leading-6 rounded-xl ', {
   variants: {
     variant: {
       compact: 'ml-3 lg:ml-8',
-      full: 'pt-12 lg:pt-0 px-8 lg:px-0 lg:pl-24 max-w-2xl lg:col-span-3',
+      full: 'pt-12 lg:pt-0 px-12 lg:px-0 lg:pl-24 w-full lg:col-span-3',
     },
   },
 })
@@ -88,20 +87,19 @@ export const ProfileCTABlock = ({
           <div className={textContainerVariants({ variant })}>
             <h1
               className={cn({
-                'text-2xl lg:text-5xl font-extrabold leading-[30px]': variant === 'full',
-                'text-[24px] lg:text-[20px] font-semibold leading-[28px]': variant === 'compact',
+                'text-2xl lg:text-5xl font-extrabold leading-[30px] w-full': variant === 'full',
+                'text-[24px] lg:text-[20px] font-semibold leading-[28px] w-full':
+                  variant === 'compact',
               })}
             >
               {profile.name}
             </h1>
             {profile.location && variant === 'full' && (
-              <h2 className="leading-7 text-base lg:mt-2">{profile.location}</h2>
+              <h2 className="leading-6 text-base lg:mt-2">{profile.location}</h2>
             )}
             {profile.title && <h3 className={titleVariants({ variant })}>{profile.title}</h3>}
             {profile.aboutMe && variant === 'full' && (
-              <div className="mt-8">
-                <RichText content={profile.aboutMe} />
-              </div>
+              <RichText content={profile.aboutMe} className="mt-6 w-full lg:w-[417px]" />
             )}
           </div>
         </div>

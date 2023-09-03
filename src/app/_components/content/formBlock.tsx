@@ -4,7 +4,8 @@ import { useForm } from 'react-hook-form'
 import { redirect } from 'next/navigation'
 import { Data } from 'payload/dist/admin/components/forms/Form/types'
 
-import { Form as FormTypes } from '../../../payload-types'
+import { Form, Form as FormTypes } from '../../../payload-types'
+import { cn } from '../../../utilities'
 import { Block } from '../ui/block'
 import { Button } from '../ui/button'
 import { Dialog, DialogContent } from '../ui/dialog'
@@ -20,6 +21,49 @@ type ErrorType = {
 export type FormBlockProps = {
   form: FormTypes
   intro?: unknown
+}
+
+export interface FormField {
+  name: string
+  label?: string
+  width?: number
+  defaultValue?: string
+  required?: boolean
+  id?: string
+  blockName?: string
+  blockType: 'text' | 'textarea' | 'email' | 'message'
+  message?: {
+    [k: string]: unknown
+  }[]
+}
+
+function groupFieldsByRow(form: FormTypes): FormTypes['fields'][] {
+  const rows: FormTypes['fields'][] = []
+  let currentRow: FormTypes['fields'] = []
+  let currentRowWidth = 0
+
+  for (const field of form.fields || []) {
+    const fieldWidth = field.blockType !== 'message' ? field.width || 100 : 100 // Assuming a default width of 100% if not specified
+
+    // Check if adding this field to the current row would exceed 100%
+    if (currentRowWidth + fieldWidth > 100) {
+      // End the current row and start a new one
+      rows.push(currentRow)
+      currentRow = []
+      currentRowWidth = 0
+    }
+
+    // Add the field to the current row and update the width
+    currentRow.push(field)
+    currentRowWidth += fieldWidth
+  }
+
+  // If there are any remaining fields in the current row, add them to the rows
+  if (currentRow.length > 0) {
+    rows.push(currentRow)
+  }
+
+  return rows
 }
 
 export const FormBlock: FC<FormBlockProps> = props => {
@@ -90,58 +134,62 @@ export const FormBlock: FC<FormBlockProps> = props => {
   return (
     <Block className="w-full flex flex-col m-auto" key={formID}>
       {intro && <RichText content={intro} className="w-full" />}
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full">
-        {formFromProps.fields.map((field, index) => {
-          if (field.blockType === 'message') {
-            return <RichText content={field.message} className="-mb-4" key={index} />
-          }
+      <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-4">
+        {groupFieldsByRow(formFromProps).map((row, index) => (
+          <div key={index}>
+            {row.map((field, index) => {
+              if (field.blockType === 'message') {
+                return <RichText content={field.message} className="-mb-4" key={index} />
+              }
 
-          let pattern
-          if (field.blockType === 'email') {
-            pattern = {
-              value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
-              message: 'Please enter a valid email address.',
-            }
-          }
+              let pattern
+              if (field.blockType === 'email') {
+                pattern = {
+                  value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
+                  message: 'Please enter a valid email address.',
+                }
+              }
 
-          const props = {
-            id: `${formID}-${field.name}`,
-            ...register(field.name, { required: field.required, pattern }),
-          }
+              const props = {
+                id: `${formID}-${field.name}`,
+                ...register(field.name, { required: field.required, pattern }),
+              }
 
-          let content
+              let content
 
-          switch (field.blockType) {
-            case 'text':
-            case 'email':
-              content = <Input type="text" {...props} />
-              break
-            case 'textarea':
-              content = <Textarea {...props} />
-              break
-            default:
-              content = null
-              break
-          }
+              switch (field.blockType) {
+                case 'text':
+                case 'email':
+                  content = <Input type="text" {...props} />
+                  break
+                case 'textarea':
+                  content = <Textarea {...props} />
+                  break
+                default:
+                  content = null
+                  break
+              }
 
-          return (
-            <div
-              key={index}
-              className="inline-flex flex-col gap-2 mt-4 first:mt-0 border-box pr-5"
-              style={{ width: `${field.width}%` }}
-            >
-              <label htmlFor={props.id} className="text-sm">
-                {field.label}
-              </label>
-              {content}
-              {formMethods.formState.errors[field.name]?.message && (
-                <div className="text-sm text-red-500 mt-2">
-                  {formMethods.formState.errors[field.name].message as string}
+              return (
+                <div
+                  key={index}
+                  className="inline-flex flex-col gap-2 mt-4 first:mt-0 content-box pr-5 last:pr-0"
+                  style={{ width: `${field.width}%` }}
+                >
+                  <label htmlFor={props.id} className="text-sm">
+                    {field.label}
+                  </label>
+                  {content}
+                  {formMethods.formState.errors[field.name]?.message && (
+                    <div className="text-sm text-red-500 mt-2">
+                      {formMethods.formState.errors[field.name].message as string}
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          )
-        })}
+              )
+            })}
+          </div>
+        ))}
         <Button type="submit" disabled={isLoading || !isDirty} className="max-w-[80px] mt-8">
           {submitButtonLabel}
         </Button>

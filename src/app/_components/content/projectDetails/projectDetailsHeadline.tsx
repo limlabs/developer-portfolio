@@ -17,7 +17,7 @@ export const ProjectDetailsHeadline: FC<ProjectDetailsHeadlineProps> = ({
       <h1 className="font-extrabold leading-[30-px] text-5xl">{project.title}</h1>
 
       {project.startDate && (
-        <p className="leading-7 text-base pt-2">
+        <p className="leading-6 text-base pt-2">
           {formatMonth(project.startDate)}
           {project.endDate && ` - ${formatMonth(project.endDate)}`}
         </p>

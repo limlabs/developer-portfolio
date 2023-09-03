@@ -12,7 +12,7 @@ export const seedGlobals = async (media: InitialMedia): Promise<void> => {
       profileImage: media.profileImage.id,
       socialLinks: {
         github: 'https://github.com/payloadcms',
-        linkedin: 'https://www.linkedin.com/company/payloadcms',
+        linkedin: 'https://www.linkedin.com/company/payload-cms/',
         twitter: 'https://twitter.com/payloadcms',
         email: 'info@payloadcms.com',
       },
@@ -22,6 +22,45 @@ export const seedGlobals = async (media: InitialMedia): Promise<void> => {
         },
       ],
       _status: 'published',
+    },
+  })
+
+  await payload.updateGlobal({
+    slug: 'header',
+    data: {
+      navItems: [
+        {
+          link: {
+            type: 'custom',
+            newTab: true,
+            url: 'https://github.com/payloadcms',
+            label: 'GitHub',
+          },
+        },
+        {
+          link: {
+            type: 'custom',
+            newTab: true,
+            url: 'https://www.linkedin.com/company/payload-cms/',
+            label: 'LinkedIn',
+          },
+        },
+        {
+          link: {
+            type: 'custom',
+            url: 'mailto:info@payloadcms.com',
+            label: 'Email',
+          },
+        },
+        {
+          link: {
+            type: 'custom',
+            newTab: true,
+            url: 'https://twitter.com/payloadcms',
+            label: 'Twitter',
+          },
+        },
+      ],
     },
   })
 }

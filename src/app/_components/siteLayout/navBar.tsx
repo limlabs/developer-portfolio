@@ -2,14 +2,11 @@ import { Suspense } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { Media, Profile } from '../../../payload-types'
-import { fetchHeader } from '../../_utils/api'
+import { Header, Media, Profile } from '../../../payload-types'
 import { PayloadLink } from '../content/link'
 import { SkipToMainContentLink } from './skipToMainContent'
-import { ThemeToggle } from './themeToggle'
 
-const HeaderLinks = async () => {
-  const header = await fetchHeader()
+const HeaderLinks = ({ header }: { header: Header }) => {
   return (
     <>
       {header.navItems?.map(({ id, link }) => (
@@ -19,10 +16,10 @@ const HeaderLinks = async () => {
   )
 }
 
-export const NavBar = ({ profile }: { profile: Profile }) => {
+export const NavBar = ({ profile, header }: { profile: Profile; header: Header }) => {
   return (
     <div className="bg-background bg-opacity-50 w-full flex justify-center">
-      <div className="w-full max-w-[1080px] h-full flex justify-evenly lg:justify-between lg:px-8 xl:px-0 py-2 lg:py-0">
+      <div className="w-full max-w-[1300px] h-full flex justify-evenly lg:justify-between lg:px-8 xl:px-0 py-2 lg:py-0">
         <SkipToMainContentLink />
         {profile.profileImage && (
           <Link href="/" className="hidden lg:flex items-center w-[50px] h-[66px]">
@@ -36,13 +33,9 @@ export const NavBar = ({ profile }: { profile: Profile }) => {
             />
           </Link>
         )}
-        <div className="flex lg:gap-8 w-full lg:w-auto justify-evenly text-base items-center">
-          <ThemeToggle />
-          <Suspense>
-            {/* @ts-ignore */}
-            <HeaderLinks />
-          </Suspense>
-        </div>
+        <nav className="flex lg:gap-8 w-full max-w-[378px] lg:w-auto justify-evenly text-base items-center">
+          <HeaderLinks header={header} />
+        </nav>
       </div>
     </div>
   )

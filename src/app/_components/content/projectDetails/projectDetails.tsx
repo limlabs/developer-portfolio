@@ -16,7 +16,7 @@ export interface ProjectDetailsProps {
 export const ProjectDetails: FC<ProjectDetailsProps> = ({ project, profile }) => {
   return (
     <>
-      <section className="lg:mt-12 flex flex-col lg:gap-12 lg:block">
+      <section className="lg:mt-12 lg:mb-20 flex flex-col lg:gap-12 lg:block lg:after:table lg:after:clear-both lg:after:float-none">
         <FadeInContent className="relative z-10 delay-100 order-2 lg:order-none lg:float-right lg:mb-0">
           <ProjectHero project={project} />
         </FadeInContent>
@@ -27,9 +27,9 @@ export const ProjectDetails: FC<ProjectDetailsProps> = ({ project, profile }) =>
           <RichText content={project.description} />
         </FadeInContent>
       </section>
-      <section className="w-full lg:mt-8 mb-20">
-        <ContentLayout profile={profile} layout={project.layout} />
-      </section>
+
+      <ContentLayout profile={profile} layout={project.layout} className="mb-20" />
+
       <BackButton />
     </>
   )

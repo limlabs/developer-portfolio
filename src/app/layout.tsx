@@ -7,7 +7,7 @@ import { Footer } from './_components/siteLayout/footer'
 import { NavBar } from './_components/siteLayout/navBar'
 import { Backdrop } from './_components/ui/backdrop/backdrop'
 import { ThemeProvider } from './_provider/themeProvider'
-import { fetchProfile } from './_utils/api'
+import { fetchHeader, fetchProfile } from './_utils/api'
 
 import './globals.css'
 
@@ -22,16 +22,17 @@ export async function generateMetadata() {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const profile = await fetchProfile()
+  const [profile, header] = await Promise.all([fetchProfile(), fetchHeader()])
+
   return (
     <html lang="en" className={`dark ${inter.className}`}>
       <body className="w-screen overflow-x-hidden">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Backdrop />
           <div className="relative z-20 min-h-screen flex flex-col items-center">
-            <NavBar profile={profile} />
+            <NavBar profile={profile} header={header} />
             <div
-              className="flex flex-col w-full max-w-[1080px] px-4 lg:px-0 justify-center"
+              className="flex flex-col w-full max-w-[1080px] px-7 lg:px-8 xl:px-0 justify-center"
               id="main-content"
             >
               <main>{children}</main>
