@@ -75,7 +75,10 @@ export const MediaBlock: FC<MediaBlockProps> = ({
             <Block size={size} className={cn('flex-col', className)} key={mediaInfo.id}>
               <Dialog>
                 <DialogTrigger
-                  className={cn(containerClassNames, 'first:mt-8 first:lg:mt-0 mb-1 lg:mb-0')}
+                  className={cn(
+                    containerClassNames,
+                    'first:mt-8 first:md:mt-12 first:lg:mt-0 mb-1 lg:mb-0',
+                  )}
                 >
                   {base}
                   {mediaFit === 'contain' && caption}

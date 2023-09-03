@@ -2,7 +2,7 @@ import { FC } from 'react'
 import Link from 'next/link'
 
 import { Media, Project } from '../../../payload-types'
-import { formatMonth } from '../../_utils/format'
+import { formatYear } from '../../_utils/format'
 import { Block } from '../ui/block'
 import { MediaBlock } from './mediaBlock'
 
@@ -36,7 +36,7 @@ export const ProjectGridBlock: FC<ProjectGridBlockProps> = ({ projects }) => {
                     ...(featuredImage as Media),
                     width: 500,
                     height: 376,
-                    alt: `${title} - ${formatMonth(startDate)}`,
+                    alt: `${title}, ${formatYear(startDate)}`,
                   },
                   size: 'half',
                 },

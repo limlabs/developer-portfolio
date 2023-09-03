@@ -29,10 +29,10 @@ export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
         </div>
       )}
       <MediaBlock
-        className="w-full max-w-[545px] mb-10 lg:mb-0"
+        className="w-full lg:max-w-[545px] mb-10 md:mb-16 lg:mb-0"
         mediaFields={[{ media: project.featuredImage, size: 'full' }]}
-        containerClassName="lg:h-[340px]"
-        imageClassName="lg:h-[340px]"
+        containerClassName="h-[51vw] sm:h-auto lg:h-[340px]"
+        imageClassName="h-[51vw] sm:h-auto lg:h-[340px]"
         priority
         lightbox
       />
