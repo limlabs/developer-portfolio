@@ -10,8 +10,18 @@ import { SocialIcons } from './socialIcons'
 const containerVariants = cva('w-full bg-muted rounded-lg max-w-[1080px]', {
   variants: {
     variant: {
-      compact: 'lg:px-13 py-4 lg:py-8 flex flex-col lg:flex-row justify-between items-center',
+      compact:
+        'lg:px-14 mt-[4rem] mb-[4.83rem] lg:mt-[10.5rem] lg:mb-[5.25rem] py-4 flex flex-col lg:flex-row justify-between items-center',
       full: 'lg:px-28 py-12 mt-48 lg:mt-40',
+    },
+  },
+})
+
+const nameVariants = cva('w-full max-w-[417px] mx-auto', {
+  variants: {
+    variant: {
+      compact: 'text-2xl font-extrabold leading-[30px]',
+      full: 'text-[24px] lg:text-[20px] font-semibold leading-[28px]',
     },
   },
 })
@@ -61,6 +71,15 @@ const titleVariants = cva('text-base leading-tight lg:mt-2 w-full max-w-[417px] 
   },
 })
 
+const socialIconVariants = cva('mt-8', {
+  variants: {
+    variant: {
+      compact: 'lg:mt-0 gap-9',
+      full: 'justify-center',
+    },
+  },
+})
+
 export const ProfileCTABlock = ({
   profile,
   variant = 'full',
@@ -85,14 +104,7 @@ export const ProfileCTABlock = ({
             </div>
           )}
           <div className={textContainerVariants({ variant })}>
-            <h1
-              className={cn('w-full max-w-[417px] mx-auto', {
-                'text-2xl lg:text-5xl font-extrabold leading-[30px]': variant === 'full',
-                'text-[24px] lg:text-[20px] font-semibold leading-[28px]': variant === 'compact',
-              })}
-            >
-              {profile.name}
-            </h1>
+            <h1 className={nameVariants({ variant })}>{profile.name}</h1>
             {profile.location && variant === 'full' && (
               <h2 className="leading-6 text-base lg:mt-2 w-full max-w-[417px] mx-auto">
                 {profile.location}
@@ -104,13 +116,7 @@ export const ProfileCTABlock = ({
             )}
           </div>
         </div>
-        <SocialIcons
-          className={cn({
-            'mt-8 justify-center': variant === 'full',
-            'mt-8 lg:mt-0 gap-9': variant === 'compact',
-          })}
-          profile={profile}
-        />
+        <SocialIcons className={socialIconVariants({ variant })} profile={profile} />
       </div>
     </Block>
   )

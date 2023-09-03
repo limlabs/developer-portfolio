@@ -10,9 +10,10 @@ const animationDelayOffsets = ['delay-150', 'delay-200']
 
 interface ProjectGridBlockProps {
   projects: Project[]
+  priority?: boolean
 }
 
-export const ProjectGridBlock: FC<ProjectGridBlockProps> = ({ projects }) => {
+export const ProjectGridBlock: FC<ProjectGridBlockProps> = ({ projects, priority }) => {
   return (
     <Block
       size="full"
@@ -27,9 +28,9 @@ export const ProjectGridBlock: FC<ProjectGridBlockProps> = ({ projects }) => {
           >
             <MediaBlock
               lightbox={false}
-              containerClassName={`${animationDelayOffsets[index % 2]} "h-[56vw] lg:h-[376px]"`}
+              className={`${animationDelayOffsets[index % 2]}`}
               imageClassName="h-[56vw] lg:h-[376px]"
-              priority
+              priority={priority}
               mediaFields={[
                 {
                   media: {

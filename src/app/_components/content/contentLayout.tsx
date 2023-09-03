@@ -41,7 +41,13 @@ export const ContentLayout: FC<ContentLayoutProps> = ({ layout, profile, classNa
             element = <ProfileCTABlock profile={profile} key={block.id} />
             break
           case 'projectGrid':
-            element = <ProjectGridBlock projects={block.project as Project[]} key={block.id} />
+            element = (
+              <ProjectGridBlock
+                projects={block.project as Project[]}
+                key={block.id}
+                priority={!hasMedia}
+              />
+            )
             break
           case 'form':
             element = <FormBlock intro={block.richText} form={block.form as Form} key={block.id} />
