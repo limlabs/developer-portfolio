@@ -1,3 +1,5 @@
+import type { Payload } from 'payload'
+
 import { seedForms } from './forms'
 import { seedGlobals } from './globals'
 import { seedMedia } from './media'
@@ -6,7 +8,8 @@ import { seedProjects } from './projects'
 import { seedTechnologies } from './technologies'
 import { seedUsers } from './users'
 
-export const seed = async (): Promise<void> => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const seed = async (_payload: Payload): Promise<void> => {
   await seedUsers()
 
   const forms = await seedForms()
