@@ -7,7 +7,6 @@ dotenv.config({
   path: path.resolve(__dirname, '../.env'),
 })
 
-import { payloadCloud } from '@payloadcms/plugin-cloud'
 import { buildConfig } from 'payload/config'
 
 import { serverUrl } from './app/_utils/api'
@@ -40,16 +39,21 @@ const plugins = [
   }),
 ]
 
-if (process.env.ENABLE_PAYLOAD_CLOUD === 'true') {
-  plugins.push(payloadCloud())
-}
+export default (async function () {
+  if (process.env.ENABLE_PAYLOAD_CLOUD === 'true') {
+    // eslint-disable-next-line no-console
+    console.log('Enabling Payload Cloud')
+    const { payloadCloud } = await import('@payloadcms/plugin-cloud')
+    plugins.push(payloadCloud())
+  }
 
-export default buildConfig({
-  serverURL: serverUrl || '',
-  collections: [Media, Pages, Projects, Technologies, Users],
-  globals: [Header, Profile],
-  plugins,
-  typescript: {
-    outputFile: path.resolve(__dirname, 'payload-types.ts'),
-  },
-})
+  return buildConfig({
+    serverURL: serverUrl || '',
+    collections: [Media, Pages, Projects, Technologies, Users],
+    globals: [Header, Profile],
+    plugins,
+    typescript: {
+      outputFile: path.resolve(__dirname, 'payload-types.ts'),
+    },
+  })
+})()
