@@ -7,7 +7,7 @@ import { Block } from '../ui/block'
 import { RichText } from './richText'
 import { SocialIcons } from './socialIcons'
 
-const containerVariants = cva('w-full bg-muted rounded-[1.25rem] max-w-[1080px]', {
+const containerVariants = cva('w-full bg-box/40 rounded-[1.25rem] max-w-[1080px]', {
   variants: {
     variant: {
       compact:
@@ -62,14 +62,17 @@ const textContainerVariants = cva('text-foreground text-sm leading-6 rounded-xl 
   },
 })
 
-const titleVariants = cva('text-base text-primaryleading-tight mt-2 w-full max-w-[417px] mx-auto', {
-  variants: {
-    variant: {
-      compact: '',
-      full: 'font-medium lg:text-xl',
+const titleVariants = cva(
+  'text-base text-primary leading-tight mt-2 w-full max-w-[417px] mx-auto',
+  {
+    variants: {
+      variant: {
+        compact: '',
+        full: 'font-medium lg:text-xl',
+      },
     },
   },
-})
+)
 
 const socialIconVariants = cva('sm:mt-0  sm:ml-4 lg:ml-0', {
   variants: {
