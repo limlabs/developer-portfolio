@@ -7,6 +7,7 @@ dotenv.config({
   path: path.resolve(__dirname, '../.env'),
 })
 
+import { payloadCloud } from '@payloadcms/plugin-cloud'
 import { buildConfig } from 'payload/config'
 
 import { serverUrl } from './app/_utils/api'
@@ -19,6 +20,9 @@ import { Header } from './globals/Header'
 import { Profile } from './globals/Profile'
 
 export default buildConfig({
+  ...(process.env.ENABLE_PAYLOAD_CLOUD === 'true' && {
+    plugins: [payloadCloud()],
+  }),
   serverURL: serverUrl || '',
   collections: [Media, Pages, Projects, Technologies, Users],
   globals: [Header, Profile],
