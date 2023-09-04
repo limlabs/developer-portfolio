@@ -19,33 +19,36 @@ import { Users } from './collections/Users'
 import { Header } from './globals/Header'
 import { Profile } from './globals/Profile'
 
-export default buildConfig({
-  ...(process.env.ENABLE_PAYLOAD_CLOUD === 'true' && {
-    plugins: [payloadCloud()],
+const plugins = [
+  formBuilder({
+    fields: {
+      payment: false,
+      checkbox: false,
+      country: false,
+      email: true,
+      message: true,
+      number: false,
+      text: true,
+      textarea: true,
+      select: false,
+      state: false,
+    },
   }),
+  seo({
+    collections: ['pages', 'projects'],
+    uploadsCollection: 'media',
+  }),
+]
+
+if (process.env.ENABLE_PAYLOAD_CLOUD === 'true') {
+  plugins.push(payloadCloud())
+}
+
+export default buildConfig({
   serverURL: serverUrl || '',
   collections: [Media, Pages, Projects, Technologies, Users],
   globals: [Header, Profile],
-  plugins: [
-    formBuilder({
-      fields: {
-        payment: false,
-        checkbox: false,
-        country: false,
-        email: true,
-        message: true,
-        number: false,
-        text: true,
-        textarea: true,
-        select: false,
-        state: false,
-      },
-    }),
-    seo({
-      collections: ['pages', 'projects'],
-      uploadsCollection: 'media',
-    }),
-  ],
+  plugins,
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
