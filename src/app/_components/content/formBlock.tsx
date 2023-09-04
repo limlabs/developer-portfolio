@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { Data } from 'payload/dist/admin/components/forms/Form/types'
 
 import { Form, Form as FormTypes } from '../../../payload-types'
+import { serverUrl } from '../../_utils/api'
 import { Block } from '../ui/block'
 import { Button } from '../ui/button'
 import { Dialog, DialogContent } from '../ui/dialog'
@@ -91,7 +92,7 @@ export const FormBlock: FC<FormBlockProps> = props => {
     }))
 
     try {
-      const req = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/form-submissions`, {
+      const req = await fetch(`${serverUrl}/api/form-submissions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json', // Correct typo: "Content-Types" to "Content-Type"

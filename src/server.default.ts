@@ -12,6 +12,7 @@ dotenv.config({
 import express from 'express'
 import payload from 'payload'
 
+import { serverUrl } from './app/_utils/api'
 import { seed } from './seed'
 
 const app = express()
@@ -38,7 +39,7 @@ const start = async (): Promise<void> => {
   }
 
   app.listen(PORT, async () => {
-    payload.logger.info(`App URL: ${process.env.PAYLOAD_PUBLIC_SERVER_URL}`)
+    payload.logger.info(`App URL: ${serverUrl}`)
   })
 }
 

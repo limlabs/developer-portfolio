@@ -9,6 +9,7 @@ dotenv.config({
 
 import { buildConfig } from 'payload/config'
 
+import { serverUrl } from './app/_utils/api'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Projects } from './collections/Projects'
@@ -18,7 +19,7 @@ import { Header } from './globals/Header'
 import { Profile } from './globals/Profile'
 
 export default buildConfig({
-  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
+  serverURL: serverUrl || '',
   collections: [Media, Pages, Projects, Technologies, Users],
   globals: [Header, Profile],
   plugins: [

@@ -1,7 +1,9 @@
 import type { AfterChangeHook, TypeWithID } from 'payload/dist/collections/config/types'
 
+import { serverUrl } from '../app/_utils/api'
+
 export const formatAppURL = ({ doc }): string => {
-  const { pathname } = new URL(`${process.env.PAYLOAD_PUBLIC_SERVER_URL}/projects/${doc.slug}`)
+  const { pathname } = new URL(`${serverUrl}/projects/${doc.slug}`)
   return pathname
 }
 
@@ -16,7 +18,7 @@ export const tagRevalidator =
         const tag = getTag(doc)
         try {
           const res = await fetch(
-            `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/revalidate?secret=${process.env.REVALIDATION_KEY}&tag=${tag}`,
+            `${serverUrl}/api/revalidate?secret=${process.env.REVALIDATION_KEY}&tag=${tag}`,
           )
 
           if (res.ok) {

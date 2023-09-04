@@ -1,6 +1,8 @@
 import type { Header, Page, Profile, Project } from '../../payload-types'
 import type { DraftOptions } from './preview'
 
+export const serverUrl = process.env.PAYLOAD_PUBLIC_SERVER_URL ?? 'http://localhost:3000'
+
 const initPreviewRequest = (init: RequestInit, qs: URLSearchParams, token: string): void => {
   if (!token) {
     throw new Error('No token provided when attempting to preview content')
@@ -14,7 +16,7 @@ const initPreviewRequest = (init: RequestInit, qs: URLSearchParams, token: strin
 }
 
 export const fetchProfile = async (): Promise<Profile> => {
-  const url = `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/globals/profile?locale=en`
+  const url = `${serverUrl}/api/globals/profile?locale=en`
 
   const profile: Profile = await fetch(url, {
     cache: 'force-cache',
@@ -27,7 +29,7 @@ export const fetchProfile = async (): Promise<Profile> => {
 }
 
 export const fetchHeader = async (): Promise<Header> => {
-  const url = `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/globals/header?locale=en`
+  const url = `${serverUrl}/api/globals/header?locale=en`
   const header: Header = await fetch(url, {
     cache: 'force-cache',
     next: { tags: ['global.header'] },
@@ -48,7 +50,7 @@ export const fetchPage = async (
     initPreviewRequest(init, qs, options.payloadToken)
   }
 
-  const url = `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/pages?${qs.toString()}`
+  const url = `${serverUrl}/api/pages?${qs.toString()}`
   const page: Page = await fetch(url, init)
     .then(res => res.json())
     .then(res => res?.docs?.[0])
@@ -71,7 +73,7 @@ export const fetchProject = async (
     init.next = { tags: [`projects/${slug}`] }
   }
 
-  const url = `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/api/projects?${qs.toString()}`
+  const url = `${serverUrl}/api/projects?${qs.toString()}`
   const project: Project = await fetch(url, init)
     .then(res => res.json())
     .then(res => res?.docs?.[0])

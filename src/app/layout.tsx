@@ -7,7 +7,7 @@ import { Footer } from './_components/siteLayout/footer'
 import { NavBar } from './_components/siteLayout/navBar'
 import { Backdrop } from './_components/ui/backdrop/backdrop'
 import { ThemeProvider } from './_provider/themeProvider'
-import { fetchHeader, fetchProfile } from './_utils/api'
+import { fetchHeader, fetchProfile, serverUrl } from './_utils/api'
 
 import './globals.css'
 
@@ -15,7 +15,7 @@ export async function generateMetadata() {
   const profile = await fetchProfile()
 
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL),
+    metadataBase: new URL(serverUrl),
     title: `Portfolio | ${profile.name}`,
     description: 'My professional portfolio featuring past projects and contact info.',
   }
