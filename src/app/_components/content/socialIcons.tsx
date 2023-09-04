@@ -19,25 +19,25 @@ const SocialIconsContent = async ({ className = '' }) => {
       {profile.socialLinks?.github && (
         <SocialLink
           href={profile.socialLinks.github}
-          icon={<GitHubLogoIcon width={25} height={25} aria-label="Github profile link" />}
+          icon={<GitHubLogoIcon width={24} height={24} aria-label="Github profile link" />}
         />
       )}
       {profile.socialLinks?.linkedin && (
         <SocialLink
           href={profile.socialLinks.linkedin}
-          icon={<LinkedInLogoIcon width={25} height={25} aria-label="LinkedIn profile link" />}
+          icon={<LinkedInLogoIcon width={24} height={24} aria-label="LinkedIn profile link" />}
         />
       )}
       {profile.socialLinks?.email && (
         <SocialLink
           href={`mailto:${profile.socialLinks.email}`}
-          icon={<EnvelopeClosedIcon width={25} height={25} aria-label="Email link" />}
+          icon={<EnvelopeClosedIcon width={24} height={24} aria-label="Email link" />}
         />
       )}
       {profile.socialLinks?.twitter && (
         <SocialLink
           href={profile.socialLinks.twitter}
-          icon={<TwitterIcon width={25} height={25} aria-label="Email link" />}
+          icon={<TwitterIcon width={24} height={24} aria-label="Twitter link" />}
         />
       )}
     </div>
@@ -45,7 +45,7 @@ const SocialIconsContent = async ({ className = '' }) => {
 }
 
 export const SocialIcons: FC<SocialIconsContentProps> = props => (
-  <Suspense>
+  <Suspense fallback={<div className={cn('lg:max-w-[300px] w-full h-[25px]', props.className)} />}>
     {/* @ts-ignore */}
     <SocialIconsContent {...props} />
   </Suspense>

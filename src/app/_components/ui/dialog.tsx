@@ -64,7 +64,7 @@ const DialogContent = React.forwardRef<
       {children}
       <DialogPrimitive.Close
         className={cn(
-          'absolute right-2 top-2 lg:top-8 lg:right-[2.375rem] rounded-sm opacity-70 transition-opacity hover:opacity-100 disabled:pointer-events-none  data-[state=open]:text-muted-foreground',
+          'absolute right-0 lg:right-2 -top-12 2xl:-top-16 rounded-sm opacity-70 transition-opacity hover:opacity-100 disabled:pointer-events-none  data-[state=open]:text-muted-foreground',
         )}
       >
         <X className="h-10 w-10 lg:h-12 lg:w-12" />

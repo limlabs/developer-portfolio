@@ -19,7 +19,7 @@ const HeaderLinks = ({ header }: { header: Header }) => {
 export const NavBar = ({ profile, header }: { profile: Profile; header: Header }) => {
   return (
     <div className="bg-background bg-opacity-50 w-full flex justify-center">
-      <div className="w-full max-w-[1300px] h-full flex justify-evenly lg:justify-between lg:px-8 py-2 lg:py-0 content-box">
+      <div className="w-full max-w-[1300px] h-full flex justify-center md:justify-between md:px-8 py-2 md:py-0 content-box">
         <SkipToMainContentLink />
         {profile.profileImage && (
           <Link
@@ -38,7 +38,7 @@ export const NavBar = ({ profile, header }: { profile: Profile; header: Header }
             />
           </Link>
         )}
-        <nav className="flex gap-6 lg:gap-8 w-full max-w-[378px] lg:w-auto justify-evenly text-base items-center">
+        <nav className="flex gap-6 lg:gap-8 w-full max-w-[378px] lg:w-auto justify-center md:justify-end text-base items-center">
           <HeaderLinks header={header} />
         </nav>
       </div>

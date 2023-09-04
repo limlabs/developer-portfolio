@@ -92,14 +92,14 @@ const designDesignMockDetailedDescription = [
   {
     children: [
       {
-        text: "Translating insights into actionable design, I meticulously orchestrated user journeys that guide designers smoothly through the app's functionalities. Through meticulous wireframes and interactive prototypes, I aimed to strike the perfect equilibrium between simplicity and robust functionality. The app's navigation and interactions were thoughtfully crafted to ensure a fluid experience that aligns seamlessly with the designer's creative rhythm.",
+        text: "To establish a strong brand presence, I developed the app's visual identity, creating a vibrant color scheme and selecting modern typography that resonated with our target audience. The objective was to evoke a sense of adventure and connection with nature, while also emphasizing the app's ease of use.",
       },
     ],
   },
   {
     children: [
       {
-        text: 'Beyond mere functionality, the "Design Design" app demanded a visual identity that would be a mirror to the essence of design itself. Drawing inspiration from contemporary design trends, I curated a visual language characterized by dynamic color palettes, typography that mirrors creative expression, and iconography that encapsulates the soul of the app. This symbiotic relationship between aesthetics and functionality ensured that each screen not only served its purpose but also nurtured the designer\'s imagination.',
+        text: "Working closely with the usability testing team, I conducted multiple rounds of user testing and gathered valuable feedback. This iterative process allowed us to fine-tune the app's design and address any pain points experienced by the testers. As a result, we optimized the app for a seamless and enjoyable user experience.",
       },
     ],
   },
@@ -163,6 +163,7 @@ export const seedProjects = async (media: InitialMedia, technologies: InitialTec
                 mediaSize: 'twoThirds',
                 richText: designDesignMockDetailedDescription,
                 media: genericMarketingImageOne.id,
+                mediaFit: 'contain',
               },
             ],
             blockType: 'mediaContent',
@@ -239,7 +240,6 @@ export const seedProjects = async (media: InitialMedia, technologies: InitialTec
               {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
-                mediaFit: 'contain',
                 richText: designAppMockDetailedDescription,
                 media: genericMarketingImageOne.id,
               },

@@ -18,6 +18,7 @@ export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
         mediaFields={[{ media: project.featuredImage, size: 'full' }]}
         containerClassName="h-[51vw] sm:h-auto lg:h-[340px]"
         imageClassName="h-[51vw] sm:h-auto lg:h-[340px]"
+        captionSize="large"
         priority
         lightbox
       />

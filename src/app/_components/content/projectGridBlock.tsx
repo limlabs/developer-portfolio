@@ -30,6 +30,7 @@ export const ProjectGridBlock: FC<ProjectGridBlockProps> = ({ projects, priority
               lightbox={false}
               className={`${animationDelayOffsets[index % 2]}`}
               imageClassName="h-[56vw] lg:h-[376px]"
+              captionSize="large"
               priority={priority}
               mediaFields={[
                 {

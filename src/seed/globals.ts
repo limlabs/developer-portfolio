@@ -40,8 +40,8 @@ export const seedGlobals = async (media: InitialMedia): Promise<void> => {
         {
           link: {
             type: 'custom',
-            url: 'https://dribble.com',
-            label: 'Dribble',
+            url: 'https://dribbble.com',
+            label: 'Dribbble',
           },
         },
         {

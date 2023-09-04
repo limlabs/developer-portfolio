@@ -1,10 +1,23 @@
 import { FC } from 'react'
+import { cva } from 'class-variance-authority'
 import Image from 'next/image'
 
 import { Media } from '../../../payload-types'
 import { cn } from '../../../utilities'
 import { Block, BlockProps } from '../ui/block'
 import { MediaDialog } from './mediaDialog'
+
+const mediaBlockCaptionVariants = cva('flex w-full mt-1', {
+  variants: {
+    captionSize: {
+      small: 'text-sm',
+      large: 'text-base lg:text-xl lg:leading-7',
+    },
+  },
+  defaultVariants: {
+    captionSize: 'small',
+  },
+})
 
 interface MediaBlockFields extends BlockProps {
   media: string | Media
@@ -19,6 +32,7 @@ interface MediaBlockProps {
   imageClassName?: string
   captionClassName?: string
   priority?: boolean
+  captionSize?: 'small' | 'large'
 }
 
 export const MediaBlock: FC<MediaBlockProps> = ({
@@ -29,6 +43,7 @@ export const MediaBlock: FC<MediaBlockProps> = ({
   captionClassName,
   lightbox = true,
   priority,
+  captionSize,
 }) => {
   return (
     <>
@@ -65,7 +80,7 @@ export const MediaBlock: FC<MediaBlockProps> = ({
         )
 
         const caption = mediaInfo.alt && (
-          <p className={cn('flex w-full mt-1 lg:text-xl lg:leading-7', captionClassName)}>
+          <p className={mediaBlockCaptionVariants({ captionSize, className: captionClassName })}>
             {mediaInfo.alt}
           </p>
         )

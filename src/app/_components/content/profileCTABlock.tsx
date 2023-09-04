@@ -1,8 +1,8 @@
 import { cva } from 'class-variance-authority'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { Media, Profile } from '../../../payload-types'
-import { cn } from '../../../utilities'
 import { Block } from '../ui/block'
 import { RichText } from './richText'
 import { SocialIcons } from './socialIcons'
@@ -11,7 +11,7 @@ const containerVariants = cva('w-full bg-muted rounded-[1.25rem] max-w-[1080px]'
   variants: {
     variant: {
       compact:
-        'sm:px-14 mt-[4rem] mb-[4.83rem] sm:mt-[10.5rem] sm:mb-[5.25rem] py-4 flex flex-col sm:flex-row justify-between items-center',
+        'px-3 sm:px-14 mt-[3.31rem] mb-[3.75rem] sm:mt-[10.5rem] sm:mb-[5.25rem] py-4 flex flex-col sm:flex-row justify-between items-center',
       full: 'lg:px-28 py-12 mt-48 lg:mt-40',
     },
   },
@@ -20,8 +20,8 @@ const containerVariants = cva('w-full bg-muted rounded-[1.25rem] max-w-[1080px]'
 const nameVariants = cva('w-full max-w-[417px] mx-auto', {
   variants: {
     variant: {
-      compact: 'text-2xl font-extrabold leading-[1.875rem]',
-      full: 'text-2xl lg:text-5xl font-semibold leading-[28px]',
+      compact: 'text-2xl font-medium leading-[1.875rem]',
+      full: 'mb-2 lg:mb-0 text-2xl lg:text-5xl font-bold leading-[28px]',
     },
   },
 })
@@ -62,21 +62,24 @@ const textContainerVariants = cva('text-muted-foreground text-sm leading-6 round
   },
 })
 
-const titleVariants = cva('text-base leading-tight lg:mt-2 w-full max-w-[417px] mx-auto', {
+const titleVariants = cva('text-base leading-tight mt-2 w-full max-w-[417px] mx-auto', {
   variants: {
     variant: {
       compact: '',
-      full: 'font-semibold lg:text-xl',
+      full: 'font-medium lg:text-xl',
     },
   },
 })
 
-const socialIconVariants = cva('mt-8 sm:mt-0 lg:mt-8 sm:ml-4 lg:ml-0', {
+const socialIconVariants = cva('sm:mt-0  sm:ml-4 lg:ml-0', {
   variants: {
     variant: {
-      compact: 'lg:mt-0 gap-9',
-      full: 'justify-center',
+      compact: 'mt-4 lg:mt-0 gap-9',
+      full: 'mt-8 lg:mt-8 justify-center',
     },
+  },
+  defaultVariants: {
+    variant: 'full',
   },
 })
 
@@ -93,14 +96,16 @@ export const ProfileCTABlock = ({
         <div className={topContentVariants({ variant })}>
           {profile.profileImage && (
             <div className={imageContainerVariants({ variant })}>
-              <Image
-                priority
-                className="rounded-full"
-                fill
-                {...imageProps[variant]}
-                alt={(profile.profileImage as Media).alt}
-                src={(profile.profileImage as Media).url}
-              />
+              <Link href="/">
+                <Image
+                  priority
+                  className="rounded-full"
+                  fill
+                  {...imageProps[variant]}
+                  alt={(profile.profileImage as Media).alt}
+                  src={(profile.profileImage as Media).url}
+                />
+              </Link>
             </div>
           )}
           <div className={textContainerVariants({ variant })}>

@@ -36,21 +36,22 @@ export const MediaDialog: FC<MediaDialogProps> = ({
       {mediaFit === 'cover' && caption}
       <DialogContent
         variant="fullscreen"
-        className="pb-8 flex-col gap-1 items-start"
+        className="flex justify-center flex-col gap-1 items-start"
         style={{
           maxHeight: `${mediaInfo.height}px`,
+          maxWidth: `${mediaInfo.width}px`,
         }}
       >
         <div
-          className="w-full h-full relative mt-[6.06rem] lg:mt-0 "
+          className="w-full h-full relative "
           style={{
             maxWidth: `${mediaInfo.width}px`,
-            height: `min(${(mediaInfo.height / mediaInfo.width) * 100}vw, 90vh)`,
+            height: `min(${(mediaInfo.height / mediaInfo.width) * 100}vw, 80vh)`,
           }}
         >
           <Image
             id={`${mediaInfo.id}-lightbox`}
-            className="object-contain lg:pt-24"
+            className="object-contain"
             src={mediaInfo.url}
             alt={mediaInfo.alt}
             fill
