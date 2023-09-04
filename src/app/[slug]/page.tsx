@@ -1,5 +1,5 @@
 import { Metadata, ResolvingMetadata } from 'next'
-import { redirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 
 import { Media } from '../../payload-types'
 import { ContentLayout } from '../_components/content/contentLayout'
@@ -45,7 +45,7 @@ const LandingPage = async ({ params, searchParams }: LandingPageProps) => {
   const page = await fetchPage(slug, options)
 
   if (!page?.layout) {
-    redirect('/not-found')
+    notFound()
   }
 
   return <ContentLayout layout={page.layout} className="mt-16" />

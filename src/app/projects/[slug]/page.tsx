@@ -1,5 +1,5 @@
 import { Metadata, ResolvingMetadata } from 'next'
-import { redirect } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 
 import { Media } from '../../../payload-types'
 import { ProjectDetails } from '../../_components/content/projectDetails/projectDetails'
@@ -52,7 +52,7 @@ export default async function ProjectPage({ params, searchParams }: ProjectPageP
   ])
 
   if (!project) {
-    redirect('/not-found')
+    notFound()
   }
 
   return <ProjectDetails project={project} profile={profile} />
