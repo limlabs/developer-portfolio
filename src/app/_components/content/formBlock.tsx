@@ -3,7 +3,7 @@ import React, { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Data } from 'payload/dist/admin/components/forms/Form/types'
 
-import { Form, Form as FormTypes } from '../../../payload-types'
+import { Form as FormTypes } from '../../../payload-types'
 import { serverUrl } from '../../_utils/api'
 import { Block } from '../ui/block'
 import { Button } from '../ui/button'
