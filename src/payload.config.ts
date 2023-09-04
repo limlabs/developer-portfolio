@@ -20,6 +20,9 @@ import { Header } from './globals/Header'
 import { Profile } from './globals/Profile'
 
 export default buildConfig({
+  ...(process.env.ENABLE_PAYLOAD_CLOUD === 'true' && {
+    plugins: [payloadCloud()],
+  }),
   serverURL: serverUrl || '',
   collections: [Media, Pages, Projects, Technologies, Users],
   globals: [Header, Profile],
