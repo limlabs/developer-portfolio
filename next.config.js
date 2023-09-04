@@ -2,7 +2,8 @@ require('dotenv').config()
 
 const imageDomains = ['localhost']
 if (process.env.PAYLOAD_PUBLIC_SERVER_URL) {
-  imageDomains.push(process.env.PAYLOAD_PUBLIC_SERVER_URL)
+  const { hostname } = new URL(process.env.PAYLOAD_PUBLIC_SERVER_URL)
+  imageDomains.push(hostname)
 }
 
 // eslint-disable-next-line no-console
