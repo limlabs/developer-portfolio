@@ -1,11 +1,9 @@
 'use client'
 import React, { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { redirect } from 'next/navigation'
 import { Data } from 'payload/dist/admin/components/forms/Form/types'
 
 import { Form, Form as FormTypes } from '../../../payload-types'
-import { cn } from '../../../utilities'
 import { Block } from '../ui/block'
 import { Button } from '../ui/button'
 import { Dialog, DialogContent } from '../ui/dialog'
@@ -176,7 +174,7 @@ export const FormBlock: FC<FormBlockProps> = props => {
                   className="inline-flex flex-col gap-2 mt-4 first:mt-0 content-box pr-5 last:pr-0"
                   style={{ width: `${field.width}%` }}
                 >
-                  <label htmlFor={props.id} className="text-sm">
+                  <label htmlFor={props.id} className="text-sm text-primary dark:text-foreground">
                     {field.label}
                   </label>
                   {content}

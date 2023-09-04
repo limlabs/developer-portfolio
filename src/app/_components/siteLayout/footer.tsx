@@ -14,8 +14,8 @@ interface FooterProps {
 
 export const Footer: FC<FooterProps> = ({ profile }) => {
   return (
-    <div className="p-12 mt-12 lg:mt-20 flex flex-col lg:flex-row lg:justify-between items-center w-full max-w-[1300px]">
-      <div className="flex justify-center items-center gap-4 text-foreground">
+    <div className="p-12 mt-12 lg:mt-20 flex flex-col lg:flex-row lg:justify-between items-center w-full max-w-[1300px] text-primary dark:text-foreground">
+      <div className="flex justify-center items-center gap-4 ">
         <PayloadLogo />
         <p>
           Website made with{' '}

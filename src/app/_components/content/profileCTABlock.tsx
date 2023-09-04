@@ -53,7 +53,7 @@ const imageProps = {
   },
 }
 
-const textContainerVariants = cva('text-muted-foreground text-sm leading-6 rounded-xl ', {
+const textContainerVariants = cva('text-foreground text-sm leading-6 rounded-xl ', {
   variants: {
     variant: {
       compact: 'ml-3 lg:ml-8',
@@ -62,14 +62,17 @@ const textContainerVariants = cva('text-muted-foreground text-sm leading-6 round
   },
 })
 
-const titleVariants = cva('text-base leading-tight mt-2 w-full max-w-[417px] mx-auto', {
-  variants: {
-    variant: {
-      compact: '',
-      full: 'font-medium lg:text-xl',
+const titleVariants = cva(
+  'text-base text-primary dark:text-foreground leading-tight mt-2 w-full max-w-[417px] mx-auto',
+  {
+    variants: {
+      variant: {
+        compact: '',
+        full: 'font-medium lg:text-xl',
+      },
     },
   },
-})
+)
 
 const socialIconVariants = cva('sm:mt-0  sm:ml-4 lg:ml-0', {
   variants: {

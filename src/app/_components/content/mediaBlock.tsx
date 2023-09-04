@@ -7,7 +7,7 @@ import { cn } from '../../../utilities'
 import { Block, BlockProps } from '../ui/block'
 import { MediaDialog } from './mediaDialog'
 
-const mediaBlockCaptionVariants = cva('flex w-full mt-1', {
+const mediaBlockCaptionVariants = cva('flex w-full mt-1 text-primary dark:text-foreground', {
   variants: {
     captionSize: {
       small: 'text-sm',

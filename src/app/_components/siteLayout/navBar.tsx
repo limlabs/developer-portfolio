@@ -18,9 +18,9 @@ const HeaderLinks = ({ header }: { header: Header }) => {
 
 export const NavBar = ({ profile, header }: { profile: Profile; header: Header }) => {
   return (
-    <div className="bg-background bg-opacity-50 w-full flex justify-center">
+    <div className="relative z-0 bg-background bg-opacity-50 w-full flex justify-center">
+      <SkipToMainContentLink />
       <div className="w-full max-w-[1300px] h-full flex justify-center md:justify-between md:px-8 py-2 md:py-0 content-box">
-        <SkipToMainContentLink />
         {profile.profileImage && (
           <Link
             href="/"
