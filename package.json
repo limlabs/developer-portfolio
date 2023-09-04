@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.2.0",
-    "@payloadcms/plugin-cloud": "^2.2.1",
     "@payloadcms/plugin-form-builder": "^1.0.15",
     "@payloadcms/plugin-seo": "^1.0.14-canary.0",
     "@radix-ui/react-dialog": "^1.0.4",

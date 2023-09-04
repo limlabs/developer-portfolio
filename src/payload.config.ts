@@ -39,21 +39,12 @@ const plugins = [
   }),
 ]
 
-export default (async function () {
-  if (process.env.ENABLE_PAYLOAD_CLOUD === 'true') {
-    // eslint-disable-next-line no-console
-    console.log('Enabling Payload Cloud')
-    const { payloadCloud } = await import('@payloadcms/plugin-cloud')
-    plugins.push(payloadCloud())
-  }
-
-  return buildConfig({
-    serverURL: serverUrl || '',
-    collections: [Media, Pages, Projects, Technologies, Users],
-    globals: [Header, Profile],
-    plugins,
-    typescript: {
-      outputFile: path.resolve(__dirname, 'payload-types.ts'),
-    },
-  })
-})()
+export default buildConfig({
+  serverURL: serverUrl || '',
+  collections: [Media, Pages, Projects, Technologies, Users],
+  globals: [Header, Profile],
+  plugins,
+  typescript: {
+    outputFile: path.resolve(__dirname, 'payload-types.ts'),
+  },
+})
