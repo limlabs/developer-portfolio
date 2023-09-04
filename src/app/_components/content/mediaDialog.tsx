@@ -60,7 +60,7 @@ export const MediaDialog: FC<MediaDialogProps> = ({
         </div>
         {mediaInfo.alt && (
           <div
-            className="w-full text-left sm:text-center pl-2 sm:pl-0"
+            className="w-full text-left sm:text-center pl-2 sm:pl-0 text-primary text-sm md:text-2xl"
             style={{ maxWidth: `${mediaInfo.width}px` }}
           >
             {mediaInfo.alt}

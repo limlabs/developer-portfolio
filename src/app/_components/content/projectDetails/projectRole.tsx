@@ -7,7 +7,7 @@ interface ProjectRolesProps {
 }
 export const ProjectRoles: FC<ProjectRolesProps> = ({ roles }) => {
   return (
-    <h4 className="text-primary dark:text-foreground font-medium leading-tight lg:text-2xl pt-3">
+    <h4 className="text-primary font-medium leading-tight lg:text-2xl pt-3">
       {roles
         .map(
           role =>

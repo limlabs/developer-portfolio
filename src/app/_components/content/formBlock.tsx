@@ -175,7 +175,7 @@ export const FormBlock: FC<FormBlockProps> = props => {
                   className="inline-flex flex-col gap-2 mt-4 first:mt-0 content-box pr-5 last:pr-0"
                   style={{ width: `${field.width}%` }}
                 >
-                  <label htmlFor={props.id} className="text-sm text-primary dark:text-foreground">
+                  <label htmlFor={props.id} className="text-sm text-primary">
                     {field.label}
                   </label>
                   {content}

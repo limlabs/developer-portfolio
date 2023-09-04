@@ -38,7 +38,7 @@ export const NavBar = ({ profile, header }: { profile: Profile; header: Header }
             />
           </Link>
         )}
-        <nav className="flex gap-6 lg:gap-8 w-full max-w-[378px] lg:w-auto justify-center md:justify-end text-base items-center">
+        <nav className="flex gap-6 lg:gap-8 w-full max-w-[378px] lg:w-auto justify-center md:justify-end text-base items-center text-primary">
           <HeaderLinks header={header} />
         </nav>
       </div>
