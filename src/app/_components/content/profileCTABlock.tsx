@@ -26,7 +26,7 @@ const nameVariants = cva('w-full max-w-[417px] mx-auto', {
   },
 })
 
-const imageContainerVariants = cva('flex-shrink-0', {
+const imageContainerVariants = cva('flex-shrink-0 block', {
   variants: {
     variant: {
       compact: 'w-[80px] h-[80px] lg:w-[75px] lg:h-[75px] relative items-center justify-center',
@@ -98,18 +98,16 @@ export const ProfileCTABlock = ({
       <div className={containerVariants({ variant })}>
         <div className={topContentVariants({ variant })}>
           {profile.profileImage && (
-            <div className={imageContainerVariants({ variant })}>
-              <Link href="/">
-                <Image
-                  priority
-                  className="rounded-full"
-                  fill
-                  {...imageProps[variant]}
-                  alt={(profile.profileImage as Media).alt}
-                  src={(profile.profileImage as Media).url}
-                />
-              </Link>
-            </div>
+            <Link href="/" className={imageContainerVariants({ variant })}>
+              <Image
+                priority
+                className="rounded-full"
+                fill
+                {...imageProps[variant]}
+                alt={(profile.profileImage as Media).alt}
+                src={(profile.profileImage as Media).url}
+              />
+            </Link>
           )}
           <div className={textContainerVariants({ variant })}>
             <h1 className={nameVariants({ variant })}>{profile.name}</h1>

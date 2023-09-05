@@ -35,6 +35,13 @@ interface MediaBlockProps {
   captionSize?: 'small' | 'large'
 }
 
+const sizesMap = {
+  full: '1080px',
+  half: '540px',
+  oneThird: '360px',
+  twoThirds: '720px',
+}
+
 export const MediaBlock: FC<MediaBlockProps> = ({
   mediaFields,
   className,
@@ -64,6 +71,7 @@ export const MediaBlock: FC<MediaBlockProps> = ({
                 alt={mediaInfo.alt}
                 width={mediaInfo.width}
                 height={mediaInfo.height}
+                sizes={`(min-width: 1024px) ${sizesMap[size]}, 90vw`}
                 style={{
                   objectFit: mediaFit ?? 'cover',
                 }}
