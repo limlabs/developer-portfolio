@@ -20,12 +20,14 @@ const SocialIconsContent = async ({ className = '' }) => {
         <SocialLink
           href={profile.socialLinks.github}
           icon={<GithubIcon width={24} height={24} aria-label="Github profile link" />}
+          target="_blank"
         />
       )}
       {profile.socialLinks?.linkedin && (
         <SocialLink
           href={profile.socialLinks.linkedin}
           icon={<LinkedinIcon width={24} height={24} aria-label="LinkedIn profile link" />}
+          target="_blank"
         />
       )}
       {profile.socialLinks?.email && (
@@ -38,6 +40,7 @@ const SocialIconsContent = async ({ className = '' }) => {
         <SocialLink
           href={profile.socialLinks.twitter}
           icon={<TwitterIcon width={24} height={24} aria-label="Twitter link" />}
+          target="_blank"
         />
       )}
     </div>
