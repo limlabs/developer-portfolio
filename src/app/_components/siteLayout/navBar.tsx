@@ -20,7 +20,7 @@ export const NavBar = ({ profile, header }: { profile: Profile; header: Header }
     <>
       <div className="fixed z-50 bg-background/50 backdrop-blur-[20px] w-full flex justify-center">
         <SkipToMainContentLink />
-        <div className="w-full max-w-[1300px] h-16 flex justify-center md:justify-between md:px-8 content-box">
+        <div className="w-full max-w-[1300px] h-16 flex items-center justify-center md:justify-between md:px-8 content-box">
           {profile.profileImage && (
             <Link
               href="/"
