@@ -1,4 +1,6 @@
-import { FC } from 'react'
+'use client'
+
+import { FC, useState } from 'react'
 import Image from 'next/image'
 
 import { cn } from '../../../utilities'
@@ -25,8 +27,9 @@ export const MediaDialog: FC<MediaDialogProps> = ({
   caption,
   mediaInfo,
 }) => {
+  const [dialogOpen, setDialogOpen] = useState(false)
   return (
-    <Dialog>
+    <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <DialogTrigger
         className={cn(className, 'first:mt-8 first:md:mt-12 first:lg:mt-0 mb-1 lg:mb-0')}
       >
@@ -35,8 +38,10 @@ export const MediaDialog: FC<MediaDialogProps> = ({
       </DialogTrigger>
       {mediaFit === 'cover' && caption}
       <DialogContent
+        onClick={() => setDialogOpen(false)}
+        showCloseButton
         variant="fullscreen"
-        className="flex justify-center flex-col gap-1 items-start"
+        className="flex justify-center flex-col gap-2 items-start"
         style={{
           maxHeight: `${mediaInfo.height}px`,
           maxWidth: `${mediaInfo.width}px`,
@@ -60,7 +65,7 @@ export const MediaDialog: FC<MediaDialogProps> = ({
         </div>
         {mediaInfo.alt && (
           <div
-            className="w-full text-left sm:text-center pl-2 sm:pl-0 text-primary text-sm md:text-xl"
+            className="w-full text-center pl-2 sm:pl-0 text-primary text-sm lg:text-xl"
             style={{ maxWidth: `${mediaInfo.width}px` }}
           >
             {mediaInfo.alt}

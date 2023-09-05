@@ -40,6 +40,7 @@ export const seedGlobals = async (media: InitialMedia): Promise<void> => {
         {
           link: {
             type: 'custom',
+            newTab: true,
             url: 'https://dribbble.com',
             label: 'Dribbble',
           },

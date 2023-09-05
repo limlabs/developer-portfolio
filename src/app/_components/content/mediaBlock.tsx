@@ -10,8 +10,8 @@ import { MediaDialog } from './mediaDialog'
 const mediaBlockCaptionVariants = cva('flex w-full mt-1 text-primary', {
   variants: {
     captionSize: {
-      small: 'text-sm',
-      large: 'text-base lg:text-xl lg:leading-7',
+      small: 'text-sm md:text-base lg:text-xl',
+      large: 'text-xl lg:leading-7',
     },
   },
   defaultVariants: {

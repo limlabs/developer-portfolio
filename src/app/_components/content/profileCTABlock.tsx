@@ -74,7 +74,7 @@ const titleVariants = cva(
   },
 )
 
-const socialIconVariants = cva('sm:mt-0  sm:ml-4 lg:ml-0', {
+const socialIconVariants = cva('lg:mt-0  sm:ml-4 lg:ml-0', {
   variants: {
     variant: {
       compact: 'mt-4 lg:mt-0 gap-9',

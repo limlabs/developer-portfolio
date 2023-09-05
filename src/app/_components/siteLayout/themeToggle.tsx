@@ -4,6 +4,7 @@ import * as React from 'react'
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
+import { cn } from '../../../utilities'
 import { Button } from '../ui/button'
 import {
   DropdownMenu,
@@ -13,7 +14,7 @@ import {
 } from '../ui/dropdown-menu'
 
 export function ThemeToggle() {
-  const { setTheme } = useTheme()
+  const { setTheme, theme } = useTheme()
 
   return (
     <DropdownMenu>
@@ -24,10 +25,31 @@ export function ThemeToggle() {
           Toggle theme
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme('light')}>Light</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>Dark</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>System</DropdownMenuItem>
+      <DropdownMenuContent align="start" className="text-primary bg-transparent">
+        <DropdownMenuItem
+          className={cn('px-12 cursor-pointer', {
+            'bg-primary text-primary-foreground': theme === 'light',
+          })}
+          onClick={() => setTheme('light')}
+        >
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          className={cn('px-12 cursor-pointer', {
+            'bg-primary text-primary-foreground': theme === 'dark',
+          })}
+          onClick={() => setTheme('dark')}
+        >
+          Dark
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          className={cn('px-12 cursor-pointer', {
+            'bg-primary text-primary-foreground': theme === 'system',
+          })}
+          onClick={() => setTheme('system')}
+        >
+          System
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

@@ -6,5 +6,9 @@ interface SocialLinkProps {
 }
 
 export const SocialLink = ({ icon, href }: SocialLinkProps) => {
-  return <Link href={href}>{icon}</Link>
+  return (
+    <Link href={href} className="text-primary active:text-primary/50" target="_blank">
+      {icon}
+    </Link>
+  )
 }

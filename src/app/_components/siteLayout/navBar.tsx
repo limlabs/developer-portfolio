@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -18,30 +17,33 @@ const HeaderLinks = ({ header }: { header: Header }) => {
 
 export const NavBar = ({ profile, header }: { profile: Profile; header: Header }) => {
   return (
-    <div className="relative z-0 bg-background bg-opacity-50 w-full flex justify-center">
-      <SkipToMainContentLink />
-      <div className="w-full max-w-[1300px] h-full flex justify-center md:justify-between md:px-8 py-2 md:py-0 content-box">
-        {profile.profileImage && (
-          <Link
-            href="/"
-            className="hidden sm:block items-center w-[50px] h-[50px] my-2"
-            style={{ position: 'relative' }}
-          >
-            <Image
-              src={(profile.profileImage as Media).url}
-              className="rounded-full"
-              alt={(profile.profileImage as Media).alt}
-              priority
-              fill
-              sizes="(min-width: 640px) 10vw, (min-width: 1024px) 5vw"
-              style={{ objectFit: 'cover' }}
-            />
-          </Link>
-        )}
-        <nav className="flex gap-6 lg:gap-8 w-full max-w-[378px] lg:w-auto justify-center md:justify-end text-base items-center text-primary">
-          <HeaderLinks header={header} />
-        </nav>
+    <>
+      <div className="fixed z-50 bg-background/50 backdrop-blur-[20px] w-full flex justify-center">
+        <SkipToMainContentLink />
+        <div className="w-full max-w-[1300px] h-full flex justify-center md:justify-between md:px-8 py-5 md:py-0 content-box">
+          {profile.profileImage && (
+            <Link
+              href="/"
+              className="hidden sm:block items-center w-10 h-10 my-4"
+              style={{ position: 'relative' }}
+            >
+              <Image
+                src={(profile.profileImage as Media).url}
+                className="rounded-full"
+                alt={(profile.profileImage as Media).alt}
+                priority
+                fill
+                sizes="(min-width: 640px) 10vw, (min-width: 1024px) 5vw"
+                style={{ objectFit: 'cover' }}
+              />
+            </Link>
+          )}
+          <nav className="flex gap-6 lg:gap-8 w-full max-w-[378px] lg:w-auto justify-center md:justify-end text-base items-center text-primary">
+            <HeaderLinks header={header} />
+          </nav>
+        </div>
       </div>
-    </div>
+      <div className="pb-24" />
+    </>
   )
 }
