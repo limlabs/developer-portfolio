@@ -170,21 +170,39 @@ export const FormBlock: FC<FormBlockProps> = props => {
               }
 
               return (
-                <div
-                  key={index}
-                  className="inline-flex flex-col gap-2 mt-4 first:mt-0 content-box pr-5 last:pr-0"
-                  style={{ width: `${field.width}%` }}
-                >
-                  <label htmlFor={props.id} className="text-sm text-primary">
-                    {field.label}
-                  </label>
-                  {content}
-                  {formMethods.formState.errors[field.name]?.message && (
-                    <div className="text-sm text-red-500 mt-2">
-                      {formMethods.formState.errors[field.name].message as string}
-                    </div>
-                  )}
-                </div>
+                <>
+                  <style
+                    key={`style-${index}`}
+                    dangerouslySetInnerHTML={{
+                      __html: `
+                    #formField__${props.id} {
+                      width: 100%;
+                    }
+
+                    @media (min-width: 1024px) {
+                      #formField__${props.id} {
+                        width: ${field.width}%;
+                      }
+                    }
+                  `,
+                    }}
+                  />
+                  <div
+                    id={`formField__${props.id}`}
+                    key={index}
+                    className="inline-flex flex-col gap-2 mt-4 first:mt-0 content-box pb-4 last:pb-0 lg:pb-0 pr-0 lg:pr-5 last:pr-0 "
+                  >
+                    <label htmlFor={props.id} className="text-sm text-primary">
+                      {field.label}
+                    </label>
+                    {content}
+                    {formMethods.formState.errors[field.name]?.message && (
+                      <div className="text-sm text-red-500 mt-2">
+                        {formMethods.formState.errors[field.name].message as string}
+                      </div>
+                    )}
+                  </div>
+                </>
               )
             })}
           </div>
