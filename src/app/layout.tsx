@@ -26,7 +26,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="en" className={`dark ${inter.className}`}>
-      <body className="w-screen overflow-x-hidden">
+      <body className="w-full overflow-x-hidden">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Backdrop />
           <div className="relative z-20 min-h-screen flex flex-col items-center">
