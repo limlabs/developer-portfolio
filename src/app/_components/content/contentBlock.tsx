@@ -1,6 +1,5 @@
-import { FC, Fragment } from 'react'
+import { FC } from 'react'
 
-import { Page } from '../../../payload-types'
 import { Block, BlockProps } from '../ui/block'
 import { PayloadLink, PayloadLinkType } from './link'
 import { RichText } from './richText'
