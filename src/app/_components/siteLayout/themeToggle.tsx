@@ -25,7 +25,7 @@ export function ThemeToggle() {
           Toggle theme
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="text-primary bg-transparent">
+      <DropdownMenuContent align="start" className="bg-primary-foreground text-primary">
         <DropdownMenuItem
           className={cn('px-12 cursor-pointer', {
             'bg-primary text-primary-foreground': theme === 'light',

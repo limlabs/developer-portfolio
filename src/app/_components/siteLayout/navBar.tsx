@@ -43,7 +43,7 @@ export const NavBar = ({ profile, header }: { profile: Profile; header: Header }
           </nav>
         </div>
       </div>
-      <div className="pb-24" />
+      <div className="pb-16" />
     </>
   )
 }
