@@ -10,7 +10,7 @@ dotenv.config({
 import express from 'express'
 import payload from 'payload'
 
-import { serverUrl } from './app/_utils/api'
+import { serverUrl } from './app/utils/api'
 import { seed } from './seed'
 
 const app = express()

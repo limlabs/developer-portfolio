@@ -1,16 +1,16 @@
-import { Metadata, ResolvingMetadata } from 'next'
-import { notFound, redirect } from 'next/navigation'
+import { Metadata, ResolvingMetadata } from "next";
+import { notFound, redirect } from "next/navigation";
 
-import { Media } from '../../../payload-types'
-import { ProjectDetails } from '../../_components/content/projectDetails/projectDetails'
-import { fetchProfile, fetchProject } from '../../_utils/api'
-import { parsePreviewOptions } from '../../_utils/preview'
+import { Media } from "../../../payload-types";
+import { ProjectDetails } from "../../components/content/projectDetails/ProjectDetails";
+import { fetchProfile, fetchProject } from "../../utils/api";
+import { parsePreviewOptions } from "../../utils/preview";
 
 interface ProjectPageProps {
   params: {
-    slug: string
-  }
-  searchParams: Record<string, string>
+    slug: string;
+  };
+  searchParams: Record<string, string>;
 }
 
 export async function generateMetadata(
@@ -20,17 +20,17 @@ export async function generateMetadata(
   const [project, previousTitle] = await Promise.all([
     fetchProject(params.slug, parsePreviewOptions(searchParams)),
     (await parent)?.title.absolute,
-  ])
+  ]);
 
-  const images: string[] = []
+  const images: string[] = [];
   if (project?.meta?.image) {
-    images.push((project.meta.image as Media).url)
+    images.push((project.meta.image as Media).url);
   } else if (project?.featuredImage) {
-    images.push((project.featuredImage as Media).url)
+    images.push((project.featuredImage as Media).url);
   }
 
-  const title = project?.meta?.title || project?.title || previousTitle
-  const description = project?.meta?.description || 'Details on a portoflio project.'
+  const title = project?.meta?.title || project?.title || previousTitle;
+  const description = project?.meta?.description || "Details on a portoflio project.";
 
   return {
     title,
@@ -39,21 +39,21 @@ export async function generateMetadata(
       title,
       description,
       images,
-      type: 'article',
+      type: "article",
       modifiedTime: project.updatedAt,
     },
-  }
+  };
 }
 
 export default async function ProjectPage({ params, searchParams }: ProjectPageProps) {
   const [project, profile] = await Promise.all([
     fetchProject(params.slug, parsePreviewOptions(searchParams)),
     fetchProfile(),
-  ])
+  ]);
 
   if (!project) {
-    notFound()
+    notFound();
   }
 
-  return <ProjectDetails project={project} profile={profile} />
+  return <ProjectDetails project={project} profile={profile} />;
 }

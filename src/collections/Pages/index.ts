@@ -2,7 +2,7 @@ import type { CollectionConfig } from 'payload/types'
 
 import { loggedIn } from '../../access/loggedIn'
 import { publishedOrLoggedIn } from '../../access/publishedOrLoggedIn'
-import { serverUrl } from '../../app/_utils/api'
+import { serverUrl } from '../../app/utils/api'
 import { Content } from '../../blocks/Content'
 import { Form } from '../../blocks/Form'
 import { MediaBlock } from '../../blocks/Media'

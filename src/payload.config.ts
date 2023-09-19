@@ -9,7 +9,7 @@ dotenv.config({
 
 import { buildConfig } from 'payload/config'
 
-import { serverUrl } from './app/_utils/api'
+import { serverUrl } from './app/utils/api'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Projects } from './collections/Projects'

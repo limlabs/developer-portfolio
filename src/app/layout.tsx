@@ -1,28 +1,28 @@
-import React from 'react'
-import { Inter } from 'next/font/google'
+import React from "react";
+import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
-import { Footer } from './_components/siteLayout/footer'
-import { NavBar } from './_components/siteLayout/navBar'
-import { Backdrop } from './_components/ui/backdrop/backdrop'
-import { ThemeProvider } from './_provider/themeProvider'
-import { fetchHeader, fetchProfile, serverUrl } from './_utils/api'
+import { Footer } from "./components/siteLayout/Footer";
+import { NavBar } from "./components/siteLayout/NavBar";
+import { Backdrop } from "./components/ui/backdrop/Backdrop";
+import { ThemeProvider } from "./provider/ThemeProvider";
+import { fetchHeader, fetchProfile, serverUrl } from "./utils/api";
 
-import './globals.css'
+import "./globals.css";
 
 export async function generateMetadata() {
-  const profile = await fetchProfile()
+  const profile = await fetchProfile();
 
   return {
     metadataBase: new URL(serverUrl),
     title: `Portfolio | ${profile.name}`,
-    description: 'My professional portfolio featuring past projects and contact info.',
-  }
+    description: "My professional portfolio featuring past projects and contact info.",
+  };
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const [profile, header] = await Promise.all([fetchProfile(), fetchHeader()])
+  const [profile, header] = await Promise.all([fetchProfile(), fetchHeader()]);
 
   return (
     <html lang="en" className={`${inter.className} dark`}>
@@ -42,5 +42,5 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

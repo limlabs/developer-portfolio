@@ -1,6 +1,6 @@
 import type { AfterChangeHook, TypeWithID } from 'payload/dist/collections/config/types'
 
-import { serverUrl } from '../app/_utils/api'
+import { serverUrl } from '../app/utils/api'
 
 export const formatAppURL = ({ doc }): string => {
   const { pathname } = new URL(`${serverUrl}/projects/${doc.slug}`)

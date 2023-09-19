@@ -1,28 +1,28 @@
-import React from 'react'
-import { Metadata, ResolvingMetadata } from 'next'
+import React from "react";
+import { Metadata, ResolvingMetadata } from "next";
 
-import { Media } from '../payload-types'
-import { ContentLayout } from './_components/content/contentLayout'
-import { fetchPage, fetchProfile } from './_utils/api'
-import { parsePreviewOptions } from './_utils/preview'
+import { Media } from "../payload-types";
+import { ContentLayout } from "./components/content/ContentLayout";
+import { fetchPage, fetchProfile } from "./utils/api";
+import { parsePreviewOptions } from "./utils/preview";
 
 interface LandingPageProps {
-  searchParams: Record<string, string>
+  searchParams: Record<string, string>;
 }
 
 export async function generateMetadata(
   { searchParams }: LandingPageProps,
   parent?: ResolvingMetadata,
 ): Promise<Metadata> {
-  const defaultTitle = (await parent)?.title?.absolute
-  const options = parsePreviewOptions(searchParams)
-  const page = await fetchPage('home', options)
+  const defaultTitle = (await parent)?.title?.absolute;
+  const options = parsePreviewOptions(searchParams);
+  const page = await fetchPage("home", options);
 
-  const title = page?.meta?.title || defaultTitle
-  const description = page?.meta?.description || 'A portfolio of work by a digital professional.'
-  const images = []
+  const title = page?.meta?.title || defaultTitle;
+  const description = page?.meta?.description || "A portfolio of work by a digital professional.";
+  const images = [];
   if (page?.meta?.image) {
-    images.push((page.meta.image as Media).url)
+    images.push((page.meta.image as Media).url);
   }
 
   return {
@@ -31,15 +31,15 @@ export async function generateMetadata(
     openGraph: {
       title,
       description,
-      type: 'website',
+      type: "website",
       images,
     },
-  }
+  };
 }
 
 export default async function LandingPage({ searchParams }: LandingPageProps) {
-  const options = parsePreviewOptions(searchParams)
-  const [page, profile] = await Promise.all([fetchPage('home', options), fetchProfile()])
+  const options = parsePreviewOptions(searchParams);
+  const [page, profile] = await Promise.all([fetchPage("home", options), fetchProfile()]);
 
-  return <ContentLayout profile={profile} layout={page.layout} />
+  return <ContentLayout profile={profile} layout={page.layout} />;
 }
