@@ -44,14 +44,15 @@
     "graphql": "^16.8.2",
     "lucide-react": "^0.263.1",
     "next": "15.0.0-rc.0",
-    "next-themes": "^0.2.1",
     "payload": "3.0.0-beta.55",
     "react": "19.0.0-rc-f994737d14-20240522",
     "react-dom": "19.0.0-rc-f994737d14-20240522",
     "react-hook-form": "^7.45.4",
     "sharp": "0.32.6",
     "tailwind-merge": "^1.14.0",
-    "tailwindcss-animate": "^1.0.6"
+    "tailwindcss-animate": "^1.0.6",
+    "tailwindcss": "^3.4.4",
+    "autoprefixer": "^10.4.19"
   },
   "devDependencies": {
     "@payloadcms/graphql": "3.0.0-beta.55",

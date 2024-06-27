@@ -6,7 +6,6 @@ const inter = Inter({ subsets: ['latin'] })
 import { Footer } from '@/components/siteLayout/footer'
 import { NavBar } from '@/components/siteLayout/navBar'
 import { Backdrop } from '@/components/ui/backdrop/backdrop'
-import { ThemeProvider } from '@/provider/themeProvider'
 import { fetchHeader, fetchProfile, serverUrl } from '@/utilities/api'
 
 import './globals.css'
@@ -27,7 +26,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" className={`${inter.className} dark`}>
       <body className="w-full overflow-x-hidden">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Backdrop />
           <div className="relative z-20 min-h-screen flex flex-col items-center">
             <NavBar profile={profile} header={header} />
@@ -39,7 +37,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             </div>
             <Footer profile={profile} />
           </div>
-        </ThemeProvider>
       </body>
     </html>
   )
