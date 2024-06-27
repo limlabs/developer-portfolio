@@ -28,9 +28,9 @@ export const NavBar = ({ profile, header }: { profile: Profile; header: Header }
               style={{ position: 'relative' }}
             >
               <Image
-                src={(profile.profileImage as Media).url as string}
+                src={(profile.profileImage as Media)?.url as string}
                 className="rounded-full"
-                alt={(profile.profileImage as Media).alt as string}
+                alt={(profile.profileImage as Media)?.alt as string}
                 priority
                 fill
                 sizes="(min-width: 640px) 10vw, (min-width: 1024px) 5vw"

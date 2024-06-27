@@ -24,9 +24,9 @@ export async function generateMetadata(
 
   const images: string[] = []
   if (project?.meta?.image) {
-    images.push((project.meta.image as Media).url ?? '')
+    images.push((project.meta.image as Media)?.url ?? '')
   } else if (project?.featuredImage) {
-    images.push((project.featuredImage as Media).url ?? '')
+    images.push((project.featuredImage as Media)?.url ?? '')
   }
 
   const title = project?.meta?.title || project?.title || previousTitle

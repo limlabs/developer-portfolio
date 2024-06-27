@@ -104,8 +104,8 @@ export const ProfileCTABlock = ({
                 className="rounded-full"
                 fill
                 {...imageProps[variant]}
-                alt={(profile.profileImage as Media).alt}
-                src={(profile.profileImage as Media).url as string}
+                alt={(profile.profileImage as Media)?.alt}
+                src={(profile.profileImage as Media)?.url as string}
               />
             </Link>
           )}

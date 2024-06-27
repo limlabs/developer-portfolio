@@ -21,7 +21,7 @@ export async function generateMetadata(
   const title = page?.meta?.title || defaultTitle
   const description = page?.meta?.description || 'A portfolio of work by a digital professional.'
   const images = []
-  if ((page?.meta?.image as Media).url) {
+  if ((page?.meta?.image as Media)?.url) {
     images.push((page?.meta?.image as Media).url as string)
   }
 
