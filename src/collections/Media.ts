@@ -1,6 +1,6 @@
-import type { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload'
 
-import { loggedIn } from '../access/loggedIn'
+import { loggedIn } from '@/access/loggedIn'
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -11,7 +11,6 @@ export const Media: CollectionConfig = {
     delete: loggedIn,
   },
   upload: {
-    staticURL: '/media',
     staticDir: 'media',
   },
   fields: [

@@ -1,76 +1,87 @@
-# Payload Developer Portfolio Example
+# Payload 3.0 Beta Demo
 
-This example demonstrates a complete professional portfolio application using [Payload](https://github.com/payloadcms/payload) and NextJS in a single Express server. 
+This repo showcases a demo of the Payload 3.0 Beta running completely within Next.js.
 
-## Highlights
+> [!IMPORTANT]
+> It's extremely important to note that as of now, this demo contains BETA software and you are 100% guaranteed to run into bugs / weird stuff.
+>
+> We're actively working toward a stable release as fast as we possibly can.
 
-- 💪 **Batteries-Included** 
-  - Design beautiful pages, describe portfolio projects, and build forms dynamically without writing code
-- 🔎 **SEO-Friendly** 
-  - Includes [SEO plugin](https://github.com/payloadcms/plugin-seo) integration to author and preview page metadata
-- 🪭 **Customization-Friendly** 
-  - Light/dark mode, [@shadcn/ui](https://ui.shadcn.com/) integration, prebuilt animations, and modular CMS "blocks" encourage extension and re-use
-- 🏎️ **Performance-Focused** 
-  - Uses React Server Components, App Router, and `next/image` to optimize Web Vitals metrics
-- 🦯 **Accessibility-Minded** 
-  - Navigation, contrast, dialogs, and forms built with [WCAG 2](https://www.w3.org/WAI/standards-guidelines/wcag/) in mind
+### Highlights
 
-## Quick Start
+1. Payload is now Next.js-native
+1. Turbopack works out of the box (this will get faster over time, expect more here)
+1. The Payload admin UI is built with React Server Components and automatically eliminates server-side code from your admin bundle, completely alleviating the need to use Webpack aliases to remove hooks, access control, etc.
+1. Payload is now fully-ESM across the board
+1. GraphQL is now initialized only when you hit the GraphQL endpoint, and does not affect overhead of REST API routes
+1. All UI components have been abstracted into a separate `@payloadcms/ui` package, which will be fully documented and exposed for your re-use once we hit stable 3.0 or before
+1. You can run your own Next.js site alongside of Payload in the same app
+1. You can now deploy Payload to Vercel and Netlify, and there will be official support for Vercel Blob Storage and Netlify Blobs coming soon (so no S3 needed for files)
+1. Server-side HMR works out of the box, with no need for `nodemon` or similar. When the Payload config changes, your app will automatically re-initialize Payload seamlessly in the background
+1. All custom React components can be server components by default, and you can decide if you want them to be server components or client components
+1. Sharp has been abstracted to be an optional dependency
+1. Payload now relies on the Web Request / Response APIs rather than the Node Request / Response
+1. Express can still be used with Next.js' Custom Server functionality
+1. Payload itself has slimmed down significantly and can now be fully portable, run anywhere. You can leverage the Payload Local API completely outside of Next.js if you want.
+1. The data layer, including the shape of the database Payload used and the API responses in 2.0, has not been affected whatsoever
 
-### Prerequisites
+### Work to come
 
-- [Node](https://nodejs.org/en) 18.x or newer
-- [MongoDB](https://www.mongodb.com/try/download/community)
+We are making this available to our community so that we can gather your feedback and test the new approach that Payload is taking. Don't expect it to be fully functional yet. There are some things that we are aware of that are not yet completed, but we're going to keep blazing through the remaining items as fast as we can to reach stable 3.0 as quickly and efficiently as possible. Here are a few of the items that we are still working on (not a full list):
 
-### Setup
+1. Documentation
+1. Vercel Blob Storage and Netlify Blobs adapter
+1. Lots of bugs for sure
+1. 100% of tests passing
+1. Compiler speed improvements (turbo is beta still, it is slower than it should be. it will get faster)
+1. Overall speed improvements
+1. An install script to be able to install Payload easily into any existing Next.js app
+1. A full list of breaking changes for 2.0 -> 3.0, including an in-depth migration guide
 
-1. First, clone the repo
-1. Then `cd YOUR_PROJECT_REPO && cp .env.example .env`
-1. Next `yarn && yarn seed` to start the app and seed it with example data
-1. Now `open http://localhost:3000` to view the site 
+### Existing Next.js project
 
-That's it! Changes made in `./src` will be reflected in your app. See the [Development](#development) section for more details.
+You can install Payload into your existing Next.js project using this command:
 
-### Editing Content
+```
+npx create-payload-app@beta
+```
 
-To access the Admin interface, where you can edit content:
+Contents from `src/app` will have to be moved into a new directory `src/app/(app)` so that Payload's root layout and routes can remain isolated from the rest of your app.
 
-1. Go to `http://localhost:3000/admin` 
-1. Login with `dev@payloadcms.com` / `test`
+### Using this repo
 
-## How it works
+To try out this repo yourself, follow the steps below:
 
-When you use Payload, you plug it into _**your**_ Express server. That's a fundamental difference between Payload and other application frameworks. It means that when you use Payload, you're technically _adding_ Payload to _your_ app, and not building a "Payload app".
+1. Clone the repo to your computer (`git clone git@github.com:payloadcms/payload-3.0-demo.git`)
+2. `cd` into the new folder by running `cd ./payload-3.0-demo`
+3. Copy the `.env.local.example` by running `cp .env.local.example .env.local` in the repo, then fill out the values including the connection string to your DB
+4. Install dependencies with whatever package manager you use (`pnpm i`, `npm install`, `yarn`, etc.). `pnpm` is highly recommended. The usage of yarn v1 is discouraged.
+5. Start your database. For local postgresql use `.\start-database.sh` to start it in docker container.
+6. Fire it up (`pnpm dev`, `npm run dev`, `yarn dev`, etc.)
+7. Visit https://localhost:3000 and log in with the user created within the config's `onInit` method
 
-One of the strengths of this pattern is that it lets you do powerful things like integrate your Payload instance directly with your front-end. This will allow you to host Payload alongside a fully dynamic, CMS-integrated website or app on a single, combined server—while still getting all of the benefits of a headless CMS.
+### Follow along with breaking changes
 
-## Development
+There is a possibility that we will make breaking changes before releasing the full stable version of Payload 3.0.
 
-To spin up this example locally, follow the [Quick Start](#quick-start).
+**To follow along with breaking changes in advance of the full, stable release,** you can keep an eye on the [CHANGELOG.md](https://github.com/payloadcms/payload-3.0-demo/blob/main/CHANGELOG.md).
 
-### Seed
+### Technical details
 
-On boot, a seed script is included to scaffold a basic database for you to use as an example. This is done by setting the `PAYLOAD_DROP_DATABASE` and `PAYLOAD_SEED` environment variables which are included in the `.env.example` by default. You can remove these from your `.env` to prevent this behavior. You can also freshly seed your project at any time by running `yarn seed`. This seed creates:
+**The app folder**
 
-- An admin user with email `dev@payloadcms.com`, password `test`, 
-- A `home` page with Profile CTA, project grid, and contact form
-- Example header and profile data
-- Example media assets
-- Example portfolio projects
+You'll see that Payload requires a few files to be present in your `/app` folder. There are files for the admin UI as well as files for all route handlers. We've consolidated all admin views into a single `page.tsx` and consolidated most of the REST endpoints into a single `route.ts` file for simplicity, but also for development performance. With this pattern, you only have to compile the admin UI / REST API / GraphQL API a single time - and from there, it will be lightning-fast.
 
-> NOTICE: seeding the database is destructive because it drops your current database to populate a fresh one from the seed template. Only run this command if you are starting a new project or can afford to lose your current data.
+**The `next.config.js` `withPayload` function**
 
-## Production
+You'll see in the Next.js config that we have a `withPayload` function installed. This function is required for Payload to operate, and it ensures compatibility with packages that Payload needs such as `drizzle-kit`, `sharp`, `pino`, and `mongodb`.
 
-To run Payload in production, you need to build and serve the Admin panel. To do so, follow these steps:
+**Using a TypeScript alias to point to your Payload config**
 
-1. First, invoke the `payload build` script by running `yarn build` in your project root. This creates a `./build` directory with a production-ready admin bundle.
-1. Then, run `yarn serve` to run Node in production and serve Payload from the `./build` directory.
+In the `tsconfig.json` within this repo, you'll see that we have `paths` set up to point `@payload-config` to the Payload config, which is located in the root. You can put your config wherever you want. By default, the `page.tsx` files and `route.ts` files within the `/app` folder use this alias. In the future, we might make it optional to use `paths` - and by default, we might just hard-code relative path imports to the config. We would like to hear your feedback on this part. What do you prefer? Use `paths` or just use relative imports?
 
-### Deployment
+---
 
-The easiest way to deploy your project is to use [Payload Cloud](https://payloadcms.com/new/import), a one-click hosting solution to deploy production-ready instances of your Payload apps directly from your GitHub repo. You can also choose to self-host your app, check out the [Deployment](https://payloadcms.com/docs/production/deployment) docs for more details.
+### Find a bug?
 
-## Questions
-
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+Open an issue on this repo at `https://github.com/payloadcms/payload-3.0-demo` with as much detail as you can provide and we will tackle them as fast as we can. Let's get stable!

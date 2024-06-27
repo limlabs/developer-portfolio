@@ -1,6 +1,6 @@
-import type { Block } from 'payload/types'
+import type { Block } from 'payload'
 
-import link from '../../fields/link'
+import link from '@/fields/link'
 
 export const Content: Block = {
   slug: 'content',
@@ -43,7 +43,7 @@ export const Content: Block = {
         link({
           overrides: {
             admin: {
-              condition: (_, { enableLink }) => Boolean(enableLink),
+              condition: (_: any, { enableLink }: any) => Boolean(enableLink),
             },
           },
         }),

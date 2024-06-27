@@ -1,6 +1,6 @@
-import type { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload'
 
-import { loggedIn } from '../access/loggedIn'
+import { loggedIn } from '@/access/loggedIn'
 
 export const Technologies: CollectionConfig = {
   slug: 'technologies',

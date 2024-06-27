@@ -1,6 +1,6 @@
-import type { Field, GroupField } from 'payload/types'
+import type { Field, GroupField } from 'payload'
 
-import deepMerge from '../utilities/deepMerge'
+import deepMerge from '@/utilities/deepMerge'
 
 export const appearanceOptions = {
   primary: {
@@ -92,8 +92,13 @@ const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = 
   ]
 
   if (!disableLabel) {
-    linkTypes[0].admin.width = '50%'
-    linkTypes[1].admin.width = '50%'
+    if (linkTypes[0].admin) {
+      linkTypes[0].admin.width = '50%'
+    }
+
+    if (linkTypes[1].admin) {
+      linkTypes[1].admin.width = '50%'
+    }
 
     linkResult.fields.push({
       type: 'row',

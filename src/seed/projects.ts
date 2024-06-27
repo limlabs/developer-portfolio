@@ -151,8 +151,8 @@ export const seedProjects = async (media: InitialMedia, technologies: InitialTec
         title: 'Design Design',
         description: designDesignMockDescription,
         role: ['uiUxDesigner'],
-        startDate: new Date('2020-01-01'),
-        endDate: new Date('2020-01-31'),
+        startDate: new Date('2020-01-01').toISOString(),
+        endDate: new Date('2020-01-31').toISOString(),
         technologiesUsed,
         featuredImage: media.designDesignFeaturedScreenshot.id,
         layout: [
@@ -191,8 +191,8 @@ export const seedProjects = async (media: InitialMedia, technologies: InitialTec
         title: 'Outside App',
         description: outsideAppMockDescription,
         role: ['uiUxDesigner'],
-        startDate: new Date('2023-02-01'),
-        endDate: new Date('2023-02-28'),
+        startDate: new Date('2023-02-01').toISOString(),
+        endDate: new Date('2023-02-28').toISOString(),
         technologiesUsed,
         featuredImage: media.outsideAppFeaturedScreenshot.id,
         layout: [
@@ -230,8 +230,8 @@ export const seedProjects = async (media: InitialMedia, technologies: InitialTec
         title: 'Design App',
         description: designAppMockDescription,
         role: ['uiUxDesigner'],
-        startDate: new Date('2021-03-01'),
-        endDate: new Date('2021-03-31'),
+        startDate: new Date('2021-03-01').toISOString(),
+        endDate: new Date('2021-03-31').toISOString(),
         technologiesUsed,
         featuredImage: media.designAppFeaturedScreenshot.id,
         layout: [
@@ -269,8 +269,8 @@ export const seedProjects = async (media: InitialMedia, technologies: InitialTec
         title: 'Art App',
         description: artAppMockDescription,
         role: ['uiUxDesigner'],
-        startDate: new Date('2021-04-01'),
-        endDate: new Date('2021-04-30'),
+        startDate: new Date('2021-04-01').toISOString(),
+        endDate: new Date('2021-04-30').toISOString(),
         technologiesUsed,
         featuredImage: media.artAppFeaturedScreenshot.id,
         layout: [

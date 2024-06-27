@@ -1,8 +1,9 @@
-import type { AfterChangeHook, TypeWithID } from 'payload/dist/collections/config/types'
+import type {  TypeWithID } from 'payload'
 
-import { serverUrl } from '../app/_utils/api'
+import { serverUrl } from '@/utilities/api'
+import { AfterChangeHook } from 'node_modules/payload/dist/globals/config/types'
 
-export const formatAppURL = ({ doc }): string => {
+export const formatAppURL = ({ doc }: any): string => {
   const { pathname } = new URL(`${serverUrl}/projects/${doc.slug}`)
   return pathname
 }
@@ -11,8 +12,8 @@ export const formatAppURL = ({ doc }): string => {
 // Notice that the hook itself is not async and we are not awaiting `revalidate`
 // Only revalidate existing docs that are published
 export const tagRevalidator =
-  <T extends TypeWithID & { _status?: string }>(getTag: (doc: T) => string): AfterChangeHook<T> =>
-  ({ doc, req, operation }) => {
+  <T extends TypeWithID & { _status?: string }>(getTag: (doc: T) => string): AfterChangeHook =>
+  ({ doc, req, operation }: any) => {
     if (operation === 'update' && (!doc._status || doc._status === 'published')) {
       const revalidate = async (): Promise<void> => {
         const tag = getTag(doc)

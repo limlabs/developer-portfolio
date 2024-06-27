@@ -1,7 +1,7 @@
-import type { GlobalConfig } from 'payload/types'
+import type { GlobalConfig } from 'payload'
 
-import { loggedIn } from '../access/loggedIn'
-import { tagRevalidator } from '../utilities/tagRevalidator'
+import { loggedIn } from '@/access/loggedIn'
+import { tagRevalidator } from '@/utilities/tagRevalidator'
 
 export const Profile: GlobalConfig = {
   slug: 'profile',
