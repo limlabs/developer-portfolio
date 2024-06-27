@@ -1,8 +1,6 @@
-import payload from 'payload'
 
-import type { InitialMedia } from './media'
 
-export const seedGlobals = async (media: InitialMedia): Promise<void> => {
+export const seedGlobals = async (payload, media) => {
   await payload.updateGlobal({
     slug: 'profile',
     draft: false,

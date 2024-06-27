@@ -1,7 +1,4 @@
-import payload from 'payload'
-
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const seedTechnologies = async () => {
+export const seedTechnologies = async (payload) => {
   const [webflowDoc, inVisionDoc, figmaDoc, illustratorDoc] = await Promise.all([
     payload.create({
       collection: 'technologies',
@@ -37,4 +34,3 @@ export const seedTechnologies = async () => {
   }
 }
 
-export type InitialTechnologies = Awaited<ReturnType<typeof seedTechnologies>>

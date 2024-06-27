@@ -1,6 +1,4 @@
-import payload from 'payload'
-
-export const seedUsers = async (): Promise<void> => {
+export const seedUsers = async (payload) => {
   // create admin
   await payload.create({
     collection: 'users',

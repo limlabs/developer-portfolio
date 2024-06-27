@@ -1,8 +1,3 @@
-import payload from 'payload'
-
-import type { InitialMedia } from './media'
-import type { InitialTechnologies } from './technologies'
-
 const outsideAppMockDescription = [
   {
     children: [
@@ -140,7 +135,7 @@ const artAppMockDetailedDescription = [
 ]
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const seedProjects = async (media: InitialMedia, technologies: InitialTechnologies) => {
+export const seedProjects = async (payload, media, technologies) => {
   const { genericMarketingImageOne, genericMarketingImageTwo, genericMarketingImageThree } = media
   const technologiesUsed = Object.values(technologies).map(technology => technology.id)
 
@@ -306,5 +301,3 @@ export const seedProjects = async (media: InitialMedia, technologies: InitialTec
 
   return { designDesign, outsideApp, designApp, artApp }
 }
-
-export type InitialProjects = Awaited<ReturnType<typeof seedProjects>>

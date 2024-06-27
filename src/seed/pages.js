@@ -1,9 +1,4 @@
-import payload from 'payload'
-
-import type { InitialForms } from './forms'
-import type { InitialProjects } from './projects'
-
-export const seedPages = async (forms: InitialForms, projects: InitialProjects): Promise<void> => {
+export const seedPages = async (payload, forms, projects) => {
   await payload.create({
     collection: 'pages',
     data: {

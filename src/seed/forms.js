@@ -1,5 +1,3 @@
-import payload from 'payload'
-
 const confirmationMessage = [
   {
     children: [
@@ -11,7 +9,7 @@ const confirmationMessage = [
 ]
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const seedForms = async () => {
+export const seedForms = async (payload) => {
   const contactForm = await payload.create({
     collection: 'forms',
     data: {
@@ -62,4 +60,3 @@ export const seedForms = async () => {
   return { contactForm }
 }
 
-export type InitialForms = Awaited<ReturnType<typeof seedForms>>
