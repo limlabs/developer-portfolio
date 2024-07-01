@@ -9,6 +9,7 @@ import { Backdrop } from '@/components/ui/backdrop/backdrop'
 import { fetchHeader, fetchProfile, serverUrl } from '@/utilities/api'
 
 import './globals.css'
+import { ThemeProvider } from '@/components/siteLayout/themeProvider'
 
 export async function generateMetadata() {
   const profile = await fetchProfile()
@@ -24,8 +25,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const [profile, header] = await Promise.all([fetchProfile(), fetchHeader()])
 
   return (
-    <html lang="en" className={`${inter.className} dark`}>
+    <html lang="en" className={`${inter.className}`} suppressHydrationWarning>
       <body className="w-full overflow-x-hidden">
+        <ThemeProvider
+          enableColorScheme
+          enableSystem
+          defaultTheme='system'
+          disableTransitionOnChange={false}
+          attribute='class'
+        >
           <Backdrop />
           <div className="relative z-20 min-h-screen flex flex-col items-center">
             <NavBar profile={profile} header={header} />
@@ -33,10 +41,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               className="flex flex-col w-full max-w-[1080px] px-7 lg:px-8 xl:px-0 justify-center"
               id="main-content"
             >
-              <main>{children}</main>
+              {children}
             </div>
             <Footer profile={profile} />
           </div>
+        </ThemeProvider>
       </body>
     </html>
   )
