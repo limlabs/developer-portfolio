@@ -10,6 +10,8 @@ interface LandingPageProps {
   searchParams: Record<string, string>
 }
 
+export const dynamic = 'force-dynamic'
+
 export async function generateMetadata(
   { searchParams }: LandingPageProps,
   parent: ResolvingMetadata,

@@ -6,6 +6,8 @@ import { ContentLayout } from '@/components/content/contentLayout'
 import { fetchPage } from '@/utilities/api'
 import { parsePreviewOptions } from '@/utilities/preview'
 
+export const dynamic = 'force-dynamic'
+
 interface LandingPageProps {
   params: {
     slug: string
