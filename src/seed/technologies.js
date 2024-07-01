@@ -1,4 +1,4 @@
-export const seedTechnologies = async (payload) => {
+export const seedTechnologies = async payload => {
   const [webflowDoc, inVisionDoc, figmaDoc, illustratorDoc] = await Promise.all([
     payload.create({
       collection: 'technologies',
@@ -33,4 +33,3 @@ export const seedTechnologies = async (payload) => {
     illustratorDoc,
   }
 }
-

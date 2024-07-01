@@ -27,7 +27,7 @@ const complimentSizes: Record<LayoutSize, LayoutSize> = {
   twoThirds: 'oneThird',
   half: 'half',
   full: 'full',
-} as const;
+} as const
 
 export const MediaContentBlock: FC<MediaContentBlockProps> = ({ mediaContentFields, priority }) => {
   return (
@@ -80,7 +80,7 @@ export const MediaContentBlock: FC<MediaContentBlockProps> = ({ mediaContentFiel
             content = (
               <PayloadLink
                 link={link}
-                className="col-span-6 grid grid-cols-6 mt-8 lg:mt-0 lg:gap-20"
+                className="col-span-6 mt-8 grid grid-cols-6 lg:mt-0 lg:gap-20"
               >
                 {content}
               </PayloadLink>

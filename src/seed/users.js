@@ -1,4 +1,4 @@
-export const seedUsers = async (payload) => {
+export const seedUsers = async payload => {
   // create admin
   await payload.create({
     collection: 'users',

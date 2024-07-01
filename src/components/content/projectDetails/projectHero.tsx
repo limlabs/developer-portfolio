@@ -11,10 +11,10 @@ interface ProjectHeroProps {
 
 export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
   return (
-    <div className="relative z-10 lg:pl-20 mt-6 lg:mt-0 flex flex-col items-start lg:items-center justify-center col-span-6 lg:col-span-3 lg:flex-shrink-0 ">
+    <div className="relative z-10 col-span-6 mt-6 flex flex-col items-start justify-center lg:col-span-3 lg:mt-0 lg:flex-shrink-0 lg:items-center lg:pl-20">
       {project.technologiesUsed && <TechnologiesUsed technologies={project.technologiesUsed} />}
       <MediaBlock
-        className="w-full lg:max-w-[545px] mb-10 md:mb-16 lg:mb-0"
+        className="mb-10 w-full md:mb-16 lg:mb-0 lg:max-w-[545px]"
         mediaFields={[{ media: project.featuredImage as string, size: 'full' }]}
         containerClassName="h-[51vw] sm:h-auto lg:h-[340px]"
         imageClassName="h-[51vw] sm:h-auto lg:h-[340px]"

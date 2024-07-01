@@ -41,7 +41,7 @@ export const FadeInContent: FC<PropsWithChildren<AllHTMLAttributes<HTMLDivElemen
   }, [])
 
   return (
-    <div ref={contentRef} className={`opacity-0 translate-y-10 ${className}`} {...props}>
+    <div ref={contentRef} className={`translate-y-10 opacity-0 ${className}`} {...props}>
       {children}
     </div>
   )

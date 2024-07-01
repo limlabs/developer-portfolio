@@ -1,5 +1,3 @@
-
-
 import { loggedIn } from '@/access/loggedIn'
 import { publishedOrLoggedIn } from '@/access/publishedOrLoggedIn'
 import { serverUrl } from '@/utilities/api'
@@ -13,7 +11,7 @@ import formatSlug from '@/utilities/formatSlug'
 import { tagRevalidator } from '@/utilities/tagRevalidator'
 import { CollectionConfig } from 'payload'
 
-const formatAppURL = ({ doc }: { doc: Record<string, unknown>}): string => {
+const formatAppURL = ({ doc }: { doc: Record<string, unknown> }): string => {
   const pathToUse = doc.slug === 'home' ? '' : doc.slug
   const { pathname } = new URL(`${serverUrl}/${pathToUse}`)
   return pathname
