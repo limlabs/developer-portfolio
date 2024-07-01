@@ -10,6 +10,7 @@
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+    "format": "prettier ./src/**/*.{js,jsx,ts,tsx} --write --config ./.prettierrc.cjs",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
     "ci": "payload migrate && pnpm build",
     "seed": "rm -rf src/media .next && cross-env PAYLOAD_SEED=true PAYLOAD_DROP_DATABASE=true PAYLOAD_CONFIG_PATH=src/payload.config.ts node ./src/seed/index.js",
@@ -63,6 +64,8 @@
     "@types/react-dom": "npm:types-react-dom@19.0.0-beta.2",
     "eslint": "^8.57.0",
     "eslint-config-next": "15.0.0-rc.0",
+    "prettier": "^3.3.2",
+    "prettier-plugin-tailwindcss": "^0.6.5",
     "tsx": "^4.15.7",
     "typescript": "5.5.2"
   },
