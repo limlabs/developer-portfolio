@@ -22,7 +22,7 @@ export const seed = async (payload) => {
   const technologies = await seedTechnologies(payload)
   const projects = await seedProjects(payload, media, technologies)
 
-  await seedPages(payload, forms, projects)
+  await seedPages(payload, forms, projects, media)
 
   console.log('Data seeded')
 }

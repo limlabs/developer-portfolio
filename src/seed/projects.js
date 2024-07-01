@@ -190,7 +190,8 @@ export const seedProjects = async (payload, media, technologies) => {
         ],
         meta: {
           title: "Design Design",
-          description: mergeDescription(designDesignMockDetailedDescription)
+          description: mergeDescription(designDesignMockDetailedDescription),
+          image: media.designDesignFeaturedScreenshot.id
         },
         _status: 'published',
       },
@@ -233,7 +234,8 @@ export const seedProjects = async (payload, media, technologies) => {
         ],
         meta: {
           title: "Outside App",
-          description: mergeDescription(outsideAppMockDetailedDescription)
+          description: mergeDescription(outsideAppMockDetailedDescription),
+          image: media.outsideAppFeaturedScreenshot.id
         },
         _status: 'published',
       },
@@ -276,7 +278,8 @@ export const seedProjects = async (payload, media, technologies) => {
         ],
         meta: {
           title: "Design App",
-          description: mergeDescription(designAppMockDetailedDescription)
+          description: mergeDescription(designAppMockDetailedDescription),
+          image: media.designAppFeaturedScreenshot.id
         },
         _status: 'published',
       },
@@ -319,7 +322,8 @@ export const seedProjects = async (payload, media, technologies) => {
         ],
         meta: {
           title: "Art App",
-          description: mergeDescription(artAppMockDetailedDescription)
+          description: mergeDescription(artAppMockDetailedDescription),
+          image: media.artAppFeaturedScreenshot.id
         },
         _status: 'published',
       },

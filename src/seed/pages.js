@@ -1,4 +1,4 @@
-export const seedPages = async (payload, forms, projects) => {
+export const seedPages = async (payload, forms, projects, media) => {
   await payload.create({
     collection: 'pages',
     data: {
@@ -36,7 +36,8 @@ export const seedPages = async (payload, forms, projects) => {
       ],
       meta: {
         title: "Payload CMS - Next.js app router example portfolio ",
-        description: "New example portfolio showcasing how you can use the updated Payload CMS with Next.js App router to get the benefits of react server components."
+        description: "New example portfolio showcasing how you can use the updated Payload CMS with Next.js App router to get the benefits of react server components.",
+        image: media.profileImage.id
       },
       _status: 'published',
     },
