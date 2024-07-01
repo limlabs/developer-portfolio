@@ -1,4 +1,3 @@
-
 export async function seedMedia(payload) {
   const profileImage = await payload.create({
     collection: 'media',

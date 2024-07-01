@@ -15,7 +15,7 @@ interface SocialIconsContentProps {
 const SocialIconsContent = async ({ className = '' }) => {
   const profile = await fetchProfile()
   return (
-    <div className={cn('flex lg:max-w-[300px] gap-8 items-center', className)}>
+    <div className={cn('flex items-center gap-8 lg:max-w-[300px]', className)}>
       {profile.socialLinks?.github && (
         <SocialLink
           href={profile.socialLinks.github}
@@ -48,7 +48,7 @@ const SocialIconsContent = async ({ className = '' }) => {
 }
 
 export const SocialIcons: FC<SocialIconsContentProps> = props => (
-  <Suspense fallback={<div className={cn('lg:max-w-[300px] w-full h-[25px]', props.className)} />}>
+  <Suspense fallback={<div className={cn('h-[25px] w-full lg:max-w-[300px]', props.className)} />}>
     {/* @ts-ignore */}
     <SocialIconsContent {...props} />
   </Suspense>

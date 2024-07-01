@@ -6,25 +6,19 @@ import { PayloadLink } from '@/components/content/link'
 import { SkipToMainContentLink } from './skipToMainContent'
 
 const HeaderLinks = ({ header }: { header: Header }) => {
-  return (
-    <>
-      {header.navItems?.map(({ id, link }) => (
-        <PayloadLink link={link} key={id} />
-      ))}
-    </>
-  )
+  return <>{header.navItems?.map(({ id, link }) => <PayloadLink link={link} key={id} />)}</>
 }
 
 export const NavBar = ({ profile, header }: { profile: Profile; header: Header }) => {
   return (
     <>
-      <div className="fixed z-50 bg-background/50 backdrop-blur-[20px] w-full flex justify-center">
+      <div className="fixed z-50 flex w-full justify-center bg-background/50 backdrop-blur-[20px]">
         <SkipToMainContentLink />
-        <div className="w-full max-w-[1300px] h-16 flex items-center justify-center md:justify-between md:px-8 content-box">
+        <div className="content-box flex h-16 w-full max-w-[1300px] items-center justify-center md:justify-between md:px-8">
           {profile.profileImage && (
             <Link
               href="/"
-              className="hidden sm:block items-center w-10 h-10 my-4"
+              className="my-4 hidden h-10 w-10 items-center sm:block"
               style={{ position: 'relative' }}
             >
               <Image
@@ -38,7 +32,7 @@ export const NavBar = ({ profile, header }: { profile: Profile; header: Header }
               />
             </Link>
           )}
-          <nav className="flex gap-6 lg:gap-8 w-full max-w-[378px] lg:w-auto justify-center md:justify-end text-base items-center text-primary">
+          <nav className="flex w-full max-w-[378px] items-center justify-center gap-6 text-base text-primary md:justify-end lg:w-auto lg:gap-8">
             <HeaderLinks header={header} />
           </nav>
         </div>

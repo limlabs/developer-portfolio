@@ -9,7 +9,7 @@ const confirmationMessage = [
 ]
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const seedForms = async (payload) => {
+export const seedForms = async payload => {
   const contactForm = await payload.create({
     collection: 'forms',
     data: {
@@ -59,4 +59,3 @@ export const seedForms = async (payload) => {
 
   return { contactForm }
 }
-

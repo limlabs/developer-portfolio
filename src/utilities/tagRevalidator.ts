@@ -1,4 +1,4 @@
-import type {  TypeWithID } from 'payload'
+import type { TypeWithID } from 'payload'
 
 import { serverUrl } from '@/utilities/api'
 import { AfterChangeHook } from 'node_modules/payload/dist/globals/config/types'

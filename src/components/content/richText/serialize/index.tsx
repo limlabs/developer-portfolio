@@ -83,42 +83,42 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           case 'h1':
             return (
-              <h1 key={i} className="text-3xl lg:text-4xl mb-2">
+              <h1 key={i} className="mb-2 text-3xl lg:text-4xl">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h1>
             )
 
           case 'h2':
             return (
-              <h2 key={i} className="text-2xl font-semibold lg:font-medium lg:text-3xl mb-2">
+              <h2 key={i} className="mb-2 text-2xl font-semibold lg:text-3xl lg:font-medium">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h2>
             )
 
           case 'h3':
             return (
-              <h3 key={i} className="text-xl lg:text-2xl mb-2">
+              <h3 key={i} className="mb-2 text-xl lg:text-2xl">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h3>
             )
 
           case 'h4':
             return (
-              <h4 key={i} className="text-lg lg:text-xl mb-2">
+              <h4 key={i} className="mb-2 text-lg lg:text-xl">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h4>
             )
 
           case 'h5':
             return (
-              <h5 key={i} className="text-base lg:text-lg mb-2">
+              <h5 key={i} className="mb-2 text-base lg:text-lg">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h5>
             )
 
           case 'h6':
             return (
-              <h6 key={i} className="text-sm mb-2">
+              <h6 key={i} className="mb-2 text-sm">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h6>
             )
@@ -169,7 +169,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           default:
             return (
-              <p key={i} className="text-sm leading-6 mb-4">
+              <p key={i} className="mb-4 text-sm leading-6">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </p>
             )

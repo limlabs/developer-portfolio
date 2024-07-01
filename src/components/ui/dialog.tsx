@@ -25,7 +25,10 @@ const Dialog = DialogPrimitive.Root
 
 const DialogTrigger = DialogPrimitive.Trigger
 
-const DialogPortal = ({ className, ...props }: DialogPrimitive.DialogPortalProps & { className?: string }) => (
+const DialogPortal = ({
+  className,
+  ...props
+}: DialogPrimitive.DialogPortalProps & { className?: string }) => (
   // @ts-expect-error
   <DialogPrimitive.Portal className={cn(className)} {...props} />
 )
@@ -38,7 +41,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      'fixed inset-0 bg-box/70 dark:bg-box/70 backdrop-blur-[20px] z-50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+      'fixed inset-0 z-50 bg-box/70 backdrop-blur-[20px] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 dark:bg-box/70',
       className,
     )}
     {...props}
@@ -66,7 +69,7 @@ const DialogContent = React.forwardRef<
       {showCloseButton && (
         <DialogPrimitive.Close
           className={cn(
-            'absolute right-2 lg:right-4 -bottom-6 sm:-bottom-0 -md:-bottom-6 rounded-sm opacity-70 transition-opacity hover:opacity-100 disabled:pointer-events-none  text-primary',
+            '-md:-bottom-6 absolute -bottom-6 right-2 rounded-sm text-primary opacity-70 transition-opacity hover:opacity-100 disabled:pointer-events-none sm:-bottom-0 lg:right-4',
           )}
         >
           Close

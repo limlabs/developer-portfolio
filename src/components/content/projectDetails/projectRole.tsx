@@ -7,7 +7,7 @@ interface ProjectRolesProps {
 }
 export const ProjectRoles: FC<ProjectRolesProps> = ({ roles }) => {
   return (
-    <h4 className="text-primary font-medium leading-tight lg:text-2xl pt-3">
+    <h4 className="pt-3 font-medium leading-tight text-primary lg:text-2xl">
       {roles
         .map(
           role =>
@@ -15,7 +15,7 @@ export const ProjectRoles: FC<ProjectRolesProps> = ({ roles }) => {
               uiUxDesigner: 'Lead UI/UX Designer',
               frontEndDeveloper: 'Front-End Developer',
               backEndDeveloper: 'Back-End Developer',
-            }[role] ?? ''),
+            })[role] ?? '',
         )
         .join(', ')}
     </h4>

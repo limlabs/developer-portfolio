@@ -12,7 +12,7 @@ export function isObject(item: unknown): boolean {
  * @param target
  * @param ...sources
  */
-export default function deepMerge<T extends Record<string,any>>(target: T, source: any): T {
+export default function deepMerge<T extends Record<string, any>>(target: T, source: any): T {
   const output: any = { ...target }
   if (isObject(target) && isObject(source)) {
     Object.keys(source).forEach(key => {

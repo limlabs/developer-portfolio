@@ -18,7 +18,7 @@ interface ContentLayoutProps {
 export const ContentLayout: FC<ContentLayoutProps> = ({ layout, profile, className }) => {
   let hasMedia = false
   return (
-    <div className={cn('w-full grid grid-cols-6 lg:gap-20', className)}>
+    <div className={cn('grid w-full grid-cols-6 lg:gap-20', className)}>
       {layout?.map((block, index) => {
         let element = null
         switch (block.blockType) {

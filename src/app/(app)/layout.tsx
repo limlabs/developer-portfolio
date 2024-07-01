@@ -30,15 +30,15 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <ThemeProvider
           enableColorScheme
           enableSystem
-          defaultTheme='system'
+          defaultTheme="system"
           disableTransitionOnChange={false}
-          attribute='class'
+          attribute="class"
         >
           <Backdrop />
-          <div className="relative z-20 min-h-screen flex flex-col items-center">
+          <div className="relative z-20 flex min-h-screen flex-col items-center">
             <NavBar profile={profile} header={header} />
             <div
-              className="flex flex-col w-full max-w-[1080px] px-7 lg:px-8 xl:px-0 justify-center"
+              className="flex w-full max-w-[1080px] flex-col justify-center px-7 lg:px-8 xl:px-0"
               id="main-content"
             >
               {children}

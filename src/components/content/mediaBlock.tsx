@@ -61,12 +61,12 @@ export const MediaBlock: FC<MediaBlockProps> = ({
           <Fragment>
             <div
               className={cn(
-                'flex-0 flex relative',
+                'flex-0 relative flex',
                 mediaFit === 'cover' ? 'h-full w-auto' : 'h-auto w-full',
               )}
             >
               <Image
-                className={cn('overflow-hidden rounded-3xl flex-1', imageClassName)}
+                className={cn('flex-1 overflow-hidden rounded-3xl', imageClassName)}
                 src={mediaInfo.url as string}
                 alt={mediaInfo.alt}
                 width={mediaInfo.width}
