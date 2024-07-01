@@ -134,6 +134,17 @@ const artAppMockDetailedDescription = [
   },
 ]
 
+// Merges text properties in description object to a string
+function mergeDescription(description) {
+  // Cast string[] to string
+  return description.map((desc) => {
+    // Cast children[] to string[]
+    return desc.children.map((line) => {
+      return line.text;
+    }).join("\n");
+  }).join("\n");
+}
+
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const seedProjects = async (payload, media, technologies) => {
   const { genericMarketingImageOne, genericMarketingImageTwo, genericMarketingImageThree } = media
@@ -177,6 +188,10 @@ export const seedProjects = async (payload, media, technologies) => {
             blockType: 'mediaBlock',
           },
         ],
+        meta: {
+          title: "Design Design",
+          description: mergeDescription(designDesignMockDetailedDescription)
+        },
         _status: 'published',
       },
     }),
@@ -216,6 +231,10 @@ export const seedProjects = async (payload, media, technologies) => {
             blockType: 'mediaBlock',
           },
         ],
+        meta: {
+          title: "Outside App",
+          description: mergeDescription(outsideAppMockDetailedDescription)
+        },
         _status: 'published',
       },
     }),
@@ -255,6 +274,10 @@ export const seedProjects = async (payload, media, technologies) => {
             blockType: 'mediaBlock',
           },
         ],
+        meta: {
+          title: "Design App",
+          description: mergeDescription(designAppMockDetailedDescription)
+        },
         _status: 'published',
       },
     }),
@@ -294,6 +317,10 @@ export const seedProjects = async (payload, media, technologies) => {
             blockType: 'mediaBlock',
           },
         ],
+        meta: {
+          title: "Art App",
+          description: mergeDescription(artAppMockDetailedDescription)
+        },
         _status: 'published',
       },
     }),
