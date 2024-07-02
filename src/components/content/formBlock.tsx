@@ -65,9 +65,6 @@ function groupFieldsByRow(form: FormTypes): FormTypes['fields'][] {
 }
 
 export const FormBlock: FC<FormBlockProps> = props => {
-  // const ref = useRef<HTMLDivElement>(null);
-  // useFade(ref);
-
   const [dialogOpen, setDialogOpen] = useState(false)
   const {
     form: formFromProps,
