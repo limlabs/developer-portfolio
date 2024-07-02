@@ -1,0 +1,22 @@
+name: Quality Check
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '>=20.9.0'
+    - run: |
+        pnpm ci
+        pnpm run build
+        pnpm run format
+    #Should fail if diffs are logged (WIP local runner won't detect non 0 exit code)
+    - run: |
+        git diff --name-only | while read LINE;
+        do echo diffs detected pull-request invalid && exit 1;
+        done;
