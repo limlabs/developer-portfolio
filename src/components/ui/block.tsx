@@ -27,17 +27,16 @@ export interface BlockProps
   fadeIn?: boolean
 }
 
-const Block = forwardRef<HTMLDivElement, BlockProps>(
-  ({ children, className, size, fadeIn = true, ...props }) => {
+const Block = ({ children, className, size, fadeIn = true, ...props }: BlockProps) => {
     const ref = useRef(null);
     const fade = fadeIn ? useFade(ref) : null;
 
     return (
-      <div className={cn(blockVariants({ size, className }))} ref={ref}>
+      <div className={cn([blockVariants({ size, className }), [...(fade?.classes.init ?? [])]])} ref={ref} {...props}>
         {children}
       </div>
     );
-});
+};
 
 Block.displayName = 'Block';
 

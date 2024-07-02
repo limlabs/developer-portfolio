@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { RichText } from './richText'
 import { Data } from 'node_modules/payload/dist/admin/forms/Form'
+import { Block } from '../ui/block'
 
 type ErrorType = {
   status: string
@@ -130,7 +131,7 @@ export const FormBlock: FC<FormBlockProps> = props => {
   }
 
   return (
-    <div className="w-full flex flex-col m-auto lg:col-span-6" key={formID}>
+    <Block className="w-full flex flex-col m-auto lg:col-span-6" key={formID}>
       {intro && <RichText content={intro} className="w-full" />}
       <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-4">
         {groupFieldsByRow(formFromProps).map((row, index) => (
@@ -219,6 +220,6 @@ export const FormBlock: FC<FormBlockProps> = props => {
           </div>
         </DialogContent>
       </Dialog>
-    </div>
+    </Block>
   )
 }

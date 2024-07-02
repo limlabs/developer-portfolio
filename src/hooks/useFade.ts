@@ -45,6 +45,8 @@ export const useFade = (ref: RefObject<HTMLElement | null>) => {
     }
   }, [ref]);
 
-  // return onScreen state for debug usage
-  return onScreen;
+  return {
+    onScreen: onScreen,
+    classes: fadeClasses
+  };
 }
