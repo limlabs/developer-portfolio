@@ -25,7 +25,7 @@ export const ContentBlock: FC<ContentBlockProps> = ({ contentFields }) => {
         }
 
         return (
-          <Block size={size} key={id} asChild={enableLink}>
+          <Block size={size} key={id} fadeIn={!enableLink}>
             {content}
           </Block>
         )

@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form'
 
 import { Form as FormTypes } from '@/payload-types'
 import { serverUrl } from '@/utilities/api'
-import { Block } from '@/components/ui/block'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
@@ -66,6 +65,9 @@ function groupFieldsByRow(form: FormTypes): FormTypes['fields'][] {
 }
 
 export const FormBlock: FC<FormBlockProps> = props => {
+  // const ref = useRef<HTMLDivElement>(null);
+  // useFade(ref);
+
   const [dialogOpen, setDialogOpen] = useState(false)
   const {
     form: formFromProps,
@@ -95,7 +97,7 @@ export const FormBlock: FC<FormBlockProps> = props => {
       const req = await fetch(`${serverUrl}/api/form-submissions`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json', // Correct typo: "Content-Types" to "Content-Type"
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           form: formID,
@@ -131,7 +133,7 @@ export const FormBlock: FC<FormBlockProps> = props => {
   }
 
   return (
-    <Block className="w-full flex flex-col m-auto" key={formID}>
+    <div className="w-full flex flex-col m-auto lg:col-span-6" key={formID}>
       {intro && <RichText content={intro} className="w-full" />}
       <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-4">
         {groupFieldsByRow(formFromProps).map((row, index) => (
@@ -220,6 +222,6 @@ export const FormBlock: FC<FormBlockProps> = props => {
           </div>
         </DialogContent>
       </Dialog>
-    </Block>
+    </div>
   )
 }
