@@ -152,7 +152,7 @@ export const seedProjects = async (payload, media, technologies) => {
         featuredImage: media.designDesignFeaturedScreenshot.id,
         layout: [
           {
-            mediaContentFields: [
+            fields: [
               {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
@@ -192,7 +192,7 @@ export const seedProjects = async (payload, media, technologies) => {
         featuredImage: media.outsideAppFeaturedScreenshot.id,
         layout: [
           {
-            mediaContentFields: [
+            fields: [
               {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
@@ -231,7 +231,7 @@ export const seedProjects = async (payload, media, technologies) => {
         featuredImage: media.designAppFeaturedScreenshot.id,
         layout: [
           {
-            mediaContentFields: [
+            fields: [
               {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',
@@ -270,7 +270,7 @@ export const seedProjects = async (payload, media, technologies) => {
         featuredImage: media.artAppFeaturedScreenshot.id,
         layout: [
           {
-            mediaContentFields: [
+            fields: [
               {
                 alignment: 'mediaContent',
                 mediaSize: 'twoThirds',

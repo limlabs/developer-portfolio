@@ -7,7 +7,7 @@ import { MediaBlock } from './mediaBlock'
 
 type LayoutSize = 'oneThird' | 'twoThirds' | 'half' | 'full'
 
-interface MediaContentFields {
+interface fields {
   alignment?: 'contentMedia' | 'mediaContent'
   mediaSize?: LayoutSize
   media: Media | string
@@ -18,7 +18,7 @@ interface MediaContentFields {
 }
 
 export interface MediaContentBlockProps {
-  mediaContentFields?: MediaContentFields[]
+  fields?: fields[]
   priority?: boolean
 }
 
@@ -29,67 +29,62 @@ const complimentSizes: Record<LayoutSize, LayoutSize> = {
   full: 'full',
 } as const
 
-export const MediaContentBlock: FC<MediaContentBlockProps> = ({ mediaContentFields, priority }) => {
+export const MediaContentBlock: FC<MediaContentBlockProps> = ({ fields, priority }) => {
   return (
     <Fragment>
-      {mediaContentFields?.map(
-        ({ alignment, mediaSize, media, richText, link, enableLink, mediaFit }) => {
-          const mediaBlock = (
-            <MediaBlock
-              priority={priority}
-              className="mb-10 md:mb-16 lg:mb-0"
-              mediaFields={[
-                {
-                  size: mediaSize,
-                  media,
-                  mediaFit,
-                },
-              ]}
-            />
+      {fields?.map(({ alignment, mediaSize, media, richText, link, enableLink, mediaFit }) => {
+        const mediaBlock = (
+          <MediaBlock
+            priority={priority}
+            className="mb-10 md:mb-16 lg:mb-0"
+            mediaFields={[
+              {
+                size: mediaSize,
+                media,
+                mediaFit,
+              },
+            ]}
+          />
+        )
+
+        const contentBlock = (
+          <ContentBlock
+            contentFields={[
+              {
+                size: complimentSizes[mediaSize as keyof typeof complimentSizes],
+                richText,
+              },
+            ]}
+          />
+        )
+
+        let content
+        if (alignment === 'contentMedia') {
+          content = (
+            <Fragment>
+              {contentBlock}
+              {mediaBlock}
+            </Fragment>
           )
-
-          const contentBlock = (
-            <ContentBlock
-              contentFields={[
-                {
-                  size: complimentSizes[mediaSize as keyof typeof complimentSizes],
-                  richText,
-                },
-              ]}
-            />
+        } else {
+          content = (
+            <Fragment>
+              {mediaBlock}
+              {contentBlock}
+            </Fragment>
           )
+        }
 
-          let content
-          if (alignment === 'contentMedia') {
-            content = (
-              <Fragment>
-                {contentBlock}
-                {mediaBlock}
-              </Fragment>
-            )
-          } else {
-            content = (
-              <Fragment>
-                {mediaBlock}
-                {contentBlock}
-              </Fragment>
-            )
-          }
+        if (enableLink && link) {
+          content = (
+            <PayloadLink link={link} className="col-span-6 mt-8 grid grid-cols-6 lg:mt-0 lg:gap-20">
+              {content}
+            </PayloadLink>
+          )
+        }
 
-          if (enableLink && link) {
-            content = (
-              <PayloadLink
-                link={link}
-                className="col-span-6 mt-8 grid grid-cols-6 lg:mt-0 lg:gap-20"
-              >
-                {content}
-              </PayloadLink>
-            )
-          }
-
-          return content
-        },
-      )}
+        return content
+      })}
     </Fragment>
   )
 }

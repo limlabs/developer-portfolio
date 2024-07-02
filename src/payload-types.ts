@@ -87,7 +87,7 @@ export interface Page {
         blockType: 'mediaBlock';
       }
     | {
-        mediaContentFields?: {
+        fields?: {
           alignment?: 'contentMedia' | 'mediaContent';
           mediaSize?: 'oneThird' | 'half' | 'twoThirds';
           richText?: {
@@ -199,7 +199,7 @@ export interface Project {
         blockType: 'mediaBlock';
       }
     | {
-        mediaContentFields?: {
+        fields?: {
           alignment?: 'contentMedia' | 'mediaContent';
           mediaSize?: 'oneThird' | 'half' | 'twoThirds';
           richText?: {

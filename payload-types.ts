@@ -32,7 +32,7 @@ export interface Config {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -51,7 +51,7 @@ export interface Media {
  * via the `definition` "pages".
  */
 export interface Page {
-  id: string;
+  id: number;
   title: string;
   layout?:
     | (
@@ -71,11 +71,11 @@ export interface Page {
                     reference?:
                       | ({
                           relationTo: 'pages';
-                          value: string | Page;
+                          value: number | Page;
                         } | null)
                       | ({
                           relationTo: 'projects';
-                          value: string | Project;
+                          value: number | Project;
                         } | null);
                     url?: string | null;
                     label: string;
@@ -94,7 +94,7 @@ export interface Page {
                   [k: string]: unknown;
                 }[]
               | null;
-            form: string | Form;
+            form: number | Form;
             id?: string | null;
             blockName?: string | null;
             blockType: 'form';
@@ -103,7 +103,7 @@ export interface Page {
             mediaFields?:
               | {
                   size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-                  media: string | Media;
+                  media: number | Media;
                   mediaFit?: ('cover' | 'contain') | null;
                   id?: string | null;
                 }[]
@@ -113,7 +113,7 @@ export interface Page {
             blockType: 'mediaBlock';
           }
         | {
-            mediaContentFields?:
+            fields?:
               | {
                   alignment?: ('contentMedia' | 'mediaContent') | null;
                   mediaSize?: ('oneThird' | 'half' | 'twoThirds') | null;
@@ -129,17 +129,17 @@ export interface Page {
                     reference?:
                       | ({
                           relationTo: 'pages';
-                          value: string | Page;
+                          value: number | Page;
                         } | null)
                       | ({
                           relationTo: 'projects';
-                          value: string | Project;
+                          value: number | Project;
                         } | null);
                     url?: string | null;
                     label: string;
                     appearance?: ('primary' | 'secondary') | null;
                   };
-                  media: string | Media;
+                  media: number | Media;
                   mediaFit?: ('cover' | 'contain') | null;
                   id?: string | null;
                 }[]
@@ -154,7 +154,7 @@ export interface Page {
             blockType: 'profile-cta';
           }
         | {
-            project: (string | Project)[];
+            project: (number | Project)[];
             id?: string | null;
             blockName?: string | null;
             blockType: 'projectGrid';
@@ -165,7 +165,7 @@ export interface Page {
   meta?: {
     title?: string | null;
     description?: string | null;
-    image?: string | Media | null;
+    image?: number | Media | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -176,13 +176,13 @@ export interface Page {
  * via the `definition` "projects".
  */
 export interface Project {
-  id: string;
+  id: number;
   title: string;
   description: {
     [k: string]: unknown;
   }[];
-  technologiesUsed: (string | Technology)[];
-  featuredImage?: string | Media | null;
+  technologiesUsed: (number | Technology)[];
+  featuredImage?: number | Media | null;
   layout?:
     | (
         | {
@@ -201,11 +201,11 @@ export interface Project {
                     reference?:
                       | ({
                           relationTo: 'pages';
-                          value: string | Page;
+                          value: number | Page;
                         } | null)
                       | ({
                           relationTo: 'projects';
-                          value: string | Project;
+                          value: number | Project;
                         } | null);
                     url?: string | null;
                     label: string;
@@ -224,7 +224,7 @@ export interface Project {
                   [k: string]: unknown;
                 }[]
               | null;
-            form: string | Form;
+            form: number | Form;
             id?: string | null;
             blockName?: string | null;
             blockType: 'form';
@@ -233,7 +233,7 @@ export interface Project {
             mediaFields?:
               | {
                   size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
-                  media: string | Media;
+                  media: number | Media;
                   mediaFit?: ('cover' | 'contain') | null;
                   id?: string | null;
                 }[]
@@ -243,7 +243,7 @@ export interface Project {
             blockType: 'mediaBlock';
           }
         | {
-            mediaContentFields?:
+            fields?:
               | {
                   alignment?: ('contentMedia' | 'mediaContent') | null;
                   mediaSize?: ('oneThird' | 'half' | 'twoThirds') | null;
@@ -259,17 +259,17 @@ export interface Project {
                     reference?:
                       | ({
                           relationTo: 'pages';
-                          value: string | Page;
+                          value: number | Page;
                         } | null)
                       | ({
                           relationTo: 'projects';
-                          value: string | Project;
+                          value: number | Project;
                         } | null);
                     url?: string | null;
                     label: string;
                     appearance?: ('primary' | 'secondary') | null;
                   };
-                  media: string | Media;
+                  media: number | Media;
                   mediaFit?: ('cover' | 'contain') | null;
                   id?: string | null;
                 }[]
@@ -287,7 +287,7 @@ export interface Project {
   meta?: {
     title?: string | null;
     description?: string | null;
-    image?: string | Media | null;
+    image?: number | Media | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -298,7 +298,7 @@ export interface Project {
  * via the `definition` "technologies".
  */
 export interface Technology {
-  id: string;
+  id: number;
   name: string;
   updatedAt: string;
   createdAt: string;
@@ -308,7 +308,7 @@ export interface Technology {
  * via the `definition` "forms".
  */
 export interface Form {
-  id: string;
+  id: number;
   title: string;
   fields?:
     | (
@@ -387,7 +387,7 @@ export interface Form {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -404,8 +404,8 @@ export interface User {
  * via the `definition` "form-submissions".
  */
 export interface FormSubmission {
-  id: string;
-  form: string | Form;
+  id: number;
+  form: number | Form;
   submissionData?:
     | {
         field: string;
@@ -421,10 +421,10 @@ export interface FormSubmission {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -444,7 +444,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -455,7 +455,7 @@ export interface PayloadMigration {
  * via the `definition` "header".
  */
 export interface Header {
-  id: string;
+  id: number;
   navItems?:
     | {
         link: {
@@ -464,11 +464,11 @@ export interface Header {
           reference?:
             | ({
                 relationTo: 'pages';
-                value: string | Page;
+                value: number | Page;
               } | null)
             | ({
                 relationTo: 'projects';
-                value: string | Project;
+                value: number | Project;
               } | null);
           url?: string | null;
           label: string;
@@ -484,7 +484,7 @@ export interface Header {
  * via the `definition` "profile".
  */
 export interface Profile {
-  id: string;
+  id: number;
   name: string;
   location?: string | null;
   title?: string | null;
@@ -493,7 +493,7 @@ export interface Profile {
         [k: string]: unknown;
       }[]
     | null;
-  profileImage?: string | Media | null;
+  profileImage?: number | Media | null;
   socialLinks?: {
     github?: string | null;
     linkedin?: string | null;
