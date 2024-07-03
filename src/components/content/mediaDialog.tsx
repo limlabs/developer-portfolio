@@ -5,19 +5,14 @@ import Image from 'next/image'
 
 import { cn } from '@/utilities'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import { Media } from '@/payload-types'
 
 interface MediaDialogProps {
   className?: string
   mediaFit?: 'contain' | 'cover'
   triggerContent: React.ReactNode
   caption?: React.ReactNode
-  mediaInfo: {
-    id: string
-    url?: string
-    alt?: string
-    width?: number
-    height?: number
-  }
+  mediaInfo: Media
 }
 
 export const MediaDialog: FC<MediaDialogProps> = ({

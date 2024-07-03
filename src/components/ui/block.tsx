@@ -22,8 +22,8 @@ const blockVariants = cva('flex col-span-6 justify-center lg:justify-start', {
 export interface BlockProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof blockVariants> {
-  size?: 'oneThird' | 'twoThirds' | 'half' | 'full'
-  asChild?: boolean
+  size?: 'oneThird' | 'twoThirds' | 'half' | 'full' | null
+  asChild?: boolean | null
 }
 
 const Block = React.forwardRef<HTMLDivElement, BlockProps>(
