@@ -24,11 +24,11 @@ export const PayloadLink = ({
 
   if (link.type === 'reference') {
     const { reference } = link
-    const prefix = reference.relationTo === 'pages' ? '/' : `/${reference.relationTo}/`
-    const suffix = (reference.value as { slug: string }).slug
+    const prefix = reference?.relationTo === 'pages' ? '/' : `/${reference?.relationTo}/`
+    const suffix = (reference?.value as { slug: string })?.slug
     props.href = `${prefix}${suffix}`
   } else {
-    props.href = link.url
+    props.href = link.url ?? ''
   }
 
   return (

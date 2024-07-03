@@ -33,7 +33,7 @@ export default buildConfig({
   globals: [Header, Profile],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
+    outputFile: path.resolve(dirname, 'src/payload-types.ts'),
   },
   // db: postgresAdapter({
   //   pool: {

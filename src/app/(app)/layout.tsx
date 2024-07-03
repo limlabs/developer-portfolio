@@ -6,10 +6,11 @@ const inter = Inter({ subsets: ['latin'] })
 import { Footer } from '@/components/siteLayout/footer'
 import { NavBar } from '@/components/siteLayout/navBar'
 import { Backdrop } from '@/components/ui/backdrop/backdrop'
-import { fetchHeader, fetchProfile, serverUrl } from '@/utilities/api'
+import { fetchHeader, fetchProfile } from '@/utilities/api'
 
 import './globals.css'
 import { ThemeProvider } from '@/components/siteLayout/themeProvider'
+import { serverUrl } from '@/utilities/serverConfig'
 
 export async function generateMetadata() {
   const profile = await fetchProfile()

@@ -2,10 +2,10 @@ import { FC } from 'react'
 
 import { Form, Page, Profile, Project } from '@/payload-types'
 import { cn } from '@/utilities'
-import { ContentBlock } from './contentBlock'
+import { ContentBlock, ContentBlockFields } from './contentBlock'
 import { FormBlock } from './formBlock'
-import { MediaBlock } from './mediaBlock'
-import { MediaContentBlock } from './mediaContentBlock'
+import { MediaBlock, MediaBlockFields } from './mediaBlock'
+import { MediaContentBlock, MediaContentBlockProps } from './mediaContentBlock'
 import { ProfileCTABlock } from './profileCTABlock'
 import { ProjectGridBlock } from './projectGridBlock'
 
@@ -23,13 +23,13 @@ export const ContentLayout: FC<ContentLayoutProps> = ({ layout, profile, classNa
         let element = null
         switch (block.blockType) {
           case 'content':
-            element = <ContentBlock contentFields={block.contentFields} key={block.id} />
+            element = <ContentBlock contentFields={block.contentFields as ContentBlockFields[]} key={block.id} />
             break
           case 'mediaBlock':
             element = (
               <MediaBlock
                 containerClassName="h-[70vw] lg:h-[348px]"
-                mediaFields={block.mediaFields}
+                mediaFields={block.mediaFields as MediaBlockFields[]}
                 key={block.id}
                 priority={!hasMedia}
               />
@@ -53,7 +53,7 @@ export const ContentLayout: FC<ContentLayoutProps> = ({ layout, profile, classNa
             element = <FormBlock intro={block.richText} form={block.form as Form} key={block.id} />
             break
           case 'mediaContent':
-            element = <MediaContentBlock {...block} priority={!hasMedia} key={block.id} />
+            element = <MediaContentBlock {...block as MediaContentBlockProps} priority={!hasMedia} key={block.id} />
             hasMedia = true
             break
         }

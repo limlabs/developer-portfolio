@@ -38,7 +38,7 @@ export const ProjectGridBlock: FC<ProjectGridBlockProps> = ({ projects, priority
                     ...(featuredImage as Media),
                     width: 500,
                     height: 376,
-                    alt: `${title}, ${formatYear(startDate)}`,
+                    alt: `${title}, ${formatYear(startDate ?? '')}`,
                   },
                   size: 'half',
                 },
