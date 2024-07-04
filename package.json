@@ -16,7 +16,8 @@
     "seed": "rm -rf src/media .next && cross-env PAYLOAD_SEED=true PAYLOAD_DROP_DATABASE=true PAYLOAD_CONFIG_PATH=src/payload.config.ts node ./src/seed/index.js",
     "generate:types": "payload generate:types",
     "generate:schema": "payload-graphql generate:schema",
-    "standalone-script": "node ./src/scripts/standalone-script.js"
+    "standalone-script": "node ./src/scripts/standalone-script.js",
+    "prepare": "husky"
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0"
@@ -64,6 +65,7 @@
     "@types/react-dom": "npm:types-react-dom@19.0.0-beta.2",
     "eslint": "^8.57.0",
     "eslint-config-next": "15.0.0-rc.0",
+    "husky": "^9.0.11",
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "tsx": "^4.15.7",
