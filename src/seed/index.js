@@ -10,7 +10,7 @@ import { getPayload } from 'payload'
 import { importConfig } from 'payload/node'
 import 'dotenv/config'
 
-export const seed = async (payload) => {
+export const seed = async payload => {
   console.log('Seeding data')
   await seedUsers(payload)
 
@@ -22,15 +22,14 @@ export const seed = async (payload) => {
   const technologies = await seedTechnologies(payload)
   const projects = await seedProjects(payload, media, technologies)
 
-  await seedPages(payload, forms, projects)
+  await seedPages(payload, forms, projects, media)
 
   console.log('Data seeded')
 }
 
-
-(async function() {
+;(async function () {
   const awaitedConfig = await importConfig('../../payload.config.ts')
   const payload = await getPayload({ config: awaitedConfig })
   await seed(payload)
-  process.exit(0);
-}())
+  process.exit(0)
+})()

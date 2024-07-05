@@ -1,5 +1,3 @@
-
-
 export const seedGlobals = async (payload, media) => {
   await payload.updateGlobal({
     slug: 'profile',

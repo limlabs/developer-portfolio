@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, forwardRef, type HTMLAttributes } from 'react'
+import { useRef, type HTMLAttributes } from 'react'
 import { cva, VariantProps } from 'class-variance-authority'
 
 import { cn } from '@/utilities'
@@ -23,8 +23,8 @@ const blockVariants = cva('flex col-span-6 justify-center lg:justify-start', {
 export interface BlockProps
   extends HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof blockVariants> {
-  size?: 'oneThird' | 'twoThirds' | 'half' | 'full'
-  fadeIn?: boolean
+  size?: 'oneThird' | 'twoThirds' | 'half' | 'full' | null
+  fadeIn?: boolean | null
 }
 
 const Block = ({ children, className, size, fadeIn = true, ...props }: BlockProps) => {

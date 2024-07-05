@@ -31,7 +31,7 @@ export const ProjectDetails: FC<ProjectDetailsProps> = ({ project, profile }) =>
       </section>
 
       <ContentLayout profile={profile} layout={project.layout} className="mb-20" />
-      <div className="text-center lg:text-left ">
+      <div className="text-center lg:text-left">
         <BackButton />
       </div>
     </>

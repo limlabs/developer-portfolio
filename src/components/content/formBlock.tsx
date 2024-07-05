@@ -3,14 +3,16 @@ import React, { FC, Fragment, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Form as FormTypes } from '@/payload-types'
-import { serverUrl } from '@/utilities/api'
+
+import { serverUrl } from '@/utilities/serverConfig'
+import { Block } from '@/components/ui/block'
+
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { RichText } from './richText'
 import { Data } from 'node_modules/payload/dist/admin/forms/Form'
-import { Block } from '../ui/block'
 
 type ErrorType = {
   status: string
@@ -131,9 +133,9 @@ export const FormBlock: FC<FormBlockProps> = props => {
   }
 
   return (
-    <Block className="w-full flex flex-col m-auto lg:col-span-6" key={formID}>
+    <Block className="m-auto flex w-full flex-col" key={formID}>
       {intro && <RichText content={intro} className="w-full" />}
-      <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex w-full flex-col gap-4">
         {groupFieldsByRow(formFromProps).map((row, index) => (
           <div key={index}>
             {row?.map((field, index) => {
@@ -151,7 +153,7 @@ export const FormBlock: FC<FormBlockProps> = props => {
 
               const props = {
                 id: `${formID}-${field.name}`,
-                ...register(field.name, { required: field.required, pattern }),
+                ...register(field.name, { required: Boolean(field.required), pattern }),
               }
 
               let content
@@ -190,14 +192,14 @@ export const FormBlock: FC<FormBlockProps> = props => {
                   <div
                     id={`formField__${props.id}`}
                     key={`${formID}-${field.name}-${index}`}
-                    className="inline-flex flex-col gap-2 mt-4 first:mt-0 content-box pb-4 last:pb-0 lg:pb-0 pr-0 lg:pr-5 last:pr-0 "
+                    className="content-box mt-4 inline-flex flex-col gap-2 pb-4 pr-0 first:mt-0 last:pb-0 last:pr-0 lg:pb-0 lg:pr-5"
                   >
                     <label htmlFor={props.id} className="text-sm text-primary">
                       {field.label}
                     </label>
                     {content}
                     {formMethods.formState.errors[field.name]?.message && (
-                      <div className="text-sm text-red-500 mt-2">
+                      <div className="mt-2 text-sm text-red-500">
                         {formMethods?.formState?.errors?.[field.name]?.message as string}
                       </div>
                     )}
@@ -207,14 +209,14 @@ export const FormBlock: FC<FormBlockProps> = props => {
             })}
           </div>
         ))}
-        <Button type="submit" disabled={isLoading || !isDirty} className="max-w-[80px] mt-8">
+        <Button type="submit" disabled={isLoading || !isDirty} className="mt-8 max-w-[80px]">
           {submitButtonLabel}
         </Button>
         {error && <div className="mt-4">{error.message}</div>}
       </form>
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent className="w-[80vw] max-w-lg">
-          <div className="flex flex-col gap-4 items-center">
+          <div className="flex flex-col items-center gap-4">
             <RichText content={props.form.confirmationMessage} />
             <Button onClick={() => setDialogOpen(false)}>Close</Button>
           </div>

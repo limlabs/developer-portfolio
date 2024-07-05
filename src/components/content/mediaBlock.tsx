@@ -19,12 +19,12 @@ const mediaBlockCaptionVariants = cva('flex w-full mt-1 text-primary', {
   },
 })
 
-interface MediaBlockFields extends BlockProps {
+export interface MediaBlockFields extends BlockProps {
   media: string | Media
   mediaFit?: 'contain' | 'cover'
 }
 
-interface MediaBlockProps {
+export interface MediaBlockProps {
   mediaFields?: MediaBlockFields[]
   lightbox?: boolean
   className?: string
@@ -61,16 +61,16 @@ export const MediaBlock: FC<MediaBlockProps> = ({
           <Fragment>
             <div
               className={cn(
-                'flex-0 flex relative',
+                'flex-0 relative flex',
                 mediaFit === 'cover' ? 'h-full w-auto' : 'h-auto w-full',
               )}
             >
               <Image
-                className={cn('overflow-hidden rounded-3xl flex-1', imageClassName)}
+                className={cn('flex-1 overflow-hidden rounded-3xl', imageClassName)}
                 src={mediaInfo.url as string}
                 alt={mediaInfo.alt}
-                width={mediaInfo.width}
-                height={mediaInfo.height}
+                width={mediaInfo.width ?? undefined}
+                height={mediaInfo.height ?? undefined}
                 sizes={`(min-width: 1024px) ${sizesMap[size as keyof typeof sizesMap]}, 90vw`}
                 style={{
                   objectFit: mediaFit ?? 'cover',

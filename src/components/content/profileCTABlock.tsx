@@ -112,13 +112,13 @@ export const ProfileCTABlock = ({
           <div className={textContainerVariants({ variant })}>
             <h1 className={nameVariants({ variant })}>{profile?.name}</h1>
             {profile?.location && variant === 'full' && (
-              <h2 className="leading-6 text-base lg:mt-2 w-full max-w-[417px] mx-auto">
+              <h2 className="mx-auto w-full max-w-[417px] text-base leading-6 lg:mt-2">
                 {profile.location}
               </h2>
             )}
             {profile?.title && <h3 className={titleVariants({ variant })}>{profile.title}</h3>}
             {profile?.aboutMe && variant === 'full' && (
-              <RichText content={profile.aboutMe} className="mt-6 w-full mx-auto max-w-[417px]" />
+              <RichText content={profile.aboutMe} className="mx-auto mt-6 w-full max-w-[417px]" />
             )}
           </div>
         </div>
