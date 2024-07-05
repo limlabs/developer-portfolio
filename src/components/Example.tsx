@@ -1,6 +1,7 @@
-import React from 'react'
-import { getPayloadHMR } from '@payloadcms/next/utilities'
-import configPromise from '@payload-config'
+import React from "react"
+
+import configPromise from "@payload-config"
+import { getPayloadHMR } from "@payloadcms/next/utilities"
 
 const Example: React.FC = async () => {
   const payload = await getPayloadHMR({ config: configPromise })

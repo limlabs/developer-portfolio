@@ -1,10 +1,10 @@
-'use client'
+"use client"
 
-import React, { AllHTMLAttributes, FC, PropsWithChildren, useEffect, useRef } from 'react'
+import React, { AllHTMLAttributes, FC, PropsWithChildren, useEffect, useRef } from "react"
 
 export const FadeInContent: FC<PropsWithChildren<AllHTMLAttributes<HTMLDivElement>>> = ({
   children,
-  className = '',
+  className = "",
   ...props
 }) => {
   const contentRef = useRef(null)
@@ -14,13 +14,13 @@ export const FadeInContent: FC<PropsWithChildren<AllHTMLAttributes<HTMLDivElemen
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          entry.target.classList.remove('opacity-0', 'translate-y-10')
+          entry.target.classList.remove("opacity-0", "translate-y-10")
           entry.target.classList.add(
-            'opacity-100',
-            'transition-all',
-            'duration-500',
-            'ease-in-out',
-            'translate-y-0',
+            "opacity-100",
+            "transition-all",
+            "duration-500",
+            "ease-in-out",
+            "translate-y-0",
           )
         }
       },

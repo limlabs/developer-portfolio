@@ -1,9 +1,10 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from "next/image"
+import Link from "next/link"
 
-import { Header, Media, Profile } from '@/payload-types'
-import { PayloadLink } from '@/components/content/link'
-import { SkipToMainContentLink } from './skipToMainContent'
+import { PayloadLink } from "@/components/content/link"
+import { Header, Media, Profile } from "@/payload-types"
+
+import { SkipToMainContentLink } from "./skipToMainContent"
 
 const HeaderLinks = ({ header }: { header: Header }) => {
   return <>{header.navItems?.map(({ id, link }) => <PayloadLink link={link} key={id} />)}</>
@@ -19,7 +20,7 @@ export const NavBar = ({ profile, header }: { profile: Profile; header: Header }
             <Link
               href="/"
               className="my-4 hidden h-10 w-10 items-center sm:block"
-              style={{ position: 'relative' }}
+              style={{ position: "relative" }}
             >
               <Image
                 src={(profile.profileImage as Media)?.url as string}
@@ -28,7 +29,7 @@ export const NavBar = ({ profile, header }: { profile: Profile; header: Header }
                 priority
                 fill
                 sizes="(min-width: 640px) 10vw, (min-width: 1024px) 5vw"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: "cover" }}
               />
             </Link>
           )}

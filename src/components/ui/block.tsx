@@ -1,28 +1,30 @@
-import * as React from 'react'
-import { Slot } from '@radix-ui/react-slot'
-import { cva, VariantProps } from 'class-variance-authority'
+import * as React from "react"
 
-import { cn } from '@/utilities'
-import { FadeInContent } from './fadeInContent'
+import { cva, VariantProps } from "class-variance-authority"
 
-const blockVariants = cva('flex col-span-6 justify-center lg:justify-start', {
+import { cn } from "@/utilities"
+import { Slot } from "@radix-ui/react-slot"
+
+import { FadeInContent } from "./fadeInContent"
+
+const blockVariants = cva("flex col-span-6 justify-center lg:justify-start", {
   variants: {
     size: {
-      oneThird: 'lg:col-span-2',
-      half: 'lg:col-span-3',
-      twoThirds: 'lg:col-span-4',
-      full: 'lg:col-span-6',
+      oneThird: "lg:col-span-2",
+      half: "lg:col-span-3",
+      twoThirds: "lg:col-span-4",
+      full: "lg:col-span-6",
     },
   },
   defaultVariants: {
-    size: 'full',
+    size: "full",
   },
 })
 
 export interface BlockProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof blockVariants> {
-  size?: 'oneThird' | 'twoThirds' | 'half' | 'full' | null
+  size?: "oneThird" | "twoThirds" | "half" | "full" | null
   asChild?: boolean | null
 }
 
@@ -32,6 +34,6 @@ const Block = React.forwardRef<HTMLDivElement, BlockProps>(
     return <Comp className={cn(blockVariants({ size, className }))} ref={ref} {...props} />
   },
 )
-Block.displayName = 'Block'
+Block.displayName = "Block"
 
 export { Block, blockVariants }
