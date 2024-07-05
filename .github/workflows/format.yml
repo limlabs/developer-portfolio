@@ -27,7 +27,6 @@ jobs:
         run: |
           npm i -g pnpm
           pnpm i
-          pnpm run build
           pnpm run format
 
       - name: Auto commit
