@@ -22,7 +22,7 @@ export const VercelDeploy = async () => {
   )
 }
 
-const VercelPage = async () => {
+const SetupPage = async () => {
   return (
     <main className="flex flex-col gap-4 mt-16">
       <h1 className="text-2xl md:text-4xl">Deploying with vercel</h1>
@@ -36,4 +36,4 @@ const VercelPage = async () => {
   )
 }
 
-export default VercelPage;
+export default SetupPage;
