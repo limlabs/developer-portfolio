@@ -22,6 +22,8 @@ jobs:
         uses: creyD/prettier_action@v4.3
         with:
           prettier_options: --write **/*.{js,jsx,ts,tsx}
+          prettier_plugins:
+            - "prettier-plugin-tailwindcss"
           only_changed: True
 
       - name: Auto commit
