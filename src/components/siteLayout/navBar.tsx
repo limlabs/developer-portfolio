@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Header, Media, Profile } from '@/payload-types'
 import { PayloadLink } from '@/components/content/link'
 import { SkipToMainContentLink } from './skipToMainContent'
+import { VercelDeploy } from '@/components/ui/vercelDeploy'
 
 const HeaderLinks = ({ header }: { header: Header }) => {
   return <>{header.navItems?.map(({ id, link }) => <PayloadLink link={link} key={id} />)}</>
@@ -34,6 +35,11 @@ export const NavBar = ({ profile, header }: { profile: Profile; header: Header }
           )}
           <nav className="flex w-full max-w-[378px] items-center justify-center gap-6 text-base text-primary md:justify-end lg:w-auto lg:gap-8">
             <HeaderLinks header={header} />
+            {
+              process.env.VERCEL_BUTTON_SHOW === "true" ? (
+                <VercelDeploy />
+              ) : null
+            }
           </nav>
         </div>
       </div>
