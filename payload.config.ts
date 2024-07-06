@@ -1,4 +1,5 @@
 import path from 'path'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
 import { seoPlugin } from '@payloadcms/plugin-seo'
@@ -20,15 +21,8 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
-  
   editor: slateEditor({}),
-  collections: [
-    Media,
-    Pages,
-    Projects,
-    Technologies,
-    Users
-  ],
+  collections: [Media, Pages, Projects, Technologies, Users],
   globals: [Header, Profile],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -36,8 +30,8 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.POSTGRES_URL || ''
-    }
+      connectionString: process.env.POSTGRES_URL || '',
+    },
   }),
   /**
    * Payload can now accept specific translations from 'payload/i18n/en'
@@ -81,5 +75,11 @@ export default buildConfig({
       collections: ['pages', 'projects'],
       uploadsCollection: 'media',
     }),
-  ]
+    vercelBlobStorage({
+      collections: {
+        [Media.slug]: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),
+  ],
 })
