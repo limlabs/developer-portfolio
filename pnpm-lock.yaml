@@ -38,8 +38,8 @@ importers:
         specifier: 3.0.0-beta.55
         version: 3.0.0-beta.55(@payloadcms/translations@3.0.0-beta.56)(@payloadcms/ui@3.0.0-beta.55(monaco-editor@0.38.0)(next@15.0.0-rc.0(babel-plugin-react-compiler@0.0.0-experimental-696af53-20240625)(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522)(sass@1.77.4))(payload@3.0.0-beta.55(@swc/core@1.6.6(@swc/helpers@0.5.11))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.2))(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522)(types-react@19.0.0-beta.2))(payload@3.0.0-beta.55(@swc/core@1.6.6(@swc/helpers@0.5.11))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.2))(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522)
       '@payloadcms/storage-vercel-blob':
-        specifier: 3.0.0-beta.29
-        version: 3.0.0-beta.29(payload@3.0.0-beta.55(@swc/core@1.6.6(@swc/helpers@0.5.11))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.2))
+        specifier: 3.0.0-beta.55
+        version: 3.0.0-beta.55(payload@3.0.0-beta.55(@swc/core@1.6.6(@swc/helpers@0.5.11))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.2))
       '@payloadcms/ui':
         specifier: 3.0.0-beta.55
         version: 3.0.0-beta.55(monaco-editor@0.38.0)(next@15.0.0-rc.0(babel-plugin-react-compiler@0.0.0-experimental-696af53-20240625)(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522)(sass@1.77.4))(payload@3.0.0-beta.55(@swc/core@1.6.6(@swc/helpers@0.5.11))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.2))(react-dom@19.0.0-rc-f994737d14-20240522(react@19.0.0-rc-f994737d14-20240522))(react@19.0.0-rc-f994737d14-20240522)(types-react@19.0.0-beta.2)
@@ -1298,8 +1298,8 @@ packages:
       next: ^15.0.0-rc.0
       payload: 3.0.0-beta.55
 
-  '@payloadcms/plugin-cloud-storage@3.0.0-beta.29':
-    resolution: {integrity: sha512-3Wo1B7xdt4LwxWjOtDV+yp66Y6yb54lYP6l3rbbqkYUKQkqCqhm9AhOHilafO98rrfQxA2V/n7BE4KnQkJBUTA==}
+  '@payloadcms/plugin-cloud-storage@3.0.0-beta.55':
+    resolution: {integrity: sha512-qzROeetx7tjNd4w3rQJthlSCUjcldgLywH4yXKwvKidzqDIEMLVysDP/G4g163u/mLobhfVth23ctQyZH0HWWA==}
     peerDependencies:
       '@aws-sdk/client-s3': ^3.525.0
       '@aws-sdk/lib-storage': ^3.525.0
@@ -1307,7 +1307,7 @@ packages:
       '@azure/storage-blob': ^12.11.0
       '@google-cloud/storage': ^7.7.0
       '@vercel/blob': ^0.22.3
-      payload: 3.0.0-beta.29
+      payload: 3.0.0-beta.55
     peerDependenciesMeta:
       '@aws-sdk/client-s3':
         optional: true
@@ -1370,11 +1370,11 @@ packages:
       payload: 3.0.0-beta.55
       react: ^19.0.0 || ^19.0.0-rc-f994737d14-20240522
 
-  '@payloadcms/storage-vercel-blob@3.0.0-beta.29':
-    resolution: {integrity: sha512-m4gt/t88CtjyghNO6vUpqmtvEQel0e+qfMIePTEV6aSlJAfpKkniUzThXIBzQYkN1T1CqKRUGa2sgB52YVvhFg==}
-    engines: {node: '>=18.20.2'}
+  '@payloadcms/storage-vercel-blob@3.0.0-beta.55':
+    resolution: {integrity: sha512-4ndHcL0ipqCh329xCdWFr1zmdeSGc2616POnhylY/TQQSWicomLvnonZtMCxtVE9hvcbuIqNlWsz/Aar0m/oxg==}
+    engines: {node: ^18.20.2 || >=20.9.0}
     peerDependencies:
-      payload: 3.0.0-beta.29
+      payload: 3.0.0-beta.55
 
   '@payloadcms/translations@3.0.0-beta.55':
     resolution: {integrity: sha512-1u/NMWpPZTonInrtBqWhHb0HroAspeO22NHBOriFfkD9q6iwMeaVw2H0dSJlvXKHpAYw/GGpSkP46jC5qX3p3A==}
@@ -6355,7 +6355,7 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@payloadcms/plugin-cloud-storage@3.0.0-beta.29(@vercel/blob@0.22.3)(payload@3.0.0-beta.55(@swc/core@1.6.6(@swc/helpers@0.5.11))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.2))':
+  '@payloadcms/plugin-cloud-storage@3.0.0-beta.55(@vercel/blob@0.22.3)(payload@3.0.0-beta.55(@swc/core@1.6.6(@swc/helpers@0.5.11))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.2))':
     dependencies:
       find-node-modules: 2.1.3
       payload: 3.0.0-beta.55(@swc/core@1.6.6(@swc/helpers@0.5.11))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.2)
@@ -6426,9 +6426,9 @@ snapshots:
     transitivePeerDependencies:
       - react-dom
 
-  '@payloadcms/storage-vercel-blob@3.0.0-beta.29(payload@3.0.0-beta.55(@swc/core@1.6.6(@swc/helpers@0.5.11))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.2))':
+  '@payloadcms/storage-vercel-blob@3.0.0-beta.55(payload@3.0.0-beta.55(@swc/core@1.6.6(@swc/helpers@0.5.11))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.2))':
     dependencies:
-      '@payloadcms/plugin-cloud-storage': 3.0.0-beta.29(@vercel/blob@0.22.3)(payload@3.0.0-beta.55(@swc/core@1.6.6(@swc/helpers@0.5.11))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.2))
+      '@payloadcms/plugin-cloud-storage': 3.0.0-beta.55(@vercel/blob@0.22.3)(payload@3.0.0-beta.55(@swc/core@1.6.6(@swc/helpers@0.5.11))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.2))
       '@vercel/blob': 0.22.3
       payload: 3.0.0-beta.55(@swc/core@1.6.6(@swc/helpers@0.5.11))(@swc/types@0.1.9)(graphql@16.9.0)(typescript@5.5.2)
     transitivePeerDependencies:
