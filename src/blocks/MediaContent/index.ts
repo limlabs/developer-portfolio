@@ -6,7 +6,7 @@ export const MediaContent: Block = {
   slug: 'mediaContent',
   fields: [
     {
-      name: 'mediaContentFields',
+      name: 'fields',
       type: 'array',
       fields: [
         {
