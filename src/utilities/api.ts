@@ -1,14 +1,14 @@
-'use server';
+'use server'
 
-import type { Header, Page, Profile, Project } from '@/payload-types'
+import type { Header, Page, Profile, Project, User } from '@/payload-types'
 import type { DraftOptions } from './preview'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import configPromise from '@payload-config'
 import { BasePayload, Where } from 'payload'
 import { Options } from 'node_modules/payload/dist/collections/operations/local/find'
 
-const getPayload = async (): Promise<BasePayload> => {
-  return getPayloadHMR({ config: configPromise})
+export const getPayload = async (): Promise<BasePayload> => {
+  return getPayloadHMR({ config: configPromise })
 }
 
 export const fetchProfile = async (): Promise<Profile> => {
@@ -31,7 +31,7 @@ export const fetchPage = async (
   slug: string,
   options: FetchPageOptions,
 ): Promise<Page | undefined> => {
-  const opts: Options<"pages"> = { collection: 'pages', where: { slug: { equals: slug } } };
+  const opts: Options<'pages'> = { collection: 'pages', where: { slug: { equals: slug } } }
 
   if (options.draft) {
     options.payloadToken = options.payloadToken ?? ''
@@ -39,7 +39,7 @@ export const fetchPage = async (
   }
 
   const payload = await getPayload()
-  const results = await payload.find(opts);
+  const results = await payload.find(opts)
 
   return results.docs[0]
 }
@@ -50,7 +50,7 @@ export const fetchProject = async (
   slug: string,
   options: FetchProjectOptions,
 ): Promise<Project> => {
-  const opts: Options<"projects"> = { collection: 'projects', where: { slug: { equals: slug } } };
+  const opts: Options<'projects'> = { collection: 'projects', where: { slug: { equals: slug } } }
 
   if (options.draft) {
     options.payloadToken = options.payloadToken ?? ''
@@ -58,7 +58,14 @@ export const fetchProject = async (
   }
 
   const payload = await getPayload()
-  const results = await payload.find(opts);
+  const results = await payload.find(opts)
 
   return results.docs[0]
+}
+
+export const fetchUsers = async (): Promise<User[]> => {
+  const payload = await getPayload()
+  const users = await payload.find({ collection: 'users' })
+
+  return users.docs
 }

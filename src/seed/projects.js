@@ -332,3 +332,29 @@ export const seedProjects = async (payload, media, technologies) => {
 
   return { designDesign, outsideApp, designApp, artApp }
 }
+
+export async function getSeededProjects(payload) {
+  const projects = await payload.find({ collection: 'projects' })
+  if (projects.docs.length === 0) {
+    throw new Error('No projects found during seed process')
+  }
+
+  const projectTitleMap = {
+    'Design Design': 'designDesign',
+    'Outside App': 'outsideApp',
+    'Design App': 'designApp',
+    'Art App': 'artApp',
+  }
+
+  const seededProjects = projects.docs.reduce(
+    (acc, project) => {
+      if (projectTitleMap[project.title]) {
+        acc[projectTitleMap[project.title]] = project
+      }
+      return acc
+    },
+    {}
+  )
+
+  return seededProjects
+}

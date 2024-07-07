@@ -3,7 +3,6 @@
     "source.fixAll.eslint": "explicit"
   },
   "eslint.validate": ["javascript", "typescript"],
-  "editor.formatOnSave": false,
   "prettier.singleQuote": true,
   "prettier.printWidth": 70,
   "[javascript]": {
