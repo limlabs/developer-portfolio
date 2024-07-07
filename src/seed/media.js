@@ -4,7 +4,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Profile picture',
     },
-    filePath: `./src/seed/media/headshot.png`,
+    filePath: `./src/seed/images/headshot.png`,
   })
 
   const designDesignFeaturedScreenshot = await payload.create({
@@ -12,7 +12,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Marketing Image for Pre-Launch',
     },
-    filePath: `./src/seed/media/design-design-featured.png`,
+    filePath: `./src/seed/images/design-design-featured.png`,
   })
 
   const outsideAppFeaturedScreenshot = await payload.create({
@@ -20,7 +20,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Marketing Image for Pre-Launch',
     },
-    filePath: `./src/seed/media/outside-app-featured.png`,
+    filePath: `./src/seed/images/outside-app-featured.png`,
   })
 
   const designAppFeaturedScreenshot = await payload.create({
@@ -28,7 +28,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Marketing Image for Pre-Launch',
     },
-    filePath: `./src/seed/media/design-app-featured.png`,
+    filePath: `./src/seed/images/design-app-featured.png`,
   })
 
   const artAppFeaturedScreenshot = await payload.create({
@@ -36,7 +36,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Marketing Image for Pre-Launch',
     },
-    filePath: `./src/seed/media/art-app-featured.png`,
+    filePath: `./src/seed/images/art-app-featured.png`,
   })
 
   const genericMarketingImageOne = await payload.create({
@@ -44,7 +44,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Marketing Image for Pre-Launch',
     },
-    filePath: `./src/seed/media/generic-one.png`,
+    filePath: `./src/seed/images/generic-one.png`,
   })
 
   const genericMarketingImageTwo = await payload.create({
@@ -52,7 +52,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Marketing Image for Pre-Launch',
     },
-    filePath: `./src/seed/media/generic-two.png`,
+    filePath: `./src/seed/images/generic-two.png`,
   })
 
   const genericMarketingImageThree = await payload.create({
@@ -60,7 +60,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'UI/UX Examples',
     },
-    filePath: `./src/seed/media/generic-three.png`,
+    filePath: `./src/seed/images/generic-three.png`,
   })
 
   return {
