@@ -52,7 +52,7 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
         <SetupTitle>So wow, much empty.</SetupTitle>
         <SetupMessage>
           <span>Create a page with slug</span>
-          <code className="bg-box/40 px-1 py-0.5 font-mono">/home</code>
+          <code className="bg-box/40 mx-1 px-1 py-0.5 font-mono">/home</code>
           <span>, or run the setup process to get started.</span>
         </SetupMessage>
         <Block fadeIn className="flex w-96 justify-between delay-1000 lg:justify-between">
