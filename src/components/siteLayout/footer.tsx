@@ -7,7 +7,7 @@ import { SocialIcons } from '@/components/content/socialIcons'
 import { ThemeToggle } from './themeToggle'
 
 interface FooterProps {
-  profile: Profile
+  profile?: Profile
 }
 
 export const Footer: FC<FooterProps> = ({ profile }) => {

@@ -1,52 +1,63 @@
-"use client";
+'use client'
 
-import { useState, useEffect, useRef, type RefObject } from "react";
+import { useState, useEffect, useRef, type RefObject } from 'react'
 
-export const useFade = (ref: RefObject<HTMLElement | null>) => {
+export const useFade = (
+  ref: RefObject<HTMLElement | null>,
+  {
+    translate,
+    duration,
+  }: {
+    translate?: boolean
+    duration?: string
+  } = { translate: true, duration: 'duration-500' },
+) => {
   const fadeClasses = {
-    init: ["opacity-0", "translate-y-10"],
+    init: ['opacity-0'].concat(translate ? ['translate-y-10'] : []),
     fade: [
       'opacity-100',
       'transition-all',
-      'duration-500',
+      duration ? duration : 'duration-500',
       'ease-in-out',
-      'translate-y-0'
-    ]
+    ].concat(translate ? ['translate-y-0'] : []),
   }
 
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const [onScreen, setOnScreen] = useState(false);
+  const observerRef = useRef<IntersectionObserver | null>(null)
+  const [onScreen, setOnScreen] = useState(false)
 
   useEffect(() => {
-    observerRef.current = new IntersectionObserver(([entry]) => {
-      setOnScreen(entry.isIntersecting);
-      if (entry.isIntersecting) {
-        fadeClasses.init.forEach((style) => entry.target.classList.remove(style));
-        fadeClasses.fade.forEach((style) => entry.target.classList.add(style));
-      }
-    }, {
-      threshold: 0
-    });
-  }, []);
+    observerRef.current = new IntersectionObserver(
+      ([entry]) => {
+        setOnScreen(entry.isIntersecting)
+        if (entry.isIntersecting) {
+          fadeClasses.init.forEach(style => entry.target.classList.remove(style))
+          fadeClasses.fade.forEach(style => entry.target.classList.add(style))
+        }
+      },
+      {
+        threshold: 0,
+      },
+    )
+  }, [])
 
   useEffect(() => {
     // handle ref initialization and clean up
     if (ref.current) {
-      fadeClasses.init.forEach((initClass) => {
-        ref.current?.classList.add(initClass);
-      });
+      fadeClasses.init.forEach(initClass => {
+        ref.current?.classList.add(initClass)
+      })
 
-      observerRef.current?.observe(ref.current);
+      observerRef.current?.observe(ref.current)
     } else {
-      console.log(ref);
+      console.log(ref)
     }
     return () => {
-      observerRef.current?.disconnect();
+      observerRef.current?.disconnect()
     }
-  }, [ref]);
+  }, [ref])
 
   return {
     onScreen: onScreen,
-    classes: fadeClasses
-  };
+    classes: fadeClasses,
+  }
 }

@@ -44,7 +44,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Marketing Image for Pre-Launch',
     },
-    filePath: `./src/seed/media/generic-1.png`,
+    filePath: `./src/seed/media/generic-one.png`,
   })
 
   const genericMarketingImageTwo = await payload.create({
@@ -52,7 +52,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Marketing Image for Pre-Launch',
     },
-    filePath: `./src/seed/media/generic-2.png`,
+    filePath: `./src/seed/media/generic-two.png`,
   })
 
   const genericMarketingImageThree = await payload.create({
@@ -60,7 +60,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'UI/UX Examples',
     },
-    filePath: `./src/seed/media/generic-3.png`,
+    filePath: `./src/seed/media/generic-three.png`,
   })
 
   return {
@@ -73,4 +73,32 @@ export async function seedMedia(payload) {
     designAppFeaturedScreenshot,
     artAppFeaturedScreenshot,
   }
+}
+
+export async function getSeededMedia(payload) {
+  const media = await payload.find({ collection: 'media' })
+  if (media.docs.length === 0) {
+    throw new Error('No media found during seed process')
+  }
+
+  const mediaFileMap = {
+    genericMarketingImageOne: 'generic-one',
+    genericMarketingImageTwo: 'generic-two',
+    genericMarketingImageThree: 'generic-three',
+    profileImage: 'headshot',
+    designDesignFeaturedScreenshot: 'design-design-featured',
+    outsideAppFeaturedScreenshot: 'outside-app-featured',
+    designAppFeaturedScreenshot: 'design-app-featured',
+    artAppFeaturedScreenshot: 'art-app-featured',
+  }
+
+  const seededMedia = Object.entries(mediaFileMap).reduce(
+    (acc, [key, value]) => {
+      acc[key] = media.docs.find(doc => doc.filename?.startsWith(value))
+      return acc
+    },
+    {}
+  )
+
+  return seededMedia
 }
