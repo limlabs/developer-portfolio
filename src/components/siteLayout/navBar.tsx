@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Header, Media, Profile } from '@/payload-types'
 import { PayloadLink } from '@/components/content/link'
 import { SkipToMainContentLink } from './skipToMainContent'
+import { getMediaUrl } from '@/utilities/mediaConfig'
 
 const HeaderLinks = ({ header }: { header: Header }) => {
   return <>{header.navItems?.map(({ id, link }) => <PayloadLink link={link} key={id} />)}</>
@@ -22,7 +23,7 @@ export const NavBar = ({ profile, header }: { profile: Profile; header: Header }
               style={{ position: 'relative' }}
             >
               <Image
-                src={(profile.profileImage as Media)?.url as string}
+                src={getMediaUrl((profile.profileImage as Media)?.url as string)}
                 className="rounded-full"
                 alt={(profile.profileImage as Media)?.alt as string}
                 priority

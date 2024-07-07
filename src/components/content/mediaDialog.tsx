@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { cn } from '@/utilities'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import { Media } from '@/payload-types'
+import { getMediaUrl } from '@/utilities/mediaConfig'
 
 interface MediaDialogProps {
   className?: string
@@ -52,7 +53,7 @@ export const MediaDialog: FC<MediaDialogProps> = ({
           <Image
             id={`${mediaInfo.id}-lightbox`}
             className="object-contain"
-            src={mediaInfo.url as string}
+            src={getMediaUrl(mediaInfo.url as string)}
             alt={mediaInfo.alt as string}
             fill
             sizes="90vw"

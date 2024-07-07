@@ -6,6 +6,7 @@ import { Media, Profile } from '@/payload-types'
 import { Block } from '@/components/ui/block'
 import { RichText } from './richText'
 import { SocialIcons } from './socialIcons'
+import { getMediaUrl } from '@/utilities/mediaConfig'
 
 const containerVariants = cva('w-full bg-box/40 rounded-[1.25rem] max-w-[1080px]', {
   variants: {
@@ -105,7 +106,7 @@ export const ProfileCTABlock = ({
                 fill
                 {...imageProps[variant]}
                 alt={(profile.profileImage as Media)?.alt}
-                src={(profile.profileImage as Media)?.url as string}
+                src={getMediaUrl((profile.profileImage as Media)?.url as string)}
               />
             </Link>
           )}
