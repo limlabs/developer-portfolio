@@ -6,6 +6,7 @@ import { Media } from '@/payload-types'
 import { cn } from '@/utilities'
 import { Block, BlockProps } from '../ui/block'
 import { MediaDialog } from './mediaDialog'
+import { getMediaUrl } from '@/utilities/mediaConfig'
 
 const mediaBlockCaptionVariants = cva('flex w-full mt-1 text-primary', {
   variants: {
@@ -67,7 +68,7 @@ export const MediaBlock: FC<MediaBlockProps> = ({
             >
               <Image
                 className={cn('flex-1 overflow-hidden rounded-3xl', imageClassName)}
-                src={mediaInfo.url as string}
+                src={getMediaUrl(mediaInfo.url as string)}
                 alt={mediaInfo.alt}
                 width={mediaInfo.width ?? undefined}
                 height={mediaInfo.height ?? undefined}
