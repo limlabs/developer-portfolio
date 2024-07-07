@@ -1,4 +1,4 @@
-const getImagePath = (filename) => `${process.cwd()}/src/app/setup/data/images/${filename}.png`
+import path from 'path';
 
 export async function seedMedia(payload) {
   const profileImage = await payload.create({
@@ -6,7 +6,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Profile picture',
     },
-    filePath: getImagePath('headshot'),
+    filePath: path.join(process.cwd(), '/public/example/headshot.png'),
   })
 
   const designDesignFeaturedScreenshot = await payload.create({
@@ -14,7 +14,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Marketing Image for Pre-Launch',
     },
-    filePath: getImagePath('design-design-featured'),
+    filePath: path.join(process.cwd(), '/public/example/design-design-featured.png'),
   })
 
   const outsideAppFeaturedScreenshot = await payload.create({
@@ -22,7 +22,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Marketing Image for Pre-Launch',
     },
-    filePath: getImagePath('outside-app-featured'),
+    filePath: path.join(process.cwd(), '/public/example/outside-app-featured.png'),
   })
 
   const designAppFeaturedScreenshot = await payload.create({
@@ -30,7 +30,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Marketing Image for Pre-Launch',
     },
-    filePath: getImagePath('design-app-featured'),
+    filePath: path.join(process.cwd(), '/public/example/design-app-featured.png'),
   })
 
   const artAppFeaturedScreenshot = await payload.create({
@@ -38,7 +38,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Marketing Image for Pre-Launch',
     },
-    filePath: getImagePath('art-app-featured'),
+    filePath: path.join(process.cwd(), '/public/example/art-app-featured.png'),
   })
 
   const genericMarketingImageOne = await payload.create({
@@ -46,7 +46,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Marketing Image for Pre-Launch',
     },
-    filePath: getImagePath('generic-one'),
+    filePath: path.join(process.cwd(), '/public/example/generic-one.png'),
   })
 
   const genericMarketingImageTwo = await payload.create({
@@ -54,7 +54,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'Marketing Image for Pre-Launch',
     },
-    filePath: getImagePath('generic-two'),
+    filePath: path.join(process.cwd(), '/public/example/generic-two.png'),
   })
 
   const genericMarketingImageThree = await payload.create({
@@ -62,7 +62,7 @@ export async function seedMedia(payload) {
     data: {
       alt: 'UI/UX Examples',
     },
-    filePath: getImagePath('generic-three'),
+    filePath: path.join(process.cwd(), '/public/example/generic-three.png'),
   })
 
   return {
