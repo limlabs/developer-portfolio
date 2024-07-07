@@ -30,11 +30,11 @@ export default function Welcome() {
         </Block>
         <Block fadeIn className="h-60 w-2/5 flex-col justify-start pt-20 delay-1000">
           <Button size="lg" href="/setup/content/import" className="flex w-full items-center gap-4">
-            <span>Use an example</span>
+            <span>Import example content</span>
             <LayoutTemplate size={16} />
           </Button>
           <p className="mt-6 w-full text-center text-sm font-light text-muted-foreground">
-            Start with example content for inspiration.
+            Start with a well-built example for inspiration.
           </p>
         </Block>
       </div>

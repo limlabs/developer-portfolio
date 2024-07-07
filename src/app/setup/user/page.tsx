@@ -6,6 +6,8 @@ import { SetupMessage } from '@/components/setup/setupMessage'
 import { Block } from '@/components/ui/block'
 import { cookies } from 'next/headers'
 
+export const dynamic = 'force-dynamic'
+
 export default async function SetupUserPage() {
   const payload = await getPayload()
   const users = await payload.find({

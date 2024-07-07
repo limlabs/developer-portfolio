@@ -14,7 +14,7 @@ export const JobStatus = ({ status }: { status: SeedStatus }) => {
       return (
         <span className="flex w-full items-center justify-between text-muted-foreground">
           <Circle size={16} className="animate-pulse fill-primary repeat-infinite" />
-          <span className="w-3/4 text-right">Seeding</span>
+          <span className="w-3/4 text-right">Importing</span>
         </span>
       )
     case 'ready':

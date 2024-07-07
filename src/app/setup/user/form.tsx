@@ -54,7 +54,6 @@ export function CreateUserForm() {
       router.push('/setup/content')
     } catch (error) {
       setError((error as Error)?.message ?? error)
-    } finally {
       setSubmitting(false)
     }
   }
@@ -142,7 +141,6 @@ export function LoginForm() {
       router.push('/setup/content')
     } catch (error) {
       setError((error as Error)?.message ?? error)
-    } finally {
       setSubmitting(false)
     }
   }
