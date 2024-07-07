@@ -1,6 +1,9 @@
 import { getPayload } from '@/utilities/api'
 import { CreateUserForm } from './form'
 import { redirect } from 'next/navigation'
+import { SetupTitle } from '@/components/setup/setupTitle'
+import { SetupMessage } from '@/components/setup/setupMessage'
+import { Block } from '@/components/ui/block'
 
 export default async function SetupUserPage() {
   const payload = await getPayload()
@@ -14,9 +17,11 @@ export default async function SetupUserPage() {
 
   return (
     <div className="mx-auto w-2/3 max-w-screen-md">
-      <h1 className="text-3xl font-medium">Create a User</h1>
-      <p className="mt-4">First, let's create a user login to protect your backend.</p>
-      <CreateUserForm />
+      <SetupTitle>Create a User</SetupTitle>
+      <SetupMessage>First, let's create a user login to protect your backend.</SetupMessage>
+      <Block fadeIn className="mt-4 delay-1000">
+        <CreateUserForm />
+      </Block>
     </div>
   )
 }

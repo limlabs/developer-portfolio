@@ -8,7 +8,11 @@ import {
   seedPages,
 } from './actions'
 
-type SeedStatus = 'waiting' | 'seeding' | 'ready' | 'error' | 'timeout'
+export type SeedStatus = 'waiting' | 'seeding' | 'ready' | 'error' | 'timeout'
+const failureStatuses = ['error', 'timeout'] as const
+
+export const isFailureStatus = (status: string) => failureStatuses.includes(status as any)
+
 interface SeedJob {
   name: string
   action: (job: SeedJob) => Promise<void>
@@ -78,7 +82,9 @@ export const useSeedProcess = () => {
   }
 
   const retry = () => {
-    setJobs(jobs => jobs.map(j => ({ ...j, status: j.status === 'error' ? 'waiting' : j.status })))
+    setJobs(jobs =>
+      jobs.map(j => ({ ...j, status: isFailureStatus(j.status) ? 'waiting' : j.status })),
+    )
     setShouldProcess(true)
   }
 
