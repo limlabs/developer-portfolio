@@ -10,8 +10,24 @@ import { seedPages as executeSeedPages } from '@/seed/pages'
 import { seedProjects as executeSeedProjects, getSeededProjects } from '@/seed/projects'
 import { getSeededForms, seedForms as executeSeedForms } from '@/seed/forms'
 import { getPayload } from '@/utilities/api'
+import { cookies } from 'next/headers'
+
+export async function authorize() {
+  const token = cookies().get('payload-token')
+  const payload = await getPayload()
+  const authResult = await payload.auth({
+    headers: new Headers({
+      Authorization: `Bearer ${token?.value}`,
+    }),
+  })
+
+  if (!authResult.permissions.canAccessAdmin) {
+    throw new Error('Unauthorized')
+  }
+}
 
 export async function seedMedia() {
+  await authorize()
   console.log('Seeding media')
   const payload = await getPayload()
   const media = await payload.find({ collection: 'media' })
@@ -24,6 +40,7 @@ export async function seedMedia() {
 }
 
 export async function seedGlobals() {
+  await authorize()
   console.log('Seeding globals')
   const payload = await getPayload()
 
@@ -32,6 +49,7 @@ export async function seedGlobals() {
 }
 
 export async function seedTechnologies() {
+  await authorize()
   console.log('Seeding technologies')
   const payload = await getPayload()
   const technologies = await payload.find({ collection: 'technologies' })
@@ -44,6 +62,7 @@ export async function seedTechnologies() {
 }
 
 export async function seedProjects() {
+  await authorize()
   console.log('Seeding projects')
   const payload = await getPayload()
   const projects = await payload.find({ collection: 'projects' })
@@ -60,6 +79,7 @@ export async function seedProjects() {
 }
 
 export async function seedPages() {
+  await authorize()
   console.log('Seeding pages...')
   const payload = await getPayload()
   const forms = await getSeededForms(payload)
@@ -76,6 +96,7 @@ export async function seedPages() {
 }
 
 export async function seedForms() {
+  await authorize()
   console.log('Seeding forms...')
   const payload = await getPayload()
 

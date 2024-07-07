@@ -7,8 +7,8 @@ import {
   seedProjects,
   seedPages,
 } from './actions'
+import { SeedStatus } from '@/components/setup/types'
 
-export type SeedStatus = 'waiting' | 'seeding' | 'ready' | 'error' | 'timeout'
 const failureStatuses = ['error', 'timeout'] as const
 
 export const isFailureStatus = (status: string) => failureStatuses.includes(status as any)

@@ -3,10 +3,9 @@ import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
-import { Footer } from '@/components/siteLayout/footer'
-import { Backdrop } from '@/components/ui/backdrop/backdrop'
-
 import '../(app)/globals.css'
+
+import { Backdrop } from '@/components/ui/backdrop/backdrop'
 import { ThemeProvider } from '@/components/siteLayout/themeProvider'
 import { serverUrl } from '@/utilities/serverConfig'
 
@@ -37,7 +36,6 @@ export default async function SetupLayout({ children }: { children: React.ReactN
             >
               {children}
             </div>
-            <Footer />
           </div>
         </ThemeProvider>
       </body>
