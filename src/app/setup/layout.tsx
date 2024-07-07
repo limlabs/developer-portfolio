@@ -32,12 +32,11 @@ export default async function SetupLayout({ children }: { children: React.ReactN
           <Backdrop />
           <div className="relative z-20 flex min-h-screen flex-col items-center justify-between">
             <div
-              className="flex-grow-1 flex h-full w-full max-w-[1080px] flex-1 flex-col justify-center px-7 lg:px-8 xl:px-0"
+              className="flex-grow-1 flex h-full w-full max-w-[1080px] flex-1 flex-col items-center justify-center px-7 lg:px-8 xl:px-0"
               id="main-content"
             >
               {children}
             </div>
-
             <Footer />
           </div>
         </ThemeProvider>

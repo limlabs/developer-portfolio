@@ -15,7 +15,7 @@ export async function seedMedia() {
   console.log('Seeding media')
   const payload = await getPayload()
   const media = await payload.find({ collection: 'media' })
-  if (media.docs.length > 0) {
+  if (media.totalDocs > 0) {
     console.log('Media already seeded')
     return
   }
@@ -35,7 +35,7 @@ export async function seedTechnologies() {
   console.log('Seeding technologies')
   const payload = await getPayload()
   const technologies = await payload.find({ collection: 'technologies' })
-  if (technologies.docs.length > 0) {
+  if (technologies.totalDocs > 0) {
     console.log('Technologies already seeded')
     return
   }
@@ -47,7 +47,7 @@ export async function seedProjects() {
   console.log('Seeding projects')
   const payload = await getPayload()
   const projects = await payload.find({ collection: 'projects' })
-  if (projects.docs.length > 0) {
+  if (projects.totalDocs > 0) {
     console.log('Projects already seeded')
     return
   }
@@ -66,6 +66,12 @@ export async function seedPages() {
   const media = await getSeededMedia(payload)
   const projects = await getSeededProjects(payload)
 
+  const pages = await payload.find({ collection: 'pages' })
+  if (pages.totalDocs > 0) {
+    console.log('Pages already seeded')
+    return
+  }
+
   await executeSeedPages(payload, forms, projects, media)
 }
 
@@ -73,8 +79,8 @@ export async function seedForms() {
   console.log('Seeding forms...')
   const payload = await getPayload()
 
-  const forms = await getSeededForms(payload)
-  if (forms.contactForm) {
+  const forms = await payload.find({ collection: 'forms' })
+  if (forms.totalDocs > 0) {
     console.log('Forms already seeded')
     return
   }
