@@ -28,7 +28,7 @@ export default function Welcome() {
             Start with a blank slate and build your content from the ground up.
           </p>
         </Block>
-        <Block fadeIn className="delay-[2s] h-60 w-1/5 justify-center">
+        <Block fadeIn className="h-60 w-1/5 justify-center delay-500">
           <div className="mx-auto h-full w-px justify-center bg-gradient-to-b from-background to-foreground"></div>
         </Block>
         <Block fadeIn className="h-60 w-2/5 flex-col justify-start pt-20 delay-1000">
