@@ -5,7 +5,7 @@ export const VercelDeploy = async () => {
   const customBuild = process.env.VERCEL_BUTTON_BUILD ?? ''
   const projectName = process.env.VERCEL_BUTTON_PROJECT ?? ''
   const env = ['PAYLOAD_SECRET'].join(',')
-  const stores = JSON.stringify([{ type: 'postgres' }])
+  const stores = JSON.stringify([{ type: 'postgres' }, { type: 'blob' }])
 
   const deployUrl = encodeURI(
     [
