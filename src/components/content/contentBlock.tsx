@@ -4,14 +4,16 @@ import { Block, BlockProps } from '@/components/ui/block'
 import { PayloadLink, PayloadLinkType } from './link'
 import { RichText } from './richText'
 
-interface ContentBlockFields extends BlockProps {
+export interface ContentBlockFields extends BlockProps {
   richText?: unknown
-  enableLink?: boolean
-  link?: PayloadLinkType
+  enableLink?: boolean | null
+  link?: PayloadLinkType | null
 }
 
+
+
 interface ContentBlockProps {
-  contentFields?: ContentBlockFields[]
+  contentFields?: ContentBlockFields[] | null
 }
 
 export const ContentBlock: FC<ContentBlockProps> = ({ contentFields }) => {
@@ -25,7 +27,7 @@ export const ContentBlock: FC<ContentBlockProps> = ({ contentFields }) => {
         }
 
         return (
-          <Block size={size} key={id} asChild={enableLink}>
+          <Block size={size} key={id} fadeIn={!Boolean(enableLink)}>
             {content}
           </Block>
         )

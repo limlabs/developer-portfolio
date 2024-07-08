@@ -1,11 +1,11 @@
 import path from 'path'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 
 import { en } from 'payload/i18n/en'
 import { slateEditor } from '@payloadcms/richtext-slate'
-// import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { buildConfig } from 'payload'
 import sharp from 'sharp'
 import { fileURLToPath } from 'url'
@@ -26,17 +26,13 @@ export default buildConfig({
   globals: [Header, Profile],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
+    outputFile: path.resolve(dirname, 'src/payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.POSTGRES_URI || '',
+      connectionString: process.env.POSTGRES_URL || '',
     },
   }),
-  // db: mongooseAdapter({
-  //   url: process.env.MONGODB_URI || '',
-  // }),
-
   /**
    * Payload can now accept specific translations from 'payload/i18n/en'
    * This is completely optional and will default to English if not provided
@@ -78,6 +74,12 @@ export default buildConfig({
     seoPlugin({
       collections: ['pages', 'projects'],
       uploadsCollection: 'media',
+    }),
+    vercelBlobStorage({
+      collections: {
+        [Media.slug]: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
     }),
   ],
 })

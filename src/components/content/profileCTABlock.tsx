@@ -6,13 +6,14 @@ import { Media, Profile } from '@/payload-types'
 import { Block } from '@/components/ui/block'
 import { RichText } from './richText'
 import { SocialIcons } from './socialIcons'
+import { getMediaUrl } from '@/utilities/mediaConfig'
 
-const containerVariants = cva('w-full bg-box/40 rounded-[1.25rem] max-w-[1080px]', {
+const containerVariants = cva('w-full bg-box/30 rounded-[1.25rem] max-w-[1080px]', {
   variants: {
     variant: {
       compact:
-        'px-3 sm:px-14 mt-[3.31rem] mb-[3.75rem] sm:mt-[10.5rem] sm:mb-[5.25rem] py-4 flex flex-col sm:flex-row justify-between items-center',
-      full: 'lg:px-28 py-12 mt-52 lg:mt-40',
+        'px-3 sm:px-14 mt-[3.31rem] mb-[3.75rem] sm:mt-12 sm:mb-[5.25rem] py-4 flex flex-col sm:flex-row justify-between items-center',
+      full: 'lg:px-28 py-12 mt-52 lg:mt-20',
     },
   },
 })
@@ -105,7 +106,7 @@ export const ProfileCTABlock = ({
                 fill
                 {...imageProps[variant]}
                 alt={(profile.profileImage as Media)?.alt}
-                src={(profile.profileImage as Media)?.url as string}
+                src={getMediaUrl((profile.profileImage as Media)?.url as string)}
               />
             </Link>
           )}

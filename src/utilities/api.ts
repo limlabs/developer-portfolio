@@ -1,39 +1,26 @@
-import type { Header, Page, Profile, Project } from '@/payload-types'
+'use server'
+
+import type { Header, Page, Profile, Project, User } from '@/payload-types'
 import type { DraftOptions } from './preview'
+import { getPayloadHMR } from '@payloadcms/next/utilities'
+import configPromise from '@payload-config'
+import { BasePayload, Where } from 'payload'
+import { Options } from 'node_modules/payload/dist/collections/operations/local/find'
 
-export const serverUrl = process.env.PAYLOAD_PUBLIC_SERVER_URL ?? 'http://localhost:3000'
-
-const initPreviewRequest = (init: RequestInit, qs: URLSearchParams, token: string): void => {
-  if (!token) {
-    throw new Error('No token provided when attempting to preview content')
-  }
-
-  qs.append('draft', 'true')
-  init.cache = 'no-store'
-  init.headers = {
-    cookie: `payload-token=${token};path=/;HttpOnly`,
-  }
+export const getPayload = async (): Promise<BasePayload> => {
+  return getPayloadHMR({ config: configPromise })
 }
 
 export const fetchProfile = async (): Promise<Profile> => {
-  const url = `${serverUrl}/api/globals/profile?locale=en`
-
-  const profile: Profile = await fetch(url, {
-    cache: 'force-cache',
-    next: { tags: ['global.profile'] },
-  }).then(res => {
-    return res.json()
-  })
+  const payload = await getPayload()
+  const profile = await payload.findGlobal({ slug: 'profile', locale: 'all' })
 
   return profile
 }
 
 export const fetchHeader = async (): Promise<Header> => {
-  const url = `${serverUrl}/api/globals/header?locale=en`
-  const header: Header = await fetch(url, {
-    cache: 'force-cache',
-    next: { tags: ['global.header'] },
-  }).then(res => res.json())
+  const payload = await getPayload()
+  const header = await payload.findGlobal({ slug: 'header', locale: 'all' })
 
   return header
 }
@@ -44,18 +31,17 @@ export const fetchPage = async (
   slug: string,
   options: FetchPageOptions,
 ): Promise<Page | undefined> => {
-  const qs = new URLSearchParams({ 'where[slug][equals]': slug })
-  const init: RequestInit = { next: { tags: [`pages/${slug}`] } }
+  const opts: Options<'pages'> = { collection: 'pages', where: { slug: { equals: slug } } }
+
   if (options.draft) {
-    initPreviewRequest(init, qs, options.payloadToken as string)
+    options.payloadToken = options.payloadToken ?? ''
+    options.draft = true
   }
 
-  const url = `${serverUrl}/api/pages?${qs.toString()}`
-  const page: Page = await fetch(url, init)
-    .then(res => res.json())
-    .then(res => res?.docs?.[0])
+  const payload = await getPayload()
+  const results = await payload.find(opts)
 
-  return page
+  return results.docs[0]
 }
 
 type FetchProjectOptions = DraftOptions
@@ -64,19 +50,22 @@ export const fetchProject = async (
   slug: string,
   options: FetchProjectOptions,
 ): Promise<Project> => {
-  const qs = new URLSearchParams(`where[slug][equals]=${slug}`)
-  const init: RequestInit = {}
+  const opts: Options<'projects'> = { collection: 'projects', where: { slug: { equals: slug } } }
 
   if (options.draft) {
-    initPreviewRequest(init, qs, options.payloadToken as string)
-  } else {
-    init.next = { tags: [`projects/${slug}`] }
+    options.payloadToken = options.payloadToken ?? ''
+    options.draft = true
   }
 
-  const url = `${serverUrl}/api/projects?${qs.toString()}`
-  const project: Project = await fetch(url, init)
-    .then(res => res.json())
-    .then(res => res?.docs?.[0])
+  const payload = await getPayload()
+  const results = await payload.find(opts)
 
-  return project
+  return results.docs[0]
+}
+
+export const fetchUsers = async (): Promise<User[]> => {
+  const payload = await getPayload()
+  const users = await payload.find({ collection: 'users' })
+
+  return users.docs
 }

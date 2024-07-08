@@ -1,6 +1,6 @@
 import { loggedIn } from '@/access/loggedIn'
 import { publishedOrLoggedIn } from '@/access/publishedOrLoggedIn'
-import { serverUrl } from '@/utilities/api'
+import { serverUrl } from '@/utilities/serverConfig'
 import { Content } from '@/blocks/Content'
 import { Form } from '@/blocks/Form'
 import { MediaBlock } from '@/blocks/Media'

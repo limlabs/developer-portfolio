@@ -15,133 +15,154 @@ export interface Config {
     users: User;
     forms: Form;
     'form-submissions': FormSubmission;
+    'payload-preferences': PayloadPreference;
+    'payload-migrations': PayloadMigration;
   };
   globals: {
     header: Header;
     profile: Profile;
   };
+  locale: null;
+  user: User & {
+    collection: 'users';
+  };
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
   updatedAt: string;
   createdAt: string;
-  url?: string;
-  filename?: string;
-  mimeType?: string;
-  filesize?: number;
-  width?: number;
-  height?: number;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
 export interface Page {
-  id: string;
+  id: number;
   title: string;
   layout?: (
     | {
-        contentFields?: {
-          size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
-          richText?: {
-            [k: string]: unknown;
-          }[];
-          enableLink?: boolean;
-          link?: {
-            type?: 'reference' | 'custom';
-            newTab?: boolean;
-            reference:
-              | {
-                  value: string | Page;
-                  relationTo: 'pages';
-                }
-              | {
-                  value: string | Project;
-                  relationTo: 'projects';
-                };
-            url: string;
-            label: string;
-            appearance?: 'primary' | 'secondary';
-          };
-          id?: string;
-        }[];
-        id?: string;
-        blockName?: string;
-        blockType: 'content';
-      }
-    | {
+      contentFields?: {
+        size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
         richText?: {
           [k: string]: unknown;
         }[];
-        form: string | Form;
-        id?: string;
-        blockName?: string;
-        blockType: 'form';
-      }
-    | {
-        mediaFields?: {
-          size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
-          media: string | Media;
-          mediaFit?: 'cover' | 'contain';
-          id?: string;
-        }[];
-        id?: string;
-        blockName?: string;
-        blockType: 'mediaBlock';
-      }
-    | {
-        fields?: {
-          alignment?: 'contentMedia' | 'mediaContent';
-          mediaSize?: 'oneThird' | 'half' | 'twoThirds';
-          richText?: {
-            [k: string]: unknown;
-          }[];
-          enableLink?: boolean;
-          link?: {
-            type?: 'reference' | 'custom';
-            newTab?: boolean;
-            reference:
-              | {
-                  value: string | Page;
-                  relationTo: 'pages';
-                }
-              | {
-                  value: string | Project;
-                  relationTo: 'projects';
-                };
-            url: string;
-            label: string;
-            appearance?: 'primary' | 'secondary';
+        enableLink?: boolean;
+        link?: {
+          type?: 'reference' | 'custom';
+          newTab?: boolean;
+          reference:
+          | {
+            value: string | Page;
+            relationTo: 'pages';
+          }
+          | {
+            value: string | Project;
+            relationTo: 'projects';
           };
-          media: string | Media;
-          mediaFit?: 'cover' | 'contain';
-          id?: string;
+          url: string;
+          label: string;
+          appearance?: 'primary' | 'secondary';
+        };
+        id?: string;
+      }[];
+      id?: string;
+      blockName?: string;
+      blockType: 'content';
+    }
+    | {
+      richText?: {
+        [k: string]: unknown;
+      }[];
+      form: string | Form;
+      id?: string;
+      blockName?: string;
+      blockType: 'form';
+    }
+    | {
+      mediaFields?: {
+        size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
+        media: string | Media;
+        mediaFit?: 'cover' | 'contain';
+        id?: string;
+      }[];
+      id?: string;
+      blockName?: string;
+      blockType: 'mediaBlock';
+    }
+    | {
+      mediaContentFields?: {
+        alignment?: 'contentMedia' | 'mediaContent';
+        mediaSize?: 'oneThird' | 'half' | 'twoThirds';
+        richText?: {
+          [k: string]: unknown;
         }[];
+        enableLink?: boolean;
+        link?: {
+          type?: 'reference' | 'custom';
+          newTab?: boolean;
+          reference:
+          | {
+            value: string | Page;
+            relationTo: 'pages';
+          }
+          | {
+            value: string | Project;
+            relationTo: 'projects';
+          };
+          url: string;
+          label: string;
+          appearance?: 'primary' | 'secondary';
+        };
+        media: string | Media;
+        mediaFit?: 'cover' | 'contain';
         id?: string;
-        blockName?: string;
-        blockType: 'mediaContent';
-      }
+      }[];
+      id?: string;
+      blockName?: string;
+      blockType: 'mediaContent';
+    }
     | {
-        id?: string;
-        blockName?: string;
-        blockType: 'profile-cta';
-      }
+      id?: string;
+      blockName?: string;
+      blockType: 'profile-cta';
+    }
     | {
-        project: string[] | Project[];
-        id?: string;
-        blockName?: string;
-        blockType: 'projectGrid';
-      }
+      project: string[] | Project[];
+      id?: string;
+      blockName?: string;
+      blockType: 'projectGrid';
+    }
   )[];
   slug?: string;
   meta?: {
-    title?: string;
-    description?: string;
-    image?: string | Media;
+    title?: string | null;
+    description?: string | null;
+    image?: number | Media | null;
   };
   updatedAt: string;
   createdAt: string;
-  _status?: 'draft' | 'published';
+  _status?: ('draft' | 'published') | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
 export interface Project {
-  id: string;
+  id: number;
   title: string;
   description: {
     [k: string]: unknown;
@@ -150,233 +171,312 @@ export interface Project {
   featuredImage?: string | Media;
   layout?: (
     | {
-        contentFields?: {
-          size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
-          richText?: {
-            [k: string]: unknown;
-          }[];
-          enableLink?: boolean;
-          link?: {
-            type?: 'reference' | 'custom';
-            newTab?: boolean;
-            reference:
-              | {
-                  value: string | Page;
-                  relationTo: 'pages';
-                }
-              | {
-                  value: string | Project;
-                  relationTo: 'projects';
-                };
-            url: string;
-            label: string;
-            appearance?: 'primary' | 'secondary';
-          };
-          id?: string;
-        }[];
-        id?: string;
-        blockName?: string;
-        blockType: 'content';
-      }
-    | {
+      contentFields?: {
+        size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
         richText?: {
           [k: string]: unknown;
         }[];
-        form: string | Form;
-        id?: string;
-        blockName?: string;
-        blockType: 'form';
-      }
-    | {
-        mediaFields?: {
-          size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
-          media: string | Media;
-          mediaFit?: 'cover' | 'contain';
-          id?: string;
-        }[];
-        id?: string;
-        blockName?: string;
-        blockType: 'mediaBlock';
-      }
-    | {
-        fields?: {
-          alignment?: 'contentMedia' | 'mediaContent';
-          mediaSize?: 'oneThird' | 'half' | 'twoThirds';
-          richText?: {
-            [k: string]: unknown;
-          }[];
-          enableLink?: boolean;
-          link?: {
-            type?: 'reference' | 'custom';
-            newTab?: boolean;
-            reference:
-              | {
-                  value: string | Page;
-                  relationTo: 'pages';
-                }
-              | {
-                  value: string | Project;
-                  relationTo: 'projects';
-                };
-            url: string;
-            label: string;
-            appearance?: 'primary' | 'secondary';
-          };
-          media: string | Media;
-          mediaFit?: 'cover' | 'contain';
-          id?: string;
-        }[];
-        id?: string;
-        blockName?: string;
-        blockType: 'mediaContent';
-      }
-  )[];
-  slug?: string;
-  role: ('uiUxDesigner' | 'frontEndDeveloper' | 'backEndDeveloper')[];
-  startDate?: string;
-  endDate?: string;
-  meta?: {
-    title?: string;
-    description?: string;
-    image?: string | Media;
-  };
-  updatedAt: string;
-  createdAt: string;
-  _status?: 'draft' | 'published';
-}
-export interface Technology {
-  id: string;
-  name: string;
-  updatedAt: string;
-  createdAt: string;
-}
-export interface Form {
-  id: string;
-  title: string;
-  fields?: (
-    | {
-        name: string;
-        label?: string;
-        width?: number;
-        defaultValue?: string;
-        required?: boolean;
-        id?: string;
-        blockName?: string;
-        blockType: 'text';
-      }
-    | {
-        name: string;
-        label?: string;
-        width?: number;
-        defaultValue?: string;
-        required?: boolean;
-        id?: string;
-        blockName?: string;
-        blockType: 'textarea';
-      }
-    | {
-        name: string;
-        label?: string;
-        width?: number;
-        required?: boolean;
-        id?: string;
-        blockName?: string;
-        blockType: 'email';
-      }
-    | {
-        message?: {
-          [k: string]: unknown;
-        }[];
-        id?: string;
-        blockName?: string;
-        blockType: 'message';
-      }
-  )[];
-  submitButtonLabel?: string;
-  confirmationType?: 'message' | 'redirect';
-  confirmationMessage: {
-    [k: string]: unknown;
-  }[];
-  redirect?: {
-    url: string;
-  };
-  emails?: {
-    emailTo?: string;
-    cc?: string;
-    bcc?: string;
-    replyTo?: string;
-    emailFrom?: string;
-    subject: string;
-    message?: {
-      [k: string]: unknown;
-    }[];
-    id?: string;
-  }[];
-  updatedAt: string;
-  createdAt: string;
-}
-export interface User {
-  id: string;
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string;
-  resetPasswordExpiration?: string;
-  salt?: string;
-  hash?: string;
-  loginAttempts?: number;
-  lockUntil?: string;
-  password?: string;
-}
-export interface FormSubmission {
-  id: string;
-  form: string | Form;
-  submissionData?: {
-    field: string;
-    value: string;
-    id?: string;
-  }[];
-  updatedAt: string;
-  createdAt: string;
-}
-export interface Header {
-  id: string;
-  navItems?: {
-    link: {
-      type?: 'reference' | 'custom';
-      newTab?: boolean;
-      reference:
-        | {
+        enableLink?: boolean;
+        link?: {
+          type?: 'reference' | 'custom';
+          newTab?: boolean;
+          reference:
+          | {
             value: string | Page;
             relationTo: 'pages';
           }
-        | {
+          | {
             value: string | Project;
             relationTo: 'projects';
           };
-      url: string;
+          url: string;
+          label: string;
+          appearance?: 'primary' | 'secondary';
+        };
+        id?: string;
+      }[];
+      id?: string;
+      blockName?: string;
+      blockType: 'content';
+    }
+    | {
+      richText?: {
+        [k: string]: unknown;
+      }[];
+      form: string | Form;
+      id?: string;
+      blockName?: string;
+      blockType: 'form';
+    }
+    | {
+      mediaFields?: {
+        size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
+        media: string | Media;
+        mediaFit?: 'cover' | 'contain';
+        id?: string;
+      }[];
+      id?: string;
+      blockName?: string;
+      blockType: 'mediaBlock';
+    }
+    | {
+      mediaContentFields?: {
+        alignment?: 'contentMedia' | 'mediaContent';
+        mediaSize?: 'oneThird' | 'half' | 'twoThirds';
+        richText?: {
+          [k: string]: unknown;
+        }[];
+        enableLink?: boolean;
+        link?: {
+          type?: 'reference' | 'custom';
+          newTab?: boolean;
+          reference:
+          | {
+            value: string | Page;
+            relationTo: 'pages';
+          }
+          | {
+            value: string | Project;
+            relationTo: 'projects';
+          };
+          url: string;
+          label: string;
+          appearance?: 'primary' | 'secondary';
+        };
+        media: string | Media;
+        mediaFit?: 'cover' | 'contain';
+        id?: string;
+      }[];
+      id?: string;
+      blockName?: string;
+      blockType: 'mediaContent';
+    }
+  )[];
+  slug?: string;
+  role: ('uiUxDesigner' | 'frontEndDeveloper' | 'backEndDeveloper')[];
+  startDate?: string | null;
+  endDate?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: number | Media | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "technologies".
+ */
+export interface Technology {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "forms".
+ */
+export interface Form {
+  id: number;
+  title: string;
+  fields?:
+  | (
+    | {
+      name: string;
+      label?: string | null;
+      width?: number | null;
+      required?: boolean | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'email';
+    }
+    | {
+      message?:
+      | {
+        [k: string]: unknown;
+      }[]
+      | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'message';
+    }
+    | {
+      name: string;
+      label?: string | null;
+      width?: number | null;
+      defaultValue?: string | null;
+      required?: boolean | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'text';
+    }
+    | {
+      name: string;
+      label?: string | null;
+      width?: number | null;
+      defaultValue?: string | null;
+      required?: boolean | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'textarea';
+    }
+  )[]
+  | null;
+  submitButtonLabel?: string | null;
+  confirmationType?: ('message' | 'redirect') | null;
+  confirmationMessage?:
+  | {
+    [k: string]: unknown;
+  }[]
+  | null;
+  redirect?: {
+    url: string;
+  };
+  emails?:
+  | {
+    emailTo?: string | null;
+    cc?: string | null;
+    bcc?: string | null;
+    replyTo?: string | null;
+    emailFrom?: string | null;
+    subject: string;
+    message?:
+    | {
+      [k: string]: unknown;
+    }[]
+    | null;
+    id?: string | null;
+  }[]
+  | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "form-submissions".
+ */
+export interface FormSubmission {
+  id: number;
+  form: number | Form;
+  submissionData?:
+  | {
+    field: string;
+    value: string;
+    id?: string | null;
+  }[]
+  | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-preferences".
+ */
+export interface PayloadPreference {
+  id: number;
+  user: {
+    relationTo: 'users';
+    value: number | User;
+  };
+  key?: string | null;
+  value?:
+  | {
+    [k: string]: unknown;
+  }
+  | unknown[]
+  | string
+  | number
+  | boolean
+  | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-migrations".
+ */
+export interface PayloadMigration {
+  id: number;
+  name?: string | null;
+  batch?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: number;
+  navItems?:
+  | {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+      | ({
+        relationTo: 'pages';
+        value: number | Page;
+      } | null)
+      | ({
+        relationTo: 'projects';
+        value: number | Project;
+      } | null);
+      url?: string | null;
       label: string;
     };
-    id?: string;
-  }[];
-  updatedAt?: string;
-  createdAt?: string;
+    id?: string | null;
+  }[]
+  | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "profile".
+ */
 export interface Profile {
-  id: string;
+  id: number;
   name: string;
-  location?: string;
-  title?: string;
-  aboutMe?: {
+  location?: string | null;
+  title?: string | null;
+  aboutMe?:
+  | {
     [k: string]: unknown;
-  }[];
-  profileImage?: string | Media;
+  }[]
+  | null;
+  profileImage?: number | Media | null;
   socialLinks?: {
-    github?: string;
-    linkedin?: string;
-    email?: string;
-    twitter?: string;
+    github?: string | null;
+    linkedin?: string | null;
+    email?: string | null;
+    twitter?: string | null;
   };
-  updatedAt?: string;
-  createdAt?: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+
+
+declare module 'payload' {
+  export interface GeneratedTypes extends Config { }
 }

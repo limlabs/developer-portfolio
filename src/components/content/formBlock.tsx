@@ -3,8 +3,10 @@ import React, { FC, Fragment, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Form as FormTypes } from '@/payload-types'
-import { serverUrl } from '@/utilities/api'
+
+import { serverUrl } from '@/utilities/serverConfig'
 import { Block } from '@/components/ui/block'
+
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
@@ -95,7 +97,7 @@ export const FormBlock: FC<FormBlockProps> = props => {
       const req = await fetch(`${serverUrl}/api/form-submissions`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json', // Correct typo: "Content-Types" to "Content-Type"
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           form: formID,
@@ -151,7 +153,7 @@ export const FormBlock: FC<FormBlockProps> = props => {
 
               const props = {
                 id: `${formID}-${field.name}`,
-                ...register(field.name, { required: field.required, pattern }),
+                ...register(field.name, { required: Boolean(field.required), pattern }),
               }
 
               let content

@@ -1,7 +1,7 @@
 'use client'
 import { FC } from 'react'
 
-import { Project } from '@/payload-types'
+import { Media, Project } from '@/payload-types'
 import { MediaBlock } from '@/components/content/mediaBlock'
 import { TechnologiesUsed } from './technologiesUsed'
 
@@ -15,7 +15,7 @@ export const ProjectHero: FC<ProjectHeroProps> = ({ project }) => {
       {project.technologiesUsed && <TechnologiesUsed technologies={project.technologiesUsed} />}
       <MediaBlock
         className="mb-10 w-full md:mb-16 lg:mb-0 lg:max-w-[545px]"
-        mediaFields={[{ media: project.featuredImage as string, size: 'full' }]}
+        mediaFields={[{ media: project.featuredImage as Media, size: 'full' }]}
         containerClassName="h-[51vw] sm:h-auto lg:h-[340px]"
         imageClassName="h-[51vw] sm:h-auto lg:h-[340px]"
         priority
