@@ -97,7 +97,7 @@ export const FormBlock: FC<FormBlockProps> = props => {
       const req = await fetch(`${serverUrl}/api/form-submissions`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json", // Correct typo: "Content-Types" to "Content-Type"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           form: formID,

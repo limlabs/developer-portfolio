@@ -6,6 +6,7 @@ import Image from "next/image"
 import { Block, BlockProps } from "@/components/ui/block"
 import { Media } from "@/payload-types"
 import { cn } from "@/utilities"
+import { getMediaUrl } from "@/utilities/mediaConfig"
 
 import { MediaDialog } from "./mediaDialog"
 
@@ -69,7 +70,7 @@ export const MediaBlock: FC<MediaBlockProps> = ({
             >
               <Image
                 className={cn("flex-1 overflow-hidden rounded-3xl", imageClassName)}
-                src={mediaInfo.url as string}
+                src={getMediaUrl(mediaInfo.url as string)}
                 alt={mediaInfo.alt}
                 width={mediaInfo.width ?? undefined}
                 height={mediaInfo.height ?? undefined}

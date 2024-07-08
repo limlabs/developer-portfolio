@@ -3,13 +3,13 @@
 import { Options } from "node_modules/payload/dist/collections/operations/local/find"
 import { BasePayload } from "payload"
 
-import type { Header, Page, Profile, Project } from "@/payload-types"
+import type { Header, Page, Profile, Project, User } from "@/payload-types"
 import configPromise from "@payload-config"
 import { getPayloadHMR } from "@payloadcms/next/utilities"
 
 import type { DraftOptions } from "./preview"
 
-const getPayload = async (): Promise<BasePayload> => {
+export const getPayload = async (): Promise<BasePayload> => {
   return getPayloadHMR({ config: configPromise })
 }
 
@@ -63,4 +63,11 @@ export const fetchProject = async (
   const results = await payload.find(opts)
 
   return results.docs[0]
+}
+
+export const fetchUsers = async (): Promise<User[]> => {
+  const payload = await getPayload()
+  const users = await payload.find({ collection: "users" })
+
+  return users.docs
 }

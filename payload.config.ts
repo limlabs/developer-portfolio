@@ -1,12 +1,12 @@
 import path from 'path'
-// import { postgresAdapter } from '@payloadcms/db-postgres'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import { postgresAdapter } from '@payloadcms/db-postgres'
 import { formBuilderPlugin } from '@payloadcms/plugin-form-builder'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 
 import { en } from 'payload/i18n/en'
 import { slateEditor } from '@payloadcms/richtext-slate'
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { buildConfig } from 'payload'
+import { buildConfig, Plugin } from 'payload'
 import sharp from 'sharp'
 import { fileURLToPath } from 'url'
 import { Media } from '@/collections/Media'
@@ -20,30 +20,53 @@ import { Profile } from '@/globals/Profile'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
+const plugins: Plugin[] = [
+  formBuilderPlugin({
+    fields: {
+      payment: false,
+      checkbox: false,
+      country: false,
+      email: true,
+      message: true,
+      number: false,
+      text: true,
+      textarea: true,
+      select: false,
+      state: false,
+    },
+  }),
+  seoPlugin({
+    collections: ['pages', 'projects'],
+    uploadsCollection: 'media',
+  })
+];
+
+// Only load vercelBlobStorage plugin when blob token is defined
+// loading in localhost breaks payload
+if (typeof process.env.BLOB_READ_WRITE_TOKEN !== "undefined") {
+  plugins.push(
+    vercelBlobStorage({
+      collections: {
+        [Media.slug]: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    })
+  )
+}
+
 export default buildConfig({
-  
   editor: slateEditor({}),
-  collections: [
-    Media,
-    Pages,
-    Projects,
-    Technologies,
-    Users
-  ],
+  collections: [Media, Pages, Projects, Technologies, Users],
   globals: [Header, Profile],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'src/payload-types.ts'),
   },
-  // db: postgresAdapter({
-  //   pool: {
-  //     connectionString: process.env.POSTGRES_URI || ''
-  //   }
-  // }),
-  db: mongooseAdapter({
-    url: process.env.MONGODB_URI || '',
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.POSTGRES_URL || '',
+    },
   }),
-
   /**
    * Payload can now accept specific translations from 'payload/i18n/en'
    * This is completely optional and will default to English if not provided
@@ -67,24 +90,5 @@ export default buildConfig({
   // for this before reaching 3.0 stable
   sharp,
 
-  plugins: [
-    formBuilderPlugin({
-      fields: {
-        payment: false,
-        checkbox: false,
-        country: false,
-        email: true,
-        message: true,
-        number: false,
-        text: true,
-        textarea: true,
-        select: false,
-        state: false,
-      },
-    }),
-    seoPlugin({
-      collections: ['pages', 'projects'],
-      uploadsCollection: 'media',
-    }),
-  ]
+  plugins: plugins
 })

@@ -9,7 +9,7 @@ import { Profile } from "@/payload-types"
 import { ThemeToggle } from "./themeToggle"
 
 interface FooterProps {
-  profile: Profile
+  profile?: Profile
 }
 
 export const Footer: FC<FooterProps> = ({ profile }) => {

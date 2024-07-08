@@ -33,3 +33,26 @@ export const seedTechnologies = async payload => {
     illustratorDoc,
   }
 }
+
+export async function getSeededTechnologies(payload) {
+  const technologies = await payload.find({
+    collection: "technologies",
+  })
+
+  const technologiesMap = {
+    Webflow: "webflowDoc",
+    InVision: "inVisionDoc",
+    Figma: "figmaDoc",
+    Illustrator: "illustratorDoc",
+  }
+
+  const seededTechnologies = technologies.docs.reduce((acc, technology) => {
+    const key = technologiesMap[technology.name]
+    if (key) {
+      acc[key] = technology
+    }
+    return acc
+  }, {})
+
+  return seededTechnologies
+}

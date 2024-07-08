@@ -14,7 +14,7 @@ export const ProjectDetailsHeadline: FC<ProjectDetailsHeadlineProps> = ({
   project,
 }: ProjectDetailsHeadlineProps) => {
   return (
-    <div className="relative z-0 w-full text-foreground lg:w-1/2 lg:pb-8 lg:pr-16">
+    <div className="relative z-0 w-full text-foreground lg:pb-8 lg:pr-16">
       <h1 className="text-2xl font-bold leading-[30-px] lg:text-5xl">{project.title}</h1>
       {project.startDate && (
         <p className="pt-2 text-base leading-6">

@@ -3,6 +3,7 @@ import Link from "next/link"
 
 import { PayloadLink } from "@/components/content/link"
 import { Header, Media, Profile } from "@/payload-types"
+import { getMediaUrl } from "@/utilities/mediaConfig"
 
 import { SkipToMainContentLink } from "./skipToMainContent"
 
@@ -23,7 +24,7 @@ export const NavBar = ({ profile, header }: { profile: Profile; header: Header }
               style={{ position: "relative" }}
             >
               <Image
-                src={(profile.profileImage as Media)?.url as string}
+                src={getMediaUrl((profile.profileImage as Media)?.url as string)}
                 className="rounded-full"
                 alt={(profile.profileImage as Media)?.alt as string}
                 priority

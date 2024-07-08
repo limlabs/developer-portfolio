@@ -59,3 +59,23 @@ export const seedForms = async payload => {
 
   return { contactForm }
 }
+
+export async function getSeededForms(payload) {
+  const forms = await payload.find({ collection: "forms" })
+  if (forms.docs.length === 0) {
+    throw new Error("No forms found during seed process")
+  }
+
+  const formTitleMap = {
+    "Contact Form": "contactForm",
+  }
+
+  const seededForms = forms.docs.reduce((acc, form) => {
+    if (formTitleMap[form.title]) {
+      acc[formTitleMap[form.title]] = form
+    }
+    return acc
+  }, {})
+
+  return seededForms
+}

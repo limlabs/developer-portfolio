@@ -1,11 +1,11 @@
-import * as React from "react"
+"use client"
+
+import { type HTMLAttributes, useRef } from "react"
 
 import { cva, VariantProps } from "class-variance-authority"
 
+import { useFade } from "@/hooks/useFade"
 import { cn } from "@/utilities"
-import { Slot } from "@radix-ui/react-slot"
-
-import { FadeInContent } from "./fadeInContent"
 
 const blockVariants = cva("flex col-span-6 justify-center lg:justify-start", {
   variants: {
@@ -22,18 +22,27 @@ const blockVariants = cva("flex col-span-6 justify-center lg:justify-start", {
 })
 
 export interface BlockProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof blockVariants> {
   size?: "oneThird" | "twoThirds" | "half" | "full" | null
-  asChild?: boolean | null
+  fadeIn?: boolean | null
 }
 
-const Block = React.forwardRef<HTMLDivElement, BlockProps>(
-  ({ className, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : FadeInContent
-    return <Comp className={cn(blockVariants({ size, className }))} ref={ref} {...props} />
-  },
-)
+const Block = ({ children, className, size, fadeIn = true, ...props }: BlockProps) => {
+  const ref = useRef(null)
+  const fade = fadeIn ? useFade(ref) : null
+
+  return (
+    <div
+      className={cn([blockVariants({ size, className }), [...(fade?.classes.init ?? [])]])}
+      ref={ref}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+}
+
 Block.displayName = "Block"
 
 export { Block, blockVariants }
