@@ -1,22 +1,22 @@
-import type { GlobalConfig } from 'payload'
+import type { GlobalConfig } from "payload"
 
-import { loggedIn } from '@/access/loggedIn'
-import link from '@/fields/link'
-import { tagRevalidator } from '@/utilities/tagRevalidator'
+import { loggedIn } from "@/access/loggedIn"
+import link from "@/fields/link"
+import { tagRevalidator } from "@/utilities/tagRevalidator"
 
 export const Header: GlobalConfig = {
-  slug: 'header',
+  slug: "header",
   access: {
     read: () => true,
     update: loggedIn,
   },
   hooks: {
-    afterChange: [tagRevalidator(() => 'global.header')],
+    afterChange: [tagRevalidator(() => "global.header")],
   },
   fields: [
     {
-      name: 'navItems',
-      type: 'array',
+      name: "navItems",
+      type: "array",
       fields: [
         link({
           appearances: false,

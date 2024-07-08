@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import React from 'react'
+import React from "react"
 
-import { CustomRenderers, Serialize as SerializeContent } from './serialize'
+import { CustomRenderers, Serialize as SerializeContent } from "./serialize"
 
 export const RichText: React.FC<{
   content: any

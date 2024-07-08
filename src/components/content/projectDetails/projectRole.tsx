@@ -1,9 +1,9 @@
-import { FC } from 'react'
+import { FC } from "react"
 
-import { Project } from '@/payload-types'
+import { Project } from "@/payload-types"
 
 interface ProjectRolesProps {
-  roles: Project['role']
+  roles: Project["role"]
 }
 export const ProjectRoles: FC<ProjectRolesProps> = ({ roles }) => {
   return (
@@ -12,12 +12,12 @@ export const ProjectRoles: FC<ProjectRolesProps> = ({ roles }) => {
         .map(
           role =>
             ({
-              uiUxDesigner: 'Lead UI/UX Designer',
-              frontEndDeveloper: 'Front-End Developer',
-              backEndDeveloper: 'Back-End Developer',
-            })[role] ?? '',
+              uiUxDesigner: "Lead UI/UX Designer",
+              frontEndDeveloper: "Front-End Developer",
+              backEndDeveloper: "Back-End Developer",
+            })[role] ?? "",
         )
-        .join(', ')}
+        .join(", ")}
     </h4>
   )
 }

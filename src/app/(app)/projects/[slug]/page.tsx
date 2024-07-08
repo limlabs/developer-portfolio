@@ -1,10 +1,10 @@
-import { Metadata, ResolvingMetadata } from 'next'
-import { notFound } from 'next/navigation'
+import { Metadata, ResolvingMetadata } from "next"
+import { notFound } from "next/navigation"
 
-import { Media } from '@/payload-types'
-import { ProjectDetails } from '@/components/content/projectDetails/projectDetails'
-import { fetchProfile, fetchProject } from '@/utilities/api'
-import { parsePreviewOptions } from '@/utilities/preview'
+import { ProjectDetails } from "@/components/content/projectDetails/projectDetails"
+import { Media } from "@/payload-types"
+import { fetchProfile, fetchProject } from "@/utilities/api"
+import { parsePreviewOptions } from "@/utilities/preview"
 
 interface ProjectPageProps {
   params: {
@@ -24,13 +24,13 @@ export async function generateMetadata(
 
   const images: string[] = []
   if (project?.meta?.image) {
-    images.push((project.meta.image as Media)?.url ?? '')
+    images.push((project.meta.image as Media)?.url ?? "")
   } else if (project?.featuredImage) {
-    images.push((project.featuredImage as Media)?.url ?? '')
+    images.push((project.featuredImage as Media)?.url ?? "")
   }
 
   const title = project?.meta?.title || project?.title || previousTitle
-  const description = project?.meta?.description || 'Details on a portoflio project.'
+  const description = project?.meta?.description || "Details on a portoflio project."
 
   return {
     title,
@@ -39,7 +39,7 @@ export async function generateMetadata(
       title,
       description,
       images,
-      type: 'article',
+      type: "article",
       modifiedTime: project.updatedAt,
     },
   }

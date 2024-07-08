@@ -53,7 +53,7 @@ const designAppMockDetailedDescription = [
   {
     children: [
       {
-        text: 'Translating user insights into design decisions, I meticulously crafted user journeys that flow effortlessly from one task to another within the app. Through the meticulous creation of wireframes and interactive prototypes, I aimed to strike the delicate balance between simplicity and functionality. The result was an app that fosters a harmonious design experience, making creativity the focal point.',
+        text: "Translating user insights into design decisions, I meticulously crafted user journeys that flow effortlessly from one task to another within the app. Through the meticulous creation of wireframes and interactive prototypes, I aimed to strike the delicate balance between simplicity and functionality. The result was an app that fosters a harmonious design experience, making creativity the focal point.",
       },
     ],
   },
@@ -137,12 +137,16 @@ const artAppMockDetailedDescription = [
 // Merges text properties in description object to a string
 function mergeDescription(description) {
   // Cast string[] to string
-  return description.map((desc) => {
-    // Cast children[] to string[]
-    return desc.children.map((line) => {
-      return line.text;
-    }).join("\n");
-  }).join("\n");
+  return description
+    .map(desc => {
+      // Cast children[] to string[]
+      return desc.children
+        .map(line => {
+          return line.text
+        })
+        .join("\n")
+    })
+    .join("\n")
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -152,180 +156,180 @@ export const seedProjects = async (payload, media, technologies) => {
 
   const [designDesign, outsideApp, designApp, artApp] = await Promise.all([
     payload.create({
-      collection: 'projects',
+      collection: "projects",
       data: {
-        title: 'Design Design',
+        title: "Design Design",
         description: designDesignMockDescription,
-        role: ['uiUxDesigner'],
-        startDate: new Date('2020-01-01').toISOString(),
-        endDate: new Date('2020-01-31').toISOString(),
+        role: ["uiUxDesigner"],
+        startDate: new Date("2020-01-01").toISOString(),
+        endDate: new Date("2020-01-31").toISOString(),
         technologiesUsed,
         featuredImage: media.designDesignFeaturedScreenshot.id,
         layout: [
           {
             mediaContentFields: [
               {
-                alignment: 'mediaContent',
-                mediaSize: 'twoThirds',
+                alignment: "mediaContent",
+                mediaSize: "twoThirds",
                 richText: designDesignMockDetailedDescription,
                 media: genericMarketingImageOne.id,
-                mediaFit: 'contain',
+                mediaFit: "contain",
               },
             ],
-            blockType: 'mediaContent',
+            blockType: "mediaContent",
           },
           {
             mediaFields: [
               {
-                size: 'oneThird',
+                size: "oneThird",
                 media: genericMarketingImageTwo.id,
               },
               {
-                size: 'twoThirds',
+                size: "twoThirds",
                 media: genericMarketingImageThree.id,
               },
             ],
-            blockType: 'mediaBlock',
+            blockType: "mediaBlock",
           },
         ],
         meta: {
           title: "Design Design",
           description: mergeDescription(designDesignMockDetailedDescription),
-          image: media.designDesignFeaturedScreenshot.id
+          image: media.designDesignFeaturedScreenshot.id,
         },
-        _status: 'published',
+        _status: "published",
       },
     }),
     payload.create({
-      collection: 'projects',
+      collection: "projects",
       data: {
-        title: 'Outside App',
+        title: "Outside App",
         description: outsideAppMockDescription,
-        role: ['uiUxDesigner'],
-        startDate: new Date('2023-02-01').toISOString(),
-        endDate: new Date('2023-02-28').toISOString(),
+        role: ["uiUxDesigner"],
+        startDate: new Date("2023-02-01").toISOString(),
+        endDate: new Date("2023-02-28").toISOString(),
         technologiesUsed,
         featuredImage: media.outsideAppFeaturedScreenshot.id,
         layout: [
           {
             mediaContentFields: [
               {
-                alignment: 'mediaContent',
-                mediaSize: 'twoThirds',
+                alignment: "mediaContent",
+                mediaSize: "twoThirds",
                 richText: outsideAppMockDetailedDescription,
                 media: genericMarketingImageOne.id,
               },
             ],
-            blockType: 'mediaContent',
+            blockType: "mediaContent",
           },
           {
             mediaFields: [
               {
-                size: 'oneThird',
+                size: "oneThird",
                 media: genericMarketingImageTwo.id,
               },
               {
-                size: 'twoThirds',
+                size: "twoThirds",
                 media: genericMarketingImageThree.id,
               },
             ],
-            blockType: 'mediaBlock',
+            blockType: "mediaBlock",
           },
         ],
         meta: {
           title: "Outside App",
           description: mergeDescription(outsideAppMockDetailedDescription),
-          image: media.outsideAppFeaturedScreenshot.id
+          image: media.outsideAppFeaturedScreenshot.id,
         },
-        _status: 'published',
+        _status: "published",
       },
     }),
     payload.create({
-      collection: 'projects',
+      collection: "projects",
       data: {
-        title: 'Design App',
+        title: "Design App",
         description: designAppMockDescription,
-        role: ['uiUxDesigner'],
-        startDate: new Date('2021-03-01').toISOString(),
-        endDate: new Date('2021-03-31').toISOString(),
+        role: ["uiUxDesigner"],
+        startDate: new Date("2021-03-01").toISOString(),
+        endDate: new Date("2021-03-31").toISOString(),
         technologiesUsed,
         featuredImage: media.designAppFeaturedScreenshot.id,
         layout: [
           {
             mediaContentFields: [
               {
-                alignment: 'mediaContent',
-                mediaSize: 'twoThirds',
+                alignment: "mediaContent",
+                mediaSize: "twoThirds",
                 richText: designAppMockDetailedDescription,
                 media: genericMarketingImageOne.id,
               },
             ],
-            blockType: 'mediaContent',
+            blockType: "mediaContent",
           },
           {
             mediaFields: [
               {
-                size: 'oneThird',
+                size: "oneThird",
                 media: genericMarketingImageTwo.id,
               },
               {
-                size: 'twoThirds',
+                size: "twoThirds",
                 media: genericMarketingImageThree.id,
               },
             ],
-            blockType: 'mediaBlock',
+            blockType: "mediaBlock",
           },
         ],
         meta: {
           title: "Design App",
           description: mergeDescription(designAppMockDetailedDescription),
-          image: media.designAppFeaturedScreenshot.id
+          image: media.designAppFeaturedScreenshot.id,
         },
-        _status: 'published',
+        _status: "published",
       },
     }),
     payload.create({
-      collection: 'projects',
+      collection: "projects",
       data: {
-        title: 'Art App',
+        title: "Art App",
         description: artAppMockDescription,
-        role: ['uiUxDesigner'],
-        startDate: new Date('2021-04-01').toISOString(),
-        endDate: new Date('2021-04-30').toISOString(),
+        role: ["uiUxDesigner"],
+        startDate: new Date("2021-04-01").toISOString(),
+        endDate: new Date("2021-04-30").toISOString(),
         technologiesUsed,
         featuredImage: media.artAppFeaturedScreenshot.id,
         layout: [
           {
             mediaContentFields: [
               {
-                alignment: 'mediaContent',
-                mediaSize: 'twoThirds',
+                alignment: "mediaContent",
+                mediaSize: "twoThirds",
                 richText: artAppMockDetailedDescription,
                 media: genericMarketingImageOne.id,
               },
             ],
-            blockType: 'mediaContent',
+            blockType: "mediaContent",
           },
           {
             mediaFields: [
               {
-                size: 'oneThird',
+                size: "oneThird",
                 media: genericMarketingImageTwo.id,
               },
               {
-                size: 'twoThirds',
+                size: "twoThirds",
                 media: genericMarketingImageThree.id,
               },
             ],
-            blockType: 'mediaBlock',
+            blockType: "mediaBlock",
           },
         ],
         meta: {
           title: "Art App",
           description: mergeDescription(artAppMockDetailedDescription),
-          image: media.artAppFeaturedScreenshot.id
+          image: media.artAppFeaturedScreenshot.id,
         },
-        _status: 'published',
+        _status: "published",
       },
     }),
   ])

@@ -1,17 +1,18 @@
-import { seedForms } from './forms.js'
-import { seedGlobals } from './globals.js'
-import { seedMedia } from './media.js'
-import { seedPages } from './pages.js'
-import { seedProjects } from './projects.js'
-import { seedTechnologies } from './technologies.js'
-import { seedUsers } from './users.js'
+import "dotenv/config"
 
-import { getPayload } from 'payload'
-import { importConfig } from 'payload/node'
-import 'dotenv/config'
+import { getPayload } from "payload"
+import { importConfig } from "payload/node"
+
+import { seedForms } from "./forms.js"
+import { seedGlobals } from "./globals.js"
+import { seedMedia } from "./media.js"
+import { seedPages } from "./pages.js"
+import { seedProjects } from "./projects.js"
+import { seedTechnologies } from "./technologies.js"
+import { seedUsers } from "./users.js"
 
 export const seed = async payload => {
-  console.log('Seeding data')
+  console.log("Seeding data")
   await seedUsers(payload)
 
   const forms = await seedForms(payload)
@@ -24,10 +25,10 @@ export const seed = async payload => {
 
   await seedPages(payload, forms, projects, media)
 
-  console.log('Data seeded')
+  console.log("Data seeded")
 }
 ;(async function () {
-  const awaitedConfig = await importConfig('../../payload.config.ts')
+  const awaitedConfig = await importConfig("../../payload.config.ts")
   const payload = await getPayload({ config: awaitedConfig })
   await seed(payload)
   process.exit(0)

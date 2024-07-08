@@ -1,9 +1,10 @@
-'use client'
-import { FC } from 'react'
+"use client"
+import { FC } from "react"
 
-import { Project } from '@/payload-types'
-import { formatMonth } from '@/utilities/format'
-import { ProjectRoles } from './projectRole'
+import { Project } from "@/payload-types"
+import { formatMonth } from "@/utilities/format"
+
+import { ProjectRoles } from "./projectRole"
 
 interface ProjectDetailsHeadlineProps {
   project: Project

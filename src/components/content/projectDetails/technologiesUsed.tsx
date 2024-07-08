@@ -1,9 +1,9 @@
-import { FC } from 'react'
+import { FC } from "react"
 
-import { Project, Technology } from '@/payload-types'
+import { Project, Technology } from "@/payload-types"
 
 export interface TechnologiesUsedProps {
-  technologies: Project['technologiesUsed']
+  technologies: Project["technologiesUsed"]
 }
 
 export const TechnologiesUsed: FC<TechnologiesUsedProps> = ({ technologies }) => {

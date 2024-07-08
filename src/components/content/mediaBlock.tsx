@@ -1,27 +1,29 @@
-import { FC, Fragment } from 'react'
-import { cva } from 'class-variance-authority'
-import Image from 'next/image'
+import { FC, Fragment } from "react"
 
-import { Media } from '@/payload-types'
-import { cn } from '@/utilities'
-import { Block, BlockProps } from '../ui/block'
-import { MediaDialog } from './mediaDialog'
+import { cva } from "class-variance-authority"
+import Image from "next/image"
 
-const mediaBlockCaptionVariants = cva('flex w-full mt-1 text-primary', {
+import { Media } from "@/payload-types"
+import { cn } from "@/utilities"
+
+import { Block, BlockProps } from "@/components/ui/block"
+import { MediaDialog } from "./mediaDialog"
+
+const mediaBlockCaptionVariants = cva("flex w-full mt-1 text-primary", {
   variants: {
     captionSize: {
-      small: 'text-sm md:text-base lg:text-xl',
-      large: 'text-xl lg:leading-7',
+      small: "text-sm md:text-base lg:text-xl",
+      large: "text-xl lg:leading-7",
     },
   },
   defaultVariants: {
-    captionSize: 'small',
+    captionSize: "small",
   },
 })
 
 export interface MediaBlockFields extends BlockProps {
   media: string | Media
-  mediaFit?: 'contain' | 'cover'
+  mediaFit?: "contain" | "cover"
 }
 
 export interface MediaBlockProps {
@@ -32,14 +34,14 @@ export interface MediaBlockProps {
   imageClassName?: string
   captionClassName?: string
   priority?: boolean
-  captionSize?: 'small' | 'large'
+  captionSize?: "small" | "large"
 }
 
 const sizesMap = {
-  full: '1080px',
-  half: '540px',
-  oneThird: '360px',
-  twoThirds: '720px',
+  full: "1080px",
+  half: "540px",
+  oneThird: "360px",
+  twoThirds: "720px",
 } as const
 
 export const MediaBlock: FC<MediaBlockProps> = ({
@@ -54,26 +56,26 @@ export const MediaBlock: FC<MediaBlockProps> = ({
 }) => {
   return (
     <Fragment>
-      {mediaFields?.map(({ media, size, mediaFit = 'cover' }) => {
+      {mediaFields?.map(({ media, size, mediaFit = "cover" }) => {
         const mediaInfo = media as Media
 
         const base = (
           <Fragment>
             <div
               className={cn(
-                'flex-0 relative flex',
-                mediaFit === 'cover' ? 'h-full w-auto' : 'h-auto w-full',
+                "flex-0 relative flex",
+                mediaFit === "cover" ? "h-full w-auto" : "h-auto w-full",
               )}
             >
               <Image
-                className={cn('flex-1 overflow-hidden rounded-3xl', imageClassName)}
+                className={cn("flex-1 overflow-hidden rounded-3xl", imageClassName)}
                 src={mediaInfo.url as string}
                 alt={mediaInfo.alt}
                 width={mediaInfo.width ?? undefined}
                 height={mediaInfo.height ?? undefined}
                 sizes={`(min-width: 1024px) ${sizesMap[size as keyof typeof sizesMap]}, 90vw`}
                 style={{
-                  objectFit: mediaFit ?? 'cover',
+                  objectFit: mediaFit ?? "cover",
                 }}
                 priority={priority}
               />
@@ -82,9 +84,9 @@ export const MediaBlock: FC<MediaBlockProps> = ({
         )
 
         const containerClassNames = cn(
-          'flex flex-col relative w-full text-left',
+          "flex flex-col relative w-full text-left",
           containerClassName,
-          mediaFit === 'cover' && 'h-full w-auto',
+          mediaFit === "cover" && "h-full w-auto",
         )
 
         const caption = mediaInfo.alt && (
@@ -95,7 +97,7 @@ export const MediaBlock: FC<MediaBlockProps> = ({
 
         if (lightbox) {
           return (
-            <Block size={size} className={cn('flex-col', className)} key={mediaInfo.id}>
+            <Block size={size} className={cn("flex-col", className)} key={mediaInfo.id}>
               <MediaDialog
                 className={containerClassNames}
                 mediaFit={mediaFit}
@@ -108,7 +110,7 @@ export const MediaBlock: FC<MediaBlockProps> = ({
         }
 
         return (
-          <Block size={size} className={cn('flex-col', className)} key={mediaInfo.id}>
+          <Block size={size} className={cn("flex-col", className)} key={mediaInfo.id}>
             {base}
             {caption}
           </Block>

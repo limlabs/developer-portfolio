@@ -1,16 +1,17 @@
-import React from 'react'
-import { Inter } from 'next/font/google'
+import "./globals.css"
 
-const inter = Inter({ subsets: ['latin'] })
+import React from "react"
 
-import { Footer } from '@/components/siteLayout/footer'
-import { NavBar } from '@/components/siteLayout/navBar'
-import { Backdrop } from '@/components/ui/backdrop/backdrop'
-import { fetchHeader, fetchProfile } from '@/utilities/api'
+import { Inter } from "next/font/google"
 
-import './globals.css'
-import { ThemeProvider } from '@/components/siteLayout/themeProvider'
-import { serverUrl } from '@/utilities/serverConfig'
+import { Footer } from "@/components/siteLayout/footer"
+import { NavBar } from "@/components/siteLayout/navBar"
+import { ThemeProvider } from "@/components/siteLayout/themeProvider"
+import { Backdrop } from "@/components/ui/backdrop/backdrop"
+import { fetchHeader, fetchProfile } from "@/utilities/api"
+import { serverUrl } from "@/utilities/serverConfig"
+
+const inter = Inter({ subsets: ["latin"] })
 
 export async function generateMetadata() {
   const profile = await fetchProfile()
@@ -18,7 +19,7 @@ export async function generateMetadata() {
   return {
     metadataBase: new URL(serverUrl),
     title: `Portfolio | ${profile.name}`,
-    description: 'My professional portfolio featuring past projects and contact info.',
+    description: "My professional portfolio featuring past projects and contact info.",
   }
 }
 

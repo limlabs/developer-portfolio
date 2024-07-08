@@ -1,13 +1,14 @@
-import { FC } from 'react'
+import { FC } from "react"
 
-import { Profile, Project } from '@/payload-types'
-import { FadeInContent } from '@/components/ui/fadeInContent'
-import { ContentLayout } from '@/components/content/contentLayout'
-import { ProfileCTABlock } from '@/components/content/profileCTABlock'
-import { RichText } from '@/components/content/richText'
-import { BackButton } from './backButton'
-import { ProjectDetailsHeadline } from './projectDetailsHeadline'
-import { ProjectHero } from './projectHero'
+import { ContentLayout } from "@/components/content/contentLayout"
+import { ProfileCTABlock } from "@/components/content/profileCTABlock"
+import { RichText } from "@/components/content/richText"
+import { FadeInContent } from "@/components/ui/fadeInContent"
+import { Profile, Project } from "@/payload-types"
+
+import { BackButton } from "./backButton"
+import { ProjectDetailsHeadline } from "./projectDetailsHeadline"
+import { ProjectHero } from "./projectHero"
 
 export interface ProjectDetailsProps {
   project: Project

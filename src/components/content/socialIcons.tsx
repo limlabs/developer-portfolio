@@ -1,21 +1,22 @@
-import { FC, Suspense } from 'react'
-import { EnvelopeOpenIcon } from '@radix-ui/react-icons'
-import { GithubIcon, LinkedinIcon, TwitterIcon } from 'lucide-react'
+import { FC, Suspense } from "react"
 
-import { Profile } from '@/payload-types'
-import { cn } from '@/utilities'
-import { fetchProfile } from '@/utilities/api'
-import { SocialLink } from '@/components/ui/socialLink'
+import { GithubIcon, LinkedinIcon, TwitterIcon } from "lucide-react"
+
+import { SocialLink } from "@/components/ui/socialLink"
+import { Profile } from "@/payload-types"
+import { cn } from "@/utilities"
+import { fetchProfile } from "@/utilities/api"
+import { EnvelopeOpenIcon } from "@radix-ui/react-icons"
 
 interface SocialIconsContentProps {
   className?: string
   profile?: Profile
 }
 
-const SocialIconsContent = async ({ className = '' }) => {
+const SocialIconsContent = async ({ className = "" }) => {
   const profile = await fetchProfile()
   return (
-    <div className={cn('flex items-center gap-8 lg:max-w-[300px]', className)}>
+    <div className={cn("flex items-center gap-8 lg:max-w-[300px]", className)}>
       {profile.socialLinks?.github && (
         <SocialLink
           href={profile.socialLinks.github}
@@ -48,7 +49,7 @@ const SocialIconsContent = async ({ className = '' }) => {
 }
 
 export const SocialIcons: FC<SocialIconsContentProps> = props => (
-  <Suspense fallback={<div className={cn('h-[25px] w-full lg:max-w-[300px]', props.className)} />}>
+  <Suspense fallback={<div className={cn("h-[25px] w-full lg:max-w-[300px]", props.className)} />}>
     {/* @ts-ignore */}
     <SocialIconsContent {...props} />
   </Suspense>
