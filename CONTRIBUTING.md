@@ -108,19 +108,25 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/limlab
 - You may want to **include screenshots and animated GIFs** which help you demonstrate the steps or point out the part which the suggestion is related to. You can use [this tool](https://www.cockos.com/licecap/) to record GIFs on macOS and Windows, and [this tool](https://github.com/colinkeenan/silentcast) or [this tool](https://github.com/GNOME/byzanz) on Linux. <!-- this should only be included if the project has a GUI -->
 - **Explain why this enhancement would be useful** to most payload developer portfolio template users. You may also want to point out the other projects that solved it better and which could serve as inspiration.
 
-<!-- You might want to create an issue template for enhancement suggestions that can be used as a guide and that defines the structure of the information to be included. If you do so, reference it here in the description. -->
-
-### Your First Code Contribution
-<!-- TODO
-include Setup of env, IDE and typical getting started instructions?
-
--->
-
 ## Styleguides
-### Commit Messages
-<!-- TODO
 
--->
+- **Code Width**: Set your code editor to have a width of 100 characters. This will help ensure that your code is easy to read and doesn't wrap excessively in most editors.
+
+- **Parser**: Use TypeScript as the parser for your codebase. This will enable TypeScript-specific features and provide better autocompletion and error reporting in your editor.
+
+- **Semi-Colons**: Disable the use of semi-colons at the end of statements. Prettier will add them automatically where they are necessary, based on the JavaScript or TypeScript rules.
+
+- **Quotes**: Do not use single quotes for strings. Instead, allow Prettier to choose between double and template literals based on your code.
+
+- **Trailing Commas**: Use trailing commas in all multi-line lists and arrays. This will make your code easier to read when working with large lists or complex configurations.
+
+- **Arrow Parens**: Avoid using parentheses around objects' arrow functions' arguments. Instead, let Prettier decide if they are necessary based on the context of your code.
+
+- **TailwindCSS**: Install and enable the prettier-plugin-tailwindcss plugin to ensure consistent formatting for Tailwind CSS classes. This will help keep your CSS styling clear, concise, and predictable.
+
+- **Consistency**: Maintain a consistent coding style across your project. Prettier will help enforce the guidelines outlined in this guide, but you may still need to review and adjust certain formatting choices manually.
+
+- **Error Handling**: Handle errors in your code carefully to ensure that they are clear, descriptive, and actionable for other developers who might work on your project in the future. This will make it easier for everyone to understand what's going wrong and how to fix it.
 
 <!-- omit in toc -->
 ## Attribution
