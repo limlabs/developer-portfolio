@@ -34,7 +34,7 @@ export default function Welcome() {
             <LayoutTemplate size={16} />
           </Button>
           <p className="mt-6 w-full text-center text-sm font-light text-muted-foreground">
-            Import a sample, prebuilt professional portfolio and make it your own.
+            Import content from a sample, prebuilt professional portfolio and make it your own.
           </p>
         </Block>
       </div>
