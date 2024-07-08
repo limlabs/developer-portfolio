@@ -101,6 +101,11 @@ export const Appearance: GlobalConfig = {
           name: 'borderRadius',
           type: 'text',
         },
+        {
+          name: 'enableBackdropAnimation',
+          type: 'checkbox',
+          defaultValue: true,
+        },
       ],
     },
     {

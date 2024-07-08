@@ -31,7 +31,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   ])
 
   return (
-    <html lang="en" className={`${inter.className}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.className}`}>
       <body className="w-full overflow-x-hidden">
         <AppearanceStyles appearance={appearance} />
         <ThemeProvider
@@ -41,7 +41,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           disableTransitionOnChange={false}
           attribute="class"
         >
-          <Backdrop />
+          {appearance.general?.enableBackdropAnimation && <Backdrop />}
           <div className="relative z-20 flex min-h-screen flex-col items-center">
             <NavBar profile={profile} header={header} />
             <div

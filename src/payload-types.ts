@@ -512,6 +512,7 @@ export interface Appearance {
   id: number;
   general?: {
     borderRadius?: string | null;
+    enableBackdropAnimation?: boolean | null;
   };
   palette?: {
     dark?: {
