@@ -29,6 +29,7 @@ const ColorPaletteField = (name: string): Field => ({
     {
       name: 'inputBorder',
       type: 'text',
+      defaultValue: '0 0% 20%',
     },
     {
       name: 'popover',
@@ -54,6 +55,7 @@ const ColorPaletteField = (name: string): Field => ({
     {
       name: 'primaryForeground',
       type: 'text',
+      defaultValue: '20 30% 20%',
     },
     {
       name: 'secondary',
@@ -86,6 +88,7 @@ const ColorPaletteField = (name: string): Field => ({
     {
       name: 'box',
       type: 'text',
+      defaultValue: '0 0% 10%',
     },
   ],
 })
