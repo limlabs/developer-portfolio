@@ -1,17 +1,18 @@
-import { FC, Fragment } from 'react'
+import { FC, Fragment } from "react"
 
-import { Block, BlockProps } from '@/components/ui/block'
-import { PayloadLink, PayloadLinkType } from './link'
-import { RichText } from './richText'
+import { Block, BlockProps } from "@/components/ui/block"
 
-interface ContentBlockFields extends BlockProps {
+import { PayloadLink, PayloadLinkType } from "./link"
+import { RichText } from "./richText"
+
+export interface ContentBlockFields extends BlockProps {
   richText?: unknown
-  enableLink?: boolean
-  link?: PayloadLinkType
+  enableLink?: boolean | null
+  link?: PayloadLinkType | null
 }
 
 interface ContentBlockProps {
-  contentFields?: ContentBlockFields[]
+  contentFields?: ContentBlockFields[] | null
 }
 
 export const ContentBlock: FC<ContentBlockProps> = ({ contentFields }) => {
@@ -25,7 +26,7 @@ export const ContentBlock: FC<ContentBlockProps> = ({ contentFields }) => {
         }
 
         return (
-          <Block size={size} key={id} asChild={enableLink}>
+          <Block size={size} key={id} asChild={Boolean(enableLink)}>
             {content}
           </Block>
         )

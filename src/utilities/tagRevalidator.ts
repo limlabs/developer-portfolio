@@ -1,7 +1,7 @@
-import type { TypeWithID } from 'payload'
+import { AfterChangeHook } from "node_modules/payload/dist/globals/config/types"
+import type { TypeWithID } from "payload"
 
-import { serverUrl } from '@/utilities/api'
-import { AfterChangeHook } from 'node_modules/payload/dist/globals/config/types'
+import { serverUrl } from "@/utilities/serverConfig"
 
 export const formatAppURL = ({ doc }: any): string => {
   const { pathname } = new URL(`${serverUrl}/projects/${doc.slug}`)
@@ -14,7 +14,7 @@ export const formatAppURL = ({ doc }: any): string => {
 export const tagRevalidator =
   <T extends TypeWithID & { _status?: string }>(getTag: (doc: T) => string): AfterChangeHook =>
   ({ doc, req, operation }: any) => {
-    if (operation === 'update' && (!doc._status || doc._status === 'published')) {
+    if (operation === "update" && (!doc._status || doc._status === "published")) {
       const revalidate = async (): Promise<void> => {
         const tag = getTag(doc)
         try {

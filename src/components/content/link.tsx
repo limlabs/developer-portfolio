@@ -1,9 +1,10 @@
-import { AnchorHTMLAttributes, ReactNode } from 'react'
-import Link, { LinkProps } from 'next/link'
+import { AnchorHTMLAttributes, ReactNode } from "react"
 
-import { Header } from '@/payload-types'
+import Link, { LinkProps } from "next/link"
 
-export type PayloadLinkType = NonNullable<Header['navItems']>[0]['link']
+import { Header } from "@/payload-types"
+
+export type PayloadLinkType = NonNullable<Header["navItems"]>[0]["link"]
 
 export const PayloadLink = ({
   link,
@@ -15,20 +16,20 @@ export const PayloadLink = ({
   className?: string
 }) => {
   let props: LinkProps & AnchorHTMLAttributes<HTMLAnchorElement> = {
-    href: '/',
+    href: "/",
   }
 
   if (link.newTab) {
-    props.target = '_blank'
+    props.target = "_blank"
   }
 
-  if (link.type === 'reference') {
+  if (link.type === "reference") {
     const { reference } = link
-    const prefix = reference.relationTo === 'pages' ? '/' : `/${reference.relationTo}/`
-    const suffix = (reference.value as { slug: string }).slug
+    const prefix = reference?.relationTo === "pages" ? "/" : `/${reference?.relationTo}/`
+    const suffix = (reference?.value as { slug: string })?.slug
     props.href = `${prefix}${suffix}`
   } else {
-    props.href = link.url
+    props.href = link.url ?? ""
   }
 
   return (

@@ -1,12 +1,12 @@
-import type { Block } from 'payload'
+import type { Block } from "payload"
 
 export const ProjectGrid: Block = {
-  slug: 'projectGrid',
+  slug: "projectGrid",
   fields: [
     {
-      name: 'project',
-      type: 'relationship',
-      relationTo: 'projects',
+      name: "project",
+      type: "relationship",
+      relationTo: "projects",
       hasMany: true,
       required: true,
     },

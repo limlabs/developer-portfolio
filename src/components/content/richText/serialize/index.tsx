@@ -1,6 +1,7 @@
-import React, { Fragment, JSX } from 'react'
-import escapeHTML from 'escape-html'
-import Link from 'next/link'
+import React, { Fragment, JSX } from "react"
+
+import escapeHTML from "escape-html"
+import Link from "next/link"
 
 type Node = {
   type: string
@@ -24,7 +25,7 @@ type SerializeFunction = React.FC<{
 }>
 
 const isText = (value: any): boolean =>
-  typeof value === 'object' && value !== null && typeof value.text === 'string'
+  typeof value === "object" && value !== null && typeof value.text === "string"
 
 export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
   return (
@@ -48,7 +49,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           if (node.underline) {
             text = (
-              <span style={{ textDecoration: 'underline' }} key={i}>
+              <span style={{ textDecoration: "underline" }} key={i}>
                 {text}
               </span>
             )
@@ -56,7 +57,7 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
 
           if (node.strikethrough) {
             text = (
-              <span style={{ textDecoration: 'line-through' }} key={i}>
+              <span style={{ textDecoration: "line-through" }} key={i}>
                 {text}
               </span>
             )
@@ -72,94 +73,94 @@ export const Serialize: SerializeFunction = ({ content, customRenderers }) => {
         if (
           customRenderers &&
           customRenderers[node.type] &&
-          typeof customRenderers[node.type] === 'function'
+          typeof customRenderers[node.type] === "function"
         ) {
           return customRenderers[node.type]({ node, Serialize, index: i })
         }
 
         switch (node.type) {
-          case 'br':
+          case "br":
             return <br key={i} />
 
-          case 'h1':
+          case "h1":
             return (
               <h1 key={i} className="mb-2 text-3xl lg:text-4xl">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h1>
             )
 
-          case 'h2':
+          case "h2":
             return (
               <h2 key={i} className="mb-2 text-2xl font-semibold lg:text-3xl lg:font-medium">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h2>
             )
 
-          case 'h3':
+          case "h3":
             return (
               <h3 key={i} className="mb-2 text-xl lg:text-2xl">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h3>
             )
 
-          case 'h4':
+          case "h4":
             return (
               <h4 key={i} className="mb-2 text-lg lg:text-xl">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h4>
             )
 
-          case 'h5':
+          case "h5":
             return (
               <h5 key={i} className="mb-2 text-base lg:text-lg">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h5>
             )
 
-          case 'h6':
+          case "h6":
             return (
               <h6 key={i} className="mb-2 text-sm">
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </h6>
             )
 
-          case 'quote':
+          case "quote":
             return (
               <blockquote key={i}>
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </blockquote>
             )
 
-          case 'ul':
+          case "ul":
             return (
               <ul key={i}>
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </ul>
             )
 
-          case 'ol':
+          case "ol":
             return (
               <ol key={i}>
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </ol>
             )
 
-          case 'li':
+          case "li":
             return (
               <li key={i}>
                 <Serialize content={node.children} customRenderers={customRenderers} />
               </li>
             )
 
-          case 'link':
+          case "link":
             return (
               <Link
                 href={escapeHTML(node.url)}
                 key={i}
                 {...(node.newTab
                   ? {
-                      target: '_blank',
-                      rel: 'noopener noreferrer',
+                      target: "_blank",
+                      rel: "noopener noreferrer",
                     }
                   : {})}
               >

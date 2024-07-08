@@ -1,27 +1,27 @@
 export const seedTechnologies = async payload => {
   const [webflowDoc, inVisionDoc, figmaDoc, illustratorDoc] = await Promise.all([
     payload.create({
-      collection: 'technologies',
+      collection: "technologies",
       data: {
-        name: 'Webflow',
+        name: "Webflow",
       },
     }),
     payload.create({
-      collection: 'technologies',
+      collection: "technologies",
       data: {
-        name: 'InVision',
+        name: "InVision",
       },
     }),
     payload.create({
-      collection: 'technologies',
+      collection: "technologies",
       data: {
-        name: 'Figma',
+        name: "Figma",
       },
     }),
     payload.create({
-      collection: 'technologies',
+      collection: "technologies",
       data: {
-        name: 'Illustrator',
+        name: "Illustrator",
       },
     }),
   ])

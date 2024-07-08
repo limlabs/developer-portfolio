@@ -1,19 +1,19 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from "payload"
 
-import { loggedIn } from '@/access/loggedIn'
-import { publishedOrLoggedIn } from '@/access/publishedOrLoggedIn'
-import { serverUrl } from '@/utilities/api'
-import { Content } from '@/blocks/Content'
-import { Form } from '@/blocks/Form'
-import { MediaBlock } from '@/blocks/Media'
-import { MediaContent } from '@/blocks/MediaContent'
-import formatSlug from '@/utilities/formatSlug'
-import { tagRevalidator } from '@/utilities/tagRevalidator'
+import { loggedIn } from "@/access/loggedIn"
+import { publishedOrLoggedIn } from "@/access/publishedOrLoggedIn"
+import { Content } from "@/blocks/Content"
+import { Form } from "@/blocks/Form"
+import { MediaBlock } from "@/blocks/Media"
+import { MediaContent } from "@/blocks/MediaContent"
+import formatSlug from "@/utilities/formatSlug"
+import { serverUrl } from "@/utilities/serverConfig"
+import { tagRevalidator } from "@/utilities/tagRevalidator"
 
 export const Projects: CollectionConfig = {
-  slug: 'projects',
+  slug: "projects",
   admin: {
-    useAsTitle: 'title',
+    useAsTitle: "title",
     preview: (doc: any) => {
       return `${serverUrl}/projects/${doc.slug}?preview=true`
     },
@@ -32,42 +32,42 @@ export const Projects: CollectionConfig = {
   },
   fields: [
     {
-      type: 'tabs',
+      type: "tabs",
       tabs: [
         {
-          label: 'Overview',
+          label: "Overview",
           fields: [
             {
-              name: 'title',
-              label: 'Title',
-              type: 'text',
+              name: "title",
+              label: "Title",
+              type: "text",
               required: true,
             },
             {
-              name: 'description',
-              type: 'richText',
+              name: "description",
+              type: "richText",
               required: true,
             },
             {
-              name: 'technologiesUsed',
-              type: 'relationship',
-              relationTo: 'technologies',
+              name: "technologiesUsed",
+              type: "relationship",
+              relationTo: "technologies",
               hasMany: true,
               required: true,
             },
             {
-              name: 'featuredImage',
-              type: 'upload',
-              relationTo: 'media',
+              name: "featuredImage",
+              type: "upload",
+              relationTo: "media",
             },
           ],
         },
         {
-          label: 'Content',
+          label: "Content",
           fields: [
             {
-              name: 'layout',
-              type: 'blocks',
+              name: "layout",
+              type: "blocks",
               blocks: [Content, Form, MediaBlock, MediaContent],
             },
           ],
@@ -75,51 +75,51 @@ export const Projects: CollectionConfig = {
       ],
     },
     {
-      name: 'slug',
-      label: 'Slug',
-      type: 'text',
+      name: "slug",
+      label: "Slug",
+      type: "text",
       admin: {
-        position: 'sidebar',
+        position: "sidebar",
       },
       hooks: {
-        beforeValidate: [formatSlug('title')],
+        beforeValidate: [formatSlug("title")],
       },
     },
     {
-      name: 'role',
-      type: 'select',
+      name: "role",
+      type: "select",
       hasMany: true,
       options: [
         {
-          label: 'UI/UX Designer',
-          value: 'uiUxDesigner',
+          label: "UI/UX Designer",
+          value: "uiUxDesigner",
         },
         {
-          label: 'Front-end Developer',
-          value: 'frontEndDeveloper',
+          label: "Front-end Developer",
+          value: "frontEndDeveloper",
         },
         {
-          label: 'Back-end Developer',
-          value: 'backEndDeveloper',
+          label: "Back-end Developer",
+          value: "backEndDeveloper",
         },
       ],
       required: true,
       admin: {
-        position: 'sidebar',
+        position: "sidebar",
       },
     },
     {
-      name: 'startDate',
-      type: 'date',
+      name: "startDate",
+      type: "date",
       admin: {
-        position: 'sidebar',
+        position: "sidebar",
       },
     },
     {
-      name: 'endDate',
-      type: 'date',
+      name: "endDate",
+      type: "date",
       admin: {
-        position: 'sidebar',
+        position: "sidebar",
       },
     },
   ],

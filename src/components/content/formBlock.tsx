@@ -1,16 +1,18 @@
-'use client'
-import React, { FC, Fragment, useState } from 'react'
-import { useForm } from 'react-hook-form'
+"use client"
+import React, { FC, Fragment, useState } from "react"
 
-import { Form as FormTypes } from '@/payload-types'
-import { serverUrl } from '@/utilities/api'
-import { Block } from '@/components/ui/block'
-import { Button } from '@/components/ui/button'
-import { Dialog, DialogContent } from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { RichText } from './richText'
-import { Data } from 'node_modules/payload/dist/admin/forms/Form'
+import { Data } from "node_modules/payload/dist/admin/forms/Form"
+import { useForm } from "react-hook-form"
+
+import { Block } from "@/components/ui/block"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Form as FormTypes } from "@/payload-types"
+import { serverUrl } from "@/utilities/serverConfig"
+
+import { RichText } from "./richText"
 
 type ErrorType = {
   status: string
@@ -30,19 +32,19 @@ export interface FormField {
   required?: boolean
   id?: string
   blockName?: string
-  blockType: 'text' | 'textarea' | 'email' | 'message'
+  blockType: "text" | "textarea" | "email" | "message"
   message?: {
     [k: string]: unknown
   }[]
 }
 
-function groupFieldsByRow(form: FormTypes): FormTypes['fields'][] {
-  const rows: FormTypes['fields'][] = []
-  let currentRow: FormTypes['fields'] = []
+function groupFieldsByRow(form: FormTypes): FormTypes["fields"][] {
+  const rows: FormTypes["fields"][] = []
+  let currentRow: FormTypes["fields"] = []
   let currentRowWidth = 0
 
   for (const field of form.fields || []) {
-    const fieldWidth = field.blockType !== 'message' ? field.width || 100 : 100 // Assuming a default width of 100% if not specified
+    const fieldWidth = field.blockType !== "message" ? field.width || 100 : 100 // Assuming a default width of 100% if not specified
 
     // Check if adding this field to the current row would exceed 100%
     if (currentRowWidth + fieldWidth > 100) {
@@ -93,9 +95,9 @@ export const FormBlock: FC<FormBlockProps> = props => {
 
     try {
       const req = await fetch(`${serverUrl}/api/form-submissions`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json', // Correct typo: "Content-Types" to "Content-Type"
+          "Content-Type": "application/json", // Correct typo: "Content-Types" to "Content-Type"
         },
         body: JSON.stringify({
           form: formID,
@@ -108,23 +110,23 @@ export const FormBlock: FC<FormBlockProps> = props => {
       if (req.status >= 400) {
         setError({
           status: res.status,
-          message: res.errors?.[0] || 'Internal Server Error', // Use optional chaining
+          message: res.errors?.[0] || "Internal Server Error", // Use optional chaining
         })
       }
 
       setIsLoading(false) // Clear loading state
-      if (props.form.confirmationType === 'message') {
+      if (props.form.confirmationType === "message") {
         setDialogOpen(true)
       } else if (props.form.redirect) {
         window.location.href = props.form.redirect.url
       } else {
         // eslint-disable-next-line no-console
-        console.error('No post-submit action defined for form')
+        console.error("No post-submit action defined for form")
       }
     } catch (error) {
       setError({
-        status: 'Error',
-        message: 'An error occurred while submitting the form.',
+        status: "Error",
+        message: "An error occurred while submitting the form.",
       })
       setIsLoading(false) // Clear loading state
     }
@@ -137,31 +139,31 @@ export const FormBlock: FC<FormBlockProps> = props => {
         {groupFieldsByRow(formFromProps).map((row, index) => (
           <div key={index}>
             {row?.map((field, index) => {
-              if (field.blockType === 'message') {
+              if (field.blockType === "message") {
                 return <RichText content={field.message} className="-mb-4" key={index} />
               }
 
               let pattern
-              if (field.blockType === 'email') {
+              if (field.blockType === "email") {
                 pattern = {
                   value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
-                  message: 'Please enter a valid email address.',
+                  message: "Please enter a valid email address.",
                 }
               }
 
               const props = {
                 id: `${formID}-${field.name}`,
-                ...register(field.name, { required: field.required, pattern }),
+                ...register(field.name, { required: Boolean(field.required), pattern }),
               }
 
               let content
 
               switch (field.blockType) {
-                case 'text':
-                case 'email':
+                case "text":
+                case "email":
                   content = <Input type="text" {...props} />
                   break
-                case 'textarea':
+                case "textarea":
                   content = <Textarea {...props} />
                   break
                 default:

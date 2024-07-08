@@ -1,10 +1,10 @@
-import { Metadata, ResolvingMetadata } from 'next'
-import { notFound } from 'next/navigation'
+import { Metadata, ResolvingMetadata } from "next"
+import { notFound } from "next/navigation"
 
-import { Media } from '@/payload-types'
-import { ContentLayout } from '@/components/content/contentLayout'
-import { fetchPage } from '@/utilities/api'
-import { parsePreviewOptions } from '@/utilities/preview'
+import { ContentLayout } from "@/components/content/contentLayout"
+import { Media } from "@/payload-types"
+import { fetchPage } from "@/utilities/api"
+import { parsePreviewOptions } from "@/utilities/preview"
 
 interface LandingPageProps {
   params: {
@@ -22,7 +22,7 @@ export async function generateMetadata(
   const page = await fetchPage(params.slug, options)
 
   const title = page?.meta?.title || defaultTitle
-  const description = page?.meta?.description || 'A portfolio of work by a digital professional.'
+  const description = page?.meta?.description || "A portfolio of work by a digital professional."
   const images = []
   if (page?.meta?.image) {
     images.push((page?.meta?.image as Media).url as string)

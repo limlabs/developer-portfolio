@@ -1,9 +1,9 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from "payload"
 
-import { loggedIn } from '@/access/loggedIn'
+import { loggedIn } from "@/access/loggedIn"
 
 export const Media: CollectionConfig = {
-  slug: 'media',
+  slug: "media",
   access: {
     create: loggedIn,
     read: () => true,
@@ -11,12 +11,12 @@ export const Media: CollectionConfig = {
     delete: loggedIn,
   },
   upload: {
-    staticDir: 'media',
+    staticDir: "media",
   },
   fields: [
     {
-      name: 'alt',
-      type: 'text',
+      name: "alt",
+      type: "text",
       required: true,
     },
   ],

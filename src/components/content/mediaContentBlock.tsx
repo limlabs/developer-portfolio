@@ -1,17 +1,18 @@
-import { FC, Fragment } from 'react'
+import { FC, Fragment } from "react"
 
-import { Media } from '@/payload-types'
-import { ContentBlock } from './contentBlock'
-import { PayloadLink, PayloadLinkType } from './link'
-import { MediaBlock } from './mediaBlock'
+import { Media } from "@/payload-types"
 
-type LayoutSize = 'oneThird' | 'twoThirds' | 'half' | 'full'
+import { ContentBlock } from "./contentBlock"
+import { PayloadLink, PayloadLinkType } from "./link"
+import { MediaBlock } from "./mediaBlock"
+
+type LayoutSize = "oneThird" | "twoThirds" | "half" | "full"
 
 interface MediaContentFields {
-  alignment?: 'contentMedia' | 'mediaContent'
+  alignment?: "contentMedia" | "mediaContent"
   mediaSize?: LayoutSize
   media: Media | string
-  mediaFit?: 'contain' | 'cover'
+  mediaFit?: "contain" | "cover"
   richText?: unknown
   enableLink?: boolean
   link?: PayloadLinkType
@@ -23,10 +24,10 @@ export interface MediaContentBlockProps {
 }
 
 const complimentSizes: Record<LayoutSize, LayoutSize> = {
-  oneThird: 'twoThirds',
-  twoThirds: 'oneThird',
-  half: 'half',
-  full: 'full',
+  oneThird: "twoThirds",
+  twoThirds: "oneThird",
+  half: "half",
+  full: "full",
 } as const
 
 export const MediaContentBlock: FC<MediaContentBlockProps> = ({ mediaContentFields, priority }) => {
@@ -60,7 +61,7 @@ export const MediaContentBlock: FC<MediaContentBlockProps> = ({ mediaContentFiel
           )
 
           let content
-          if (alignment === 'contentMedia') {
+          if (alignment === "contentMedia") {
             content = (
               <Fragment>
                 {contentBlock}
