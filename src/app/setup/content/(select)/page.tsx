@@ -22,7 +22,9 @@ export default function Welcome() {
             <Wrench size={16} />
           </Button>
           <p className="mt-6 w-full text-center text-sm font-light text-muted-foreground">
-            Start with a blank slate and build your content from the ground up.
+            Start with a blank slate and build your portfolio
+            <br />
+            from the ground up.
           </p>
         </Block>
         <Block fadeIn className="h-60 w-1/5 justify-center delay-500">
