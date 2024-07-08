@@ -17,7 +17,7 @@ export const ProjectGridBlock: FC<ProjectGridBlockProps> = ({ projects, priority
   return (
     <Block
       size="full"
-      className="flex w-full bg-transparent lg:mb-20 lg:mt-[2.125rem] lg:flex-shrink-0 lg:justify-center"
+      className="flex w-full bg-transparent lg:mt-[2.125rem] lg:flex-shrink-0 lg:justify-center"
     >
       <div className="mt-16 grid w-full grid-cols-1 lg:mt-0 lg:grid-cols-2 lg:gap-20 lg:gap-y-2">
         {projects.map(({ id, startDate, slug, title, featuredImage }, index) => (
