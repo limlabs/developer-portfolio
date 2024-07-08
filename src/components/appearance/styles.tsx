@@ -1,12 +1,29 @@
 import { Appearance } from '@/payload-types'
 
+import { palettes } from '@/utilities/palettes'
+
 export const AppearanceStyles = ({ appearance }: { appearance: Appearance }) => {
   const processPaletteVariable = (
-    variable: keyof NonNullable<NonNullable<Appearance['palette']>['dark']>,
+    name: keyof NonNullable<
+      NonNullable<NonNullable<NonNullable<Appearance['palettes']>['light']>>['custom']
+    >,
     cssKey: string,
     mode: 'light' | 'dark',
   ) => {
-    const value = appearance.palette?.[mode]?.[variable]
+    const variable = appearance.palettes?.[mode]
+    if (variable?.type === 'preset') {
+      const palette = palettes.find(p => p.name === variable.preset)
+      if (!palette) return ''
+
+      const basePalette = palettes.find(p => p.name === palette.extends)
+      const resolvedPalette = Object.assign({}, basePalette?.palette, palette.palette)
+
+      return `--cms-${cssKey}-${mode}: ${resolvedPalette[name]};`
+    }
+
+    const defaultLight = palettes.find(p => p.name === 'defaultLight')?.palette
+    const resolvedPalette = Object.assign({}, defaultLight, appearance.palettes?.[mode]?.custom)
+    const value = resolvedPalette[name]
     if (!value) return ''
 
     return `--cms-${cssKey}-${mode}: ${value};`

@@ -1,5 +1,5 @@
 {
-  "id": "9360eebb-f4b6-406d-9f5d-06d9d2413498",
+  "id": "fa3fcd56-b32e-42fd-8a2b-413a772e70fa",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "5",
   "dialect": "pg",
@@ -5623,242 +5623,272 @@
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_background": {
-          "name": "palette_dark_background",
+        "general_enable_backdrop_animation": {
+          "name": "general_enable_backdrop_animation",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "palettes_dark_type": {
+          "name": "palettes_dark_type",
+          "type": "enum_appearance_palettes_dark_type",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "palettes_dark_preset": {
+          "name": "palettes_dark_preset",
+          "type": "enum_appearance_palettes_dark_preset",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "palettes_dark_custom_background": {
+          "name": "palettes_dark_custom_background",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_foreground": {
-          "name": "palette_dark_foreground",
+        "palettes_dark_custom_foreground": {
+          "name": "palettes_dark_custom_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_muted": {
-          "name": "palette_dark_muted",
+        "palettes_dark_custom_muted": {
+          "name": "palettes_dark_custom_muted",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_muted_foreground": {
-          "name": "palette_dark_muted_foreground",
+        "palettes_dark_custom_muted_foreground": {
+          "name": "palettes_dark_custom_muted_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_border": {
-          "name": "palette_dark_border",
+        "palettes_dark_custom_border": {
+          "name": "palettes_dark_custom_border",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_input_border": {
-          "name": "palette_dark_input_border",
+        "palettes_dark_custom_input_border": {
+          "name": "palettes_dark_custom_input_border",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_popover": {
-          "name": "palette_dark_popover",
+        "palettes_dark_custom_primary": {
+          "name": "palettes_dark_custom_primary",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_popover_foreground": {
-          "name": "palette_dark_popover_foreground",
+        "palettes_dark_custom_primary_foreground": {
+          "name": "palettes_dark_custom_primary_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_card": {
-          "name": "palette_dark_card",
+        "palettes_dark_custom_secondary": {
+          "name": "palettes_dark_custom_secondary",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_card_foreground": {
-          "name": "palette_dark_card_foreground",
+        "palettes_dark_custom_secondary_foreground": {
+          "name": "palettes_dark_custom_secondary_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_primary": {
-          "name": "palette_dark_primary",
+        "palettes_dark_custom_accent": {
+          "name": "palettes_dark_custom_accent",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_primary_foreground": {
-          "name": "palette_dark_primary_foreground",
+        "palettes_dark_custom_accent_foreground": {
+          "name": "palettes_dark_custom_accent_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_secondary": {
-          "name": "palette_dark_secondary",
+        "palettes_dark_custom_destructive": {
+          "name": "palettes_dark_custom_destructive",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_secondary_foreground": {
-          "name": "palette_dark_secondary_foreground",
+        "palettes_dark_custom_destructive_foreground": {
+          "name": "palettes_dark_custom_destructive_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_accent": {
-          "name": "palette_dark_accent",
+        "palettes_dark_custom_ring": {
+          "name": "palettes_dark_custom_ring",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_accent_foreground": {
-          "name": "palette_dark_accent_foreground",
+        "palettes_dark_custom_box": {
+          "name": "palettes_dark_custom_box",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_destructive": {
-          "name": "palette_dark_destructive",
+        "palettes_dark_custom_popover": {
+          "name": "palettes_dark_custom_popover",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_destructive_foreground": {
-          "name": "palette_dark_destructive_foreground",
+        "palettes_dark_custom_popover_foreground": {
+          "name": "palettes_dark_custom_popover_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_ring": {
-          "name": "palette_dark_ring",
+        "palettes_dark_custom_card": {
+          "name": "palettes_dark_custom_card",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_dark_box": {
-          "name": "palette_dark_box",
+        "palettes_dark_custom_card_foreground": {
+          "name": "palettes_dark_custom_card_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_background": {
-          "name": "palette_light_background",
+        "palettes_light_type": {
+          "name": "palettes_light_type",
+          "type": "enum_appearance_palettes_light_type",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "palettes_light_preset": {
+          "name": "palettes_light_preset",
+          "type": "enum_appearance_palettes_light_preset",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "palettes_light_custom_background": {
+          "name": "palettes_light_custom_background",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_foreground": {
-          "name": "palette_light_foreground",
+        "palettes_light_custom_foreground": {
+          "name": "palettes_light_custom_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_muted": {
-          "name": "palette_light_muted",
+        "palettes_light_custom_muted": {
+          "name": "palettes_light_custom_muted",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_muted_foreground": {
-          "name": "palette_light_muted_foreground",
+        "palettes_light_custom_muted_foreground": {
+          "name": "palettes_light_custom_muted_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_border": {
-          "name": "palette_light_border",
+        "palettes_light_custom_border": {
+          "name": "palettes_light_custom_border",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_input_border": {
-          "name": "palette_light_input_border",
+        "palettes_light_custom_input_border": {
+          "name": "palettes_light_custom_input_border",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_popover": {
-          "name": "palette_light_popover",
+        "palettes_light_custom_primary": {
+          "name": "palettes_light_custom_primary",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_popover_foreground": {
-          "name": "palette_light_popover_foreground",
+        "palettes_light_custom_primary_foreground": {
+          "name": "palettes_light_custom_primary_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_card": {
-          "name": "palette_light_card",
+        "palettes_light_custom_secondary": {
+          "name": "palettes_light_custom_secondary",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_card_foreground": {
-          "name": "palette_light_card_foreground",
+        "palettes_light_custom_secondary_foreground": {
+          "name": "palettes_light_custom_secondary_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_primary": {
-          "name": "palette_light_primary",
+        "palettes_light_custom_accent": {
+          "name": "palettes_light_custom_accent",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_primary_foreground": {
-          "name": "palette_light_primary_foreground",
+        "palettes_light_custom_accent_foreground": {
+          "name": "palettes_light_custom_accent_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_secondary": {
-          "name": "palette_light_secondary",
+        "palettes_light_custom_destructive": {
+          "name": "palettes_light_custom_destructive",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_secondary_foreground": {
-          "name": "palette_light_secondary_foreground",
+        "palettes_light_custom_destructive_foreground": {
+          "name": "palettes_light_custom_destructive_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_accent": {
-          "name": "palette_light_accent",
+        "palettes_light_custom_ring": {
+          "name": "palettes_light_custom_ring",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_accent_foreground": {
-          "name": "palette_light_accent_foreground",
+        "palettes_light_custom_box": {
+          "name": "palettes_light_custom_box",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_destructive": {
-          "name": "palette_light_destructive",
+        "palettes_light_custom_popover": {
+          "name": "palettes_light_custom_popover",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_destructive_foreground": {
-          "name": "palette_light_destructive_foreground",
+        "palettes_light_custom_popover_foreground": {
+          "name": "palettes_light_custom_popover_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_ring": {
-          "name": "palette_light_ring",
+        "palettes_light_custom_card": {
+          "name": "palettes_light_custom_card",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "palette_light_box": {
-          "name": "palette_light_box",
+        "palettes_light_custom_card_foreground": {
+          "name": "palettes_light_custom_card_foreground",
           "type": "varchar",
           "primaryKey": false,
           "notNull": false
@@ -6239,6 +6269,36 @@
       "values": {
         "reference": "reference",
         "custom": "custom"
+      }
+    },
+    "enum_appearance_palettes_dark_type": {
+      "name": "enum_appearance_palettes_dark_type",
+      "values": {
+        "preset": "preset",
+        "custom": "custom"
+      }
+    },
+    "enum_appearance_palettes_dark_preset": {
+      "name": "enum_appearance_palettes_dark_preset",
+      "values": {
+        "defaultDark": "defaultDark",
+        "defaultLight": "defaultLight",
+        "brownTown": "brownTown"
+      }
+    },
+    "enum_appearance_palettes_light_type": {
+      "name": "enum_appearance_palettes_light_type",
+      "values": {
+        "preset": "preset",
+        "custom": "custom"
+      }
+    },
+    "enum_appearance_palettes_light_preset": {
+      "name": "enum_appearance_palettes_light_preset",
+      "values": {
+        "defaultDark": "defaultDark",
+        "defaultLight": "defaultLight",
+        "brownTown": "brownTown"
       }
     }
   },
