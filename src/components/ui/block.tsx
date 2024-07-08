@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { useRef, type HTMLAttributes } from 'react'
 import { cva, VariantProps } from 'class-variance-authority'
@@ -28,16 +28,20 @@ export interface BlockProps
 }
 
 const Block = ({ children, className, size, fadeIn = true, ...props }: BlockProps) => {
-    const ref = useRef(null);
-    const fade = fadeIn ? useFade(ref) : null;
+  const ref = useRef(null)
+  const fade = fadeIn ? useFade(ref) : null
 
-    return (
-      <div className={cn([blockVariants({ size, className }), [...(fade?.classes.init ?? [])]])} ref={ref} {...props}>
-        {children}
-      </div>
-    );
-};
+  return (
+    <div
+      className={cn([blockVariants({ size, className }), [...(fade?.classes.init ?? [])]])}
+      ref={ref}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+}
 
-Block.displayName = 'Block';
+Block.displayName = 'Block'
 
 export { Block, blockVariants }

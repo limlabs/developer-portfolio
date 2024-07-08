@@ -137,12 +137,16 @@ const artAppMockDetailedDescription = [
 // Merges text properties in description object to a string
 function mergeDescription(description) {
   // Cast string[] to string
-  return description.map((desc) => {
-    // Cast children[] to string[]
-    return desc.children.map((line) => {
-      return line.text;
-    }).join("\n");
-  }).join("\n");
+  return description
+    .map(desc => {
+      // Cast children[] to string[]
+      return desc.children
+        .map(line => {
+          return line.text
+        })
+        .join('\n')
+    })
+    .join('\n')
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -189,9 +193,9 @@ export const seedProjects = async (payload, media, technologies) => {
           },
         ],
         meta: {
-          title: "Design Design",
+          title: 'Design Design',
           description: mergeDescription(designDesignMockDetailedDescription),
-          image: media.designDesignFeaturedScreenshot.id
+          image: media.designDesignFeaturedScreenshot.id,
         },
         _status: 'published',
       },
@@ -233,9 +237,9 @@ export const seedProjects = async (payload, media, technologies) => {
           },
         ],
         meta: {
-          title: "Outside App",
+          title: 'Outside App',
           description: mergeDescription(outsideAppMockDetailedDescription),
-          image: media.outsideAppFeaturedScreenshot.id
+          image: media.outsideAppFeaturedScreenshot.id,
         },
         _status: 'published',
       },
@@ -277,9 +281,9 @@ export const seedProjects = async (payload, media, technologies) => {
           },
         ],
         meta: {
-          title: "Design App",
+          title: 'Design App',
           description: mergeDescription(designAppMockDetailedDescription),
-          image: media.designAppFeaturedScreenshot.id
+          image: media.designAppFeaturedScreenshot.id,
         },
         _status: 'published',
       },
@@ -321,9 +325,9 @@ export const seedProjects = async (payload, media, technologies) => {
           },
         ],
         meta: {
-          title: "Art App",
+          title: 'Art App',
           description: mergeDescription(artAppMockDetailedDescription),
-          image: media.artAppFeaturedScreenshot.id
+          image: media.artAppFeaturedScreenshot.id,
         },
         _status: 'published',
       },
@@ -346,15 +350,12 @@ export async function getSeededProjects(payload) {
     'Art App': 'artApp',
   }
 
-  const seededProjects = projects.docs.reduce(
-    (acc, project) => {
-      if (projectTitleMap[project.title]) {
-        acc[projectTitleMap[project.title]] = project
-      }
-      return acc
-    },
-    {}
-  )
+  const seededProjects = projects.docs.reduce((acc, project) => {
+    if (projectTitleMap[project.title]) {
+      acc[projectTitleMap[project.title]] = project
+    }
+    return acc
+  }, {})
 
   return seededProjects
 }

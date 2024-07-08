@@ -35,9 +35,10 @@ export const seedPages = async (payload, forms, projects, media) => {
         },
       ],
       meta: {
-        title: "Payload CMS - Next.js app router example portfolio ",
-        description: "New example portfolio showcasing how you can use the updated Payload CMS with Next.js App router to get the benefits of react server components.",
-        image: media.profileImage.id
+        title: 'Payload CMS - Next.js app router example portfolio ',
+        description:
+          'New example portfolio showcasing how you can use the updated Payload CMS with Next.js App router to get the benefits of react server components.',
+        image: media.profileImage.id,
       },
       _status: 'published',
     },

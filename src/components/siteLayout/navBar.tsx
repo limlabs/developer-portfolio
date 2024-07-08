@@ -36,11 +36,7 @@ export const NavBar = ({ profile, header }: { profile: Profile; header: Header }
           )}
           <nav className="flex w-full max-w-[378px] items-center justify-center gap-6 text-base text-primary md:justify-end lg:w-auto lg:gap-8">
             <HeaderLinks header={header} />
-            {
-              process.env.VERCEL_BUTTON_SHOW === "true" ? (
-                <VercelDeploy />
-              ) : null
-            }
+            {process.env.VERCEL_BUTTON_SHOW === 'true' ? <VercelDeploy /> : null}
           </nav>
         </div>
       </div>

@@ -70,15 +70,12 @@ export async function getSeededForms(payload) {
     'Contact Form': 'contactForm',
   }
 
-  const seededForms = forms.docs.reduce(
-    (acc, form) => {
-      if (formTitleMap[form.title]) {
-        acc[formTitleMap[form.title]] = form
-      }
-      return acc
-    },
-    {}
-  )
+  const seededForms = forms.docs.reduce((acc, form) => {
+    if (formTitleMap[form.title]) {
+      acc[formTitleMap[form.title]] = form
+    }
+    return acc
+  }, {})
 
   return seededForms
 }

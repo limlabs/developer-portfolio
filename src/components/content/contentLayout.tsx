@@ -23,7 +23,12 @@ export const ContentLayout: FC<ContentLayoutProps> = ({ layout, profile, classNa
         let element = null
         switch (block.blockType) {
           case 'content':
-            element = <ContentBlock contentFields={block.contentFields as ContentBlockFields[]} key={block.id} />
+            element = (
+              <ContentBlock
+                contentFields={block.contentFields as ContentBlockFields[]}
+                key={block.id}
+              />
+            )
             break
           case 'mediaBlock':
             element = (
@@ -53,7 +58,13 @@ export const ContentLayout: FC<ContentLayoutProps> = ({ layout, profile, classNa
             element = <FormBlock intro={block.richText} form={block.form as Form} key={block.id} />
             break
           case 'mediaContent':
-            element = <MediaContentBlock {...block as MediaContentBlockProps} priority={!hasMedia} key={block.id} />
+            element = (
+              <MediaContentBlock
+                {...(block as MediaContentBlockProps)}
+                priority={!hasMedia}
+                key={block.id}
+              />
+            )
             hasMedia = true
             break
         }

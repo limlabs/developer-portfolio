@@ -26,7 +26,6 @@ export const seed = async payload => {
 
   console.log('Data seeded')
 }
-
 ;(async function () {
   const awaitedConfig = await importConfig('../../payload.config.ts')
   const payload = await getPayload({ config: awaitedConfig })

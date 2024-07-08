@@ -10,8 +10,6 @@ export interface ContentBlockFields extends BlockProps {
   link?: PayloadLinkType | null
 }
 
-
-
 interface ContentBlockProps {
   contentFields?: ContentBlockFields[] | null
 }

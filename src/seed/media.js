@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'path'
 
 export async function seedMedia(payload) {
   const profileImage = await payload.create({
@@ -94,13 +94,10 @@ export async function getSeededMedia(payload) {
     artAppFeaturedScreenshot: 'art-app-featured',
   }
 
-  const seededMedia = Object.entries(mediaFileMap).reduce(
-    (acc, [key, value]) => {
-      acc[key] = media.docs.find(doc => doc.filename?.startsWith(value))
-      return acc
-    },
-    {}
-  )
+  const seededMedia = Object.entries(mediaFileMap).reduce((acc, [key, value]) => {
+    acc[key] = media.docs.find(doc => doc.filename?.startsWith(value))
+    return acc
+  }, {})
 
   return seededMedia
 }

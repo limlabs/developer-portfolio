@@ -53,101 +53,115 @@ export interface Media {
 export interface Page {
   id: number;
   title: string;
-  layout?: (
-    | {
-      contentFields?: {
-        size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
-        richText?: {
-          [k: string]: unknown;
-        }[];
-        enableLink?: boolean;
-        link?: {
-          type?: 'reference' | 'custom';
-          newTab?: boolean;
-          reference:
-          | {
-            value: string | Page;
-            relationTo: 'pages';
+  layout?:
+    | (
+        | {
+            contentFields?:
+              | {
+                  size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+                  richText?:
+                    | {
+                        [k: string]: unknown;
+                      }[]
+                    | null;
+                  enableLink?: boolean | null;
+                  link?: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?:
+                      | ({
+                          relationTo: 'pages';
+                          value: number | Page;
+                        } | null)
+                      | ({
+                          relationTo: 'projects';
+                          value: number | Project;
+                        } | null);
+                    url?: string | null;
+                    label: string;
+                    appearance?: ('primary' | 'secondary') | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
           }
-          | {
-            value: string | Project;
-            relationTo: 'projects';
-          };
-          url: string;
-          label: string;
-          appearance?: 'primary' | 'secondary';
-        };
-        id?: string;
-      }[];
-      id?: string;
-      blockName?: string;
-      blockType: 'content';
-    }
-    | {
-      richText?: {
-        [k: string]: unknown;
-      }[];
-      form: string | Form;
-      id?: string;
-      blockName?: string;
-      blockType: 'form';
-    }
-    | {
-      mediaFields?: {
-        size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
-        media: string | Media;
-        mediaFit?: 'cover' | 'contain';
-        id?: string;
-      }[];
-      id?: string;
-      blockName?: string;
-      blockType: 'mediaBlock';
-    }
-    | {
-      mediaContentFields?: {
-        alignment?: 'contentMedia' | 'mediaContent';
-        mediaSize?: 'oneThird' | 'half' | 'twoThirds';
-        richText?: {
-          [k: string]: unknown;
-        }[];
-        enableLink?: boolean;
-        link?: {
-          type?: 'reference' | 'custom';
-          newTab?: boolean;
-          reference:
-          | {
-            value: string | Page;
-            relationTo: 'pages';
+        | {
+            richText?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
+            form: number | Form;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'form';
           }
-          | {
-            value: string | Project;
-            relationTo: 'projects';
-          };
-          url: string;
-          label: string;
-          appearance?: 'primary' | 'secondary';
-        };
-        media: string | Media;
-        mediaFit?: 'cover' | 'contain';
-        id?: string;
-      }[];
-      id?: string;
-      blockName?: string;
-      blockType: 'mediaContent';
-    }
-    | {
-      id?: string;
-      blockName?: string;
-      blockType: 'profile-cta';
-    }
-    | {
-      project: string[] | Project[];
-      id?: string;
-      blockName?: string;
-      blockType: 'projectGrid';
-    }
-  )[];
-  slug?: string;
+        | {
+            mediaFields?:
+              | {
+                  size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+                  media: number | Media;
+                  mediaFit?: ('cover' | 'contain') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'mediaBlock';
+          }
+        | {
+            fields?:
+              | {
+                  alignment?: ('contentMedia' | 'mediaContent') | null;
+                  mediaSize?: ('oneThird' | 'half' | 'twoThirds') | null;
+                  richText?:
+                    | {
+                        [k: string]: unknown;
+                      }[]
+                    | null;
+                  enableLink?: boolean | null;
+                  link?: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?:
+                      | ({
+                          relationTo: 'pages';
+                          value: number | Page;
+                        } | null)
+                      | ({
+                          relationTo: 'projects';
+                          value: number | Project;
+                        } | null);
+                    url?: string | null;
+                    label: string;
+                    appearance?: ('primary' | 'secondary') | null;
+                  };
+                  media: number | Media;
+                  mediaFit?: ('cover' | 'contain') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'mediaContent';
+          }
+        | {
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'profile-cta';
+          }
+        | {
+            project: (number | Project)[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'projectGrid';
+          }
+      )[]
+    | null;
+  slug?: string | null;
   meta?: {
     title?: string | null;
     description?: string | null;
@@ -167,92 +181,106 @@ export interface Project {
   description: {
     [k: string]: unknown;
   }[];
-  technologiesUsed: string[] | Technology[];
-  featuredImage?: string | Media;
-  layout?: (
-    | {
-      contentFields?: {
-        size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
-        richText?: {
-          [k: string]: unknown;
-        }[];
-        enableLink?: boolean;
-        link?: {
-          type?: 'reference' | 'custom';
-          newTab?: boolean;
-          reference:
-          | {
-            value: string | Page;
-            relationTo: 'pages';
+  technologiesUsed: (number | Technology)[];
+  featuredImage?: number | Media | null;
+  layout?:
+    | (
+        | {
+            contentFields?:
+              | {
+                  size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+                  richText?:
+                    | {
+                        [k: string]: unknown;
+                      }[]
+                    | null;
+                  enableLink?: boolean | null;
+                  link?: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?:
+                      | ({
+                          relationTo: 'pages';
+                          value: number | Page;
+                        } | null)
+                      | ({
+                          relationTo: 'projects';
+                          value: number | Project;
+                        } | null);
+                    url?: string | null;
+                    label: string;
+                    appearance?: ('primary' | 'secondary') | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'content';
           }
-          | {
-            value: string | Project;
-            relationTo: 'projects';
-          };
-          url: string;
-          label: string;
-          appearance?: 'primary' | 'secondary';
-        };
-        id?: string;
-      }[];
-      id?: string;
-      blockName?: string;
-      blockType: 'content';
-    }
-    | {
-      richText?: {
-        [k: string]: unknown;
-      }[];
-      form: string | Form;
-      id?: string;
-      blockName?: string;
-      blockType: 'form';
-    }
-    | {
-      mediaFields?: {
-        size?: 'oneThird' | 'half' | 'twoThirds' | 'full';
-        media: string | Media;
-        mediaFit?: 'cover' | 'contain';
-        id?: string;
-      }[];
-      id?: string;
-      blockName?: string;
-      blockType: 'mediaBlock';
-    }
-    | {
-      mediaContentFields?: {
-        alignment?: 'contentMedia' | 'mediaContent';
-        mediaSize?: 'oneThird' | 'half' | 'twoThirds';
-        richText?: {
-          [k: string]: unknown;
-        }[];
-        enableLink?: boolean;
-        link?: {
-          type?: 'reference' | 'custom';
-          newTab?: boolean;
-          reference:
-          | {
-            value: string | Page;
-            relationTo: 'pages';
+        | {
+            richText?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
+            form: number | Form;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'form';
           }
-          | {
-            value: string | Project;
-            relationTo: 'projects';
-          };
-          url: string;
-          label: string;
-          appearance?: 'primary' | 'secondary';
-        };
-        media: string | Media;
-        mediaFit?: 'cover' | 'contain';
-        id?: string;
-      }[];
-      id?: string;
-      blockName?: string;
-      blockType: 'mediaContent';
-    }
-  )[];
-  slug?: string;
+        | {
+            mediaFields?:
+              | {
+                  size?: ('oneThird' | 'half' | 'twoThirds' | 'full') | null;
+                  media: number | Media;
+                  mediaFit?: ('cover' | 'contain') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'mediaBlock';
+          }
+        | {
+            fields?:
+              | {
+                  alignment?: ('contentMedia' | 'mediaContent') | null;
+                  mediaSize?: ('oneThird' | 'half' | 'twoThirds') | null;
+                  richText?:
+                    | {
+                        [k: string]: unknown;
+                      }[]
+                    | null;
+                  enableLink?: boolean | null;
+                  link?: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?:
+                      | ({
+                          relationTo: 'pages';
+                          value: number | Page;
+                        } | null)
+                      | ({
+                          relationTo: 'projects';
+                          value: number | Project;
+                        } | null);
+                    url?: string | null;
+                    label: string;
+                    appearance?: ('primary' | 'secondary') | null;
+                  };
+                  media: number | Media;
+                  mediaFit?: ('cover' | 'contain') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'mediaContent';
+          }
+      )[]
+    | null;
+  slug?: string | null;
   role: ('uiUxDesigner' | 'frontEndDeveloper' | 'backEndDeveloper')[];
   startDate?: string | null;
   endDate?: string | null;
@@ -283,74 +311,74 @@ export interface Form {
   id: number;
   title: string;
   fields?:
-  | (
-    | {
-      name: string;
-      label?: string | null;
-      width?: number | null;
-      required?: boolean | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'email';
-    }
-    | {
-      message?:
-      | {
-        [k: string]: unknown;
-      }[]
-      | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'message';
-    }
-    | {
-      name: string;
-      label?: string | null;
-      width?: number | null;
-      defaultValue?: string | null;
-      required?: boolean | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'text';
-    }
-    | {
-      name: string;
-      label?: string | null;
-      width?: number | null;
-      defaultValue?: string | null;
-      required?: boolean | null;
-      id?: string | null;
-      blockName?: string | null;
-      blockType: 'textarea';
-    }
-  )[]
-  | null;
+    | (
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'email';
+          }
+        | {
+            message?:
+              | {
+                  [k: string]: unknown;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'message';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'text';
+          }
+        | {
+            name: string;
+            label?: string | null;
+            width?: number | null;
+            defaultValue?: string | null;
+            required?: boolean | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'textarea';
+          }
+      )[]
+    | null;
   submitButtonLabel?: string | null;
   confirmationType?: ('message' | 'redirect') | null;
   confirmationMessage?:
-  | {
-    [k: string]: unknown;
-  }[]
-  | null;
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
   redirect?: {
     url: string;
   };
   emails?:
-  | {
-    emailTo?: string | null;
-    cc?: string | null;
-    bcc?: string | null;
-    replyTo?: string | null;
-    emailFrom?: string | null;
-    subject: string;
-    message?:
     | {
-      [k: string]: unknown;
-    }[]
+        emailTo?: string | null;
+        cc?: string | null;
+        bcc?: string | null;
+        replyTo?: string | null;
+        emailFrom?: string | null;
+        subject: string;
+        message?:
+          | {
+              [k: string]: unknown;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
     | null;
-    id?: string | null;
-  }[]
-  | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -379,12 +407,12 @@ export interface FormSubmission {
   id: number;
   form: number | Form;
   submissionData?:
-  | {
-    field: string;
-    value: string;
-    id?: string | null;
-  }[]
-  | null;
+    | {
+        field: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -400,14 +428,14 @@ export interface PayloadPreference {
   };
   key?: string | null;
   value?:
-  | {
-    [k: string]: unknown;
-  }
-  | unknown[]
-  | string
-  | number
-  | boolean
-  | null;
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -429,25 +457,25 @@ export interface PayloadMigration {
 export interface Header {
   id: number;
   navItems?:
-  | {
-    link: {
-      type?: ('reference' | 'custom') | null;
-      newTab?: boolean | null;
-      reference?:
-      | ({
-        relationTo: 'pages';
-        value: number | Page;
-      } | null)
-      | ({
-        relationTo: 'projects';
-        value: number | Project;
-      } | null);
-      url?: string | null;
-      label: string;
-    };
-    id?: string | null;
-  }[]
-  | null;
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'projects';
+                value: number | Project;
+              } | null);
+          url?: string | null;
+          label: string;
+        };
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -461,10 +489,10 @@ export interface Profile {
   location?: string | null;
   title?: string | null;
   aboutMe?:
-  | {
-    [k: string]: unknown;
-  }[]
-  | null;
+    | {
+        [k: string]: unknown;
+      }[]
+    | null;
   profileImage?: number | Media | null;
   socialLinks?: {
     github?: string | null;
@@ -478,5 +506,5 @@ export interface Profile {
 
 
 declare module 'payload' {
-  export interface GeneratedTypes extends Config { }
+  export interface GeneratedTypes extends Config {}
 }
