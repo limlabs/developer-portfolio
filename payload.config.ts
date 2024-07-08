@@ -16,6 +16,7 @@ import { Technologies } from '@/collections/Technologies'
 import { Users } from '@/collections/Users'
 import { Header } from '@/globals/Header'
 import { Profile } from '@/globals/Profile'
+import { Appearance } from '@/globals/Appearance'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,12 +24,13 @@ const dirname = path.dirname(filename)
 export default buildConfig({
   editor: slateEditor({}),
   collections: [Media, Pages, Projects, Technologies, Users],
-  globals: [Header, Profile],
+  globals: [Header, Profile, Appearance],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'src/payload-types.ts'),
   },
   db: postgresAdapter({
+    push: false,
     pool: {
       connectionString: process.env.POSTGRES_URL || '',
     },

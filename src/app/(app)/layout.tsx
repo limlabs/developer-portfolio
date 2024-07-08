@@ -6,11 +6,12 @@ const inter = Inter({ subsets: ['latin'] })
 import { Footer } from '@/components/siteLayout/footer'
 import { NavBar } from '@/components/siteLayout/navBar'
 import { Backdrop } from '@/components/ui/backdrop/backdrop'
-import { fetchHeader, fetchProfile } from '@/utilities/api'
+import { fetchAppearance, fetchHeader, fetchProfile } from '@/utilities/api'
 
 import './globals.css'
 import { ThemeProvider } from '@/components/siteLayout/themeProvider'
 import { serverUrl } from '@/utilities/serverConfig'
+import { AppearanceStyles } from '@/components/appearance/styles'
 
 export async function generateMetadata() {
   const profile = await fetchProfile()
@@ -23,11 +24,16 @@ export async function generateMetadata() {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const [profile, header] = await Promise.all([fetchProfile(), fetchHeader()])
+  const [profile, header, appearance] = await Promise.all([
+    fetchProfile(),
+    fetchHeader(),
+    fetchAppearance(),
+  ])
 
   return (
     <html lang="en" className={`${inter.className}`} suppressHydrationWarning>
       <body className="w-full overflow-x-hidden">
+        <AppearanceStyles appearance={appearance} />
         <ThemeProvider
           enableColorScheme
           enableSystem

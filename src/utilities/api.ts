@@ -1,10 +1,10 @@
 'use server'
 
-import type { Header, Page, Profile, Project, User } from '@/payload-types'
+import type { Appearance, Header, Page, Profile, Project, User } from '@/payload-types'
 import type { DraftOptions } from './preview'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import configPromise from '@payload-config'
-import { BasePayload, Where } from 'payload'
+import { BasePayload } from 'payload'
 import { Options } from 'node_modules/payload/dist/collections/operations/local/find'
 
 export const getPayload = async (): Promise<BasePayload> => {
@@ -23,6 +23,13 @@ export const fetchHeader = async (): Promise<Header> => {
   const header = await payload.findGlobal({ slug: 'header', locale: 'all' })
 
   return header
+}
+
+export const fetchAppearance = async (): Promise<Appearance> => {
+  const payload = await getPayload()
+  const appearance = await payload.findGlobal({ slug: 'appearance', locale: 'all' })
+
+  return appearance
 }
 
 type FetchPageOptions = DraftOptions

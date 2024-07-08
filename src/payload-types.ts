@@ -21,6 +21,7 @@ export interface Config {
   globals: {
     header: Header;
     profile: Profile;
+    appearance: Appearance;
   };
   locale: null;
   user: User & {
@@ -499,6 +500,64 @@ export interface Profile {
     linkedin?: string | null;
     email?: string | null;
     twitter?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "appearance".
+ */
+export interface Appearance {
+  id: number;
+  general?: {
+    borderRadius?: string | null;
+  };
+  palette?: {
+    dark?: {
+      background?: string | null;
+      foreground?: string | null;
+      muted?: string | null;
+      mutedForeground?: string | null;
+      border?: string | null;
+      inputBorder?: string | null;
+      popover?: string | null;
+      popoverForeground?: string | null;
+      card?: string | null;
+      cardForeground?: string | null;
+      primary?: string | null;
+      primaryForeground?: string | null;
+      secondary?: string | null;
+      secondaryForeground?: string | null;
+      accent?: string | null;
+      accentForeground?: string | null;
+      destructive?: string | null;
+      destructiveForeground?: string | null;
+      ring?: string | null;
+      box?: string | null;
+    };
+    light?: {
+      background?: string | null;
+      foreground?: string | null;
+      muted?: string | null;
+      mutedForeground?: string | null;
+      border?: string | null;
+      inputBorder?: string | null;
+      popover?: string | null;
+      popoverForeground?: string | null;
+      card?: string | null;
+      cardForeground?: string | null;
+      primary?: string | null;
+      primaryForeground?: string | null;
+      secondary?: string | null;
+      secondaryForeground?: string | null;
+      accent?: string | null;
+      accentForeground?: string | null;
+      destructive?: string | null;
+      destructiveForeground?: string | null;
+      ring?: string | null;
+      box?: string | null;
+    };
   };
   updatedAt?: string | null;
   createdAt?: string | null;
