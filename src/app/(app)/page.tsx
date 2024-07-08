@@ -48,11 +48,11 @@ export default async function LandingPage({ searchParams }: LandingPageProps) {
 
   if (!page) {
     return (
-      <div className="mt-20 flex flex-col items-center justify-center gap-8 rounded-sm border-4 border-dashed border-accent py-40">
+      <div className="mt-12 flex flex-col items-center justify-center gap-8 rounded-sm border-4 border-dashed border-accent py-40">
         <SetupTitle>So wow, much empty.</SetupTitle>
         <SetupMessage>
           <span>Create a page with slug</span>
-          <code className="bg-box/40 mx-1 px-1 py-0.5 font-mono">/home</code>
+          <code className="mx-1 bg-box/40 px-1 py-0.5 font-mono">/home</code>
           <span>, or run the setup process to get started.</span>
         </SetupMessage>
         <Block fadeIn className="flex w-96 justify-between delay-1000 lg:justify-between">
