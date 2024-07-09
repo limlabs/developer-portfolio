@@ -1,26 +1,27 @@
-import { loggedIn } from '@/access/loggedIn'
-import { publishedOrLoggedIn } from '@/access/publishedOrLoggedIn'
-import { serverUrl } from '@/utilities/serverConfig'
-import { Content } from '@/blocks/Content'
-import { Form } from '@/blocks/Form'
-import { MediaBlock } from '@/blocks/Media'
-import { MediaContent } from '@/blocks/MediaContent'
-import { ProfileCTA } from '@/blocks/ProfileCTA'
-import { ProjectGrid } from '@/blocks/ProjectGrid'
-import formatSlug from '@/utilities/formatSlug'
-import { tagRevalidator } from '@/utilities/tagRevalidator'
-import { CollectionConfig } from 'payload'
+import { CollectionConfig } from "payload"
+
+import { loggedIn } from "@/access/loggedIn"
+import { publishedOrLoggedIn } from "@/access/publishedOrLoggedIn"
+import { Content } from "@/blocks/Content"
+import { Form } from "@/blocks/Form"
+import { MediaBlock } from "@/blocks/Media"
+import { MediaContent } from "@/blocks/MediaContent"
+import { ProfileCTA } from "@/blocks/ProfileCTA"
+import { ProjectGrid } from "@/blocks/ProjectGrid"
+import formatSlug from "@/utilities/formatSlug"
+import { serverUrl } from "@/utilities/serverConfig"
+import { tagRevalidator } from "@/utilities/tagRevalidator"
 
 const formatAppURL = ({ doc }: { doc: Record<string, unknown> }): string => {
-  const pathToUse = doc.slug === 'home' ? '' : doc.slug
+  const pathToUse = doc.slug === "home" ? "" : doc.slug
   const { pathname } = new URL(`${serverUrl}/${pathToUse}`)
   return pathname
 }
 
 export const Pages: CollectionConfig = {
-  slug: 'pages',
+  slug: "pages",
   admin: {
-    useAsTitle: 'title',
+    useAsTitle: "title",
     preview: (doc: Record<string, unknown>) => {
       return `${serverUrl}${formatAppURL({ doc })}?preview=true`
     },
@@ -39,26 +40,26 @@ export const Pages: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      label: 'Title',
-      type: 'text',
+      name: "title",
+      label: "Title",
+      type: "text",
       required: true,
     },
     {
-      name: 'layout',
-      label: 'Content',
-      type: 'blocks',
+      name: "layout",
+      label: "Content",
+      type: "blocks",
       blocks: [Content, Form, MediaBlock, MediaContent, ProfileCTA, ProjectGrid],
     },
     {
-      name: 'slug',
-      label: 'Slug',
-      type: 'text',
+      name: "slug",
+      label: "Slug",
+      type: "text",
       admin: {
-        position: 'sidebar',
+        position: "sidebar",
       },
       hooks: {
-        beforeValidate: [formatSlug('title')],
+        beforeValidate: [formatSlug("title")],
       },
     },
   ],

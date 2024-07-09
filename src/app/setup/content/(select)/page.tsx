@@ -1,9 +1,11 @@
-import React from 'react'
-import { Block } from '@/components/ui/block'
-import { Button } from '@/components/ui/button'
-import { LayoutTemplate, Wrench } from 'lucide-react'
-import { SetupTitle } from '@/components/setup/setupTitle'
-import { SetupMessage } from '@/components/setup/setupMessage'
+import React from "react"
+
+import { LayoutTemplate, Wrench } from "lucide-react"
+
+import { SetupMessage } from "@/components/setup/setupMessage"
+import { SetupTitle } from "@/components/setup/setupTitle"
+import { Block } from "@/components/ui/block"
+import { Button } from "@/components/ui/button"
 
 export default function Welcome() {
   return (

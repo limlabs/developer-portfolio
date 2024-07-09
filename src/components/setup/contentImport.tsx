@@ -1,14 +1,17 @@
-'use client'
+"use client"
 
-import { useSeedProcess, isFailureStatus } from '@/app/setup/content/import/hooks'
-import { useFade } from '@/hooks/useFade'
-import { cn } from '@/utilities'
-import { ArrowRight } from 'lucide-react'
-import { useRef } from 'react'
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '../ui/table'
-import { SetupTitle } from './setupTitle'
-import { Button } from '../ui/button'
-import { JobStatus } from './jobStatus'
+import { useRef } from "react"
+
+import { ArrowRight } from "lucide-react"
+
+import { isFailureStatus, useSeedProcess } from "@/app/setup/content/import/hooks"
+import { useFade } from "@/hooks/useFade"
+import { cn } from "@/utilities"
+
+import { Button } from "../ui/button"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table"
+import { JobStatus } from "./jobStatus"
+import { SetupTitle } from "./setupTitle"
 
 export function ContentImport() {
   const { jobs, retry } = useSeedProcess()
@@ -20,7 +23,7 @@ export function ContentImport() {
       <SetupTitle>Importing Content</SetupTitle>
       <Table
         ref={tableRef}
-        className={cn('delay-500', fade.onScreen ? fade.classes.fade : fade.classes.init)}
+        className={cn("delay-500", fade.onScreen ? fade.classes.fade : fade.classes.init)}
       >
         <TableHeader>
           <TableRow>
@@ -39,7 +42,7 @@ export function ContentImport() {
           ))}
         </TableBody>
       </Table>
-      {jobs.every(job => job.status === 'ready') && (
+      {jobs.every(job => job.status === "ready") && (
         <Button href="/setup/finish">
           Finish Setup
           <span className="ml-2">

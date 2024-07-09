@@ -1,11 +1,11 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from "payload"
 
-import { loggedIn } from '@/access/loggedIn'
+import { loggedIn } from "@/access/loggedIn"
 
 export const Technologies: CollectionConfig = {
-  slug: 'technologies',
+  slug: "technologies",
   admin: {
-    useAsTitle: 'name',
+    useAsTitle: "name",
   },
   access: {
     create: loggedIn,
@@ -15,11 +15,11 @@ export const Technologies: CollectionConfig = {
   },
   fields: [
     {
-      name: 'name',
-      type: 'text',
+      name: "name",
+      type: "text",
       required: true,
       admin: {
-        width: '25%',
+        width: "25%",
       },
     },
   ],

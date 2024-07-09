@@ -1,17 +1,19 @@
-import { getPayload } from '@/utilities/api'
-import { CreateUserForm, LoginForm } from './form'
-import { redirect } from 'next/navigation'
-import { SetupTitle } from '@/components/setup/setupTitle'
-import { SetupMessage } from '@/components/setup/setupMessage'
-import { Block } from '@/components/ui/block'
-import { cookies } from 'next/headers'
+import { cookies } from "next/headers"
+import { redirect } from "next/navigation"
 
-export const dynamic = 'force-dynamic'
+import { SetupMessage } from "@/components/setup/setupMessage"
+import { SetupTitle } from "@/components/setup/setupTitle"
+import { Block } from "@/components/ui/block"
+import { getPayload } from "@/utilities/api"
+
+import { CreateUserForm, LoginForm } from "./form"
+
+export const dynamic = "force-dynamic"
 
 export default async function SetupUserPage() {
   const payload = await getPayload()
   const users = await payload.find({
-    collection: 'users',
+    collection: "users",
   })
 
   if (users.totalDocs < 1) {
@@ -26,7 +28,7 @@ export default async function SetupUserPage() {
     )
   }
 
-  const token = cookies().get('payloadToken')
+  const token = cookies().get("payloadToken")
   const authResult = await payload.auth({
     headers: new Headers({
       Authorization: `Bearer ${token}`,
@@ -34,7 +36,7 @@ export default async function SetupUserPage() {
   })
 
   if (authResult.permissions.canAccessAdmin) {
-    redirect('/setup/content')
+    redirect("/setup/content")
   }
 
   return (

@@ -1,10 +1,10 @@
 export const seedUsers = async payload => {
   // create admin
   await payload.create({
-    collection: 'users',
+    collection: "users",
     data: {
-      email: 'dev@payloadcms.com',
-      password: 'test',
+      email: "dev@payloadcms.com",
+      password: "test",
     },
   })
 }

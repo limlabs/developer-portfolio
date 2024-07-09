@@ -1,6 +1,6 @@
-'use client'
+"use client"
 
-import { useState, useEffect, useRef, type RefObject } from 'react'
+import { type RefObject, useEffect, useRef, useState } from "react"
 
 export const useFade = (
   ref: RefObject<HTMLElement | null>,
@@ -10,16 +10,16 @@ export const useFade = (
   }: {
     translate?: boolean
     duration?: string
-  } = { translate: true, duration: 'duration-500' },
+  } = { translate: true, duration: "duration-500" },
 ) => {
   const fadeClasses = {
-    init: ['opacity-0'].concat(translate ? ['translate-y-10'] : []),
+    init: ["opacity-0"].concat(translate ? ["translate-y-10"] : []),
     fade: [
-      'opacity-100',
-      'transition-all',
-      duration ? duration : 'duration-500',
-      'ease-in-out',
-    ].concat(translate ? ['translate-y-0'] : []),
+      "opacity-100",
+      "transition-all",
+      duration ? duration : "duration-500",
+      "ease-in-out",
+    ].concat(translate ? ["translate-y-0"] : []),
   }
 
   const observerRef = useRef<IntersectionObserver | null>(null)

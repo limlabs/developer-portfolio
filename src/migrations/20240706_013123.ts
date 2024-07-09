@@ -1,7 +1,7 @@
-import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
+import { MigrateDownArgs, MigrateUpArgs, sql } from "@payloadcms/db-postgres"
 
 export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
-await payload.db.drizzle.execute(sql`
+  await payload.db.drizzle.execute(sql`
  DO $$ BEGIN
  CREATE TYPE "enum_pages_blocks_content_content_fields_size" AS ENUM('oneThird', 'half', 'twoThirds', 'full');
 EXCEPTION
@@ -1572,10 +1572,10 @@ EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
 `)
-};
+}
 
 export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
-await payload.db.drizzle.execute(sql`
+  await payload.db.drizzle.execute(sql`
  DROP TABLE "media";
 DROP TABLE "pages_blocks_content_content_fields";
 DROP TABLE "pages_blocks_content";
@@ -1636,4 +1636,4 @@ DROP TABLE "header_nav_items";
 DROP TABLE "header";
 DROP TABLE "header_rels";
 DROP TABLE "profile";`)
-};
+}

@@ -1,12 +1,14 @@
-import { FC } from 'react'
-import Link from 'next/link'
+import { FC } from "react"
 
-import { Media, Project } from '@/payload-types'
-import { formatYear } from '@/utilities/format'
-import { Block } from '@/components/ui/block'
-import { MediaBlock } from './mediaBlock'
+import Link from "next/link"
 
-const animationDelayOffsets = ['delay-150', 'delay-200']
+import { Block } from "@/components/ui/block"
+import { Media, Project } from "@/payload-types"
+import { formatYear } from "@/utilities/format"
+
+import { MediaBlock } from "./mediaBlock"
+
+const animationDelayOffsets = ["delay-150", "delay-200"]
 
 interface ProjectGridBlockProps {
   projects: Project[]
@@ -38,9 +40,9 @@ export const ProjectGridBlock: FC<ProjectGridBlockProps> = ({ projects, priority
                     ...(featuredImage as Media),
                     width: 500,
                     height: 376,
-                    alt: `${title}, ${formatYear(startDate ?? '')}`,
+                    alt: `${title}, ${formatYear(startDate ?? "")}`,
                   },
-                  size: 'half',
+                  size: "half",
                 },
               ]}
             />
