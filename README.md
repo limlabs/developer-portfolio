@@ -1,10 +1,10 @@
-## Payload Portfolio Starter
+# Payload Portfolio Starter
+
+[Demo](https://dev-portfolio-example.vercel.app/) 👀 
 
 - Create a great-looking, performant, SEO-friendly professional portfolio without coding
 - Start with a batteries-included CMS and template you can deploy in a few minutes
 - Customize deeply using a modern, Typescript + NextJS development experience (or find a React developer &mdash; we [know a couple good ones](https://liminal.sh)!)
-
-[Demo](https://dev-portfolio-example.vercel.app/) 👀 
 
 ### Quick Start
 
