@@ -1,19 +1,20 @@
-import React from 'react'
-import { Inter } from 'next/font/google'
+import "../(app)/globals.css"
 
-const inter = Inter({ subsets: ['latin'] })
+import React from "react"
 
-import '../(app)/globals.css'
+import { Inter } from "next/font/google"
 
-import { Backdrop } from '@/components/ui/backdrop/backdrop'
-import { ThemeProvider } from '@/components/siteLayout/themeProvider'
-import { serverUrl } from '@/utilities/serverConfig'
+import { ThemeProvider } from "@/components/siteLayout/themeProvider"
+import { Backdrop } from "@/components/ui/backdrop/backdrop"
+import { serverUrl } from "@/utilities/serverConfig"
+
+const inter = Inter({ subsets: ["latin"] })
 
 export async function generateMetadata() {
   return {
     metadataBase: new URL(serverUrl),
     title: `Portfolio Starter | Setup`,
-    description: 'Setup page for portfolio starter.',
+    description: "Setup page for portfolio starter.",
   }
 }
 

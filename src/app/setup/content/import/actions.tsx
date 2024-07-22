@@ -1,19 +1,20 @@
-'use server'
+"use server"
 
-import { seedMedia as executeSeedMedia, getSeededMedia } from '@/seed/media'
-import { seedGlobals as executeSeedGlobals } from '@/seed/globals'
+import { cookies } from "next/headers"
+
+import { getSeededForms, seedForms as executeSeedForms } from "@/seed/forms"
+import { seedGlobals as executeSeedGlobals } from "@/seed/globals"
+import { getSeededMedia, seedMedia as executeSeedMedia } from "@/seed/media"
+import { seedPages as executeSeedPages } from "@/seed/pages"
+import { getSeededProjects, seedProjects as executeSeedProjects } from "@/seed/projects"
 import {
-  seedTechnologies as executeSeedTechnologies,
   getSeededTechnologies,
-} from '@/seed/technologies'
-import { seedPages as executeSeedPages } from '@/seed/pages'
-import { seedProjects as executeSeedProjects, getSeededProjects } from '@/seed/projects'
-import { getSeededForms, seedForms as executeSeedForms } from '@/seed/forms'
-import { getPayload } from '@/utilities/api'
-import { cookies } from 'next/headers'
+  seedTechnologies as executeSeedTechnologies,
+} from "@/seed/technologies"
+import { getPayload } from "@/utilities/api"
 
 export async function authorize() {
-  const token = cookies().get('payload-token')
+  const token = cookies().get("payload-token")
   const payload = await getPayload()
   const authResult = await payload.auth({
     headers: new Headers({
@@ -22,17 +23,17 @@ export async function authorize() {
   })
 
   if (!authResult.permissions.canAccessAdmin) {
-    throw new Error('Unauthorized')
+    throw new Error("Unauthorized")
   }
 }
 
 export async function seedMedia() {
   await authorize()
-  console.log('Seeding media')
+  console.log("Seeding media")
   const payload = await getPayload()
-  const media = await payload.find({ collection: 'media' })
+  const media = await payload.find({ collection: "media" })
   if (media.totalDocs > 0) {
-    console.log('Media already seeded')
+    console.log("Media already seeded")
     return
   }
 
@@ -41,7 +42,7 @@ export async function seedMedia() {
 
 export async function seedGlobals() {
   await authorize()
-  console.log('Seeding globals')
+  console.log("Seeding globals")
   const payload = await getPayload()
 
   const seededMedia = await getSeededMedia(payload)
@@ -50,11 +51,11 @@ export async function seedGlobals() {
 
 export async function seedTechnologies() {
   await authorize()
-  console.log('Seeding technologies')
+  console.log("Seeding technologies")
   const payload = await getPayload()
-  const technologies = await payload.find({ collection: 'technologies' })
+  const technologies = await payload.find({ collection: "technologies" })
   if (technologies.totalDocs > 0) {
-    console.log('Technologies already seeded')
+    console.log("Technologies already seeded")
     return
   }
 
@@ -63,32 +64,32 @@ export async function seedTechnologies() {
 
 export async function seedProjects() {
   await authorize()
-  console.log('Seeding projects')
+  console.log("Seeding projects")
   const payload = await getPayload()
-  const projects = await payload.find({ collection: 'projects' })
+  const projects = await payload.find({ collection: "projects" })
   if (projects.totalDocs > 0) {
-    console.log('Projects already seeded')
+    console.log("Projects already seeded")
     return
   }
 
   const media = await getSeededMedia(payload)
 
-  console.log('getting seeded media', media)
+  console.log("getting seeded media", media)
   const technologies = await getSeededTechnologies(payload)
   await executeSeedProjects(payload, media, technologies)
 }
 
 export async function seedPages() {
   await authorize()
-  console.log('Seeding pages...')
+  console.log("Seeding pages...")
   const payload = await getPayload()
   const forms = await getSeededForms(payload)
   const media = await getSeededMedia(payload)
   const projects = await getSeededProjects(payload)
 
-  const pages = await payload.find({ collection: 'pages' })
+  const pages = await payload.find({ collection: "pages" })
   if (pages.totalDocs > 0) {
-    console.log('Pages already seeded')
+    console.log("Pages already seeded")
     return
   }
 
@@ -97,12 +98,12 @@ export async function seedPages() {
 
 export async function seedForms() {
   await authorize()
-  console.log('Seeding forms...')
+  console.log("Seeding forms...")
   const payload = await getPayload()
 
-  const forms = await payload.find({ collection: 'forms' })
+  const forms = await payload.find({ collection: "forms" })
   if (forms.totalDocs > 0) {
-    console.log('Forms already seeded')
+    console.log("Forms already seeded")
     return
   }
 

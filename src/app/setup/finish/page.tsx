@@ -1,8 +1,9 @@
-import { SetupTitle } from '@/components/setup/setupTitle'
-import { SetupMessage } from '@/components/setup/setupMessage'
-import { Block } from '@/components/ui/block'
-import { Button } from '@/components/ui/button'
-import { Globe, Edit2 } from 'lucide-react'
+import { Edit2, Globe } from "lucide-react"
+
+import { SetupMessage } from "@/components/setup/setupMessage"
+import { SetupTitle } from "@/components/setup/setupTitle"
+import { Block } from "@/components/ui/block"
+import { Button } from "@/components/ui/button"
 
 export default function FinishSetupPage() {
   return (

@@ -1,5 +1,5 @@
 export const formatMonth = (dateRaw: string): string => {
-  const formatter = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' })
+  const formatter = new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" })
 
   const formattedDate = formatter.format(new Date(dateRaw))
   return formattedDate
@@ -7,10 +7,10 @@ export const formatMonth = (dateRaw: string): string => {
 
 export const formatYear = (dateRaw?: string): string => {
   if (!dateRaw) {
-    return ''
+    return ""
   }
 
-  const formatter = new Intl.DateTimeFormat('en-US', { year: 'numeric' })
+  const formatter = new Intl.DateTimeFormat("en-US", { year: "numeric" })
 
   const formattedDate = formatter.format(new Date(dateRaw))
   return formattedDate

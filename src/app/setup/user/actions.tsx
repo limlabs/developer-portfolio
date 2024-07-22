@@ -1,32 +1,33 @@
-'use server'
+"use server"
 
-import { getPayload } from '@/utilities/api'
-import { cookies } from 'next/headers'
+import { cookies } from "next/headers"
+
+import { getPayload } from "@/utilities/api"
 
 export const createUser = async (formData: FormData) => {
-  const email = formData.get('email')
-  const password = formData.get('password')
+  const email = formData.get("email")
+  const password = formData.get("password")
 
-  if (typeof email !== 'string') {
-    throw new Error('Email is required.')
+  if (typeof email !== "string") {
+    throw new Error("Email is required.")
   }
 
-  if (typeof password !== 'string') {
-    throw new Error('Password is required.')
+  if (typeof password !== "string") {
+    throw new Error("Password is required.")
   }
 
   const payload = await getPayload()
 
   const result = await payload.find({
-    collection: 'users',
+    collection: "users",
   })
 
   if (result.totalDocs > 0) {
-    throw new Error('Cannot create first user. At least one user already exists.')
+    throw new Error("Cannot create first user. At least one user already exists.")
   }
 
   await payload.create({
-    collection: 'users',
+    collection: "users",
     data: {
       email,
       password,
@@ -35,21 +36,21 @@ export const createUser = async (formData: FormData) => {
 }
 
 export const loginUser = async (formData: FormData) => {
-  const email = formData.get('email')
-  const password = formData.get('password')
-  console.log('login', email)
+  const email = formData.get("email")
+  const password = formData.get("password")
+  console.log("login", email)
 
-  if (typeof email !== 'string') {
-    throw new Error('Email is required.')
+  if (typeof email !== "string") {
+    throw new Error("Email is required.")
   }
 
-  if (typeof password !== 'string') {
-    throw new Error('Password is required.')
+  if (typeof password !== "string") {
+    throw new Error("Password is required.")
   }
 
   const payload = await getPayload()
   const result = await payload.login({
-    collection: 'users',
+    collection: "users",
     data: {
       email,
       password,
@@ -57,13 +58,13 @@ export const loginUser = async (formData: FormData) => {
   })
 
   if (!result.token || result.exp === undefined) {
-    throw new Error('An error occurred while logging in. Please try again.')
+    throw new Error("An error occurred while logging in. Please try again.")
   }
 
-  cookies().set('payload-token', result.token, {
-    sameSite: 'strict',
+  cookies().set("payload-token", result.token, {
+    sameSite: "strict",
     secure: true,
-    path: '/',
+    path: "/",
     httpOnly: true,
     expires: result.exp * 1000,
   })

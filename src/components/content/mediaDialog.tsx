@@ -1,16 +1,17 @@
-'use client'
+"use client"
 
-import { FC, useState } from 'react'
-import Image from 'next/image'
+import { FC, useState } from "react"
 
-import { cn } from '@/utilities'
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
-import { Media } from '@/payload-types'
-import { getMediaUrl } from '@/utilities/mediaConfig'
+import Image from "next/image"
+
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { Media } from "@/payload-types"
+import { cn } from "@/utilities"
+import { getMediaUrl } from "@/utilities/mediaConfig"
 
 interface MediaDialogProps {
   className?: string
-  mediaFit?: 'contain' | 'cover'
+  mediaFit?: "contain" | "cover"
   triggerContent: React.ReactNode
   caption?: React.ReactNode
   mediaInfo: Media
@@ -27,12 +28,12 @@ export const MediaDialog: FC<MediaDialogProps> = ({
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <DialogTrigger
-        className={cn(className, 'mb-1 first:mt-8 first:md:mt-12 lg:mb-0 first:lg:mt-0')}
+        className={cn(className, "mb-1 first:mt-8 first:md:mt-12 lg:mb-0 first:lg:mt-0")}
       >
         {triggerContent}
-        {mediaFit === 'contain' && caption}
+        {mediaFit === "contain" && caption}
       </DialogTrigger>
-      {mediaFit === 'cover' && caption}
+      {mediaFit === "cover" && caption}
       <DialogContent
         onClick={() => setDialogOpen(false)}
         showCloseButton

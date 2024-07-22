@@ -1,23 +1,23 @@
-import type { Block } from 'payload'
+import type { Block } from "payload"
 
 export const Form: Block = {
-  slug: 'form',
+  slug: "form",
   labels: {
-    singular: 'Form Block',
-    plural: 'Form Blocks',
+    singular: "Form Block",
+    plural: "Form Blocks",
   },
   graphQL: {
-    singularName: 'FormBlock',
+    singularName: "FormBlock",
   },
   fields: [
     {
-      name: 'richText',
-      type: 'richText',
+      name: "richText",
+      type: "richText",
     },
     {
-      name: 'form',
-      type: 'relationship',
-      relationTo: 'forms',
+      name: "form",
+      type: "relationship",
+      relationTo: "forms",
       required: true,
     },
   ],

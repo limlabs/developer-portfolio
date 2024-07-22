@@ -1,10 +1,12 @@
-import { FC } from 'react'
-import Link from 'next/link'
+import { FC } from "react"
 
-import { Profile } from '@/payload-types'
-import { PayloadLogo } from '@/assets/payloadLogo'
-import { SocialIcons } from '@/components/content/socialIcons'
-import { ThemeToggle } from './themeToggle'
+import Link from "next/link"
+
+import { PayloadLogo } from "@/assets/payloadLogo"
+import { SocialIcons } from "@/components/content/socialIcons"
+import { Profile } from "@/payload-types"
+
+import { ThemeToggle } from "./themeToggle"
 
 interface FooterProps {
   profile?: Profile
@@ -16,7 +18,7 @@ export const Footer: FC<FooterProps> = ({ profile }) => {
       <div className="flex items-center justify-center gap-4">
         <PayloadLogo />
         <p>
-          Website made with{' '}
+          Website made with{" "}
           <Link href="https://payloadcms.com" className="underline" target="_payload">
             Payload
           </Link>

@@ -10,13 +10,17 @@
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
-    "format": "prettier ./src/**/*.{js,jsx,ts,tsx} --write --config ./.prettierrc.cjs",
+    "format": "pnpm format:imports && pnpm format:main",
+    "format:imports": "format-imports --config import-sorter.json src/",
+    "format:main": "prettier ./src/**/*.{js,jsx,ts,tsx} --write --config ./.prettierrc.cjs",
     "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
     "ci": "payload migrate && pnpm build",
+    "drop": "rm -rf .next && cross-env PAYLOAD_SEED=true PAYLOAD_DROP_DATABASE=true PAYLOAD_CONFIG_PATH=src/payload.config.ts node ./src/seed/drop.js",
     "seed": "rm -rf src/media .next && cross-env PAYLOAD_SEED=true PAYLOAD_DROP_DATABASE=true PAYLOAD_CONFIG_PATH=src/payload.config.ts node ./src/seed/index.js",
     "generate:types": "payload generate:types",
     "generate:schema": "payload-graphql generate:schema",
-    "standalone-script": "node ./src/scripts/standalone-script.js"
+    "standalone-script": "node ./src/scripts/standalone-script.js",
+    "prepare": "husky"
   },
   "engines": {
     "node": "^18.20.2 || >=20.9.0"
@@ -67,10 +71,12 @@
     "@types/react-dom": "npm:types-react-dom@19.0.0-beta.2",
     "eslint": "^8.57.0",
     "eslint-config-next": "15.0.0-rc.0",
+    "husky": "^9.0.11",
     "prettier": "^3.3.2",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "tsx": "^4.15.7",
-    "typescript": "5.5.2"
+    "typescript": "5.5.2",
+    "format-imports": "^4.0.4"
   },
   "pnpm": {
     "overrides": {

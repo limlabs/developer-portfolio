@@ -1,68 +1,68 @@
-import type { Block } from 'payload'
+import type { Block } from "payload"
 
-import link from '@/fields/link'
+import link from "@/fields/link"
 
 export const MediaContent: Block = {
-  slug: 'mediaContent',
+  slug: "mediaContent",
   fields: [
     {
-      name: 'fields',
-      type: 'array',
+      name: "fields",
+      type: "array",
       fields: [
         {
-          type: 'row',
+          type: "row",
           fields: [
             {
-              name: 'alignment',
-              type: 'select',
-              defaultValue: 'contentMedia',
+              name: "alignment",
+              type: "select",
+              defaultValue: "contentMedia",
               options: [
                 {
-                  label: 'Content + Media',
-                  value: 'contentMedia',
+                  label: "Content + Media",
+                  value: "contentMedia",
                 },
                 {
-                  label: 'Media + Content',
-                  value: 'mediaContent',
+                  label: "Media + Content",
+                  value: "mediaContent",
                 },
               ],
               admin: {
-                description: 'Choose how to align the content for this block.',
-                width: '50%',
+                description: "Choose how to align the content for this block.",
+                width: "50%",
               },
             },
             {
-              name: 'mediaSize',
-              type: 'select',
-              defaultValue: 'half',
+              name: "mediaSize",
+              type: "select",
+              defaultValue: "half",
               options: [
                 {
-                  value: 'oneThird',
-                  label: 'One Third',
+                  value: "oneThird",
+                  label: "One Third",
                 },
                 {
-                  value: 'half',
-                  label: 'Half',
+                  value: "half",
+                  label: "Half",
                 },
                 {
-                  value: 'twoThirds',
-                  label: 'Two Thirds',
+                  value: "twoThirds",
+                  label: "Two Thirds",
                 },
               ],
               admin: {
-                width: '50%',
+                width: "50%",
               },
             },
           ],
         },
 
         {
-          name: 'richText',
-          type: 'richText',
+          name: "richText",
+          type: "richText",
         },
         {
-          name: 'enableLink',
-          type: 'checkbox',
+          name: "enableLink",
+          type: "checkbox",
         },
         link({
           overrides: {
@@ -72,23 +72,23 @@ export const MediaContent: Block = {
           },
         }),
         {
-          name: 'media',
-          type: 'upload',
-          relationTo: 'media',
+          name: "media",
+          type: "upload",
+          relationTo: "media",
           required: true,
         },
         {
-          name: 'mediaFit',
-          type: 'select',
-          defaultValue: 'cover',
+          name: "mediaFit",
+          type: "select",
+          defaultValue: "cover",
           options: [
             {
-              value: 'cover',
-              label: 'cover',
+              value: "cover",
+              label: "cover",
             },
             {
-              value: 'contain',
-              label: 'contain',
+              value: "contain",
+              label: "contain",
             },
           ],
         },

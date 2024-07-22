@@ -6,7 +6,7 @@ import { seoPlugin } from '@payloadcms/plugin-seo'
 
 import { en } from 'payload/i18n/en'
 import { slateEditor } from '@payloadcms/richtext-slate'
-import { buildConfig } from 'payload'
+import { buildConfig, Plugin } from 'payload'
 import sharp from 'sharp'
 import { fileURLToPath } from 'url'
 import { Media } from '@/collections/Media'
@@ -20,6 +20,40 @@ import { Appearance } from '@/globals/Appearance'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+const plugins: Plugin[] = [
+  formBuilderPlugin({
+    fields: {
+      payment: false,
+      checkbox: false,
+      country: false,
+      email: true,
+      message: true,
+      number: false,
+      text: true,
+      textarea: true,
+      select: false,
+      state: false,
+    },
+  }),
+  seoPlugin({
+    collections: ['pages', 'projects'],
+    uploadsCollection: 'media',
+  })
+];
+
+// Only load vercelBlobStorage plugin when blob token is defined
+// loading in localhost breaks payload
+if (typeof process.env.BLOB_READ_WRITE_TOKEN !== "undefined") {
+  plugins.push(
+    vercelBlobStorage({
+      collections: {
+        [Media.slug]: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    })
+  )
+}
 
 export default buildConfig({
   editor: slateEditor({}),
@@ -58,30 +92,5 @@ export default buildConfig({
   // for this before reaching 3.0 stable
   sharp,
 
-  plugins: [
-    formBuilderPlugin({
-      fields: {
-        payment: false,
-        checkbox: false,
-        country: false,
-        email: true,
-        message: true,
-        number: false,
-        text: true,
-        textarea: true,
-        select: false,
-        state: false,
-      },
-    }),
-    seoPlugin({
-      collections: ['pages', 'projects'],
-      uploadsCollection: 'media',
-    }),
-    vercelBlobStorage({
-      collections: {
-        [Media.slug]: true,
-      },
-      token: process.env.BLOB_READ_WRITE_TOKEN || '',
-    }),
-  ],
+  plugins: plugins
 })

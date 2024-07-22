@@ -1,10 +1,10 @@
 'use server'
 
-import type { Appearance, Header, Page, Profile, Project, User } from '@/payload-types'
+import type { Header, Page, Profile, Project, User } from '@/payload-types'
 import type { DraftOptions } from './preview'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import configPromise from '@payload-config'
-import { BasePayload } from 'payload'
+import { BasePayload, Where } from 'payload'
 import { Options } from 'node_modules/payload/dist/collections/operations/local/find'
 
 export const getPayload = async (): Promise<BasePayload> => {

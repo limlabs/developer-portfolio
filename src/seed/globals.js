@@ -1,17 +1,17 @@
 export const seedGlobals = async (payload, media) => {
   await payload.updateGlobal({
-    slug: 'profile',
+    slug: "profile",
     draft: false,
     data: {
-      name: 'Samantha Smith',
-      location: 'Portland, OR',
-      title: 'UI/UX Designer',
+      name: "Samantha Smith",
+      location: "Portland, OR",
+      title: "UI/UX Designer",
       profileImage: media.profileImage.id,
       socialLinks: {
-        github: 'https://github.com/payloadcms',
-        linkedin: 'https://www.linkedin.com/company/payload-cms/',
-        twitter: 'https://twitter.com/payloadcms',
-        email: 'info@payloadcms.com',
+        github: "https://github.com/payloadcms",
+        linkedin: "https://www.linkedin.com/company/payload-cms/",
+        twitter: "https://twitter.com/payloadcms",
+        email: "info@payloadcms.com",
       },
       aboutMe: [
         {
@@ -22,31 +22,31 @@ export const seedGlobals = async (payload, media) => {
   })
 
   await payload.updateGlobal({
-    slug: 'header',
+    slug: "header",
     data: {
       navItems: [
         {
           link: {
-            type: 'custom',
+            type: "custom",
             newTab: true,
-            url: 'https://www.linkedin.com/company/payload-cms/',
-            label: 'LinkedIn',
+            url: "https://www.linkedin.com/company/payload-cms/",
+            label: "LinkedIn",
           },
         },
         {
           link: {
-            type: 'custom',
+            type: "custom",
             newTab: true,
-            url: 'https://dribbble.com',
-            label: 'Dribbble',
+            url: "https://dribbble.com",
+            label: "Dribbble",
           },
         },
         {
           link: {
-            type: 'custom',
+            type: "custom",
             newTab: true,
-            url: 'https://instagram.com',
-            label: 'Instagram',
+            url: "https://instagram.com",
+            label: "Instagram",
           },
         },
       ],

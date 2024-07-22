@@ -1,4 +1,4 @@
-import type { Access } from 'payload'
+import type { Access } from "payload"
 
 export const publishedOrLoggedIn: Access = ({ req: { user } }) => {
   if (user) {
@@ -9,7 +9,7 @@ export const publishedOrLoggedIn: Access = ({ req: { user } }) => {
     or: [
       {
         _status: {
-          equals: 'published',
+          equals: "published",
         },
       },
     ],

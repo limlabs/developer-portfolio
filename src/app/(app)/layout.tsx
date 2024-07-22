@@ -1,7 +1,8 @@
-import React from 'react'
-import { Inter } from 'next/font/google'
+import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+import React from 'react'
+
+import { Inter } from 'next/font/google'
 
 import { Footer } from '@/components/siteLayout/footer'
 import { NavBar } from '@/components/siteLayout/navBar'
@@ -12,6 +13,8 @@ import './globals.css'
 import { ThemeProvider } from '@/components/siteLayout/themeProvider'
 import { serverUrl } from '@/utilities/serverConfig'
 import { AppearanceStyles } from '@/components/appearance/styles'
+
+const inter = Inter({ subsets: ['latin'] })
 
 export async function generateMetadata() {
   const profile = await fetchProfile()

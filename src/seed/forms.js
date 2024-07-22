@@ -11,48 +11,48 @@ const confirmationMessage = [
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const seedForms = async payload => {
   const contactForm = await payload.create({
-    collection: 'forms',
+    collection: "forms",
     data: {
-      title: 'Contact Form',
+      title: "Contact Form",
       fields: [
         {
-          name: 'firstname',
-          label: 'First Name',
+          name: "firstname",
+          label: "First Name",
           width: 50,
           required: true,
-          blockType: 'text',
+          blockType: "text",
         },
         {
-          name: 'lastname',
-          label: 'Last Name',
+          name: "lastname",
+          label: "Last Name",
           width: 50,
           required: true,
-          blockType: 'text',
+          blockType: "text",
         },
         {
-          name: 'email',
-          label: 'Email',
+          name: "email",
+          label: "Email",
           width: 100,
           required: true,
-          blockType: 'email',
+          blockType: "email",
         },
         {
-          name: 'subject',
-          label: 'Subject',
+          name: "subject",
+          label: "Subject",
           width: 100,
           required: true,
-          blockType: 'text',
+          blockType: "text",
         },
         {
-          name: 'message',
-          label: 'Message',
+          name: "message",
+          label: "Message",
           width: 100,
           required: true,
-          blockType: 'textarea',
+          blockType: "textarea",
         },
       ],
-      submitButtonLabel: 'Submit',
-      confirmationType: 'message',
+      submitButtonLabel: "Submit",
+      confirmationType: "message",
       confirmationMessage: confirmationMessage,
     },
   })
@@ -61,24 +61,21 @@ export const seedForms = async payload => {
 }
 
 export async function getSeededForms(payload) {
-  const forms = await payload.find({ collection: 'forms' })
+  const forms = await payload.find({ collection: "forms" })
   if (forms.docs.length === 0) {
-    throw new Error('No forms found during seed process')
+    throw new Error("No forms found during seed process")
   }
 
   const formTitleMap = {
-    'Contact Form': 'contactForm',
+    "Contact Form": "contactForm",
   }
 
-  const seededForms = forms.docs.reduce(
-    (acc, form) => {
-      if (formTitleMap[form.title]) {
-        acc[formTitleMap[form.title]] = form
-      }
-      return acc
-    },
-    {}
-  )
+  const seededForms = forms.docs.reduce((acc, form) => {
+    if (formTitleMap[form.title]) {
+      acc[formTitleMap[form.title]] = form
+    }
+    return acc
+  }, {})
 
   return seededForms
 }

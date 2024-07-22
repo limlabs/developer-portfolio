@@ -1,6 +1,8 @@
-## Payload Portfolio Starter
+# Payload Portfolio Starter
 
-- Create a great-looking, performant, SEO-friendly site without coding
+[Demo](https://dev-portfolio-example.vercel.app/) 👀 
+
+- Create a great-looking, performant, SEO-friendly professional portfolio without coding
 - Start with a batteries-included CMS and template you can deploy in a few minutes
 - Customize deeply using a modern, Typescript + NextJS development experience (or find a React developer &mdash; we [know a couple good ones](https://liminal.sh)!)
 
@@ -41,7 +43,55 @@ Follow the instructions after the first deployment to complete setup.
   - You can connect a custom domain by following the setup instructions in your Vercel account
 
 ### For Local Development + Customization
-
+#### Dependencies
 - pnpm
 - Node 20 or greater
 - A local postgres DB
+
+#### Setup
+**Step 1: Install dependencies**
+
+Make sure you have Node.js, npm or yarn installed on your system. Navigate to the project directory and install all required packages using one of the following commands:
+
+```bash
+pnpm i
+```
+
+**Step 2: Set up environment variables**
+
+Copy the .env.example file to .env.local under the root directory and add your PostgreSQL database connection details as environment variables. The .env.local file will be ignored by Git.
+
+```ini
+# db
+POSTGRES_URL=postgresql://user:pass@localhost
+
+# payload
+PAYLOAD_SECRET=PAYLOAD_CUSTOM_SERVER_EXAMPLE_SECRET_KEY
+PAYLOAD_PUBLIC_SERVER_URL=http://localhost:3000
+PAYLOAD_PUBLIC_DRAFT_SECRET=EXAMPLE_DRAFT_SECRET
+COOKIE_DOMAIN=localhost
+REVALIDATION_KEY=EXAMPLE_REVALIDATION_KEY
+PAYLOAD_SEED=false
+PAYLOAD_DROP_DATABASE=false
+ENABLE_PAYLOAD_CLOUD=false
+
+# vercel
+VERCEL_BUTTON_REPO="https://github.com/limlabs/developer-portfolio/tree/feat-vercel-deploy"
+VERCEL_BUTTON_PROJECT="payload-developer-portfolio"
+VERCEL_BUTTON_SHOW=false
+```
+**Step 3: Seed the database**
+
+Seed the demo data by running:
+```bash
+pnpm seed
+```
+
+**Step 4: Run the project**
+
+Start the development server by running:
+```bash
+pnpm dev
+```
+
+The Next.js development server will start, and you should be able to access your project at http://localhost:3000.

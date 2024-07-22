@@ -1,43 +1,48 @@
-"use client";
+"use client"
 
-import { useRef, type HTMLAttributes } from 'react'
-import { cva, VariantProps } from 'class-variance-authority'
+import { type HTMLAttributes, useRef } from "react"
 
-import { cn } from '@/utilities'
-import { useFade } from '@/hooks/useFade'
+import { cva, VariantProps } from "class-variance-authority"
 
-const blockVariants = cva('flex col-span-6 justify-center lg:justify-start', {
+import { useFade } from "@/hooks/useFade"
+import { cn } from "@/utilities"
+
+const blockVariants = cva("flex col-span-6 justify-center lg:justify-start", {
   variants: {
     size: {
-      oneThird: 'lg:col-span-2',
-      half: 'lg:col-span-3',
-      twoThirds: 'lg:col-span-4',
-      full: 'lg:col-span-6',
+      oneThird: "lg:col-span-2",
+      half: "lg:col-span-3",
+      twoThirds: "lg:col-span-4",
+      full: "lg:col-span-6",
     },
   },
   defaultVariants: {
-    size: 'full',
+    size: "full",
   },
 })
 
 export interface BlockProps
   extends HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof blockVariants> {
-  size?: 'oneThird' | 'twoThirds' | 'half' | 'full' | null
+  size?: "oneThird" | "twoThirds" | "half" | "full" | null
   fadeIn?: boolean | null
 }
 
 const Block = ({ children, className, size, fadeIn = true, ...props }: BlockProps) => {
-    const ref = useRef(null);
-    const fade = fadeIn ? useFade(ref) : null;
+  const ref = useRef(null)
+  const fade = fadeIn ? useFade(ref) : null
 
-    return (
-      <div className={cn([blockVariants({ size, className }), [...(fade?.classes.init ?? [])]])} ref={ref} {...props}>
-        {children}
-      </div>
-    );
-};
+  return (
+    <div
+      className={cn([blockVariants({ size, className }), [...(fade?.classes.init ?? [])]])}
+      ref={ref}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+}
 
-Block.displayName = 'Block';
+Block.displayName = "Block"
 
 export { Block, blockVariants }

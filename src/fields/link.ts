@@ -1,19 +1,19 @@
-import type { Field, GroupField } from 'payload'
+import type { Field, GroupField } from "payload"
 
-import deepMerge from '@/utilities/deepMerge'
+import deepMerge from "@/utilities/deepMerge"
 
 export const appearanceOptions = {
   primary: {
-    label: 'Primary Button',
-    value: 'primary',
+    label: "Primary Button",
+    value: "primary",
   },
   secondary: {
-    label: 'Secondary Button',
-    value: 'secondary',
+    label: "Secondary Button",
+    value: "secondary",
   },
 }
 
-export type LinkAppearances = 'primary' | 'secondary'
+export type LinkAppearances = "primary" | "secondary"
 
 type LinkType = (options?: {
   appearances?: LinkAppearances[] | false
@@ -23,43 +23,43 @@ type LinkType = (options?: {
 
 const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = {}) => {
   let linkResult: Field = {
-    name: 'link',
-    type: 'group',
+    name: "link",
+    type: "group",
     admin: {
       hideGutter: true,
       ...(overrides?.admin || {}),
     },
     fields: [
       {
-        type: 'row',
+        type: "row",
         fields: [
           {
-            name: 'type',
-            type: 'radio',
+            name: "type",
+            type: "radio",
             options: [
               {
-                label: 'Internal link',
-                value: 'reference',
+                label: "Internal link",
+                value: "reference",
               },
               {
-                label: 'Custom URL',
-                value: 'custom',
+                label: "Custom URL",
+                value: "custom",
               },
             ],
-            defaultValue: 'reference',
+            defaultValue: "reference",
             admin: {
-              layout: 'horizontal',
-              width: '50%',
+              layout: "horizontal",
+              width: "50%",
             },
           },
           {
-            name: 'newTab',
-            label: 'Open in new tab',
-            type: 'checkbox',
+            name: "newTab",
+            label: "Open in new tab",
+            type: "checkbox",
             admin: {
-              width: '50%',
+              width: "50%",
               style: {
-                alignSelf: 'flex-end',
+                alignSelf: "flex-end",
               },
             },
           },
@@ -70,47 +70,47 @@ const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = 
 
   let linkTypes: Field[] = [
     {
-      name: 'reference',
-      label: 'Document to link to',
-      type: 'relationship',
-      relationTo: ['pages', 'projects'],
+      name: "reference",
+      label: "Document to link to",
+      type: "relationship",
+      relationTo: ["pages", "projects"],
       required: true,
       maxDepth: 1,
       admin: {
-        condition: (_, siblingData) => siblingData?.type === 'reference',
+        condition: (_, siblingData) => siblingData?.type === "reference",
       },
     },
     {
-      name: 'url',
-      label: 'Custom URL',
-      type: 'text',
+      name: "url",
+      label: "Custom URL",
+      type: "text",
       required: true,
       admin: {
-        condition: (_, siblingData) => siblingData?.type === 'custom',
+        condition: (_, siblingData) => siblingData?.type === "custom",
       },
     },
   ]
 
   if (!disableLabel) {
     if (linkTypes[0].admin) {
-      linkTypes[0].admin.width = '50%'
+      linkTypes[0].admin.width = "50%"
     }
 
     if (linkTypes[1].admin) {
-      linkTypes[1].admin.width = '50%'
+      linkTypes[1].admin.width = "50%"
     }
 
     linkResult.fields.push({
-      type: 'row',
+      type: "row",
       fields: [
         ...linkTypes,
         {
-          name: 'label',
-          label: 'Label',
-          type: 'text',
+          name: "label",
+          label: "Label",
+          type: "text",
           required: true,
           admin: {
-            width: '50%',
+            width: "50%",
           },
         },
       ],
@@ -127,12 +127,12 @@ const link: LinkType = ({ appearances, disableLabel = false, overrides = {} } = 
     }
 
     linkResult.fields.push({
-      name: 'appearance',
-      type: 'select',
-      defaultValue: 'primary',
+      name: "appearance",
+      type: "select",
+      defaultValue: "primary",
       options: appearanceOptionsToUse,
       admin: {
-        description: 'Choose how the link should be rendered.',
+        description: "Choose how the link should be rendered.",
       },
     })
   }

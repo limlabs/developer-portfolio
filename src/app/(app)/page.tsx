@@ -1,15 +1,16 @@
-import React from 'react'
-import { Metadata, ResolvingMetadata } from 'next'
+import React from "react"
 
-import { Media } from '@/payload-types'
-import { ContentLayout } from '@/components/content/contentLayout'
-import { fetchPage, fetchProfile } from '@/utilities/api'
-import { parsePreviewOptions } from '@/utilities/preview'
-import { SetupTitle } from '@/components/setup/setupTitle'
-import { SetupMessage } from '@/components/setup/setupMessage'
-import { Button } from '@/components/ui/button'
-import { PlusCircle, Computer } from 'lucide-react'
-import { Block } from '@/components/ui/block'
+import { Computer, PlusCircle } from "lucide-react"
+import { Metadata, ResolvingMetadata } from "next"
+
+import { ContentLayout } from "@/components/content/contentLayout"
+import { SetupMessage } from "@/components/setup/setupMessage"
+import { SetupTitle } from "@/components/setup/setupTitle"
+import { Block } from "@/components/ui/block"
+import { Button } from "@/components/ui/button"
+import { Media } from "@/payload-types"
+import { fetchPage, fetchProfile } from "@/utilities/api"
+import { parsePreviewOptions } from "@/utilities/preview"
 
 interface LandingPageProps {
   searchParams: Record<string, string>
@@ -21,10 +22,10 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const defaultTitle = (await parent)?.title?.absolute
   const options = parsePreviewOptions(searchParams)
-  const page = await fetchPage('home', options)
+  const page = await fetchPage("home", options)
 
   const title = page?.meta?.title || defaultTitle
-  const description = page?.meta?.description || 'A portfolio of work by a digital professional.'
+  const description = page?.meta?.description || "A portfolio of work by a digital professional."
   const images = []
   if ((page?.meta?.image as Media)?.url) {
     images.push((page?.meta?.image as Media).url as string)
@@ -36,7 +37,7 @@ export async function generateMetadata(
     openGraph: {
       title,
       description,
-      type: 'website',
+      type: "website",
       images,
     },
   }
@@ -44,7 +45,7 @@ export async function generateMetadata(
 
 export default async function LandingPage({ searchParams }: LandingPageProps) {
   const options = parsePreviewOptions(searchParams)
-  const [page, profile] = await Promise.all([fetchPage('home', options), fetchProfile()])
+  const [page, profile] = await Promise.all([fetchPage("home", options), fetchProfile()])
 
   if (!page) {
     return (
