@@ -1,5 +1,5 @@
 import { Appearance } from '@/payload-types'
-
+import { snakeCase } from '@/utilities/casing'
 import { palettes } from '@/utilities/palettes'
 
 export const AppearanceStyles = ({ appearance }: { appearance: Appearance }) => {
@@ -7,10 +7,10 @@ export const AppearanceStyles = ({ appearance }: { appearance: Appearance }) => 
     name: keyof NonNullable<
       NonNullable<NonNullable<NonNullable<Appearance['palettes']>['light']>>['custom']
     >,
-    cssKey: string,
     mode: 'light' | 'dark',
   ) => {
     const variable = appearance.palettes?.[mode]
+    const cssKey = snakeCase(name)
     if (variable?.type === 'preset') {
       const palette = palettes.find(p => p.name === variable.preset)
       if (!palette) return ''
@@ -53,26 +53,26 @@ export const AppearanceStyles = ({ appearance }: { appearance: Appearance }) => 
       ${(['dark', 'light'] as const)
         .map(
           mode => `
-      ${processPaletteVariable('background', 'background', mode)}
-      ${processPaletteVariable('foreground', 'foreground', mode)} 
-      ${processPaletteVariable('muted', 'muted', mode)}
-      ${processPaletteVariable('mutedForeground', 'muted-foreground', mode)}
-      ${processPaletteVariable('popover', 'popover', mode)}
-      ${processPaletteVariable('popoverForeground', 'popover-foreground', mode)}
-      ${processPaletteVariable('card', 'card', mode)}
-      ${processPaletteVariable('cardForeground', 'card-foreground', mode)}
-      ${processPaletteVariable('border', 'border', mode)}
-      ${processPaletteVariable('inputBorder', 'input', mode)}
-      ${processPaletteVariable('primary', 'primary', mode)}
-      ${processPaletteVariable('primaryForeground', 'primary-foreground', mode)}
-      ${processPaletteVariable('secondary', 'secondary', mode)}
-      ${processPaletteVariable('secondaryForeground', 'secondary-foreground', mode)}
-      ${processPaletteVariable('accent', 'accent', mode)}
-      ${processPaletteVariable('accentForeground', 'accent-foreground', mode)}
-      ${processPaletteVariable('destructive', 'destructive', mode)}
-      ${processPaletteVariable('destructiveForeground', 'destructive-foreground', mode)}
-      ${processPaletteVariable('ring', 'ring', mode)}
-      ${processPaletteVariable('box', 'box', mode)}
+      ${processPaletteVariable('background', mode)}
+      ${processPaletteVariable('foreground', mode)} 
+      ${processPaletteVariable('muted', mode)}
+      ${processPaletteVariable('mutedForeground', mode)}
+      ${processPaletteVariable('popover', mode)}
+      ${processPaletteVariable('popoverForeground', mode)}
+      ${processPaletteVariable('card', mode)}
+      ${processPaletteVariable('cardForeground', mode)}
+      ${processPaletteVariable('border', mode)}
+      ${processPaletteVariable('inputBorder', mode)}
+      ${processPaletteVariable('primary', mode)}
+      ${processPaletteVariable('primaryForeground', mode)}
+      ${processPaletteVariable('secondary', mode)}
+      ${processPaletteVariable('secondaryForeground', mode)}
+      ${processPaletteVariable('accent', mode)}
+      ${processPaletteVariable('accentForeground', mode)}
+      ${processPaletteVariable('destructive', mode)}
+      ${processPaletteVariable('destructiveForeground', mode)}
+      ${processPaletteVariable('ring', mode)}
+      ${processPaletteVariable('box', mode)}
       `,
         )
         .join('')}  
